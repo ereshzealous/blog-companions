@@ -1,0 +1,52 @@
+# Sidecar config for anomaly-detector.
+# Contrast with agent: 100% sampling on alert spans, sends straight to gateway.
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 127.0.0.1:4317
+      http:
+        endpoint: 127.0.0.1:4318
+
+processors:
+  batch:
+    send_batch_size: 256
+    timeout: 1s
+
+  memory_limiter:
+    check_interval: 1s
+    limit_percentage: 75
+    spike_limit_percentage: 20
+
+  resource:
+    attributes:
+      - key: otel.collector.mode
+        value: sidecar
+        action: insert
+      - key: deployment.environment
+        value: local-k3d
+        action: upsert
+
+exporters:
+  otlp/gateway:
+    endpoint: otel-gateway.observability.svc.cluster.local:4317
+    tls:
+      insecure: true
+    sending_queue:
+      enabled: true
+      num_consumers: 2
+      queue_size: 500
+
+service:
+  telemetry:
+    logs:
+      level: info
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, resource, batch]
+      exporters: [otlp/gateway]
+    metrics:
+      receivers: [otlp]
+      processors: [memory_limiter, resource, batch]
+      exporters: [otlp/gateway]

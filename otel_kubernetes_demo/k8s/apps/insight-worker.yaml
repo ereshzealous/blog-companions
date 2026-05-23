@@ -1,0 +1,43 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: insight-worker
+  namespace: wearable
+spec:
+  schedule: "0 * * * *"           # hourly
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: insight-worker
+            app.kubernetes.io/version: "0.1.0"
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: insight-worker
+              image: wearable/insight-worker:dev
+              imagePullPolicy: IfNotPresent
+              env:
+                - name: PG_DSN
+                  value: "postgresql://wearable:wearable@postgres.infra.svc.cluster.local:5432/wearable"
+                - name: NODE_IP
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: status.hostIP
+                - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                  value: "$(NODE_IP):4317"
+                - name: OTEL_SERVICE_NAME
+                  value: "insight-worker"
+                - name: OTEL_RESOURCE_ATTRIBUTES
+                  value: "service.name=insight-worker,service.version=0.1.0"
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 128Mi
+                limits:
+                  cpu: 500m
+                  memory: 512Mi

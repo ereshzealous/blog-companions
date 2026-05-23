@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stream-processor
+  namespace: wearable
+  labels:
+    app: stream-processor
+    app.kubernetes.io/version: "0.1.0"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stream-processor
+  template:
+    metadata:
+      labels:
+        app: stream-processor
+        app.kubernetes.io/version: "0.1.0"
+    spec:
+      containers:
+        - name: stream-processor
+          image: wearable/stream-processor:dev
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: KAFKA_BROKER
+              value: "kafka-0.kafka.infra.svc.cluster.local:9092"
+            - name: IN_TOPIC
+              value: "vitals.raw"
+            - name: OUT_TOPIC
+              value: "vitals.events"
+            - name: KAFKA_GROUP
+              value: "stream-processor"
+            - name: PG_DSN
+              value: "postgresql://wearable:wearable@postgres.infra.svc.cluster.local:5432/wearable"
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "$(NODE_IP):4317"
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: "grpc"
+            - name: OTEL_SERVICE_NAME
+              value: "stream-processor"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.name=stream-processor,service.version=0.1.0"
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi

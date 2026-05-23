@@ -1,0 +1,69 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: live-gateway
+  namespace: wearable
+spec:
+  selector:
+    app: live-gateway
+  ports:
+    - port: 7000
+      targetPort: 7000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: live-gateway
+  namespace: wearable
+  labels:
+    app: live-gateway
+    app.kubernetes.io/version: "0.1.0"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: live-gateway
+  template:
+    metadata:
+      labels:
+        app: live-gateway
+        app.kubernetes.io/version: "0.1.0"
+    spec:
+      containers:
+        - name: live-gateway
+          image: wearable/live-gateway:dev
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 7000
+          env:
+            - name: PORT
+              value: "7000"
+            - name: KAFKA_BROKER
+              value: "kafka-0.kafka.infra.svc.cluster.local:9092"
+            - name: ALERTS_TOPIC
+              value: "alerts"
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(NODE_IP):4317"
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: "grpc"
+            - name: OTEL_SERVICE_NAME
+              value: "live-gateway"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.name=live-gateway,service.version=0.1.0"
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 7000
+            initialDelaySeconds: 5
+            periodSeconds: 5

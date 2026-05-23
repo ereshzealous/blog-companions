@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loadgen
+  namespace: wearable
+  labels:
+    app: loadgen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loadgen
+  template:
+    metadata:
+      labels:
+        app: loadgen
+        app.kubernetes.io/version: "0.1.0"
+    spec:
+      containers:
+        - name: loadgen
+          image: wearable/loadgen:dev
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: DEVICE_GATEWAY
+              value: "device-gateway.wearable.svc.cluster.local:9000"
+            - name: INTERVAL
+              value: "5s"
+            - name: DEVICE_COUNT
+              value: "3"
+            - name: HTTP_PORT
+              value: "8080"
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "$(NODE_IP):4317"
+            - name: OTEL_SERVICE_NAME
+              value: "loadgen"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.name=loadgen,service.version=0.1.0"
+          resources:
+            requests:
+              cpu: 25m
+              memory: 32Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loadgen
+  namespace: wearable
+  labels:
+    app: loadgen
+spec:
+  selector:
+    app: loadgen
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http

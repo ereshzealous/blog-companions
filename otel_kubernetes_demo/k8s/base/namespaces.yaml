@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: infra
+  labels:
+    purpose: infrastructure
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: observability
+  labels:
+    purpose: observability
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: wearable
+  labels:
+    purpose: application

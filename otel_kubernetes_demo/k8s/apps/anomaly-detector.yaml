@@ -1,0 +1,125 @@
+# anomaly-detector — demonstrates the SIDECAR pattern.
+# Two containers in one pod: the app + an OTel Collector sidecar.
+# The app exports OTLP to 127.0.0.1:4317 (the sidecar), NOT to $(NODE_IP).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: anomaly-detector-otel-sidecar
+  namespace: wearable
+data:
+  config.yaml: |
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 127.0.0.1:4317
+          http:
+            endpoint: 127.0.0.1:4318
+    processors:
+      batch:
+        send_batch_size: 256
+        timeout: 1s
+      memory_limiter:
+        check_interval: 1s
+        limit_percentage: 75
+        spike_limit_percentage: 20
+      resource:
+        attributes:
+          - key: otel.collector.mode
+            value: sidecar
+            action: insert
+          - key: deployment.environment
+            value: local-k3d
+            action: upsert
+    exporters:
+      otlp/gateway:
+        endpoint: otel-gateway.observability.svc.cluster.local:4317
+        tls:
+          insecure: true
+        sending_queue:
+          enabled: true
+          num_consumers: 2
+          queue_size: 500
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [memory_limiter, resource, batch]
+          exporters: [otlp/gateway]
+        metrics:
+          receivers: [otlp]
+          processors: [memory_limiter, resource, batch]
+          exporters: [otlp/gateway]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: anomaly-detector
+  namespace: wearable
+  labels:
+    app: anomaly-detector
+    app.kubernetes.io/version: "0.1.0"
+    otel.pattern: sidecar
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: anomaly-detector
+  template:
+    metadata:
+      labels:
+        app: anomaly-detector
+        app.kubernetes.io/version: "0.1.0"
+    spec:
+      containers:
+        - name: anomaly-detector
+          image: wearable/anomaly-detector:dev
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: KAFKA_BROKER
+              value: "kafka-0.kafka.infra.svc.cluster.local:9092"
+            - name: IN_TOPIC
+              value: "vitals.events"
+            - name: OUT_TOPIC
+              value: "alerts"
+            - name: KAFKA_GROUP
+              value: "anomaly-detector"
+            - name: PG_DSN
+              value: "postgresql://wearable:wearable@postgres.infra.svc.cluster.local:5432/wearable"
+            # Sidecar → app talks to its sidecar on localhost
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "127.0.0.1:4317"
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: "grpc"
+            - name: OTEL_SERVICE_NAME
+              value: "anomaly-detector"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.name=anomaly-detector,service.version=0.1.0"
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+        # ---- the sidecar collector ----
+        - name: otel-sidecar
+          image: otel/opentelemetry-collector-contrib:0.105.0
+          args: ["--config=/conf/config.yaml"]
+          ports:
+            - containerPort: 4317
+            - containerPort: 4318
+          resources:
+            requests:
+              cpu: 25m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+          volumeMounts:
+            - name: otel-sidecar-config
+              mountPath: /conf
+      volumes:
+        - name: otel-sidecar-config
+          configMap:
+            name: anomaly-detector-otel-sidecar

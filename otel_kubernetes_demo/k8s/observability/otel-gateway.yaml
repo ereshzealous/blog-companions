@@ -1,0 +1,143 @@
+# OTel Collector — Gateway (Deployment, replicated)
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: otel-gateway-config
+  namespace: observability
+data:
+  config.yaml: |
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+          http:
+            endpoint: 0.0.0.0:4318
+    processors:
+      batch:
+        send_batch_size: 1024
+        timeout: 5s
+      memory_limiter:
+        check_interval: 1s
+        limit_percentage: 80
+        spike_limit_percentage: 25
+      tail_sampling:
+        decision_wait: 10s
+        num_traces: 50000
+        expected_new_traces_per_sec: 100
+        policies:
+          - name: errors
+            type: status_code
+            status_code:
+              status_codes: [ERROR]
+          - name: alert-spans
+            type: string_attribute
+            string_attribute:
+              key: alert.severity
+              values: [high, critical]
+          - name: slow-traces
+            type: latency
+            latency:
+              threshold_ms: 1000
+          - name: baseline-sample
+            type: probabilistic
+            probabilistic:
+              sampling_percentage: 10
+    connectors:
+      spanmetrics:
+        histogram:
+          explicit:
+            buckets: [5ms, 10ms, 25ms, 50ms, 100ms, 250ms, 500ms, 1s, 2.5s, 5s, 10s]
+        dimensions:
+          - name: http.method
+          - name: http.status_code
+          - name: rpc.system
+          - name: messaging.system
+          - name: messaging.destination.name
+        metrics_flush_interval: 15s
+    exporters:
+      otlp/jaeger:
+        endpoint: jaeger.observability.svc.cluster.local:4317
+        tls:
+          insecure: true
+      prometheus:
+        endpoint: 0.0.0.0:8889
+        resource_to_telemetry_conversion:
+          enabled: true
+    service:
+      telemetry:
+        logs:
+          level: info
+        metrics:
+          address: 0.0.0.0:8888
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [memory_limiter, tail_sampling, batch]
+          exporters: [otlp/jaeger, spanmetrics]
+        metrics:
+          receivers: [otlp, spanmetrics]
+          processors: [memory_limiter, batch]
+          exporters: [prometheus]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otel-gateway
+  namespace: observability
+  labels:
+    app: otel-gateway
+spec:
+  selector:
+    app: otel-gateway
+  ports:
+    - name: otlp-grpc
+      port: 4317
+      targetPort: 4317
+    - name: otlp-http
+      port: 4318
+      targetPort: 4318
+    - name: prom-metrics
+      port: 8889
+      targetPort: 8889
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otel-gateway
+  namespace: observability
+  labels:
+    app: otel-gateway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: otel-gateway
+  template:
+    metadata:
+      labels:
+        app: otel-gateway
+    spec:
+      containers:
+        - name: collector
+          image: otel/opentelemetry-collector-contrib:0.105.0
+          args: ["--config=/conf/config.yaml"]
+          ports:
+            - containerPort: 4317
+            - containerPort: 4318
+            - containerPort: 8889
+            - containerPort: 8888
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+          volumeMounts:
+            - name: config
+              mountPath: /conf
+      volumes:
+        - name: config
+          configMap:
+            name: otel-gateway-config

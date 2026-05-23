@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: device-gateway
+  namespace: wearable
+spec:
+  selector:
+    app: device-gateway
+  ports:
+    - name: grpc
+      port: 9000
+      targetPort: 9000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: device-gateway
+  namespace: wearable
+  labels:
+    app: device-gateway
+    app.kubernetes.io/version: "0.1.0"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: device-gateway
+  template:
+    metadata:
+      labels:
+        app: device-gateway
+        app.kubernetes.io/version: "0.1.0"
+    spec:
+      containers:
+        - name: device-gateway
+          image: wearable/device-gateway:dev
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9000
+          env:
+            - name: GRPC_PORT
+              value: "9000"
+            - name: KAFKA_BROKER
+              value: "kafka-0.kafka.infra.svc.cluster.local:9092"
+            - name: KAFKA_TOPIC
+              value: "vitals.raw"
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "$(NODE_IP):4317"
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: "grpc"
+            - name: OTEL_SERVICE_NAME
+              value: "device-gateway"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.name=device-gateway,service.version=0.1.0"
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi

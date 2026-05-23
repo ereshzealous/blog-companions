@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package wearable.vitals.v1;
+
+option go_package = "github.com/wearable/device-gateway/proto/vitalsv1";
+
+service VitalsIngest {
+  // Stream of vitals batches from a wearable device.
+  rpc PublishBatch(VitalsBatch) returns (PublishAck);
+}
+
+message VitalsBatch {
+  string device_id    = 1;
+  string user_id      = 2;
+  repeated Reading readings = 3;
+}
+
+message Reading {
+  int64  ts_unix_ms   = 1;
+  float  heart_rate   = 2;
+  float  spo2         = 3;
+  float  accel_x      = 4;
+  float  accel_y      = 5;
+  float  accel_z      = 6;
+  int32  steps_delta  = 7;
+  float  skin_temp_c  = 8;
+}
+
+message PublishAck {
+  int32  accepted     = 1;
+  int32  rejected     = 2;
+  string message      = 3;
+}
