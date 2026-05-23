@@ -14,7 +14,6 @@ Each subdirectory is a self-contained, end-to-end demo paired with the article t
 
 - One top-level `Makefile` per demo with `make all` (full setup) and `make down-all` (full teardown).
 - One `README.md` per demo with prerequisites, the command sequence, and the expected result.
-- Every diagram lives next to the code it describes, in `docs/` or `docs/architecture/`.
 - No hidden state — if it isn't in the repo, it doesn't run.
 
 ---

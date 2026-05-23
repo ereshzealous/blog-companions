@@ -194,7 +194,6 @@ Compare the two manifests:
 ```
 .
 ├── Makefile                    # installs k3d, builds + deploys everything
-├── docs/superpowers/specs/     # design docs
 ├── otel-config/                # standalone copies of agent/gateway/sidecar configs
 ├── k8s/
 │   ├── base/                   # namespaces
