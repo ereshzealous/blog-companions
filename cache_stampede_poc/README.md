@@ -252,6 +252,9 @@ cache_stampede_poc/
 
 ## What this POC does not claim
 
-No latency benchmarks. No Redis Cluster, failover or Redlock behaviour. No multi-region. No
-production traffic. No universal TTL, budget or retry values. The virtual-clock loop uses two
-private asyncio attributes, which is fine for a teaching tool and not for production.
+- No latency benchmarks.
+- No Redis Cluster, failover or Redlock behaviour.
+- No multi-region.
+- No production traffic.
+- No universal TTL, budget or retry values.
+- The virtual-clock loop uses two private asyncio attributes, which is fine for a teaching tool and not for production.
