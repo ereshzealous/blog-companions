@@ -1,0 +1,427 @@
+{
+ "S1": {
+  "name": "naive",
+  "row": {
+   "requests": 1000,
+   "cache_hits": 0,
+   "cache_misses": 1000,
+   "origin_calls": 1000,
+   "max_origin_concurrency": 1000,
+   "coalesced_waiters": 0,
+   "stale_served": 0
+  },
+  "details": [
+   "1000 callers missed the same key at the same instant; every one loaded it",
+   "origin_amplification = 1000 origin loads / 1 refresh needed"
+  ],
+  "checks": [
+   [
+    "origin_calls >= 900",
+    true
+   ],
+   [
+    "every caller got the price",
+    true
+   ]
+  ],
+  "ok": true,
+  "data": {
+   "amplification": 1000
+  }
+ },
+ "S2": {
+  "name": "local singleflight",
+  "row": {
+   "requests": 1000,
+   "cache_hits": 0,
+   "cache_misses": 1000,
+   "origin_calls": 100,
+   "max_origin_concurrency": 100,
+   "coalesced_waiters": 900,
+   "stale_served": 0
+  },
+  "details": [
+   "each of 100 pods coalesced its own callers: 1 leader + 9 waiters per pod",
+   "origin loads = one per pod (100), not one per fleet"
+  ],
+  "checks": [
+   [
+    "origin_calls <= active_pods",
+    true
+   ],
+   [
+    "origin_calls == active_pods (one per pod)",
+    true
+   ]
+  ],
+  "ok": true,
+  "data": {
+   "active_pods": 100
+  }
+ },
+ "S3": {
+  "name": "fleet refresh owner",
+  "row": {
+   "requests": 1000,
+   "cache_hits": 0,
+   "cache_misses": 1000,
+   "origin_calls": 1,
+   "max_origin_concurrency": 1,
+   "coalesced_waiters": 999,
+   "stale_served": 0
+  },
+  "details": [
+   "one pod won SET refresh:price:phone-x NX PX 5000; 99 pod leaders waited on the cache",
+   "900 more callers waited inside their own pods; fallback loads: 0",
+   "p99 caller latency 210 ms (callers wait for the one refresh)"
+  ],
+  "checks": [
+   [
+    "origin_calls <= 2",
+    true
+   ],
+   [
+    "no fallback loads",
+    true
+   ],
+   [
+    "every caller got the price",
+    true
+   ]
+  ],
+  "ok": true,
+  "data": {
+   "p99_ms": 210.0
+  }
+ },
+ "S4": {
+  "name": "stale-while-revalidate",
+  "row": {
+   "requests": 1000,
+   "cache_hits": 0,
+   "cache_misses": 0,
+   "origin_calls": 1,
+   "max_origin_concurrency": 1,
+   "coalesced_waiters": 0,
+   "stale_served": 1000
+  },
+  "details": [
+   "1000 callers got the stale \u20b969,999 at once; p99 latency 1 ms vs 200 ms origin",
+   "one background refresh; cache now holds version 11, fresh for another 300 s"
+  ],
+  "checks": [
+   [
+    "stale_served == 1000",
+    true
+   ],
+   [
+    "origin_calls == 1",
+    true
+   ],
+   [
+    "p99 caller latency < origin latency",
+    true
+   ],
+   [
+    "refresh landed (version 11)",
+    true
+   ]
+  ],
+  "ok": true,
+  "data": {
+   "p99_ms": 1.0
+  }
+ },
+ "S5": {
+  "name": "TTL jitter",
+  "row": {
+   "requests": 100000,
+   "cache_hits": null,
+   "cache_misses": null,
+   "origin_calls": null,
+   "max_origin_concurrency": null,
+   "coalesced_waiters": null,
+   "stale_served": null,
+   "peak_expiries_per_5s": "100000 -> 8523"
+  },
+  "details": [
+   "same TTL: 100,000 keys expire in one 5-second bucket",
+   "ttl = max_ttl - rand(0, 60 s): peak 8,523 per bucket (11.7x lower), longest TTL 300.0 s",
+   "ttl = base + rand(0, 60 s) spreads just as well but 100,000 of 100,000 keys outlive the 300 s freshness limit"
+  ],
+  "checks": [
+   [
+    "envelope peak <= 1.3 x mean bucket",
+    true
+   ],
+   [
+    "envelope jitter never exceeds max_ttl",
+    true
+   ],
+   [
+    "additive jitter breaks the freshness contract",
+    true
+   ]
+  ],
+  "ok": true,
+  "data": {
+   "fixed": {
+    "300.0": 100000
+   },
+   "envelope": {
+    "240.0": 8240,
+    "245.0": 8523,
+    "250.0": 8284,
+    "255.0": 8126,
+    "260.0": 8413,
+    "265.0": 8466,
+    "270.0": 8294,
+    "275.0": 8364,
+    "280.0": 8222,
+    "285.0": 8329,
+    "290.0": 8444,
+    "295.0": 8295
+   },
+   "additive": {
+    "300.0": 8346,
+    "305.0": 8325,
+    "310.0": 8520,
+    "315.0": 8472,
+    "320.0": 8426,
+    "325.0": 8244,
+    "330.0": 8175,
+    "335.0": 8303,
+    "340.0": 8315,
+    "345.0": 8446,
+    "350.0": 8137,
+    "355.0": 8291
+   },
+   "peak_fixed": 100000,
+   "peak_envelope": 8523,
+   "additive_over": 100000
+  }
+ },
+ "S6": {
+  "name": "cold cache",
+  "row": {
+   "requests": 60000,
+   "cache_hits": 45329,
+   "cache_misses": 14671,
+   "origin_calls": 3032,
+   "max_origin_concurrency": 20,
+   "coalesced_waiters": 54,
+   "stale_served": 0,
+   "shed": 11625,
+   "time_to_90pct_hits": "27s"
+  },
+  "details": [
+   "cache starts empty; 60,000 requests over 30 s across 5,000 keys (Zipf), 100 pods with local singleflight",
+   "A \u00b7 per-pod limit 5 only: peak origin concurrency 391 (the per-pod limits sum to 500); 90% hit ratio after 7 s",
+   "B \u00b7 aggregate origin budget N=20: peak 20; 3,032 loads; 11,625 requests shed (19%) after 250 ms; 90% hit ratio after 27 s",
+   "C \u00b7 aggregate origin budget N=50: peak 50; 3,293 shed (5%); 90% hit ratio after 12 s",
+   "every concurrency limit has a scope: 100 per-pod limits are not an origin limit;",
+   "the budget that protects the origin also sets how long recovery takes"
+  ],
+  "checks": [
+   [
+    "B: max_origin_concurrency <= N",
+    true
+   ],
+   [
+    "A: per-pod limits alone exceed N",
+    true
+   ],
+   [
+    "B and C recover (90% hit ratio reached)",
+    true
+   ],
+   [
+    "bigger budget recovers faster (C before B)",
+    true
+   ]
+  ],
+  "ok": true,
+  "data": {
+   "a_max": 391,
+   "b_max": 20,
+   "c_max": 50,
+   "t90_a": 7,
+   "t90_b": 27,
+   "t90_c": 12,
+   "shed_b": 11625,
+   "shed_c": 3293,
+   "ratio_a": {
+    "0": 0.4775,
+    "1": 0.7265,
+    "2": 0.8025,
+    "3": 0.8495,
+    "4": 0.857,
+    "5": 0.8825,
+    "6": 0.882,
+    "7": 0.9065,
+    "8": 0.9095,
+    "9": 0.926,
+    "10": 0.932,
+    "11": 0.9425,
+    "12": 0.9525,
+    "13": 0.9515,
+    "14": 0.9525,
+    "15": 0.962,
+    "16": 0.9645,
+    "17": 0.953,
+    "18": 0.9695,
+    "19": 0.9735,
+    "20": 0.9705,
+    "21": 0.9705,
+    "22": 0.9785,
+    "23": 0.975,
+    "24": 0.977,
+    "25": 0.9765,
+    "26": 0.9745,
+    "27": 0.9835,
+    "28": 0.9845,
+    "29": 0.9835
+   },
+   "ratio_b": {
+    "0": 0.2415,
+    "1": 0.429,
+    "2": 0.517,
+    "3": 0.623,
+    "4": 0.6085,
+    "5": 0.65,
+    "6": 0.662,
+    "7": 0.713,
+    "8": 0.703,
+    "9": 0.7195,
+    "10": 0.748,
+    "11": 0.7435,
+    "12": 0.772,
+    "13": 0.7975,
+    "14": 0.7895,
+    "15": 0.8185,
+    "16": 0.821,
+    "17": 0.81,
+    "18": 0.8355,
+    "19": 0.852,
+    "20": 0.843,
+    "21": 0.852,
+    "22": 0.8675,
+    "23": 0.8755,
+    "24": 0.883,
+    "25": 0.8865,
+    "26": 0.895,
+    "27": 0.902,
+    "28": 0.9035,
+    "29": 0.9025
+   },
+   "ratio_c": {
+    "0": 0.328,
+    "1": 0.5325,
+    "2": 0.6415,
+    "3": 0.731,
+    "4": 0.735,
+    "5": 0.765,
+    "6": 0.7925,
+    "7": 0.8325,
+    "8": 0.839,
+    "9": 0.867,
+    "10": 0.8735,
+    "11": 0.8875,
+    "12": 0.921,
+    "13": 0.9225,
+    "14": 0.9215,
+    "15": 0.946,
+    "16": 0.9465,
+    "17": 0.9315,
+    "18": 0.955,
+    "19": 0.961,
+    "20": 0.9565,
+    "21": 0.9605,
+    "22": 0.9645,
+    "23": 0.9675,
+    "24": 0.974,
+    "25": 0.968,
+    "26": 0.968,
+    "27": 0.978,
+    "28": 0.9785,
+    "29": 0.9775
+   },
+   "loads_b": 3032,
+   "requests": 60000,
+   "budget": 20
+  }
+ },
+ "S7": {
+  "name": "retry amplification",
+  "row": {
+   "requests": 1000,
+   "cache_hits": 0,
+   "cache_misses": 1000,
+   "origin_calls": 1100,
+   "max_origin_concurrency": 50,
+   "coalesced_waiters": 0,
+   "stale_served": 0,
+   "unbounded_calls": 3000
+  },
+  "details": [
+   "origin down; 1000 requests for different keys, 3 attempts each, behind the same N=50 origin gate",
+   "unbounded retries: 3,000 origin calls (3.0x the requests)",
+   "10% per-pod retry budget: 1,100 origin calls (1.10x)"
+  ],
+  "checks": [
+   [
+    "unbounded ~3x",
+    true
+   ],
+   [
+    "budget <= 1.1x",
+    true
+   ]
+  ],
+  "ok": true,
+  "data": {
+   "unbounded": 3000,
+   "budget": 1100
+  }
+ },
+ "S8": {
+  "name": "stale-set race",
+  "row": {
+   "requests": 2,
+   "cache_hits": 0,
+   "cache_misses": 2,
+   "origin_calls": 2,
+   "max_origin_concurrency": 1,
+   "coalesced_waiters": 0,
+   "stale_served": 0,
+   "final_cache": "v10 -> v11"
+  },
+  "details": [
+   "R1 takes the 1 s lease and reads v10 (\u20b969,999), then stalls 3 s; the price changes to v11 (\u20b964,999)",
+   "R2 takes the expired lease and writes v11; R1 wakes and writes v10",
+   "plain SET: cache regresses to v10 (\u20b969,999) \u2014 wasted work became a wrong price",
+   "versioned write (never accept an older source version): R1 refused (1 rejected), cache stays v11 (\u20b964,999)",
+   "an unchanged value may still be re-cached: a v11 refresh over v11 is accepted and renews the TTL"
+  ],
+  "checks": [
+   [
+    "plain SET regresses the cache",
+    true
+   ],
+   [
+    "versioned write keeps v11",
+    true
+   ],
+   [
+    "versioned write allows an equal-version refresh",
+    true
+   ]
+  ],
+  "ok": true,
+  "data": {
+   "plain": 10,
+   "versioned": 11,
+   "equal_version_refresh": true
+  }
+ }
+}

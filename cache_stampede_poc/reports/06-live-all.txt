@@ -1,0 +1,226 @@
+$ docker compose -f live/docker-compose.yml run --rm -T --build loadgen python loadgen.py all
+
+ Image stampede-lab-app3 Building 
+ Image stampede-lab-app1 Building 
+ Image stampede-lab-app4 Building 
+ Image stampede-lab-app2 Building 
+ Image stampede-lab-pricing Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 3.12kB done
+#1 DONE 0.0s
+
+#2 [app3 internal] load build definition from Dockerfile
+#2 transferring dockerfile: 246B done
+#2 DONE 0.0s
+
+#3 [app3 internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 0.0s
+
+#4 [pricing internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [app4 internal] load build context
+#5 transferring context: 123B done
+#5 DONE 0.0s
+
+#6 [app2 1/4] FROM docker.io/library/python:3.12-slim@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea
+#6 resolve docker.io/library/python:3.12-slim@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea done
+#6 DONE 0.0s
+
+#7 [app3 2/4] RUN pip install --no-cache-dir fastapi==0.115.6 "uvicorn[standard]==0.34.0" redis==5.2.1 asyncpg==0.30.0 httpx==0.28.1
+#7 CACHED
+
+#8 [app3 3/4] WORKDIR /srv
+#8 CACHED
+
+#9 [pricing 4/4] COPY app.py pricing_svc.py loadgen.py minihttp.py ./
+#9 CACHED
+
+#10 [pricing] exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:0cf7b3eec20554210a45ecd3c3f4806b8beaca267000b4f3ba1db34578cc1b97 done
+#10 exporting config sha256:828443db5551545e5922cdefac6c8d62a9e25b5808d073a6d4d7912badb04859
+#10 ...
+
+#11 [app3] exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:24a18df1f38b63f0b691990c22919bb1021bf598531991acc198994aaed2fffb done
+#11 exporting config sha256:63e27bfa339f2a6c99233058f2f293419af09abda49b63a5ec2880c4a15e5d8c done
+#11 exporting attestation manifest sha256:b1122864c6f7ddaba379db578dd9e03463314632b47ffeaf4b3447c2c853d00d 0.0s done
+#11 exporting manifest list sha256:ca1aaf0e9fa139aed582c3583a9d76e4da0c28e74038f766c55a6dc533e8c997 0.0s done
+#11 naming to docker.io/library/stampede-lab-app3:latest done
+#11 unpacking to docker.io/library/stampede-lab-app3:latest done
+#11 DONE 0.1s
+
+#12 [app2] exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:81741c240995cbd8e370d78c1488afd7f5a91ae4d3c89dd258bd75908c29dc27 done
+#12 exporting config sha256:10492c5c61740a7798a441803e674140860972487d20b08e0eed30f20bee619d done
+#12 exporting attestation manifest sha256:72015282266695b583161f3afdf641cf0ed22525b4db39a31f825738f5cf4099 0.0s done
+#12 exporting manifest list sha256:9da096d7fba58773982bda5c2dc5244e5d329d09dc4e63eaeda9c8dd907bd392 0.0s done
+#12 naming to docker.io/library/stampede-lab-app2:latest done
+#12 unpacking to docker.io/library/stampede-lab-app2:latest done
+#12 DONE 0.1s
+
+#10 [pricing] exporting to image
+#10 exporting config sha256:828443db5551545e5922cdefac6c8d62a9e25b5808d073a6d4d7912badb04859 done
+#10 exporting attestation manifest sha256:56d2a3d985d765c0dde2ad4e9ccd775ec38835fd71f30dfb9baff284356b2364 0.0s done
+#10 exporting manifest list sha256:d34b247c5616903892f2d445aced011172fdde812c29d9067a544fa133a508af 0.0s done
+#10 naming to docker.io/library/stampede-lab-pricing:latest done
+#10 unpacking to docker.io/library/stampede-lab-pricing:latest done
+#10 DONE 0.1s
+
+#13 [app1] exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:cf617111bffd4c944595f63e2159da20adab73f91acdfb3173474a596114b628 done
+#13 exporting config sha256:e2bc72c999ebe92b09d254fc19cf684151303f07093fa82111d9ffcf20c58aea done
+#13 exporting attestation manifest sha256:76ae4054281c5105b80cde240d78bc0cae32a76c3f6a54923aac5f220606d80e 0.0s done
+#13 exporting manifest list sha256:774355ba6310c4ba18df8880b1dba33e878c0c7e8e3d65554ca0a5845528206c 0.0s done
+#13 naming to docker.io/library/stampede-lab-app1:latest done
+#13 unpacking to docker.io/library/stampede-lab-app1:latest done
+#13 DONE 0.1s
+
+#14 [app4] exporting to image
+#14 exporting layers done
+#14 exporting manifest sha256:d6ede3faac6e62661eb83900bfa410dfdba7efc3b566b58344b68a6a5d4454ca done
+#14 exporting config sha256:d1b8924b04d24d2018415078d136bd8ec3a29bd686c15cff20479888dd351ef0 done
+#14 exporting attestation manifest sha256:a7269baac5f2f3bd120a097499b977abd8f3f5a7932398d607a29a26c50168a8 0.0s done
+#14 exporting manifest list sha256:c5f3be183e58eb38d4188248f04bfeb90da35171d15569cf7c2b9f9688ea605a 0.0s done
+#14 naming to docker.io/library/stampede-lab-app4:latest done
+#14 unpacking to docker.io/library/stampede-lab-app4:latest done
+#14 DONE 0.1s
+
+#15 [pricing] resolving provenance for metadata file
+#15 DONE 0.0s
+
+#16 [app4] resolving provenance for metadata file
+#16 DONE 0.0s
+
+#17 [app3] resolving provenance for metadata file
+#17 DONE 0.1s
+
+#18 [app2] resolving provenance for metadata file
+#18 DONE 0.1s
+
+#19 [app1] resolving provenance for metadata file
+#19 DONE 0.0s
+ Image stampede-lab-pricing Built 
+ Image stampede-lab-app1 Built 
+ Image stampede-lab-app2 Built 
+ Image stampede-lab-app3 Built 
+ Image stampede-lab-app4 Built 
+ Container stampede-lab-postgres-1 Running 
+ Container stampede-lab-redis-1 Running 
+ Container stampede-lab-pricing-1 Recreate 
+ Container stampede-lab-pricing-1 Recreated 
+ Container stampede-lab-app4-1 Recreate 
+ Container stampede-lab-app1-1 Recreate 
+ Container stampede-lab-app2-1 Recreate 
+ Container stampede-lab-app3-1 Recreate 
+ Container stampede-lab-app1-1 Recreated 
+ Container stampede-lab-app4-1 Recreated 
+ Container stampede-lab-app2-1 Recreated 
+ Container stampede-lab-app3-1 Recreated 
+ Container stampede-lab-postgres-1 Waiting 
+ Container stampede-lab-postgres-1 Healthy 
+ Container stampede-lab-pricing-1 Starting 
+ Container stampede-lab-pricing-1 Started 
+ Container stampede-lab-pricing-1 Waiting 
+ Container stampede-lab-pricing-1 Waiting 
+ Container stampede-lab-redis-1 Waiting 
+ Container stampede-lab-pricing-1 Waiting 
+ Container stampede-lab-redis-1 Waiting 
+ Container stampede-lab-redis-1 Waiting 
+ Container stampede-lab-pricing-1 Waiting 
+ Container stampede-lab-redis-1 Waiting 
+ Container stampede-lab-redis-1 Healthy 
+ Container stampede-lab-redis-1 Healthy 
+ Container stampede-lab-redis-1 Healthy 
+ Container stampede-lab-redis-1 Healthy 
+ Container stampede-lab-pricing-1 Healthy 
+ Container stampede-lab-app1-1 Starting 
+ Container stampede-lab-pricing-1 Healthy 
+ Container stampede-lab-app4-1 Starting 
+ Container stampede-lab-pricing-1 Healthy 
+ Container stampede-lab-app3-1 Starting 
+ Container stampede-lab-pricing-1 Healthy 
+ Container stampede-lab-app2-1 Starting 
+ Container stampede-lab-app2-1 Started 
+ Container stampede-lab-app1-1 Started 
+ Container stampede-lab-app4-1 Started 
+ Container stampede-lab-app3-1 Started 
+ Image stampede-lab-app2 Building 
+ Image stampede-lab-pricing Building 
+ Image stampede-lab-app3 Building 
+ Image stampede-lab-app1 Building 
+ Image stampede-lab-loadgen Building 
+ Image stampede-lab-app4 Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 3.66kB done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 246B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 123B done
+#5 DONE 0.0s
+
+#6 [1/4] FROM docker.io/library/python:3.12-slim@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea
+#6 resolve docker.io/library/python:3.12-slim@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea 0.0s done
+#6 DONE 0.0s
+
+#7 [3/4] WORKDIR /srv
+#7 CACHED
+
+#8 [2/4] RUN pip install --no-cache-dir fastapi==0.115.6 "uvicorn[standard]==0.34.0" redis==5.2.1 asyncpg==0.30.0 httpx==0.28.1
+#8 CACHED
+
+#9 [4/4] COPY app.py pricing_svc.py loadgen.py minihttp.py ./
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers done
+#10 exporting manifest sha256:65ac3b7a9f4d5b448bcb6c7215c0c6cb6e46a8b9cd39060dbc0f3c38225810d5 done
+#10 exporting config sha256:8ea5c8b69171e2018b34f9c758ede6945fb310409ece38c313dd2f5ff4092abe done
+#10 exporting attestation manifest sha256:b5f7f09446412c1f2355f0e25d1679d08ef1d7e2655ca8526e48e95a71477523 0.0s done
+#10 exporting manifest list sha256:5f1fc0d2805fa1f4dc2bf364bf70e81b995b36c555c1aae982478e59c13b8675 done
+#10 naming to docker.io/library/stampede-lab-loadgen:latest done
+#10 unpacking to docker.io/library/stampede-lab-loadgen:latest done
+#10 DONE 0.1s
+
+#11 resolving provenance for metadata file
+#11 DONE 0.0s
+ Image stampede-lab-loadgen Built 
+ Container stampede-lab-loadgen-run-ab13c8a6d186 Creating 
+ Container stampede-lab-loadgen-run-ab13c8a6d186 Created 
+{"id": "L1", "name": "naive", "requests": 1000, "ok": 1000, "origin_calls_pg": 664, "origin_loads_svc": 664, "max_origin_concurrency": 188, "coalesced_waiters": 0, "stale_served": 0, "fallback_loads": 0, "p99_ms": 1863, "cache_version_after": 10}
+{"id": "L2", "name": "local singleflight (100 scopes)", "requests": 1000, "ok": 1000, "origin_calls_pg": 100, "origin_loads_svc": 100, "max_origin_concurrency": 100, "coalesced_waiters": 900, "stale_served": 0, "fallback_loads": 0, "p99_ms": 274, "cache_version_after": 10}
+{"id": "L3", "name": "fleet refresh lease (Redis SET NX PX)", "requests": 1000, "ok": 1000, "origin_calls_pg": 1, "origin_loads_svc": 1, "max_origin_concurrency": 1, "coalesced_waiters": 999, "stale_served": 0, "fallback_loads": 0, "p99_ms": 298, "cache_version_after": 10}
+{"id": "L4", "name": "stale-while-revalidate", "requests": 1000, "ok": 1000, "origin_calls_pg": 1, "origin_loads_svc": 1, "max_origin_concurrency": 1, "coalesced_waiters": 0, "stale_served": 1000, "fallback_loads": 0, "p99_ms": 75, "cache_version_after": 11}
+{"id": "L6", "name": "cold cache \u00b7 no origin budget", "requests": 3000, "ok": 3000, "refused_503": 0, "origin_calls_pg": 990, "origin_loads_svc": 990, "max_origin_concurrency": 197, "shed_at_origin": 0, "fresh_hits": 2002, "budget": "none"}
+{"id": "L6", "name": "cold cache \u00b7 origin budget N=20", "requests": 3000, "ok": 1703, "refused_503": 1297, "origin_calls_pg": 320, "origin_loads_svc": 320, "max_origin_concurrency": 20, "shed_at_origin": 1289, "fresh_hits": 1381, "budget": 20}
+{"id": "L8", "name": "stale-set race (real Redis)", "requests": 2, "ok": 2, "origin_calls_pg": 0, "max_origin_concurrency": 0, "plain_after": "v10 \u20b969,999", "versioned_after": "v11 \u20b964,999", "plain_version": 10, "versioned_version": 11}
+
+SUMMARY
+run                                          requests     ok  pg calls  max conc  waiters  stale  p99 ms
+L1 naive                                         1000   1000       664       188        0      0    1863
+L2 local singleflight (100 scopes)               1000   1000       100       100      900      0     274
+L3 fleet refresh lease (Redis SET NX PX)         1000   1000         1         1      999      0     298
+L4 stale-while-revalidate                        1000   1000         1         1        0   1000      75
+L6 cold cache · no origin budget                 3000   3000       990       197        -      -       -
+L6 cold cache · origin budget N=20               3000   1703       320        20        -      -       -
+L8 stale-set race (real Redis)                      2      2         0         0        -      -       -
+L8 stale-set race · plain SET -> v10 ₹69,999 · version-aware write -> v11 ₹64,999
+
+exit=0

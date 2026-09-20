@@ -1,0 +1,12 @@
+$ docker compose -f live/docker-compose.yml ps
+
+NAME                      IMAGE                  COMMAND                  SERVICE    CREATED         STATUS                   PORTS
+stampede-lab-app1-1       stampede-lab-app1      "uvicorn app:app --h…"   app1       8 seconds ago   Up 2 seconds (healthy)   
+stampede-lab-app2-1       stampede-lab-app2      "uvicorn app:app --h…"   app2       8 seconds ago   Up 2 seconds (healthy)   
+stampede-lab-app3-1       stampede-lab-app3      "uvicorn app:app --h…"   app3       8 seconds ago   Up 2 seconds (healthy)   
+stampede-lab-app4-1       stampede-lab-app4      "uvicorn app:app --h…"   app4       8 seconds ago   Up 2 seconds (healthy)   
+stampede-lab-postgres-1   postgres:16-alpine     "docker-entrypoint.s…"   postgres   8 seconds ago   Up 7 seconds (healthy)   5432/tcp
+stampede-lab-pricing-1    stampede-lab-pricing   "uvicorn pricing_svc…"   pricing    8 seconds ago   Up 5 seconds (healthy)   
+stampede-lab-redis-1      redis:7.4-alpine       "docker-entrypoint.s…"   redis      8 seconds ago   Up 7 seconds (healthy)   6379/tcp
+
+exit=0

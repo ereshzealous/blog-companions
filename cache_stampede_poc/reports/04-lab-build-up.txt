@@ -1,0 +1,173 @@
+$ docker compose -f live/docker-compose.yml up -d --build --wait
+
+ Image stampede-lab-app3 Building 
+ Image stampede-lab-app4 Building 
+ Image stampede-lab-app1 Building 
+ Image stampede-lab-app2 Building 
+ Image stampede-lab-pricing Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 3.12kB done
+#1 DONE 0.0s
+
+#2 [app3 internal] load build definition from Dockerfile
+#2 transferring dockerfile: 246B done
+#2 DONE 0.0s
+
+#3 [pricing internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 0.0s
+
+#4 [app3 internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [app4 internal] load build context
+#5 transferring context: 123B done
+#5 DONE 0.0s
+
+#6 [pricing 1/4] FROM docker.io/library/python:3.12-slim@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea
+#6 resolve docker.io/library/python:3.12-slim@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea 0.0s done
+#6 DONE 0.0s
+
+#7 [app1 2/4] RUN pip install --no-cache-dir fastapi==0.115.6 "uvicorn[standard]==0.34.0" redis==5.2.1 asyncpg==0.30.0 httpx==0.28.1
+#7 CACHED
+
+#8 [app1 3/4] WORKDIR /srv
+#8 CACHED
+
+#9 [app4 4/4] COPY app.py pricing_svc.py loadgen.py minihttp.py ./
+#9 CACHED
+
+#10 [pricing] exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:0cf7b3eec20554210a45ecd3c3f4806b8beaca267000b4f3ba1db34578cc1b97 done
+#10 exporting config sha256:828443db5551545e5922cdefac6c8d62a9e25b5808d073a6d4d7912badb04859 done
+#10 exporting attestation manifest sha256:d8b29b74a7ef91445f6e6ec218e378214be92a59bba92a67d28e82a11a7843ab 0.0s done
+#10 exporting manifest list sha256:5edb788cdf4b32b59fdc0ad26428b4570b5f2e8edae06ae6b22bed41688d37f3 0.0s done
+#10 naming to docker.io/library/stampede-lab-pricing:latest
+#10 naming to docker.io/library/stampede-lab-pricing:latest 0.0s done
+#10 unpacking to docker.io/library/stampede-lab-pricing:latest done
+#10 DONE 0.1s
+
+#11 [app3] exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:24a18df1f38b63f0b691990c22919bb1021bf598531991acc198994aaed2fffb done
+#11 exporting config sha256:63e27bfa339f2a6c99233058f2f293419af09abda49b63a5ec2880c4a15e5d8c done
+#11 exporting attestation manifest sha256:70c64cc41bf7ea8c009a4cc2be1821bb2aa71a1605c2ebcbae1b3bfc293a5872 0.0s done
+#11 exporting manifest list sha256:1a22c945e800d52c2b13b240bd988b7891195bac499b0bd725324906928acdca 0.0s done
+#11 naming to docker.io/library/stampede-lab-app3:latest 0.0s done
+#11 unpacking to docker.io/library/stampede-lab-app3:latest done
+#11 DONE 0.1s
+
+#12 [app1] exporting to image
+#12 exporting layers done
+#12 exporting manifest sha256:cf617111bffd4c944595f63e2159da20adab73f91acdfb3173474a596114b628 done
+#12 exporting config sha256:e2bc72c999ebe92b09d254fc19cf684151303f07093fa82111d9ffcf20c58aea done
+#12 exporting attestation manifest sha256:b726b5339adb5630c3951f1ea47e0e5aef0e7b39808200683494ce014e1486ee 0.0s done
+#12 exporting manifest list sha256:6ae8a41fcfb5c8c7f0ab49fd1415dbc37cbd0eeb6c65228465b0615a3520e3c1 0.0s done
+#12 naming to docker.io/library/stampede-lab-app1:latest done
+#12 unpacking to docker.io/library/stampede-lab-app1:latest done
+#12 DONE 0.1s
+
+#13 [app4] exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:d6ede3faac6e62661eb83900bfa410dfdba7efc3b566b58344b68a6a5d4454ca done
+#13 exporting config sha256:d1b8924b04d24d2018415078d136bd8ec3a29bd686c15cff20479888dd351ef0 done
+#13 exporting attestation manifest sha256:90cc890733c4feff4c2e403ed6b8f2e292ce70b7de925548286aaba71c65b2fa 0.0s done
+#13 exporting manifest list sha256:c057b53a55a30865d206858f1de51bf3cf6fd9726446bb1217e662b44d316e80 0.0s done
+#13 naming to docker.io/library/stampede-lab-app4:latest done
+#13 unpacking to docker.io/library/stampede-lab-app4:latest done
+#13 DONE 0.1s
+
+#14 [app2] exporting to image
+#14 exporting layers done
+#14 exporting manifest sha256:81741c240995cbd8e370d78c1488afd7f5a91ae4d3c89dd258bd75908c29dc27 done
+#14 exporting config sha256:10492c5c61740a7798a441803e674140860972487d20b08e0eed30f20bee619d done
+#14 exporting attestation manifest sha256:5fab773df0aee3d3d7ae5440a8b19521565591cf7e228d6ff4f703f3dd0fede8 0.0s done
+#14 exporting manifest list sha256:ab689d44d2e4c6a5a29e7f034aef1fa589ae19c99c704c5a9c7a1e42808aebce 0.0s done
+#14 naming to docker.io/library/stampede-lab-app2:latest done
+#14 unpacking to docker.io/library/stampede-lab-app2:latest done
+#14 DONE 0.1s
+
+#15 [app3] resolving provenance for metadata file
+#15 DONE 0.1s
+
+#16 [app1] resolving provenance for metadata file
+#16 DONE 0.1s
+
+#17 [app4] resolving provenance for metadata file
+#17 DONE 0.0s
+
+#18 [pricing] resolving provenance for metadata file
+#18 DONE 0.0s
+
+#19 [app2] resolving provenance for metadata file
+#19 DONE 0.0s
+ Image stampede-lab-app1 Built 
+ Image stampede-lab-app2 Built 
+ Image stampede-lab-app3 Built 
+ Image stampede-lab-pricing Built 
+ Image stampede-lab-app4 Built 
+ Network stampede-lab_default Creating 
+ Network stampede-lab_default Created 
+ Container stampede-lab-postgres-1 Creating 
+ Container stampede-lab-redis-1 Creating 
+ Container stampede-lab-redis-1 Created 
+ Container stampede-lab-postgres-1 Created 
+ Container stampede-lab-pricing-1 Creating 
+ Container stampede-lab-pricing-1 Created 
+ Container stampede-lab-app1-1 Creating 
+ Container stampede-lab-app2-1 Creating 
+ Container stampede-lab-app4-1 Creating 
+ Container stampede-lab-app3-1 Creating 
+ Container stampede-lab-app2-1 Created 
+ Container stampede-lab-app4-1 Created 
+ Container stampede-lab-app1-1 Created 
+ Container stampede-lab-app3-1 Created 
+ Container stampede-lab-redis-1 Starting 
+ Container stampede-lab-postgres-1 Starting 
+ Container stampede-lab-postgres-1 Started 
+ Container stampede-lab-postgres-1 Waiting 
+ Container stampede-lab-redis-1 Started 
+ Container stampede-lab-postgres-1 Healthy 
+ Container stampede-lab-pricing-1 Starting 
+ Container stampede-lab-pricing-1 Started 
+ Container stampede-lab-pricing-1 Waiting 
+ Container stampede-lab-redis-1 Waiting 
+ Container stampede-lab-redis-1 Waiting 
+ Container stampede-lab-redis-1 Waiting 
+ Container stampede-lab-pricing-1 Waiting 
+ Container stampede-lab-pricing-1 Waiting 
+ Container stampede-lab-redis-1 Waiting 
+ Container stampede-lab-pricing-1 Waiting 
+ Container stampede-lab-redis-1 Healthy 
+ Container stampede-lab-redis-1 Healthy 
+ Container stampede-lab-redis-1 Healthy 
+ Container stampede-lab-redis-1 Healthy 
+ Container stampede-lab-pricing-1 Healthy 
+ Container stampede-lab-pricing-1 Healthy 
+ Container stampede-lab-app2-1 Starting 
+ Container stampede-lab-app3-1 Starting 
+ Container stampede-lab-pricing-1 Healthy 
+ Container stampede-lab-app4-1 Starting 
+ Container stampede-lab-pricing-1 Healthy 
+ Container stampede-lab-app1-1 Starting 
+ Container stampede-lab-app4-1 Started 
+ Container stampede-lab-app2-1 Started 
+ Container stampede-lab-app1-1 Started 
+ Container stampede-lab-app3-1 Started 
+ Container stampede-lab-app3-1 Waiting 
+ Container stampede-lab-app4-1 Waiting 
+ Container stampede-lab-postgres-1 Waiting 
+ Container stampede-lab-app1-1 Waiting 
+ Container stampede-lab-redis-1 Waiting 
+ Container stampede-lab-app2-1 Waiting 
+ Container stampede-lab-pricing-1 Waiting 
+ Container stampede-lab-redis-1 Healthy 
+ Container stampede-lab-pricing-1 Healthy 
+ Container stampede-lab-postgres-1 Healthy 
+ Container stampede-lab-app2-1 Healthy 
+ Container stampede-lab-app4-1 Healthy 
+ Container stampede-lab-app3-1 Healthy 
+ Container stampede-lab-app1-1 Healthy 
+
+exit=0

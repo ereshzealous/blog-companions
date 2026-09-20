@@ -1,0 +1,8 @@
+$ bash -c docker compose -f live/docker-compose.yml exec -T redis redis-cli INFO keyspace; docker compose -f live/docker-compose.yml exec -T redis redis-cli --scan --pattern 'price:*' | head -5; docker compose -f live/docker-compose.yml exec -T redis redis-cli PTTL price:sku-00000
+
+# Keyspace
+db0:keys=1,expires=1,avg_ttl=359908,subexpiry=0
+price:phone-x
+-2
+
+exit=0

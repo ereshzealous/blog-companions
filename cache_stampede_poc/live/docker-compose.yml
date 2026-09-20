@@ -1,0 +1,36 @@
+# Tier 2 live lab: real Redis TTL expiry, a real SET NX PX refresh lease, real PostgreSQL calls.
+# Four real application processes host 25 logical pods each = 100 coalescing scopes.
+name: stampede-lab
+x-app: &app
+  build: .
+  command: uvicorn app:app --host 0.0.0.0 --port 8000 --log-level warning
+  environment: { REDIS_URL: "redis://redis:6379/0", PRICING_URL: "http://pricing:8000", LOGICAL_PODS: "25" }
+  depends_on: { redis: { condition: service_healthy }, pricing: { condition: service_healthy } }
+  healthcheck: { test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8000/health')"], interval: 2s, retries: 30 }
+services:
+  redis:
+    image: redis:7.4-alpine
+    healthcheck: { test: ["CMD", "redis-cli", "ping"], interval: 2s, retries: 30 }
+  postgres:
+    image: postgres:16-alpine
+    command: postgres -c shared_preload_libraries=pg_stat_statements -c max_connections=400
+    environment: { POSTGRES_PASSWORD: lab, POSTGRES_DB: pricing }
+    volumes: [ "./init.sql:/docker-entrypoint-initdb.d/init.sql:ro" ]
+    healthcheck: { test: ["CMD", "pg_isready", "-U", "postgres", "-d", "pricing"], interval: 2s, retries: 30 }
+  pricing:
+    build: .
+    command: uvicorn pricing_svc:app --host 0.0.0.0 --port 8000 --log-level warning
+    environment: { DATABASE_URL: "postgresql://postgres:lab@postgres:5432/pricing", DB_POOL_MAX: "300" }
+    depends_on: { postgres: { condition: service_healthy } }
+    healthcheck: { test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8000/health')"], interval: 2s, retries: 30 }
+  app1: *app
+  app2: *app
+  app3: *app
+  app4: *app
+  loadgen:
+    build: .
+    profiles: [ tools ]
+    command: python loadgen.py all
+    environment: { APPS: "http://app1:8000,http://app2:8000,http://app3:8000,http://app4:8000", PRICING_URL: "http://pricing:8000",
+                   REDIS_URL: "redis://redis:6379/0", DATABASE_URL: "postgresql://postgres:lab@postgres:5432/pricing" }
+    depends_on: [ app1, app2, app3, app4 ]

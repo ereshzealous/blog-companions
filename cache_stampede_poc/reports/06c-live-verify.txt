@@ -1,0 +1,17 @@
+$ python3 live/verify_results.py reports/06-live-all.txt
+
+note  L1 naive made 664 PostgreSQL calls for 1000 requests (not asserted: real arrival timing varies)
+  ok   L2 coalescing is bounded by the number of coalescing scopes · 100 <= 100
+  ok   L3 fleet lease collapses the fleet to ~1 refresh · 1 <= 2
+  ok   L4 stale-while-revalidate makes exactly one origin call · 1 == 1
+  ok   L4 serves every caller from the stale entry · 1000 == 1000
+  ok   L4 refresh landed (cache holds the new version) · v11
+  ok   L6 aggregate budget bounds origin concurrency · 20 <= 20
+  ok   L6 overflow is deliberate, not a collapse · 1703 served, 1297 shed
+  ok   L6 without a budget, origin concurrency is unbounded by design · 197 > 20
+  ok   L8 a plain SET lets a late refresher regress the cache · v10 ₹69,999
+  ok   L8 a version-aware write preserves the newer value · v11 ₹64,999
+
+Tier 2 semantic assertions: 10/10 passed
+
+exit=0

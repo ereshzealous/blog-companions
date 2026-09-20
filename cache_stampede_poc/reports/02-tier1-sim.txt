@@ -1,0 +1,85 @@
+$ python3 run.py --scenario all --save
+
+(wall time 9.7 s)
+Cache-stampede POC · worked-example parameters · virtual clock · seed-fixed
+1,000 callers · 100 logical pods · origin load 200 ms · cache RTT 1 ms
+
+scenario                   requests cache_hits cache_misses origin_calls max_origin_concurrency coalesced_waiters stale_served result 
+-------------------------- -------- ---------- ------------ ------------ ---------------------- ----------------- ------------ ------ 
+S1 naive                   1,000    0          1,000        1,000        1,000                  0                 0            PASS   
+S2 local singleflight      1,000    0          1,000        100          100                    900               0            PASS   
+S3 fleet refresh owner     1,000    0          1,000        1            1                      999               0            PASS   
+S4 stale-while-revalidate  1,000    0          0            1            1                      0                 1,000        PASS   
+S5 TTL jitter              100,000  -          -            -            -                      -                 -            PASS   
+S6 cold cache              60,000   45,329     14,671       3,032        20                     54                0            PASS   
+S7 retry amplification     1,000    0          1,000        1,100        50                     0                 0            PASS   
+S8 stale-set race          2        0          2            2            1                      0                 0            PASS   
+
+S1 · naive
+  1000 callers missed the same key at the same instant; every one loaded it
+  origin_amplification = 1000 origin loads / 1 refresh needed
+  [ok] assert origin_calls >= 900
+  [ok] assert every caller got the price
+
+S2 · local singleflight
+  each of 100 pods coalesced its own callers: 1 leader + 9 waiters per pod
+  origin loads = one per pod (100), not one per fleet
+  [ok] assert origin_calls <= active_pods
+  [ok] assert origin_calls == active_pods (one per pod)
+
+S3 · fleet refresh owner
+  one pod won SET refresh:price:phone-x NX PX 5000; 99 pod leaders waited on the cache
+  900 more callers waited inside their own pods; fallback loads: 0
+  p99 caller latency 210 ms (callers wait for the one refresh)
+  [ok] assert origin_calls <= 2
+  [ok] assert no fallback loads
+  [ok] assert every caller got the price
+
+S4 · stale-while-revalidate
+  1000 callers got the stale ₹69,999 at once; p99 latency 1 ms vs 200 ms origin
+  one background refresh; cache now holds version 11, fresh for another 300 s
+  [ok] assert stale_served == 1000
+  [ok] assert origin_calls == 1
+  [ok] assert p99 caller latency < origin latency
+  [ok] assert refresh landed (version 11)
+
+S5 · TTL jitter
+  same TTL: 100,000 keys expire in one 5-second bucket
+  ttl = max_ttl - rand(0, 60 s): peak 8,523 per bucket (11.7x lower), longest TTL 300.0 s
+  ttl = base + rand(0, 60 s) spreads just as well but 100,000 of 100,000 keys outlive the 300 s freshness limit
+  [ok] assert envelope peak <= 1.3 x mean bucket
+  [ok] assert envelope jitter never exceeds max_ttl
+  [ok] assert additive jitter breaks the freshness contract
+
+S6 · cold cache
+  cache starts empty; 60,000 requests over 30 s across 5,000 keys (Zipf), 100 pods with local singleflight
+  A · per-pod limit 5 only: peak origin concurrency 391 (the per-pod limits sum to 500); 90% hit ratio after 7 s
+  B · aggregate origin budget N=20: peak 20; 3,032 loads; 11,625 requests shed (19%) after 250 ms; 90% hit ratio after 27 s
+  C · aggregate origin budget N=50: peak 50; 3,293 shed (5%); 90% hit ratio after 12 s
+  every concurrency limit has a scope: 100 per-pod limits are not an origin limit;
+  the budget that protects the origin also sets how long recovery takes
+  [ok] assert B: max_origin_concurrency <= N
+  [ok] assert A: per-pod limits alone exceed N
+  [ok] assert B and C recover (90% hit ratio reached)
+  [ok] assert bigger budget recovers faster (C before B)
+
+S7 · retry amplification
+  origin down; 1000 requests for different keys, 3 attempts each, behind the same N=50 origin gate
+  unbounded retries: 3,000 origin calls (3.0x the requests)
+  10% per-pod retry budget: 1,100 origin calls (1.10x)
+  [ok] assert unbounded ~3x
+  [ok] assert budget <= 1.1x
+
+S8 · stale-set race
+  R1 takes the 1 s lease and reads v10 (₹69,999), then stalls 3 s; the price changes to v11 (₹64,999)
+  R2 takes the expired lease and writes v11; R1 wakes and writes v10
+  plain SET: cache regresses to v10 (₹69,999) — wasted work became a wrong price
+  versioned write (never accept an older source version): R1 refused (1 rejected), cache stays v11 (₹64,999)
+  an unchanged value may still be re-cached: a v11 refresh over v11 is accepted and renews the TTL
+  [ok] assert plain SET regresses the cache
+  [ok] assert versioned write keeps v11
+  [ok] assert versioned write allows an equal-version refresh
+
+8/8 scenarios passed
+
+exit=0

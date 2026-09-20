@@ -1,0 +1,44 @@
+$ docker compose -f live/docker-compose.yml logs --tail 20
+
+redis-1     | 1:C 20 Sep 2026 03:35:04.694 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1     | 1:C 20 Sep 2026 03:35:04.694 * Redis version=7.4.10, bits=64, commit=00000000, modified=0, pid=1, just started
+redis-1     | 1:C 20 Sep 2026 03:35:04.694 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+redis-1     | 1:M 20 Sep 2026 03:35:04.694 * monotonic clock: POSIX clock_gettime
+redis-1     | 1:M 20 Sep 2026 03:35:04.695 * Running mode=standalone, port=6379.
+redis-1     | 1:M 20 Sep 2026 03:35:04.695 * Server initialized
+redis-1     | 1:M 20 Sep 2026 03:35:04.695 * Ready to accept connections tcp
+redis-1     | 1:M 20 Sep 2026 03:35:17.857 * DB saved on disk
+redis-1     | 1:M 20 Sep 2026 03:35:20.823 * DB saved on disk
+redis-1     | 1:M 20 Sep 2026 03:35:22.115 * DB saved on disk
+redis-1     | 1:M 20 Sep 2026 03:35:23.429 * DB saved on disk
+redis-1     | 1:M 20 Sep 2026 03:35:24.534 * DB saved on disk
+redis-1     | 1:M 20 Sep 2026 03:35:27.748 * DB saved on disk
+redis-1     | 1:M 20 Sep 2026 03:35:31.036 * DB saved on disk
+redis-1     | 1:M 20 Sep 2026 03:35:31.040 * DB saved on disk
+redis-1     | 1:M 20 Sep 2026 03:35:32.700 * DB saved on disk
+redis-1     | 1:M 20 Sep 2026 03:35:36.868 * DB saved on disk
+redis-1     | 1:M 20 Sep 2026 03:35:40.395 * DB saved on disk
+redis-1     | 1:M 20 Sep 2026 03:35:43.962 * DB saved on disk
+redis-1     | 1:M 20 Sep 2026 03:35:47.585 * DB saved on disk
+postgres-1  | 
+postgres-1  | 
+postgres-1  | waiting for server to shut down....2026-09-20 03:35:05.210 UTC [41] LOG:  received fast shutdown request
+postgres-1  | 2026-09-20 03:35:05.210 UTC [41] LOG:  aborting any active transactions
+postgres-1  | 2026-09-20 03:35:05.211 UTC [41] LOG:  background worker "logical replication launcher" (PID 47) exited with exit code 1
+postgres-1  | 2026-09-20 03:35:05.211 UTC [42] LOG:  shutting down
+postgres-1  | 2026-09-20 03:35:05.212 UTC [42] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2026-09-20 03:35:05.231 UTC [42] LOG:  checkpoint complete: wrote 987 buffers (6.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.012 s, total=0.020 s; sync files=306, longest=0.004 s, average=0.001 s; distance=5154 kB, estimate=5154 kB; lsn=0/19FFC60, redo lsn=0/19FFC60
+postgres-1  | 2026-09-20 03:35:05.234 UTC [41] LOG:  database system is shut down
+postgres-1  |  done
+postgres-1  | server stopped
+postgres-1  | 
+postgres-1  | PostgreSQL init process complete; ready for start up.
+postgres-1  | 
+postgres-1  | 2026-09-20 03:35:05.325 UTC [1] LOG:  starting PostgreSQL 16.14 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1  | 2026-09-20 03:35:05.325 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2026-09-20 03:35:05.325 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2026-09-20 03:35:05.327 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-09-20 03:35:05.329 UTC [59] LOG:  database system was shut down at 2026-09-20 03:35:05 UTC
+postgres-1  | 2026-09-20 03:35:05.331 UTC [1] LOG:  database system is ready to accept connections
+
+exit=0

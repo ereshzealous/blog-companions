@@ -1,0 +1,6 @@
+$ bash -c docker compose -f live/docker-compose.yml ps -a; docker ps -a --filter name=stampede-lab --format '{{.Names}}' | wc -l | xargs echo containers_left=
+
+NAME      IMAGE     COMMAND   SERVICE   CREATED   STATUS    PORTS
+containers_left= 0
+
+exit=0

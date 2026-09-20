@@ -1,0 +1,9 @@
+$ docker compose -f live/docker-compose.yml exec -T postgres psql -U postgres -d pricing -c SELECT calls, round(mean_exec_time::numeric,1) AS mean_ms, left(query,60) AS query FROM pg_stat_statements WHERE query LIKE '%prices p%' ORDER BY calls DESC LIMIT 5;
+
+ calls | mean_ms |                            query                             
+-------+---------+--------------------------------------------------------------
+  1000 |   201.9 | SELECT p.price, p.version FROM prices p, pg_sleep($2) WHERE 
+(1 row)
+
+
+exit=0
