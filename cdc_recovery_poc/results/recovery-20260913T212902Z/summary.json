@@ -1,0 +1,2931 @@
+{
+ "scenario": "recovery",
+ "run_id": "recovery-20260913T212902Z",
+ "timeline": [
+  {
+   "t_s": 0.0,
+   "event": "connect-worker-ready",
+   "detail": {
+    "worker": "connect-1",
+    "attempt": 1
+   }
+  },
+  {
+   "t_s": 10.9,
+   "event": "connect-worker-ready",
+   "detail": {
+    "worker": "connect-2",
+    "attempt": 1
+   }
+  },
+  {
+   "t_s": 11.9,
+   "event": "environment-ready",
+   "detail": {
+    "postgres": "18.6 (Debian 18.6-1.pgdg13+2)",
+    "clickhouse": "26.8.3.105",
+    "kafka_image": "apache/kafka:4.3.1",
+    "debezium_image": "quay.io/debezium/connect:3.6.2.Final",
+    "connect": {
+     "kafka_connect": "4.3.0",
+     "postgres_plugin": [
+      {
+       "class": "io.debezium.connector.postgresql.PostgresConnector",
+       "type": "source",
+       "version": "3.6.2.Final"
+      }
+     ]
+    },
+    "docker_cpus": 15,
+    "docker_memory_bytes": 8321011712,
+    "host": "Apple M5 Pro"
+   }
+  },
+  {
+   "t_s": 11.9,
+   "event": "connector-register",
+   "detail": {
+    "snapshot.mode": "initial"
+   }
+  },
+  {
+   "t_s": 13.3,
+   "event": "sink-started",
+   "detail": null
+  },
+  {
+   "t_s": 13.4,
+   "event": "sink-started",
+   "detail": null
+  },
+  {
+   "t_s": 60.1,
+   "event": "initial-load-complete",
+   "detail": {}
+  },
+  {
+   "t_s": 60.6,
+   "event": "generator-rate",
+   "detail": {
+    "rate": 20000
+   }
+  },
+  {
+   "t_s": 61.6,
+   "event": "baseline-start",
+   "detail": {
+    "lambda": 20000,
+    "mu_measured": 73105
+   }
+  },
+  {
+   "t_s": 241.9,
+   "event": "source-ddl",
+   "detail": {
+    "ddl": "ALTER TABLE ops.device_registry ADD COLUMN firmware_channel text NOT NULL DEFAULT 'stable'"
+   }
+  },
+  {
+   "t_s": 270.5,
+   "event": "sink-unmapped-fields",
+   "detail": null
+  },
+  {
+   "t_s": 271.6,
+   "event": "sink-unmapped-fields",
+   "detail": null
+  },
+  {
+   "t_s": 287.2,
+   "event": "contract-v2",
+   "detail": {
+    "clickhouse": "ADD COLUMN firmware_channel Nullable(String)"
+   }
+  },
+  {
+   "t_s": 317.6,
+   "event": "new-column-null-before-backfill",
+   "detail": {
+    "null_rows": 1984742,
+    "live_rows": 2016796,
+    "source_value": "stable"
+   }
+  },
+  {
+   "t_s": 317.8,
+   "event": "incremental-snapshot-signal",
+   "detail": {
+    "signal_id": "snap-1789335277915",
+    "collections": [
+     "ops.device_registry"
+    ]
+   }
+  },
+  {
+   "t_s": 408.0,
+   "event": "clickhouse-throttled",
+   "detail": {
+    "cpus": 0.5,
+    "lag_growth_per_s": -206
+   }
+  },
+  {
+   "t_s": 453.2,
+   "event": "clickhouse-throttled",
+   "detail": {
+    "cpus": 0.3,
+    "lag_growth_per_s": 79
+   }
+  },
+  {
+   "t_s": 498.5,
+   "event": "clickhouse-throttled",
+   "detail": {
+    "cpus": 0.2,
+    "lag_growth_per_s": 49
+   }
+  },
+  {
+   "t_s": 543.7,
+   "event": "clickhouse-throttled",
+   "detail": {
+    "cpus": 0.12,
+    "lag_growth_per_s": 3323
+   }
+  },
+  {
+   "t_s": 588.9,
+   "event": "clickhouse-throttled",
+   "detail": {
+    "cpus": 0.08,
+    "lag_growth_per_s": 12638
+   }
+  },
+  {
+   "t_s": 634.4,
+   "event": "connect-worker-killed",
+   "detail": {
+    "worker": "connect-2",
+    "slot_confirmed_flush_lsn": "0/A0BCE408"
+   }
+  },
+  {
+   "t_s": 694.8,
+   "event": "sink-crash-armed",
+   "detail": {}
+  },
+  {
+   "t_s": 695.4,
+   "event": "sink-crash-after-insert-before-commit",
+   "detail": null
+  },
+  {
+   "t_s": 697.1,
+   "event": "sink-started",
+   "detail": null
+  },
+  {
+   "t_s": 756.0,
+   "event": "delete-batch",
+   "detail": {
+    "keys": 5000
+   }
+  },
+  {
+   "t_s": 756.1,
+   "event": "capture-task-running",
+   "detail": {
+    "worker": "connect-1:8083"
+   }
+  },
+  {
+   "t_s": 756.3,
+   "event": "connect-worker-restarted",
+   "detail": {
+    "worker": "connect-2"
+   }
+  },
+  {
+   "t_s": 963.5,
+   "event": "clickhouse-restored",
+   "detail": {
+    "backlog": 6111435,
+    "lambda_observed": 19997,
+    "mu_measured": 73105,
+    "predicted_drain_s": 115
+   }
+  },
+  {
+   "t_s": 1118.8,
+   "event": "backlog-drained",
+   "detail": {
+    "observed_drain_s": 155,
+    "predicted_drain_s": 115
+   }
+  },
+  {
+   "t_s": 1298.9,
+   "event": "steady-state-after-recovery",
+   "detail": {}
+  },
+  {
+   "t_s": 1299.6,
+   "event": "new-column-null-after-backfill",
+   "detail": {
+    "null_rows": 0,
+    "live_rows": 2150251
+   }
+  },
+  {
+   "t_s": 1299.6,
+   "event": "generator-rate",
+   "detail": {
+    "rate": 0
+   }
+  },
+  {
+   "t_s": 1300.9,
+   "event": "generator-stopped",
+   "detail": {}
+  },
+  {
+   "t_s": 1435.9,
+   "event": "reconcile-final",
+   "detail": null
+  },
+  {
+   "t_s": 1436.5,
+   "event": "oom-check",
+   "detail": {
+    "cdc-lab-clickhouse-1": false,
+    "cdc-lab-collector-1": false,
+    "cdc-lab-connect-1-1": false,
+    "cdc-lab-connect-2-1": false,
+    "cdc-lab-generator-1": false,
+    "cdc-lab-kafka-1": false,
+    "cdc-lab-postgres-1": false,
+    "cdc-lab-sink-1": false,
+    "cdc-lab-sink-2": false,
+    "cdc-lab-tools-1": false
+   }
+  }
+ ],
+ "versions": {
+  "postgres": "18.6 (Debian 18.6-1.pgdg13+2)",
+  "clickhouse": "26.8.3.105",
+  "kafka_image": "apache/kafka:4.3.1",
+  "debezium_image": "quay.io/debezium/connect:3.6.2.Final",
+  "connect": {
+   "kafka_connect": "4.3.0",
+   "postgres_plugin": [
+    {
+     "class": "io.debezium.connector.postgresql.PostgresConnector",
+     "type": "source",
+     "version": "3.6.2.Final"
+    }
+   ]
+  },
+  "docker_cpus": 15,
+  "docker_memory_bytes": 8321011712,
+  "host": "Apple M5 Pro"
+ },
+ "findings": {
+  "freshness_baseline": {
+   "applied": 2474,
+   "p50_ms": 2413,
+   "p95_ms": 2466,
+   "p99_ms": 2473
+  },
+  "freshness_worst_10s_bucket_p99_ms": 341005,
+  "drain": {
+   "backlog": 6111435,
+   "lambda_observed": 19997,
+   "mu_measured": 73105,
+   "predicted_drain_s": 115,
+   "observed_drain_s": 155
+  },
+  "freshness_after_recovery": {
+   "applied": 2394121,
+   "p50_ms": 916,
+   "p95_ms": 1319,
+   "p99_ms": 1439
+  },
+  "peak_sink_lag_records": 6358563,
+  "peak_oldest_unapplied_age_ms": 319795,
+  "peak_retained_wal_bytes": 740097824,
+  "peak_wal_status": [
+   "reserved"
+  ],
+  "worker_kill": {
+   "worker": "connect-2",
+   "capture_resumed_after_s": 12.1,
+   "status_said_running_on_dead_worker_s": 6.3,
+   "states_seen": [
+    "RUNNING"
+   ],
+   "resumed_on": "connect-1:8083",
+   "peak_unconfirmed_wal_bytes_during_outage": 227190528
+  },
+  "sink_crash": {
+   "rows_in_crashed_batch": 9976,
+   "offsets": {
+    "pg-devices.ops.device_registry[2]": [
+     767839,
+     769007
+    ],
+    "pg-devices.ops.device_status[0]": [
+     1352468,
+     1361298
+    ]
+   }
+  },
+  "unmapped_field_events": [
+   {
+    "ts_ms": 1789335230775,
+    "event": "sink-unmapped-fields",
+    "sink_id": "70ca11ec778b",
+    "fields": [
+     "device_registry.firmware_channel"
+    ],
+    "contract_version": 1
+   },
+   {
+    "ts_ms": 1789335231838,
+    "event": "sink-unmapped-fields",
+    "sink_id": "d402ecff9b54",
+    "fields": [
+     "device_registry.firmware_channel"
+    ],
+    "contract_version": 1
+   }
+  ],
+  "schema_backfill": {
+   "null_before": {
+    "null_rows": 1984742,
+    "live_rows": 2016796,
+    "source_value": "stable"
+   },
+   "null_after": {
+    "null_rows": 0,
+    "live_rows": 2150251
+   }
+  },
+  "incremental_snapshot": {
+   "reads_applied": 2019339,
+   "seconds_from_signal_to_last_read": 32.4
+  },
+  "clickhouse_throttle_steps": [
+   {
+    "cpus": 0.5,
+    "lag_growth_per_s": -206
+   },
+   {
+    "cpus": 0.3,
+    "lag_growth_per_s": 79
+   },
+   {
+    "cpus": 0.2,
+    "lag_growth_per_s": 49
+   },
+   {
+    "cpus": 0.12,
+    "lag_growth_per_s": 3323
+   },
+   {
+    "cpus": 0.08,
+    "lag_growth_per_s": 12638
+   }
+  ]
+ },
+ "freshness_series": [
+  {
+   "t_s": 60,
+   "applied": 147807,
+   "p50_ms": 925,
+   "p95_ms": 1330,
+   "p99_ms": 1447
+  },
+  {
+   "t_s": 70,
+   "applied": 199593,
+   "p50_ms": 1010,
+   "p95_ms": 1407,
+   "p99_ms": 1506
+  },
+  {
+   "t_s": 80,
+   "applied": 88103,
+   "p50_ms": 973,
+   "p95_ms": 2943,
+   "p99_ms": 3231
+  },
+  {
+   "t_s": 90,
+   "applied": 7010,
+   "p50_ms": 720,
+   "p95_ms": 2872,
+   "p99_ms": 2949
+  },
+  {
+   "t_s": 270,
+   "applied": 762637,
+   "p50_ms": 45186,
+   "p95_ms": 197742,
+   "p99_ms": 199289
+  },
+  {
+   "t_s": 280,
+   "applied": 719750,
+   "p50_ms": 18669,
+   "p95_ms": 31148,
+   "p99_ms": 33140
+  },
+  {
+   "t_s": 290,
+   "applied": 276850,
+   "p50_ms": 1197,
+   "p95_ms": 4599,
+   "p99_ms": 6681
+  },
+  {
+   "t_s": 300,
+   "applied": 190005,
+   "p50_ms": 1003,
+   "p95_ms": 1395,
+   "p99_ms": 1513
+  },
+  {
+   "t_s": 310,
+   "applied": 201369,
+   "p50_ms": 904,
+   "p95_ms": 1309,
+   "p99_ms": 1436
+  },
+  {
+   "t_s": 320,
+   "applied": 184556,
+   "p50_ms": 1728,
+   "p95_ms": 2282,
+   "p99_ms": 3417
+  },
+  {
+   "t_s": 330,
+   "applied": 194490,
+   "p50_ms": 1790,
+   "p95_ms": 2337,
+   "p99_ms": 6978
+  },
+  {
+   "t_s": 340,
+   "applied": 194495,
+   "p50_ms": 2117,
+   "p95_ms": 6601,
+   "p99_ms": 11024
+  },
+  {
+   "t_s": 350,
+   "applied": 229630,
+   "p50_ms": 1079,
+   "p95_ms": 2321,
+   "p99_ms": 5639
+  },
+  {
+   "t_s": 360,
+   "applied": 199838,
+   "p50_ms": 989,
+   "p95_ms": 1413,
+   "p99_ms": 1529
+  },
+  {
+   "t_s": 370,
+   "applied": 203887,
+   "p50_ms": 1009,
+   "p95_ms": 1419,
+   "p99_ms": 1516
+  },
+  {
+   "t_s": 380,
+   "applied": 199488,
+   "p50_ms": 986,
+   "p95_ms": 1386,
+   "p99_ms": 1513
+  },
+  {
+   "t_s": 390,
+   "applied": 199643,
+   "p50_ms": 900,
+   "p95_ms": 1309,
+   "p99_ms": 1417
+  },
+  {
+   "t_s": 400,
+   "applied": 200935,
+   "p50_ms": 924,
+   "p95_ms": 1322,
+   "p99_ms": 1435
+  },
+  {
+   "t_s": 410,
+   "applied": 206326,
+   "p50_ms": 955,
+   "p95_ms": 1413,
+   "p99_ms": 1539
+  },
+  {
+   "t_s": 420,
+   "applied": 193107,
+   "p50_ms": 982,
+   "p95_ms": 1382,
+   "p99_ms": 1516
+  },
+  {
+   "t_s": 430,
+   "applied": 199184,
+   "p50_ms": 907,
+   "p95_ms": 1311,
+   "p99_ms": 1416
+  },
+  {
+   "t_s": 440,
+   "applied": 204252,
+   "p50_ms": 930,
+   "p95_ms": 1345,
+   "p99_ms": 1488
+  },
+  {
+   "t_s": 450,
+   "applied": 186173,
+   "p50_ms": 1153,
+   "p95_ms": 1793,
+   "p99_ms": 2121
+  },
+  {
+   "t_s": 460,
+   "applied": 199352,
+   "p50_ms": 1125,
+   "p95_ms": 1683,
+   "p99_ms": 1909
+  },
+  {
+   "t_s": 470,
+   "applied": 200726,
+   "p50_ms": 1172,
+   "p95_ms": 1622,
+   "p99_ms": 1785
+  },
+  {
+   "t_s": 480,
+   "applied": 211953,
+   "p50_ms": 1186,
+   "p95_ms": 1630,
+   "p99_ms": 1739
+  },
+  {
+   "t_s": 490,
+   "applied": 190883,
+   "p50_ms": 1117,
+   "p95_ms": 1646,
+   "p99_ms": 1865
+  },
+  {
+   "t_s": 500,
+   "applied": 159813,
+   "p50_ms": 2465,
+   "p95_ms": 3653,
+   "p99_ms": 4693
+  },
+  {
+   "t_s": 510,
+   "applied": 119819,
+   "p50_ms": 4231,
+   "p95_ms": 7137,
+   "p99_ms": 7731
+  },
+  {
+   "t_s": 520,
+   "applied": 189764,
+   "p50_ms": 7617,
+   "p95_ms": 9849,
+   "p99_ms": 10564
+  },
+  {
+   "t_s": 530,
+   "applied": 189688,
+   "p50_ms": 7877,
+   "p95_ms": 10114,
+   "p99_ms": 10712
+  },
+  {
+   "t_s": 540,
+   "applied": 119879,
+   "p50_ms": 9774,
+   "p95_ms": 13764,
+   "p99_ms": 14602
+  },
+  {
+   "t_s": 550,
+   "applied": 49896,
+   "p50_ms": 14817,
+   "p95_ms": 17805,
+   "p99_ms": 18425
+  },
+  {
+   "t_s": 560,
+   "applied": 49913,
+   "p50_ms": 24253,
+   "p95_ms": 26674,
+   "p99_ms": 26978
+  },
+  {
+   "t_s": 570,
+   "applied": 69861,
+   "p50_ms": 32050,
+   "p95_ms": 35115,
+   "p99_ms": 35617
+  },
+  {
+   "t_s": 580,
+   "applied": 89617,
+   "p50_ms": 37649,
+   "p95_ms": 42500,
+   "p99_ms": 43307
+  },
+  {
+   "t_s": 590,
+   "applied": 99657,
+   "p50_ms": 43715,
+   "p95_ms": 46894,
+   "p99_ms": 48033
+  },
+  {
+   "t_s": 600,
+   "applied": 109730,
+   "p50_ms": 48864,
+   "p95_ms": 51986,
+   "p99_ms": 52723
+  },
+  {
+   "t_s": 610,
+   "applied": 109874,
+   "p50_ms": 53016,
+   "p95_ms": 56662,
+   "p99_ms": 57581
+  },
+  {
+   "t_s": 620,
+   "applied": 109678,
+   "p50_ms": 57213,
+   "p95_ms": 61382,
+   "p99_ms": 61867
+  },
+  {
+   "t_s": 630,
+   "applied": 89845,
+   "p50_ms": 61950,
+   "p95_ms": 65341,
+   "p99_ms": 65892
+  },
+  {
+   "t_s": 640,
+   "applied": 109951,
+   "p50_ms": 68218,
+   "p95_ms": 71280,
+   "p99_ms": 72217
+  },
+  {
+   "t_s": 650,
+   "applied": 79639,
+   "p50_ms": 72172,
+   "p95_ms": 76616,
+   "p99_ms": 77591
+  },
+  {
+   "t_s": 660,
+   "applied": 79368,
+   "p50_ms": 81902,
+   "p95_ms": 86614,
+   "p99_ms": 87406
+  },
+  {
+   "t_s": 670,
+   "applied": 89090,
+   "p50_ms": 84968,
+   "p95_ms": 92643,
+   "p99_ms": 93404
+  },
+  {
+   "t_s": 680,
+   "applied": 89677,
+   "p50_ms": 94492,
+   "p95_ms": 98156,
+   "p99_ms": 99292
+  },
+  {
+   "t_s": 690,
+   "applied": 69722,
+   "p50_ms": 99304,
+   "p95_ms": 102117,
+   "p99_ms": 102507
+  },
+  {
+   "t_s": 740,
+   "applied": 88966,
+   "p50_ms": 52689,
+   "p95_ms": 155452,
+   "p99_ms": 157210
+  },
+  {
+   "t_s": 750,
+   "applied": 49750,
+   "p50_ms": 154432,
+   "p95_ms": 160313,
+   "p99_ms": 160946
+  },
+  {
+   "t_s": 760,
+   "applied": 95504,
+   "p50_ms": 163239,
+   "p95_ms": 169488,
+   "p99_ms": 170323
+  },
+  {
+   "t_s": 770,
+   "applied": 98872,
+   "p50_ms": 170313,
+   "p95_ms": 175187,
+   "p99_ms": 175743
+  },
+  {
+   "t_s": 780,
+   "applied": 109900,
+   "p50_ms": 173931,
+   "p95_ms": 180929,
+   "p99_ms": 181565
+  },
+  {
+   "t_s": 790,
+   "applied": 109756,
+   "p50_ms": 179909,
+   "p95_ms": 184435,
+   "p99_ms": 185129
+  },
+  {
+   "t_s": 800,
+   "applied": 129791,
+   "p50_ms": 184222,
+   "p95_ms": 188494,
+   "p99_ms": 189953
+  },
+  {
+   "t_s": 810,
+   "applied": 79878,
+   "p50_ms": 187248,
+   "p95_ms": 193987,
+   "p99_ms": 194996
+  },
+  {
+   "t_s": 820,
+   "applied": 19940,
+   "p50_ms": 190150,
+   "p95_ms": 196318,
+   "p99_ms": 196550
+  },
+  {
+   "t_s": 830,
+   "applied": 30000,
+   "p50_ms": 202770,
+   "p95_ms": 208489,
+   "p99_ms": 208863
+  },
+  {
+   "t_s": 840,
+   "applied": 79431,
+   "p50_ms": 214635,
+   "p95_ms": 263658,
+   "p99_ms": 264687
+  },
+  {
+   "t_s": 850,
+   "applied": 129719,
+   "p50_ms": 266121,
+   "p95_ms": 271742,
+   "p99_ms": 273319
+  },
+  {
+   "t_s": 860,
+   "applied": 109856,
+   "p50_ms": 272110,
+   "p95_ms": 277873,
+   "p99_ms": 279787
+  },
+  {
+   "t_s": 870,
+   "applied": 109707,
+   "p50_ms": 275960,
+   "p95_ms": 283242,
+   "p99_ms": 284226
+  },
+  {
+   "t_s": 880,
+   "applied": 69860,
+   "p50_ms": 281799,
+   "p95_ms": 287958,
+   "p99_ms": 288831
+  },
+  {
+   "t_s": 890,
+   "applied": 29974,
+   "p50_ms": 290312,
+   "p95_ms": 293547,
+   "p99_ms": 293912
+  },
+  {
+   "t_s": 900,
+   "applied": 49911,
+   "p50_ms": 295754,
+   "p95_ms": 299570,
+   "p99_ms": 299883
+  },
+  {
+   "t_s": 910,
+   "applied": 19888,
+   "p50_ms": 298977,
+   "p95_ms": 301174,
+   "p99_ms": 301436
+  },
+  {
+   "t_s": 920,
+   "applied": 99617,
+   "p50_ms": 312104,
+   "p95_ms": 319829,
+   "p99_ms": 320639
+  },
+  {
+   "t_s": 930,
+   "applied": 119658,
+   "p50_ms": 317851,
+   "p95_ms": 326471,
+   "p99_ms": 327136
+  },
+  {
+   "t_s": 940,
+   "applied": 109746,
+   "p50_ms": 325054,
+   "p95_ms": 332218,
+   "p99_ms": 333196
+  },
+  {
+   "t_s": 950,
+   "applied": 89830,
+   "p50_ms": 325054,
+   "p95_ms": 334368,
+   "p99_ms": 335477
+  },
+  {
+   "t_s": 960,
+   "applied": 410159,
+   "p50_ms": 329116,
+   "p95_ms": 339215,
+   "p99_ms": 341005
+  },
+  {
+   "t_s": 970,
+   "applied": 519438,
+   "p50_ms": 313929,
+   "p95_ms": 326455,
+   "p99_ms": 329042
+  },
+  {
+   "t_s": 980,
+   "applied": 693834,
+   "p50_ms": 292279,
+   "p95_ms": 305995,
+   "p99_ms": 308609
+  },
+  {
+   "t_s": 990,
+   "applied": 709755,
+   "p50_ms": 265820,
+   "p95_ms": 281357,
+   "p99_ms": 283816
+  },
+  {
+   "t_s": 1000,
+   "applied": 618545,
+   "p50_ms": 240876,
+   "p95_ms": 253287,
+   "p99_ms": 256134
+  },
+  {
+   "t_s": 1010,
+   "applied": 370729,
+   "p50_ms": 226244,
+   "p95_ms": 231753,
+   "p99_ms": 233690
+  },
+  {
+   "t_s": 1020,
+   "applied": 419748,
+   "p50_ms": 215445,
+   "p95_ms": 221993,
+   "p99_ms": 223961
+  },
+  {
+   "t_s": 1030,
+   "applied": 719773,
+   "p50_ms": 196070,
+   "p95_ms": 208681,
+   "p99_ms": 211101
+  },
+  {
+   "t_s": 1040,
+   "applied": 469765,
+   "p50_ms": 175732,
+   "p95_ms": 182883,
+   "p99_ms": 185264
+  },
+  {
+   "t_s": 1050,
+   "applied": 616089,
+   "p50_ms": 156747,
+   "p95_ms": 167496,
+   "p99_ms": 171348
+  },
+  {
+   "t_s": 1060,
+   "applied": 686093,
+   "p50_ms": 132631,
+   "p95_ms": 145195,
+   "p99_ms": 147770
+  },
+  {
+   "t_s": 1070,
+   "applied": 689784,
+   "p50_ms": 106111,
+   "p95_ms": 118823,
+   "p99_ms": 121132
+  },
+  {
+   "t_s": 1080,
+   "applied": 658933,
+   "p50_ms": 81565,
+   "p95_ms": 93403,
+   "p99_ms": 95436
+  },
+  {
+   "t_s": 1090,
+   "applied": 719732,
+   "p50_ms": 55019,
+   "p95_ms": 68812,
+   "p99_ms": 71448
+  },
+  {
+   "t_s": 1100,
+   "applied": 726921,
+   "p50_ms": 27899,
+   "p95_ms": 42528,
+   "p99_ms": 45206
+  },
+  {
+   "t_s": 1110,
+   "applied": 456067,
+   "p50_ms": 5293,
+   "p95_ms": 17166,
+   "p99_ms": 19202
+  },
+  {
+   "t_s": 1120,
+   "applied": 193282,
+   "p50_ms": 1052,
+   "p95_ms": 1493,
+   "p99_ms": 1615
+  },
+  {
+   "t_s": 1130,
+   "applied": 203738,
+   "p50_ms": 909,
+   "p95_ms": 1351,
+   "p99_ms": 1465
+  },
+  {
+   "t_s": 1140,
+   "applied": 198508,
+   "p50_ms": 892,
+   "p95_ms": 1281,
+   "p99_ms": 1403
+  },
+  {
+   "t_s": 1150,
+   "applied": 200580,
+   "p50_ms": 936,
+   "p95_ms": 1321,
+   "p99_ms": 1441
+  },
+  {
+   "t_s": 1160,
+   "applied": 199865,
+   "p50_ms": 899,
+   "p95_ms": 1315,
+   "p99_ms": 1421
+  },
+  {
+   "t_s": 1170,
+   "applied": 201404,
+   "p50_ms": 900,
+   "p95_ms": 1329,
+   "p99_ms": 1441
+  },
+  {
+   "t_s": 1180,
+   "applied": 205580,
+   "p50_ms": 875,
+   "p95_ms": 1285,
+   "p99_ms": 1410
+  },
+  {
+   "t_s": 1190,
+   "applied": 196803,
+   "p50_ms": 913,
+   "p95_ms": 1324,
+   "p99_ms": 1424
+  },
+  {
+   "t_s": 1200,
+   "applied": 198599,
+   "p50_ms": 939,
+   "p95_ms": 1314,
+   "p99_ms": 1432
+  },
+  {
+   "t_s": 1210,
+   "applied": 198992,
+   "p50_ms": 935,
+   "p95_ms": 1350,
+   "p99_ms": 1474
+  },
+  {
+   "t_s": 1220,
+   "applied": 199736,
+   "p50_ms": 902,
+   "p95_ms": 1280,
+   "p99_ms": 1385
+  },
+  {
+   "t_s": 1230,
+   "applied": 199614,
+   "p50_ms": 893,
+   "p95_ms": 1314,
+   "p99_ms": 1497
+  },
+  {
+   "t_s": 1240,
+   "applied": 196840,
+   "p50_ms": 940,
+   "p95_ms": 1338,
+   "p99_ms": 1427
+  },
+  {
+   "t_s": 1250,
+   "applied": 202394,
+   "p50_ms": 921,
+   "p95_ms": 1353,
+   "p99_ms": 1463
+  },
+  {
+   "t_s": 1260,
+   "applied": 199287,
+   "p50_ms": 919,
+   "p95_ms": 1321,
+   "p99_ms": 1441
+  },
+  {
+   "t_s": 1270,
+   "applied": 204239,
+   "p50_ms": 941,
+   "p95_ms": 1339,
+   "p99_ms": 1466
+  },
+  {
+   "t_s": 1280,
+   "applied": 196078,
+   "p50_ms": 887,
+   "p95_ms": 1287,
+   "p99_ms": 1385
+  },
+  {
+   "t_s": 1290,
+   "applied": 204078,
+   "p50_ms": 929,
+   "p95_ms": 1327,
+   "p99_ms": 1427
+  },
+  {
+   "t_s": 1300,
+   "applied": 5181,
+   "p50_ms": 1090,
+   "p95_ms": 1278,
+   "p99_ms": 1308
+  }
+ ],
+ "reconcile": {
+  "final": {
+   "label": "final",
+   "ts_ms": 1789336357143,
+   "contract_version": 2,
+   "tables": {
+    "device_registry": {
+     "columns_compared": [
+      "device_id",
+      "tenant_id",
+      "serial_number",
+      "model",
+      "gateway_id",
+      "status",
+      "firmware_version",
+      "updated_at_ms",
+      "firmware_channel"
+     ],
+     "source_rows": 2150391,
+     "clickhouse_logical_rows": 2150391,
+     "clickhouse_logical_duplicate_keys": 0,
+     "clickhouse_physical_rows": 5027041,
+     "clickhouse_physical_extra_versions": 2847641,
+     "mismatched_buckets": 0,
+     "missing_in_clickhouse": 0,
+     "ghost_rows_in_clickhouse": 0,
+     "content_mismatches": 0,
+     "samples": {
+      "missing": [],
+      "ghost": [],
+      "content": []
+     },
+     "evidence": {},
+     "converged": true,
+     "seconds": 3.9
+    },
+    "device_status": {
+     "columns_compared": [
+      "device_id",
+      "tenant_id",
+      "battery_pct",
+      "signal_dbm",
+      "connectivity",
+      "last_seen_ms",
+      "updated_at_ms"
+     ],
+     "source_rows": 500000,
+     "clickhouse_logical_rows": 500000,
+     "clickhouse_logical_duplicate_keys": 0,
+     "clickhouse_physical_rows": 1567620,
+     "clickhouse_physical_extra_versions": 1067620,
+     "mismatched_buckets": 0,
+     "missing_in_clickhouse": 0,
+     "ghost_rows_in_clickhouse": 0,
+     "content_mismatches": 0,
+     "samples": {
+      "missing": [],
+      "ghost": [],
+      "content": []
+     },
+     "evidence": {},
+     "converged": true,
+     "seconds": 0.7
+    }
+   },
+   "explicit_delete_batch": {
+    "keys": 5000,
+    "still_in_source": 0,
+    "still_visible_in_clickhouse": 0
+   },
+   "history": {
+    "deliveries": 27710370,
+    "distinct_change_events": 26467928,
+    "distinct_kafka_records": 27700394,
+    "sink_replays": 9976,
+    "capture_replays": 1232466,
+    "delete_deliveries": 30424,
+    "snapshot_read_deliveries": 4519339
+   },
+   "version_ordering": {
+    "device_registry": {
+     "keys": 2179400,
+     "last_event_differs": 0,
+     "final_state_differs": 0,
+     "sample_keys": []
+    },
+    "device_status": {
+     "keys": 500000,
+     "last_event_differs": 0,
+     "final_state_differs": 0,
+     "sample_keys": []
+    }
+   },
+   "converged": true
+  }
+ },
+ "alerts": [
+  {
+   "t_s": 624.9,
+   "alert": "freshness-slo-breach",
+   "state": "firing"
+  },
+  {
+   "t_s": 1095.6,
+   "alert": "freshness-slo-breach",
+   "state": "resolved"
+  }
+ ],
+ "series": [
+  {
+   "t_s": -20,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": null,
+   "unconfirmed_wal_bytes": null,
+   "kafka_end_offsets": 0,
+   "task_state": null,
+   "wal_status": null,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": -10,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": null,
+   "unconfirmed_wal_bytes": null,
+   "kafka_end_offsets": 0,
+   "task_state": null,
+   "wal_status": null,
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 0,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": null,
+   "unconfirmed_wal_bytes": null,
+   "kafka_end_offsets": 0,
+   "task_state": null,
+   "wal_status": null,
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 10,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": null,
+   "unconfirmed_wal_bytes": null,
+   "kafka_end_offsets": 0,
+   "task_state": null,
+   "wal_status": null,
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 20,
+   "sink_lag": 1458848,
+   "oldest_unapplied_age_ms": 6139,
+   "retained_wal_bytes": 30040,
+   "unconfirmed_wal_bytes": 29984,
+   "kafka_end_offsets": 1998848,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 199885,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 30,
+   "sink_lag": 1140000,
+   "oldest_unapplied_age_ms": 13009,
+   "retained_wal_bytes": 119931480,
+   "unconfirmed_wal_bytes": 119931424,
+   "kafka_end_offsets": 2500000,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 50115,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 40,
+   "sink_lag": 423788,
+   "oldest_unapplied_age_ms": 21503,
+   "retained_wal_bytes": 242592064,
+   "unconfirmed_wal_bytes": 242592008,
+   "kafka_end_offsets": 2500000,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 50,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 242592120,
+   "unconfirmed_wal_bytes": 242592064,
+   "kafka_end_offsets": 2500000,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 60,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 242592120,
+   "unconfirmed_wal_bytes": 242592064,
+   "kafka_end_offsets": 2500000,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": 20000.7
+  },
+  {
+   "t_s": 70,
+   "sink_lag": 12288,
+   "oldest_unapplied_age_ms": 422,
+   "retained_wal_bytes": 309833024,
+   "unconfirmed_wal_bytes": 309832968,
+   "kafka_end_offsets": 2686654,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 18665,
+   "source_changes_per_s": 20005.4
+  },
+  {
+   "t_s": 80,
+   "sink_lag": 8155,
+   "oldest_unapplied_age_ms": 632,
+   "retained_wal_bytes": 232424136,
+   "unconfirmed_wal_bytes": 43535984,
+   "kafka_end_offsets": 2885375,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19872,
+   "source_changes_per_s": 6862.6
+  },
+  {
+   "t_s": 90,
+   "sink_lag": 2474,
+   "oldest_unapplied_age_ms": 1713,
+   "retained_wal_bytes": 241586448,
+   "unconfirmed_wal_bytes": 52698296,
+   "kafka_end_offsets": 2943003,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 5763,
+   "source_changes_per_s": 0.0
+  },
+  {
+   "t_s": 100,
+   "sink_lag": null,
+   "oldest_unapplied_age_ms": null,
+   "retained_wal_bytes": 241774072,
+   "unconfirmed_wal_bytes": 52885920,
+   "kafka_end_offsets": null,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "source_changes_per_s": 0.0
+  },
+  {
+   "t_s": 110,
+   "sink_lag": null,
+   "oldest_unapplied_age_ms": null,
+   "retained_wal_bytes": 242259080,
+   "unconfirmed_wal_bytes": 53370928,
+   "kafka_end_offsets": null,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "source_changes_per_s": 304.8
+  },
+  {
+   "t_s": 120,
+   "sink_lag": null,
+   "oldest_unapplied_age_ms": null,
+   "retained_wal_bytes": 242652192,
+   "unconfirmed_wal_bytes": 53764040,
+   "kafka_end_offsets": null,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "source_changes_per_s": 0.0
+  },
+  {
+   "t_s": 130,
+   "sink_lag": null,
+   "oldest_unapplied_age_ms": null,
+   "retained_wal_bytes": 242848040,
+   "unconfirmed_wal_bytes": 53959888,
+   "kafka_end_offsets": null,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "source_changes_per_s": 0.0
+  },
+  {
+   "t_s": 140,
+   "sink_lag": null,
+   "oldest_unapplied_age_ms": null,
+   "retained_wal_bytes": 242897944,
+   "unconfirmed_wal_bytes": 54009792,
+   "kafka_end_offsets": null,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "source_changes_per_s": 50.0
+  },
+  {
+   "t_s": 150,
+   "sink_lag": null,
+   "oldest_unapplied_age_ms": null,
+   "retained_wal_bytes": 242953152,
+   "unconfirmed_wal_bytes": 54065000,
+   "kafka_end_offsets": null,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "source_changes_per_s": 0.0
+  },
+  {
+   "t_s": 180,
+   "sink_lag": null,
+   "oldest_unapplied_age_ms": null,
+   "retained_wal_bytes": 243006296,
+   "unconfirmed_wal_bytes": 54118144,
+   "kafka_end_offsets": null,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "source_changes_per_s": 1041.6
+  },
+  {
+   "t_s": 190,
+   "sink_lag": null,
+   "oldest_unapplied_age_ms": null,
+   "retained_wal_bytes": 244157512,
+   "unconfirmed_wal_bytes": 55269360,
+   "kafka_end_offsets": null,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "source_changes_per_s": 329.9
+  },
+  {
+   "t_s": 200,
+   "sink_lag": null,
+   "oldest_unapplied_age_ms": null,
+   "retained_wal_bytes": 244508792,
+   "unconfirmed_wal_bytes": 55620640,
+   "kafka_end_offsets": null,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "source_changes_per_s": 1189.3
+  },
+  {
+   "t_s": 210,
+   "sink_lag": null,
+   "oldest_unapplied_age_ms": null,
+   "retained_wal_bytes": 245773280,
+   "unconfirmed_wal_bytes": 56885128,
+   "kafka_end_offsets": null,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "source_changes_per_s": 0.0
+  },
+  {
+   "t_s": 220,
+   "sink_lag": null,
+   "oldest_unapplied_age_ms": null,
+   "retained_wal_bytes": 245773280,
+   "unconfirmed_wal_bytes": 56885128,
+   "kafka_end_offsets": null,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "source_changes_per_s": 7527.1
+  },
+  {
+   "t_s": 230,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 261020072,
+   "unconfirmed_wal_bytes": 72131920,
+   "kafka_end_offsets": 2943003,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "source_changes_per_s": 19997.2
+  },
+  {
+   "t_s": 240,
+   "sink_lag": 314736,
+   "oldest_unapplied_age_ms": 3060,
+   "retained_wal_bytes": 178686392,
+   "unconfirmed_wal_bytes": 111625336,
+   "kafka_end_offsets": 3257739,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 31474,
+   "source_changes_per_s": 20034.0
+  },
+  {
+   "t_s": 250,
+   "sink_lag": 766363,
+   "oldest_unapplied_age_ms": 13042,
+   "retained_wal_bytes": 214664992,
+   "unconfirmed_wal_bytes": 147603936,
+   "kafka_end_offsets": 3709366,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 45163,
+   "source_changes_per_s": 19975.2
+  },
+  {
+   "t_s": 260,
+   "sink_lag": 969199,
+   "oldest_unapplied_age_ms": 23060,
+   "retained_wal_bytes": 250533000,
+   "unconfirmed_wal_bytes": 183471944,
+   "kafka_end_offsets": 3912202,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20284,
+   "source_changes_per_s": 20008.2
+  },
+  {
+   "t_s": 270,
+   "sink_lag": 1168426,
+   "oldest_unapplied_age_ms": 33048,
+   "retained_wal_bytes": 286243456,
+   "unconfirmed_wal_bytes": 219182400,
+   "kafka_end_offsets": 4111429,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19923,
+   "source_changes_per_s": 20030.9
+  },
+  {
+   "t_s": 280,
+   "sink_lag": 587461,
+   "oldest_unapplied_age_ms": 34209,
+   "retained_wal_bytes": 322047664,
+   "unconfirmed_wal_bytes": 254986608,
+   "kafka_end_offsets": 4314480,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20305,
+   "source_changes_per_s": 20010.5
+  },
+  {
+   "t_s": 290,
+   "sink_lag": 67836,
+   "oldest_unapplied_age_ms": 4569,
+   "retained_wal_bytes": 338408296,
+   "unconfirmed_wal_bytes": 90351232,
+   "kafka_end_offsets": 4514855,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20038,
+   "source_changes_per_s": 20052.7
+  },
+  {
+   "t_s": 300,
+   "sink_lag": 6028,
+   "oldest_unapplied_age_ms": 568,
+   "retained_wal_bytes": 435610808,
+   "unconfirmed_wal_bytes": 187553744,
+   "kafka_end_offsets": 4710020,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19516,
+   "source_changes_per_s": 20018.3
+  },
+  {
+   "t_s": 310,
+   "sink_lag": 11347,
+   "oldest_unapplied_age_ms": 768,
+   "retained_wal_bytes": 520122440,
+   "unconfirmed_wal_bytes": 272065376,
+   "kafka_end_offsets": 4913666,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20365,
+   "source_changes_per_s": 20052.1
+  },
+  {
+   "t_s": 320,
+   "sink_lag": 111022,
+   "oldest_unapplied_age_ms": 1320,
+   "retained_wal_bytes": 594017304,
+   "unconfirmed_wal_bytes": 345960240,
+   "kafka_end_offsets": 5256930,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 34326,
+   "source_changes_per_s": 20008.0
+  },
+  {
+   "t_s": 330,
+   "sink_lag": 494231,
+   "oldest_unapplied_age_ms": 4360,
+   "retained_wal_bytes": 670238992,
+   "unconfirmed_wal_bytes": 422181928,
+   "kafka_end_offsets": 6480139,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 122321,
+   "source_changes_per_s": 19970.0
+  },
+  {
+   "t_s": 340,
+   "sink_lag": 676286,
+   "oldest_unapplied_age_ms": 8113,
+   "retained_wal_bytes": 725152360,
+   "unconfirmed_wal_bytes": 477095296,
+   "kafka_end_offsets": 7532194,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 105206,
+   "source_changes_per_s": 20012.9
+  },
+  {
+   "t_s": 350,
+   "sink_lag": 43553,
+   "oldest_unapplied_age_ms": 12055,
+   "retained_wal_bytes": 376479136,
+   "unconfirmed_wal_bytes": 18107296,
+   "kafka_end_offsets": 7739461,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20727,
+   "source_changes_per_s": 20033.2
+  },
+  {
+   "t_s": 360,
+   "sink_lag": 19221,
+   "oldest_unapplied_age_ms": 802,
+   "retained_wal_bytes": 413030888,
+   "unconfirmed_wal_bytes": 54659048,
+   "kafka_end_offsets": 7938622,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19916,
+   "source_changes_per_s": 20010.5
+  },
+  {
+   "t_s": 370,
+   "sink_lag": 12288,
+   "oldest_unapplied_age_ms": 590,
+   "retained_wal_bytes": 449747552,
+   "unconfirmed_wal_bytes": 91375712,
+   "kafka_end_offsets": 8131717,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19310,
+   "source_changes_per_s": 19999.3
+  },
+  {
+   "t_s": 380,
+   "sink_lag": 16384,
+   "oldest_unapplied_age_ms": 388,
+   "retained_wal_bytes": 486150240,
+   "unconfirmed_wal_bytes": 127778400,
+   "kafka_end_offsets": 8340029,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20831,
+   "source_changes_per_s": 19967.7
+  },
+  {
+   "t_s": 390,
+   "sink_lag": 19657,
+   "oldest_unapplied_age_ms": 778,
+   "retained_wal_bytes": 522249616,
+   "unconfirmed_wal_bytes": 163877776,
+   "kafka_end_offsets": 8543003,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20297,
+   "source_changes_per_s": 19983.3
+  },
+  {
+   "t_s": 400,
+   "sink_lag": 5981,
+   "oldest_unapplied_age_ms": 449,
+   "retained_wal_bytes": 558313584,
+   "unconfirmed_wal_bytes": 199941744,
+   "kafka_end_offsets": 8735131,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19213,
+   "source_changes_per_s": 19976.8
+  },
+  {
+   "t_s": 410,
+   "sink_lag": 4301,
+   "oldest_unapplied_age_ms": 592,
+   "retained_wal_bytes": 255473984,
+   "unconfirmed_wal_bytes": 18303400,
+   "kafka_end_offsets": 8934722,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19959,
+   "source_changes_per_s": 20012.7
+  },
+  {
+   "t_s": 420,
+   "sink_lag": 7921,
+   "oldest_unapplied_age_ms": 92,
+   "retained_wal_bytes": 291458552,
+   "unconfirmed_wal_bytes": 54287968,
+   "kafka_end_offsets": 9138738,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20402,
+   "source_changes_per_s": 20019.0
+  },
+  {
+   "t_s": 430,
+   "sink_lag": 4761,
+   "oldest_unapplied_age_ms": 444,
+   "retained_wal_bytes": 327333352,
+   "unconfirmed_wal_bytes": 90162768,
+   "kafka_end_offsets": 9336010,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19727,
+   "source_changes_per_s": 19974.7
+  },
+  {
+   "t_s": 440,
+   "sink_lag": 18240,
+   "oldest_unapplied_age_ms": 783,
+   "retained_wal_bytes": 363105032,
+   "unconfirmed_wal_bytes": 125934448,
+   "kafka_end_offsets": 9541925,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20592,
+   "source_changes_per_s": 20009.2
+  },
+  {
+   "t_s": 450,
+   "sink_lag": 6209,
+   "oldest_unapplied_age_ms": 585,
+   "retained_wal_bytes": 395962576,
+   "unconfirmed_wal_bytes": 158791992,
+   "kafka_end_offsets": 9734354,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19243,
+   "source_changes_per_s": 20039.9
+  },
+  {
+   "t_s": 460,
+   "sink_lag": 28672,
+   "oldest_unapplied_age_ms": 952,
+   "retained_wal_bytes": 431677632,
+   "unconfirmed_wal_bytes": 194507048,
+   "kafka_end_offsets": 9943270,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20892,
+   "source_changes_per_s": 19981.8
+  },
+  {
+   "t_s": 470,
+   "sink_lag": 22511,
+   "oldest_unapplied_age_ms": 846,
+   "retained_wal_bytes": 192510608,
+   "unconfirmed_wal_bytes": 19157672,
+   "kafka_end_offsets": 10142882,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19961,
+   "source_changes_per_s": 20016.2
+  },
+  {
+   "t_s": 480,
+   "sink_lag": 8490,
+   "oldest_unapplied_age_ms": 1045,
+   "retained_wal_bytes": 228157000,
+   "unconfirmed_wal_bytes": 54804064,
+   "kafka_end_offsets": 10333506,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19062,
+   "source_changes_per_s": 20012.6
+  },
+  {
+   "t_s": 490,
+   "sink_lag": 7504,
+   "oldest_unapplied_age_ms": 564,
+   "retained_wal_bytes": 263881352,
+   "unconfirmed_wal_bytes": 90528416,
+   "kafka_end_offsets": 10534822,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20132,
+   "source_changes_per_s": 19994.9
+  },
+  {
+   "t_s": 500,
+   "sink_lag": 17750,
+   "oldest_unapplied_age_ms": 1118,
+   "retained_wal_bytes": 299570344,
+   "unconfirmed_wal_bytes": 126217408,
+   "kafka_end_offsets": 10736160,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20134,
+   "source_changes_per_s": 19948.2
+  },
+  {
+   "t_s": 510,
+   "sink_lag": 84611,
+   "oldest_unapplied_age_ms": 4566,
+   "retained_wal_bytes": 338931992,
+   "unconfirmed_wal_bytes": 165579056,
+   "kafka_end_offsets": 10963021,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 22686,
+   "source_changes_per_s": 20012.6
+  },
+  {
+   "t_s": 520,
+   "sink_lag": 151885,
+   "oldest_unapplied_age_ms": 8668,
+   "retained_wal_bytes": 413531928,
+   "unconfirmed_wal_bytes": 240178992,
+   "kafka_end_offsets": 11180295,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 21727,
+   "source_changes_per_s": 20032.4
+  },
+  {
+   "t_s": 530,
+   "sink_lag": 152587,
+   "oldest_unapplied_age_ms": 8946,
+   "retained_wal_bytes": 360480328,
+   "unconfirmed_wal_bytes": 68139488,
+   "kafka_end_offsets": 11370997,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19070,
+   "source_changes_per_s": 20036.8
+  },
+  {
+   "t_s": 540,
+   "sink_lag": 159011,
+   "oldest_unapplied_age_ms": 10489,
+   "retained_wal_bytes": 444787192,
+   "unconfirmed_wal_bytes": 152446352,
+   "kafka_end_offsets": 11557421,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 18642,
+   "source_changes_per_s": 20031.1
+  },
+  {
+   "t_s": 550,
+   "sink_lag": 242111,
+   "oldest_unapplied_age_ms": 14091,
+   "retained_wal_bytes": 509927920,
+   "unconfirmed_wal_bytes": 217587080,
+   "kafka_end_offsets": 11740521,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 18310,
+   "source_changes_per_s": 20005.5
+  },
+  {
+   "t_s": 560,
+   "sink_lag": 439191,
+   "oldest_unapplied_age_ms": 23637,
+   "retained_wal_bytes": 584913528,
+   "unconfirmed_wal_bytes": 292572688,
+   "kafka_end_offsets": 11987601,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 24708,
+   "source_changes_per_s": 20271.7
+  },
+  {
+   "t_s": 570,
+   "sink_lag": 576853,
+   "oldest_unapplied_age_ms": 29718,
+   "retained_wal_bytes": 633924008,
+   "unconfirmed_wal_bytes": 341583168,
+   "kafka_end_offsets": 12175263,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 18766,
+   "source_changes_per_s": 19999.4
+  },
+  {
+   "t_s": 580,
+   "sink_lag": 727754,
+   "oldest_unapplied_age_ms": 37736,
+   "retained_wal_bytes": 692082856,
+   "unconfirmed_wal_bytes": 399742016,
+   "kafka_end_offsets": 12416164,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 24090,
+   "source_changes_per_s": 20024.4
+  },
+  {
+   "t_s": 590,
+   "sink_lag": 819423,
+   "oldest_unapplied_age_ms": 42818,
+   "retained_wal_bytes": 326577832,
+   "unconfirmed_wal_bytes": 33717080,
+   "kafka_end_offsets": 12587833,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 17167,
+   "source_changes_per_s": 20002.2
+  },
+  {
+   "t_s": 600,
+   "sink_lag": 898400,
+   "oldest_unapplied_age_ms": 47694,
+   "retained_wal_bytes": 362728560,
+   "unconfirmed_wal_bytes": 69867808,
+   "kafka_end_offsets": 12756810,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 16898,
+   "source_changes_per_s": 19966.3
+  },
+  {
+   "t_s": 610,
+   "sink_lag": 994853,
+   "oldest_unapplied_age_ms": 55542,
+   "retained_wal_bytes": 411267648,
+   "unconfirmed_wal_bytes": 118406896,
+   "kafka_end_offsets": 12993263,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 23645,
+   "source_changes_per_s": 19965.1
+  },
+  {
+   "t_s": 620,
+   "sink_lag": 1067906,
+   "oldest_unapplied_age_ms": 59152,
+   "retained_wal_bytes": 442096832,
+   "unconfirmed_wal_bytes": 149236080,
+   "kafka_end_offsets": 13146316,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 15305,
+   "source_changes_per_s": 20017.4
+  },
+  {
+   "t_s": 630,
+   "sink_lag": 1169357,
+   "oldest_unapplied_age_ms": 63072,
+   "retained_wal_bytes": 484159840,
+   "unconfirmed_wal_bytes": 191299088,
+   "kafka_end_offsets": 13367767,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 22145,
+   "source_changes_per_s": 20012.5
+  },
+  {
+   "t_s": 640,
+   "sink_lag": 1143172,
+   "oldest_unapplied_age_ms": 67830,
+   "retained_wal_bytes": 520051280,
+   "unconfirmed_wal_bytes": 227190528,
+   "kafka_end_offsets": 13431582,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 6382,
+   "source_changes_per_s": 19988.4
+  },
+  {
+   "t_s": 650,
+   "sink_lag": 1559268,
+   "oldest_unapplied_age_ms": 73006,
+   "retained_wal_bytes": 280830536,
+   "unconfirmed_wal_bytes": 265016440,
+   "kafka_end_offsets": 13947678,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 51610,
+   "source_changes_per_s": 19999.6
+  },
+  {
+   "t_s": 660,
+   "sink_lag": 2485655,
+   "oldest_unapplied_age_ms": 81104,
+   "retained_wal_bytes": 320633864,
+   "unconfirmed_wal_bytes": 304819768,
+   "kafka_end_offsets": 14954065,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 100639,
+   "source_changes_per_s": 19999.7
+  },
+  {
+   "t_s": 670,
+   "sink_lag": 2593707,
+   "oldest_unapplied_age_ms": 86436,
+   "retained_wal_bytes": 355044608,
+   "unconfirmed_wal_bytes": 339230512,
+   "kafka_end_offsets": 15142117,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 18805,
+   "source_changes_per_s": 19978.4
+  },
+  {
+   "t_s": 680,
+   "sink_lag": 2710260,
+   "oldest_unapplied_age_ms": 94255,
+   "retained_wal_bytes": 397949488,
+   "unconfirmed_wal_bytes": 382135392,
+   "kafka_end_offsets": 15378670,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 23655,
+   "source_changes_per_s": 20002.5
+  },
+  {
+   "t_s": 690,
+   "sink_lag": 2835867,
+   "oldest_unapplied_age_ms": 101198,
+   "retained_wal_bytes": 434310520,
+   "unconfirmed_wal_bytes": 418496424,
+   "kafka_end_offsets": 15594277,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 21561,
+   "source_changes_per_s": 19985.4
+  },
+  {
+   "t_s": 700,
+   "sink_lag": 2984698,
+   "oldest_unapplied_age_ms": 111090,
+   "retained_wal_bytes": 466265376,
+   "unconfirmed_wal_bytes": 450451280,
+   "kafka_end_offsets": 15773108,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 17883,
+   "source_changes_per_s": 20010.1
+  },
+  {
+   "t_s": 710,
+   "sink_lag": 3174346,
+   "oldest_unapplied_age_ms": 119427,
+   "retained_wal_bytes": 431657344,
+   "unconfirmed_wal_bytes": 22318368,
+   "kafka_end_offsets": 15962756,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 18965,
+   "source_changes_per_s": 20026.2
+  },
+  {
+   "t_s": 720,
+   "sink_lag": 3374752,
+   "oldest_unapplied_age_ms": 129418,
+   "retained_wal_bytes": 467421608,
+   "unconfirmed_wal_bytes": 58082632,
+   "kafka_end_offsets": 16163162,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20041,
+   "source_changes_per_s": 19961.6
+  },
+  {
+   "t_s": 730,
+   "sink_lag": 3581207,
+   "oldest_unapplied_age_ms": 139726,
+   "retained_wal_bytes": 504179784,
+   "unconfirmed_wal_bytes": 94840808,
+   "kafka_end_offsets": 16369617,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20646,
+   "source_changes_per_s": 19994.1
+  },
+  {
+   "t_s": 740,
+   "sink_lag": 3755808,
+   "oldest_unapplied_age_ms": 148331,
+   "retained_wal_bytes": 534864456,
+   "unconfirmed_wal_bytes": 125525480,
+   "kafka_end_offsets": 16544218,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 17460,
+   "source_changes_per_s": 20021.6
+  },
+  {
+   "t_s": 750,
+   "sink_lag": 3914717,
+   "oldest_unapplied_age_ms": 159672,
+   "retained_wal_bytes": 584991224,
+   "unconfirmed_wal_bytes": 175652248,
+   "kafka_end_offsets": 16823127,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 27891,
+   "source_changes_per_s": 19983.1
+  },
+  {
+   "t_s": 760,
+   "sink_lag": 4087085,
+   "oldest_unapplied_age_ms": 168535,
+   "retained_wal_bytes": 325827752,
+   "unconfirmed_wal_bytes": 17825896,
+   "kafka_end_offsets": 17085495,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 26237,
+   "source_changes_per_s": 20003.4
+  },
+  {
+   "t_s": 770,
+   "sink_lag": 4202960,
+   "oldest_unapplied_age_ms": 175429,
+   "retained_wal_bytes": 414147232,
+   "unconfirmed_wal_bytes": 106145376,
+   "kafka_end_offsets": 17331370,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 24588,
+   "source_changes_per_s": 20024.5
+  },
+  {
+   "t_s": 780,
+   "sink_lag": 4259885,
+   "oldest_unapplied_age_ms": 181323,
+   "retained_wal_bytes": 445463176,
+   "unconfirmed_wal_bytes": 137461320,
+   "kafka_end_offsets": 17428295,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 9692,
+   "source_changes_per_s": 19981.2
+  },
+  {
+   "t_s": 790,
+   "sink_lag": 4337002,
+   "oldest_unapplied_age_ms": 182184,
+   "retained_wal_bytes": 493857792,
+   "unconfirmed_wal_bytes": 185855936,
+   "kafka_end_offsets": 17605412,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 17712,
+   "source_changes_per_s": 19980.0
+  },
+  {
+   "t_s": 800,
+   "sink_lag": 4423426,
+   "oldest_unapplied_age_ms": 186676,
+   "retained_wal_bytes": 554478224,
+   "unconfirmed_wal_bytes": 246476368,
+   "kafka_end_offsets": 17821836,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 21642,
+   "source_changes_per_s": 19982.4
+  },
+  {
+   "t_s": 810,
+   "sink_lag": 4492568,
+   "oldest_unapplied_age_ms": 190716,
+   "retained_wal_bytes": 597393032,
+   "unconfirmed_wal_bytes": 289391176,
+   "kafka_end_offsets": 18000978,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 17914,
+   "source_changes_per_s": 19971.8
+  },
+  {
+   "t_s": 820,
+   "sink_lag": 4697086,
+   "oldest_unapplied_age_ms": 201371,
+   "retained_wal_bytes": 249174664,
+   "unconfirmed_wal_bytes": 3402960,
+   "kafka_end_offsets": 18255496,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 25452,
+   "source_changes_per_s": 19825.2
+  },
+  {
+   "t_s": 830,
+   "sink_lag": 4886998,
+   "oldest_unapplied_age_ms": 210614,
+   "retained_wal_bytes": 296938016,
+   "unconfirmed_wal_bytes": 51166312,
+   "kafka_end_offsets": 18485408,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 22991,
+   "source_changes_per_s": 20004.8
+  },
+  {
+   "t_s": 840,
+   "sink_lag": 5058023,
+   "oldest_unapplied_age_ms": 218163,
+   "retained_wal_bytes": 345816592,
+   "unconfirmed_wal_bytes": 100044888,
+   "kafka_end_offsets": 18726433,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 24102,
+   "source_changes_per_s": 20169.7
+  },
+  {
+   "t_s": 850,
+   "sink_lag": 5123383,
+   "oldest_unapplied_age_ms": 211542,
+   "retained_wal_bytes": 384181944,
+   "unconfirmed_wal_bytes": 138410240,
+   "kafka_end_offsets": 18921793,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19536,
+   "source_changes_per_s": 19986.8
+  },
+  {
+   "t_s": 860,
+   "sink_lag": 5149820,
+   "oldest_unapplied_age_ms": 216000,
+   "retained_wal_bytes": 398423624,
+   "unconfirmed_wal_bytes": 152651920,
+   "kafka_end_offsets": 18998230,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 7644,
+   "source_changes_per_s": 19978.5
+  },
+  {
+   "t_s": 870,
+   "sink_lag": 5228507,
+   "oldest_unapplied_age_ms": 224428,
+   "retained_wal_bytes": 438045160,
+   "unconfirmed_wal_bytes": 192273456,
+   "kafka_end_offsets": 19196917,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19869,
+   "source_changes_per_s": 20026.5
+  },
+  {
+   "t_s": 880,
+   "sink_lag": 5340176,
+   "oldest_unapplied_age_ms": 234176,
+   "retained_wal_bytes": 476453144,
+   "unconfirmed_wal_bytes": 230681440,
+   "kafka_end_offsets": 19408586,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 21167,
+   "source_changes_per_s": 19998.0
+  },
+  {
+   "t_s": 890,
+   "sink_lag": 5506276,
+   "oldest_unapplied_age_ms": 245851,
+   "retained_wal_bytes": 214039872,
+   "unconfirmed_wal_bytes": 34878816,
+   "kafka_end_offsets": 19624686,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 21610,
+   "source_changes_per_s": 19979.2
+  },
+  {
+   "t_s": 910,
+   "sink_lag": 5860869,
+   "oldest_unapplied_age_ms": 268641,
+   "retained_wal_bytes": 295693464,
+   "unconfirmed_wal_bytes": 116532408,
+   "kafka_end_offsets": 20069279,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 44459,
+   "source_changes_per_s": 15550.4
+  },
+  {
+   "t_s": 920,
+   "sink_lag": 5953925,
+   "oldest_unapplied_age_ms": 275713,
+   "retained_wal_bytes": 321430128,
+   "unconfirmed_wal_bytes": 142269072,
+   "kafka_end_offsets": 20212335,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 14306,
+   "source_changes_per_s": 19988.0
+  },
+  {
+   "t_s": 940,
+   "sink_lag": 6111435,
+   "oldest_unapplied_age_ms": 291196,
+   "retained_wal_bytes": 377611936,
+   "unconfirmed_wal_bytes": 198450880,
+   "kafka_end_offsets": 20549845,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 33751,
+   "source_changes_per_s": 19993.5
+  },
+  {
+   "t_s": 950,
+   "sink_lag": 6235761,
+   "oldest_unapplied_age_ms": 303482,
+   "retained_wal_bytes": 196868784,
+   "unconfirmed_wal_bytes": 37757168,
+   "kafka_end_offsets": 20834171,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 28433,
+   "source_changes_per_s": 20015.9
+  },
+  {
+   "t_s": 960,
+   "sink_lag": 6358563,
+   "oldest_unapplied_age_ms": 312385,
+   "retained_wal_bytes": 225543600,
+   "unconfirmed_wal_bytes": 66431984,
+   "kafka_end_offsets": 20996973,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 16280,
+   "source_changes_per_s": 20007.7
+  },
+  {
+   "t_s": 970,
+   "sink_lag": 6043323,
+   "oldest_unapplied_age_ms": 317319,
+   "retained_wal_bytes": 254321544,
+   "unconfirmed_wal_bytes": 95209928,
+   "kafka_end_offsets": 21152337,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 15536,
+   "source_changes_per_s": 19925.0
+  },
+  {
+   "t_s": 980,
+   "sink_lag": 5670613,
+   "oldest_unapplied_age_ms": 307098,
+   "retained_wal_bytes": 290012144,
+   "unconfirmed_wal_bytes": 130900528,
+   "kafka_end_offsets": 21349340,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19700,
+   "source_changes_per_s": 20017.8
+  },
+  {
+   "t_s": 990,
+   "sink_lag": 5202680,
+   "oldest_unapplied_age_ms": 281560,
+   "retained_wal_bytes": 375296448,
+   "unconfirmed_wal_bytes": 216184832,
+   "kafka_end_offsets": 21555398,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20606,
+   "source_changes_per_s": 20002.0
+  },
+  {
+   "t_s": 1000,
+   "sink_lag": 4694364,
+   "oldest_unapplied_age_ms": 253828,
+   "retained_wal_bytes": 479011080,
+   "unconfirmed_wal_bytes": 319899464,
+   "kafka_end_offsets": 21757082,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20168,
+   "source_changes_per_s": 20000.5
+  },
+  {
+   "t_s": 1010,
+   "sink_lag": 4321456,
+   "oldest_unapplied_age_ms": 231629,
+   "retained_wal_bytes": 404557784,
+   "unconfirmed_wal_bytes": 52707584,
+   "kafka_end_offsets": 21953866,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19678,
+   "source_changes_per_s": 20008.5
+  },
+  {
+   "t_s": 1020,
+   "sink_lag": 4137419,
+   "oldest_unapplied_age_ms": 223001,
+   "retained_wal_bytes": 471537296,
+   "unconfirmed_wal_bytes": 119687096,
+   "kafka_end_offsets": 22149829,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19596,
+   "source_changes_per_s": 20004.4
+  },
+  {
+   "t_s": 1030,
+   "sink_lag": 3879882,
+   "oldest_unapplied_age_ms": 209474,
+   "retained_wal_bytes": 532001064,
+   "unconfirmed_wal_bytes": 180150864,
+   "kafka_end_offsets": 22352292,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20246,
+   "source_changes_per_s": 20019.3
+  },
+  {
+   "t_s": 1040,
+   "sink_lag": 3378775,
+   "oldest_unapplied_age_ms": 184699,
+   "retained_wal_bytes": 585406096,
+   "unconfirmed_wal_bytes": 233555896,
+   "kafka_end_offsets": 22551185,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19889,
+   "source_changes_per_s": 20006.0
+  },
+  {
+   "t_s": 1050,
+   "sink_lag": 3077330,
+   "oldest_unapplied_age_ms": 166433,
+   "retained_wal_bytes": 633812528,
+   "unconfirmed_wal_bytes": 281962328,
+   "kafka_end_offsets": 22759740,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20856,
+   "source_changes_per_s": 20018.9
+  },
+  {
+   "t_s": 1060,
+   "sink_lag": 2672754,
+   "oldest_unapplied_age_ms": 144954,
+   "retained_wal_bytes": 679006464,
+   "unconfirmed_wal_bytes": 327156264,
+   "kafka_end_offsets": 22951438,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19170,
+   "source_changes_per_s": 19969.9
+  },
+  {
+   "t_s": 1070,
+   "sink_lag": 2189225,
+   "oldest_unapplied_age_ms": 119090,
+   "retained_wal_bytes": 258602872,
+   "unconfirmed_wal_bytes": 27209008,
+   "kafka_end_offsets": 23154208,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20277,
+   "source_changes_per_s": 19986.1
+  },
+  {
+   "t_s": 1080,
+   "sink_lag": 1721413,
+   "oldest_unapplied_age_ms": 92989,
+   "retained_wal_bytes": 301069864,
+   "unconfirmed_wal_bytes": 69676000,
+   "kafka_end_offsets": 23354305,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20010,
+   "source_changes_per_s": 20010.9
+  },
+  {
+   "t_s": 1090,
+   "sink_lag": 1205475,
+   "oldest_unapplied_age_ms": 67814,
+   "retained_wal_bytes": 341262664,
+   "unconfirmed_wal_bytes": 109868800,
+   "kafka_end_offsets": 23549639,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19533,
+   "source_changes_per_s": 19994.9
+  },
+  {
+   "t_s": 1100,
+   "sink_lag": 696160,
+   "oldest_unapplied_age_ms": 43510,
+   "retained_wal_bytes": 381509872,
+   "unconfirmed_wal_bytes": 150116008,
+   "kafka_end_offsets": 23757472,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20783,
+   "source_changes_per_s": 19981.1
+  },
+  {
+   "t_s": 1110,
+   "sink_lag": 166011,
+   "oldest_unapplied_age_ms": 15371,
+   "retained_wal_bytes": 421146864,
+   "unconfirmed_wal_bytes": 189753000,
+   "kafka_end_offsets": 23957323,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19985,
+   "source_changes_per_s": 20013.5
+  },
+  {
+   "t_s": 1120,
+   "sink_lag": 16384,
+   "oldest_unapplied_age_ms": 659,
+   "retained_wal_bytes": 459909688,
+   "unconfirmed_wal_bytes": 228515824,
+   "kafka_end_offsets": 24153673,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19635,
+   "source_changes_per_s": 19990.3
+  },
+  {
+   "t_s": 1130,
+   "sink_lag": 5583,
+   "oldest_unapplied_age_ms": 557,
+   "retained_wal_bytes": 264874736,
+   "unconfirmed_wal_bytes": 23497264,
+   "kafka_end_offsets": 24354975,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20130,
+   "source_changes_per_s": 20017.0
+  },
+  {
+   "t_s": 1140,
+   "sink_lag": 5609,
+   "oldest_unapplied_age_ms": 582,
+   "retained_wal_bytes": 302118024,
+   "unconfirmed_wal_bytes": 60740552,
+   "kafka_end_offsets": 24556219,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20124,
+   "source_changes_per_s": 19971.7
+  },
+  {
+   "t_s": 1150,
+   "sink_lag": 14268,
+   "oldest_unapplied_age_ms": 421,
+   "retained_wal_bytes": 338951624,
+   "unconfirmed_wal_bytes": 97574152,
+   "kafka_end_offsets": 24759663,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20344,
+   "source_changes_per_s": 19992.4
+  },
+  {
+   "t_s": 1160,
+   "sink_lag": 4392,
+   "oldest_unapplied_age_ms": 524,
+   "retained_wal_bytes": 375777128,
+   "unconfirmed_wal_bytes": 134399656,
+   "kafka_end_offsets": 24957102,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19744,
+   "source_changes_per_s": 19971.8
+  },
+  {
+   "t_s": 1170,
+   "sink_lag": 9087,
+   "oldest_unapplied_age_ms": 710,
+   "retained_wal_bytes": 411185344,
+   "unconfirmed_wal_bytes": 169807872,
+   "kafka_end_offsets": 25156911,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19981,
+   "source_changes_per_s": 20008.5
+  },
+  {
+   "t_s": 1180,
+   "sink_lag": 15403,
+   "oldest_unapplied_age_ms": 321,
+   "retained_wal_bytes": 447481648,
+   "unconfirmed_wal_bytes": 206104176,
+   "kafka_end_offsets": 25366396,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20948,
+   "source_changes_per_s": 19995.1
+  },
+  {
+   "t_s": 1190,
+   "sink_lag": 7769,
+   "oldest_unapplied_age_ms": 121,
+   "retained_wal_bytes": 183656784,
+   "unconfirmed_wal_bytes": 24278040,
+   "kafka_end_offsets": 25560521,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19412,
+   "source_changes_per_s": 20010.2
+  },
+  {
+   "t_s": 1200,
+   "sink_lag": 8137,
+   "oldest_unapplied_age_ms": 590,
+   "retained_wal_bytes": 219636200,
+   "unconfirmed_wal_bytes": 60257456,
+   "kafka_end_offsets": 25759488,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19897,
+   "source_changes_per_s": 20026.2
+  },
+  {
+   "t_s": 1210,
+   "sink_lag": 6142,
+   "oldest_unapplied_age_ms": 583,
+   "retained_wal_bytes": 255665416,
+   "unconfirmed_wal_bytes": 96286672,
+   "kafka_end_offsets": 25955839,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19635,
+   "source_changes_per_s": 19985.3
+  },
+  {
+   "t_s": 1220,
+   "sink_lag": 10105,
+   "oldest_unapplied_age_ms": 497,
+   "retained_wal_bytes": 307630680,
+   "unconfirmed_wal_bytes": 148251936,
+   "kafka_end_offsets": 26161506,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20567,
+   "source_changes_per_s": 19999.6
+  },
+  {
+   "t_s": 1230,
+   "sink_lag": 16254,
+   "oldest_unapplied_age_ms": 737,
+   "retained_wal_bytes": 429534488,
+   "unconfirmed_wal_bytes": 270155744,
+   "kafka_end_offsets": 26364767,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20326,
+   "source_changes_per_s": 19966.9
+  },
+  {
+   "t_s": 1240,
+   "sink_lag": 12974,
+   "oldest_unapplied_age_ms": 717,
+   "retained_wal_bytes": 514690632,
+   "unconfirmed_wal_bytes": 355311888,
+   "kafka_end_offsets": 26564518,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19975,
+   "source_changes_per_s": 20007.1
+  },
+  {
+   "t_s": 1250,
+   "sink_lag": 18105,
+   "oldest_unapplied_age_ms": 769,
+   "retained_wal_bytes": 421309880,
+   "unconfirmed_wal_bytes": 44760424,
+   "kafka_end_offsets": 26765258,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20074,
+   "source_changes_per_s": 19977.5
+  },
+  {
+   "t_s": 1260,
+   "sink_lag": 12357,
+   "oldest_unapplied_age_ms": 666,
+   "retained_wal_bytes": 482933800,
+   "unconfirmed_wal_bytes": 106384344,
+   "kafka_end_offsets": 26959341,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19408,
+   "source_changes_per_s": 19983.7
+  },
+  {
+   "t_s": 1270,
+   "sink_lag": 6162,
+   "oldest_unapplied_age_ms": 504,
+   "retained_wal_bytes": 539142976,
+   "unconfirmed_wal_bytes": 162593520,
+   "kafka_end_offsets": 27160135,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20079,
+   "source_changes_per_s": 20006.9
+  },
+  {
+   "t_s": 1280,
+   "sink_lag": 12288,
+   "oldest_unapplied_age_ms": 131,
+   "retained_wal_bytes": 589114352,
+   "unconfirmed_wal_bytes": 212564896,
+   "kafka_end_offsets": 27366622,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 20649,
+   "source_changes_per_s": 20017.6
+  },
+  {
+   "t_s": 1290,
+   "sink_lag": 8194,
+   "oldest_unapplied_age_ms": 507,
+   "retained_wal_bytes": 636470488,
+   "unconfirmed_wal_bytes": 259921032,
+   "kafka_end_offsets": 27559658,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 19304,
+   "source_changes_per_s": 20019.8
+  },
+  {
+   "t_s": 1300,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 672484696,
+   "unconfirmed_wal_bytes": 295935240,
+   "kafka_end_offsets": 27730794,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 17114,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 1310,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 283959464,
+   "unconfirmed_wal_bytes": 52064,
+   "kafka_end_offsets": 27730794,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 1320,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 283959464,
+   "unconfirmed_wal_bytes": 52064,
+   "kafka_end_offsets": 27730794,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 1330,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 283959464,
+   "unconfirmed_wal_bytes": 52064,
+   "kafka_end_offsets": 27730794,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 1340,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 283959464,
+   "unconfirmed_wal_bytes": 52064,
+   "kafka_end_offsets": 27730794,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 1350,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 283967848,
+   "unconfirmed_wal_bytes": 60448,
+   "kafka_end_offsets": 27730794,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 1360,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 283967848,
+   "unconfirmed_wal_bytes": 60448,
+   "kafka_end_offsets": 27730794,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 1370,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 8496,
+   "unconfirmed_wal_bytes": 8496,
+   "kafka_end_offsets": 27730794,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 1380,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 8496,
+   "unconfirmed_wal_bytes": 8496,
+   "kafka_end_offsets": 27730794,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 1390,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 8496,
+   "unconfirmed_wal_bytes": 8496,
+   "kafka_end_offsets": 27730794,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 1400,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 31368792,
+   "unconfirmed_wal_bytes": 31368792,
+   "kafka_end_offsets": 27730794,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 1410,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 31368792,
+   "unconfirmed_wal_bytes": 31368792,
+   "kafka_end_offsets": 27730794,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 1420,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 31368848,
+   "unconfirmed_wal_bytes": 31368848,
+   "kafka_end_offsets": 27730794,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  },
+  {
+   "t_s": 1430,
+   "sink_lag": 0,
+   "oldest_unapplied_age_ms": 0,
+   "retained_wal_bytes": 31368848,
+   "unconfirmed_wal_bytes": 31368848,
+   "kafka_end_offsets": 27730794,
+   "task_state": "RUNNING",
+   "wal_status": "reserved",
+   "kafka_ingest_per_s": 0,
+   "source_changes_per_s": null
+  }
+ ]
+}

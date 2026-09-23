@@ -1,0 +1,21 @@
+{"ts_ms":1789325622282,"event":"environment-ready","detail":{"postgres": "18.6 (Debian 18.6-1.pgdg13+2)", "clickhouse": "26.8.3.105", "kafka_image": "apache/kafka:4.3.1", "debezium_image": "quay.io/debezium/connect:3.6.2.Final", "connect": {"kafka_connect": "4.3.0", "postgres_plugin": [{"class": "io.debezium.connector.postgresql.PostgresConnector", "type": "source", "version": "3.6.2.Final"}]}, "docker_cpus": 15, "docker_memory_bytes": 8321011712, "host": "Apple M5 Pro"}}
+{"ts_ms":1789325622302,"event":"connector-register","detail":{"snapshot.mode":"initial"}}
+{"ts_ms":1789325670245,"event":"initial-load-complete","detail":{}}
+{"ts_ms":1789325670950,"event":"generator-rate","detail":{"rate":0}}
+{"ts_ms":1789325692386,"event":"phase-fill-tasks1-start","detail":{"rate":150000}}
+{"ts_ms":1789325692407,"event":"generator-rate","detail":{"rate":150000}}
+{"ts_ms":1789325782490,"event":"generator-rate","detail":{"rate":0}}
+{"ts_ms":1789325782524,"event":"phase-fill-tasks1-end","detail":{}}
+{"ts_ms":1789325782558,"event":"phase-catchup-tasks1-start","detail":{"tasks.max":1}}
+{"ts_ms":1789325871049,"event":"phase-catchup-tasks1-end","detail":{}}
+{"ts_ms":1789325891745,"event":"phase-fill-tasks4-start","detail":{"rate":150000}}
+{"ts_ms":1789325891768,"event":"generator-rate","detail":{"rate":150000}}
+{"ts_ms":1789325981863,"event":"generator-rate","detail":{"rate":0}}
+{"ts_ms":1789325981897,"event":"phase-fill-tasks4-end","detail":{}}
+{"ts_ms":1789325981936,"event":"phase-catchup-tasks4-start","detail":{"tasks.max":4}}
+{"ts_ms":1789326055220,"event":"phase-catchup-tasks4-end","detail":{}}
+{"ts_ms":1789326056673,"event":"generator-stopped","detail":{}}
+{"ts_ms":1789326126742,"event":"phase-c1-start","detail":{"sink_processes":1}}
+{"ts_ms":1789326217559,"event":"phase-c1-end","detail":{}}
+{"ts_ms":1789326217584,"event":"phase-c2-start","detail":{"sink_processes":2}}
+{"ts_ms": 1789326393272, "event": "run-aborted", "detail": {"reason": "ClickHouse rejected inserts at its 746 MiB server memory limit during the sink drain (code 241), and the sink process exited instead of retrying; a Connect worker was OOM-killed at its 700 MB container limit. Superseded by the next capacity run.", "connect_oom": "/cdc-lab-connect-1-1=true /cdc-lab-connect-2-1=false "}}

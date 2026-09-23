@@ -1,0 +1,3 @@
+{"ts_ms":1789321507403,"sink_id":"15750d6515cb","contract_version":1,"records":400000,"batches":20,"history_rows":400000,"current_rows":400000,"tombstones":0,"insert_ms_avg":138.1,"insert_ms_max":246.8,"unmapped_fields":[]}
+{"ts_ms":1789321512964,"sink_id":"15750d6515cb","contract_version":1,"records":360000,"batches":18,"history_rows":360000,"current_rows":360000,"tombstones":0,"insert_ms_avg":182.0,"insert_ms_max":260.3,"unmapped_fields":[]}
+{"ts_ms":1789321518190,"sink_id":"15750d6515cb","contract_version":1,"records":211249,"batches":11,"history_rows":211249,"current_rows":211249,"tombstones":0,"insert_ms_avg":149.2,"insert_ms_max":223.8,"unmapped_fields":[]}

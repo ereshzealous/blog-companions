@@ -1,0 +1,6 @@
+{"ts_ms":1789334191530,"alert":"capture-unassigned","state":"firing"}
+{"ts_ms":1789334293580,"alert":"source-history-unreserved","state":"firing"}
+{"ts_ms":1789334315592,"alert":"source-history-lost","state":"firing"}
+{"ts_ms":1789334315592,"alert":"source-history-unreserved","state":"resolved"}
+{"ts_ms":1789334599735,"alert":"capture-unassigned","state":"resolved"}
+{"ts_ms":1789334599735,"alert":"source-history-lost","state":"resolved"}

@@ -1,0 +1,5 @@
+confluent-kafka>=2.11
+psycopg[binary]>=3.2
+clickhouse-connect>=0.9
+orjson>=3.10
+requests>=2.32

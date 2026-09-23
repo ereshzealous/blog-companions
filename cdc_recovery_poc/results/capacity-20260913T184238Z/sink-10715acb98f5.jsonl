@@ -1,0 +1,6 @@
+{"ts_ms":1789324986330,"sink_id":"10715acb98f5","contract_version":1,"records":260000,"batches":26,"history_rows":260000,"current_rows":260000,"tombstones":0,"insert_ms_avg":140.8,"insert_ms_max":156.1,"unmapped_fields":[]}
+{"ts_ms":1789324991403,"sink_id":"10715acb98f5","contract_version":1,"records":260000,"batches":26,"history_rows":260000,"current_rows":260000,"tombstones":0,"insert_ms_avg":145.1,"insert_ms_max":191.2,"unmapped_fields":[]}
+{"ts_ms":1789324996415,"sink_id":"10715acb98f5","contract_version":1,"records":260000,"batches":26,"history_rows":260000,"current_rows":260000,"tombstones":0,"insert_ms_avg":147.9,"insert_ms_max":161.4,"unmapped_fields":[]}
+{"ts_ms":1789325001470,"sink_id":"10715acb98f5","contract_version":1,"records":270000,"batches":27,"history_rows":270000,"current_rows":270000,"tombstones":0,"insert_ms_avg":146.6,"insert_ms_max":209.6,"unmapped_fields":[]}
+{"ts_ms":1789325006969,"sink_id":"10715acb98f5","contract_version":1,"records":236955,"batches":24,"history_rows":236955,"current_rows":236955,"tombstones":0,"insert_ms_avg":131.8,"insert_ms_max":149.3,"unmapped_fields":[]}
+{"ts_ms":1789325011982,"sink_id":"10715acb98f5","contract_version":1,"records":0,"batches":0,"history_rows":0,"current_rows":0,"tombstones":0,"insert_ms_avg":0.0,"insert_ms_max":0.0,"unmapped_fields":[]}

@@ -1,0 +1,18 @@
+{"ts_ms":1789336422734,"event":"connect-worker-ready","detail":{"worker":"connect-1","attempt":1}}
+{"ts_ms":1789336433607,"event":"connect-worker-ready","detail":{"worker":"connect-2","attempt":1}}
+{"ts_ms":1789336434568,"event":"environment-ready","detail":{"postgres": "18.6 (Debian 18.6-1.pgdg13+2)", "clickhouse": "26.8.3.105", "kafka_image": "apache/kafka:4.3.1", "debezium_image": "quay.io/debezium/connect:3.6.2.Final", "connect": {"kafka_connect": "4.3.0", "postgres_plugin": [{"class": "io.debezium.connector.postgresql.PostgresConnector", "type": "source", "version": "3.6.2.Final"}]}, "docker_cpus": 15, "docker_memory_bytes": 8321011712, "host": "Apple M5 Pro"}}
+{"ts_ms":1789336434593,"event":"connector-register","detail":{"snapshot.mode":"initial"}}
+{"ts_ms":1789336436014,"event":"sink-started","sink_id":"ef6f29b3c488","version_basis":"kafka_offset"}
+{"ts_ms":1789336436073,"event":"sink-started","sink_id":"b888dafa5f9e","version_basis":"kafka_offset"}
+{"ts_ms":1789336482624,"event":"initial-load-complete","detail":{}}
+{"ts_ms":1789336482652,"event":"generator-rate","detail":{"rate":20000}}
+{"ts_ms":1789336483601,"event":"baseline-start","detail":{"lambda":20000}}
+{"ts_ms":1789336603705,"event":"kafka-paused","detail":{"retained_wal_bytes":369106632}}
+{"ts_ms":1789336844048,"event":"kafka-unpaused","detail":{"retained_wal_bytes":1477680296}}
+{"ts_ms":1789336850562,"event":"sink-started","sink_id":"b888dafa5f9e","version_basis":"kafka_offset"}
+{"ts_ms":1789336851041,"event":"sink-started","sink_id":"ef6f29b3c488","version_basis":"kafka_offset"}
+{"ts_ms":1789336969128,"event":"caught-up","detail":{"seconds_after_unpause":124}}
+{"ts_ms":1789337089212,"event":"generator-rate","detail":{"rate":0}}
+{"ts_ms":1789337090730,"event":"generator-stopped","detail":{}}
+{"ts_ms":1789337208865,"event":"reconcile-final","converged":true}
+{"ts_ms":1789337209299,"event":"oom-check","detail":{"cdc-lab-clickhouse-1":false,"cdc-lab-collector-1":false,"cdc-lab-connect-1-1":false,"cdc-lab-connect-2-1":false,"cdc-lab-generator-1":false,"cdc-lab-kafka-1":false,"cdc-lab-postgres-1":false,"cdc-lab-sink-1":false,"cdc-lab-sink-2":false,"cdc-lab-tools-1":false}}

@@ -1,0 +1,1 @@
+{"ts_ms": 1789329379371, "event": "run-aborted", "detail": {"reason": "connect-2 exited at startup: java.lang.OutOfMemoryError (Java heap space) during plugin classpath scan; 00-up.sh waited on its REST endpoint without a timeout", "container_oom_killed": false, "exit_code": 2}}

@@ -1,0 +1,33 @@
+{"ts_ms":1789330242273,"event":"connect-worker-ready","detail":{"worker":"connect-1","attempt":1}}
+{"ts_ms":1789330253091,"event":"connect-worker-ready","detail":{"worker":"connect-2","attempt":1}}
+{"ts_ms":1789330254148,"event":"environment-ready","detail":{"postgres": "18.6 (Debian 18.6-1.pgdg13+2)", "clickhouse": "26.8.3.105", "kafka_image": "apache/kafka:4.3.1", "debezium_image": "quay.io/debezium/connect:3.6.2.Final", "connect": {"kafka_connect": "4.3.0", "postgres_plugin": [{"class": "io.debezium.connector.postgresql.PostgresConnector", "type": "source", "version": "3.6.2.Final"}]}, "docker_cpus": 15, "docker_memory_bytes": 8321011712, "host": "Apple M5 Pro"}}
+{"ts_ms":1789330254180,"event":"connector-register","detail":{"snapshot.mode":"initial"}}
+{"ts_ms":1789330302330,"event":"initial-load-complete","detail":{}}
+{"ts_ms":1789330302806,"event":"generator-rate","detail":{"rate":20000}}
+{"ts_ms":1789330303650,"event":"baseline-start","detail":{"lambda":20000,"mu_measured":73105}}
+{"ts_ms":1789330483922,"event":"source-ddl","detail":{"ddl":"ALTER TABLE ops.device_registry ADD COLUMN firmware_channel text NOT NULL DEFAULT 'stable'"}}
+{"ts_ms":1789330484663,"event":"sink-unmapped-fields","sink_id":"b2b2fb388a9f","fields":["device_registry.firmware_channel"],"contract_version":1}
+{"ts_ms":1789330484814,"event":"sink-unmapped-fields","sink_id":"500ef8e5341f","fields":["device_registry.firmware_channel"],"contract_version":1}
+{"ts_ms":1789330529282,"event":"contract-v2","detail":{"clickhouse":"ADD COLUMN firmware_channel Nullable(String)"}}
+{"ts_ms":1789330559651,"event":"new-column-null-before-backfill","detail":{"null_rows":2004427,"live_rows":2035034,"source_value":"stable"}}
+{"ts_ms":1789330559795,"event":"incremental-snapshot-signal","detail":{"signal_id":"snap-1789330559676","collections":["ops.device_registry"]}}
+{"ts_ms":1789330650061,"event":"clickhouse-throttled","detail":{"cpus":0.5,"lag_growth_per_s":-168}}
+{"ts_ms":1789330695264,"event":"clickhouse-throttled","detail":{"cpus":0.3,"lag_growth_per_s":283}}
+{"ts_ms":1789330740474,"event":"clickhouse-throttled","detail":{"cpus":0.2,"lag_growth_per_s":296}}
+{"ts_ms":1789330785684,"event":"clickhouse-throttled","detail":{"cpus":0.12,"lag_growth_per_s":2954}}
+{"ts_ms":1789330830903,"event":"clickhouse-throttled","detail":{"cpus":0.08,"lag_growth_per_s":7478}}
+{"ts_ms":1789330876394,"event":"connect-worker-killed","detail":{"worker":"connect-1","slot_confirmed_flush_lsn":"0/C70DDA28"}}
+{"ts_ms":1789330937337,"event":"sink-crash-armed","detail":{}}
+{"ts_ms":1789330939133,"event":"sink-crash-after-insert-before-commit","sink_id":"b2b2fb388a9f","batch_id":"81c20eea470e","rows":9951,"offsets":{"pg-devices.ops.device_registry[5]":[780561,783279],"pg-devices.ops.device_status[3]":[1688721,1696001]}}
+{"ts_ms":1789330999275,"event":"delete-batch","detail":{"keys":5000}}
+{"ts_ms":1789330999360,"event":"capture-task-running","detail":{"worker":"connect-2:8083"}}
+{"ts_ms":1789330999578,"event":"connect-worker-restarted","detail":{"worker":"connect-1"}}
+{"ts_ms":1789331204812,"event":"clickhouse-restored","detail":{"backlog":6229707,"lambda_observed":20004,"mu_measured":73105,"predicted_drain_s":117}}
+{"ts_ms":1789331323479,"event":"backlog-drained","detail":{"observed_drain_s":118,"predicted_drain_s":117}}
+{"ts_ms":1789331503556,"event":"steady-state-after-recovery","detail":{}}
+{"ts_ms":1789331504156,"event":"new-column-null-after-backfill","detail":{"null_rows":1336916,"live_rows":2164262}}
+{"ts_ms":1789331504180,"event":"generator-rate","detail":{"rate":0}}
+{"ts_ms":1789331505512,"event":"generator-stopped","detail":{}}
+{"ts_ms":1789331630473,"event":"reconcile-final","converged":false}
+{"ts_ms":1789331630995,"event":"oom-check","detail":{"cdc-lab-clickhouse-1":false,"cdc-lab-collector-1":false,"cdc-lab-connect-1-1":false,"cdc-lab-connect-2-1":false,"cdc-lab-generator-1":false,"cdc-lab-kafka-1":false,"cdc-lab-postgres-1":false,"cdc-lab-sink-1":false,"cdc-lab-sink-2":false,"cdc-lab-tools-1":false}}
+{"ts_ms": 1789331693389, "event": "post-run-finding", "detail": {"finding": "incremental snapshot read events carry source.lsn = null; the sink used lsn or 0 as the ReplacingMergeTree version, so 2,037,954 backfill reads (firmware_channel = 'stable') lost to older versions and the column stayed NULL on 1,336,238 live rows", "evidence": "device 1550: r at offset 378320 with source.sequence [1904419640,1904419640], lsn null; prior u at lsn 990047800", "fix": "sink version = source.lsn, else the last position in source.sequence; recovery test re-run"}}

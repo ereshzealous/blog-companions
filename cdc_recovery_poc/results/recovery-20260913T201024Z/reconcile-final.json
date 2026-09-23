@@ -1,0 +1,89 @@
+{
+ "label": "final",
+ "ts_ms": 1789331601343,
+ "contract_version": 2,
+ "tables": {
+  "device_registry": {
+   "columns_compared": [
+    "device_id",
+    "tenant_id",
+    "serial_number",
+    "model",
+    "gateway_id",
+    "status",
+    "firmware_version",
+    "updated_at_ms",
+    "firmware_channel"
+   ],
+   "source_rows": 2164442,
+   "clickhouse_logical_rows": 2164442,
+   "clickhouse_logical_duplicate_keys": 0,
+   "clickhouse_physical_rows": 4757006,
+   "clickhouse_physical_extra_versions": 2561356,
+   "mismatched_buckets": 4096,
+   "missing_in_clickhouse": 0,
+   "ghost_rows_in_clickhouse": 0,
+   "content_mismatches": 1336238,
+   "samples": {
+    "missing": [],
+    "ghost": [],
+    "content": [
+     1,
+     2,
+     4,
+     5,
+     6,
+     7,
+     10,
+     11,
+     12,
+     13
+    ]
+   },
+   "converged": false,
+   "seconds": 15.6
+  },
+  "device_status": {
+   "columns_compared": [
+    "device_id",
+    "tenant_id",
+    "battery_pct",
+    "signal_dbm",
+    "connectivity",
+    "last_seen_ms",
+    "updated_at_ms"
+   ],
+   "source_rows": 500000,
+   "clickhouse_logical_rows": 500000,
+   "clickhouse_logical_duplicate_keys": 0,
+   "clickhouse_physical_rows": 1383364,
+   "clickhouse_physical_extra_versions": 883364,
+   "mismatched_buckets": 0,
+   "missing_in_clickhouse": 0,
+   "ghost_rows_in_clickhouse": 0,
+   "content_mismatches": 0,
+   "samples": {
+    "missing": [],
+    "ghost": [],
+    "content": []
+   },
+   "converged": true,
+   "seconds": 0.8
+  }
+ },
+ "explicit_delete_batch": {
+  "keys": 5000,
+  "still_in_source": 0,
+  "still_visible_in_clickhouse": 0
+ },
+ "history": {
+  "deliveries": 28847777,
+  "distinct_change_events": 28414276,
+  "distinct_kafka_records": 28837826,
+  "sink_replays": 9951,
+  "capture_replays": 423550,
+  "delete_deliveries": 31686,
+  "snapshot_read_deliveries": 4537954
+ },
+ "converged": false
+}

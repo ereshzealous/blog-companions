@@ -1,0 +1,183 @@
+{
+ "label": "after-resnapshot",
+ "ts_ms": 1789339512366,
+ "contract_version": 1,
+ "tables": {
+  "device_registry": {
+   "columns_compared": [
+    "device_id",
+    "tenant_id",
+    "serial_number",
+    "model",
+    "gateway_id",
+    "status",
+    "firmware_version",
+    "updated_at_ms"
+   ],
+   "source_rows": 2299082,
+   "clickhouse_logical_rows": 2340813,
+   "clickhouse_logical_duplicate_keys": 0,
+   "clickhouse_physical_rows": 2452041,
+   "clickhouse_physical_extra_versions": 108116,
+   "mismatched_buckets": 4096,
+   "missing_in_clickhouse": 0,
+   "ghost_rows_in_clickhouse": 41731,
+   "content_mismatches": 0,
+   "samples": {
+    "missing": [],
+    "ghost": [
+     92,
+     100,
+     182,
+     221,
+     4174,
+     4176,
+     4177,
+     4277,
+     4288,
+     4300
+    ],
+    "content": []
+   },
+   "evidence": {
+    "92": {
+     "source_row": null,
+     "clickhouse_versions": [
+      {
+       "version": 343348,
+       "is_deleted": 0,
+       "sink_id": "cabd672824d8",
+       "applied_at": "2026-09-13 22:09:08.659"
+      }
+     ],
+     "change_history": [
+      {
+       "op": "r",
+       "snapshot": "true",
+       "position": 505167368,
+       "partition": 1,
+       "offset": 17,
+       "source_ts_ms": 1789337243750,
+       "sink_id": "d17db4e084f0",
+       "applied_at": "2026-09-13 22:07:25.599",
+       "after": "{\"device_id\":92,\"tenant_id\":93,\"serial_number\":\"SN-0000000092\",\"model\":\"ecg-patch-3\",\"gateway_id\":1000092,\"status\":\"active\",\"firmware_version\":\"fw-4.1.1\",\"updated_at_ms\":1757750400092}"
+      },
+      {
+       "op": "u",
+       "snapshot": "false",
+       "position": 988716360,
+       "partition": 1,
+       "offset": 343348,
+       "source_ts_ms": 1789337347894,
+       "sink_id": "cabd672824d8",
+       "applied_at": "2026-09-13 22:09:08.779",
+       "after": "{\"device_id\":92,\"tenant_id\":93,\"serial_number\":\"SN-0000000092\",\"model\":\"ecg-patch-3\",\"gateway_id\":1000092,\"status\":\"retired\",\"firmware_version\":\"fw-5.8.12\",\"updated_at_ms\":1789337347893}"
+      }
+     ]
+    },
+    "100": {
+     "source_row": null,
+     "clickhouse_versions": [
+      {
+       "version": 14,
+       "is_deleted": 0,
+       "sink_id": "d17db4e084f0",
+       "applied_at": "2026-09-13 22:07:25.730"
+      }
+     ],
+     "change_history": [
+      {
+       "op": "r",
+       "snapshot": "true",
+       "position": 505167368,
+       "partition": 0,
+       "offset": 14,
+       "source_ts_ms": 1789337243750,
+       "sink_id": "d17db4e084f0",
+       "applied_at": "2026-09-13 22:07:25.806",
+       "after": "{\"device_id\":100,\"tenant_id\":101,\"serial_number\":\"SN-0000000100\",\"model\":\"bp-cuff-2\",\"gateway_id\":1000100,\"status\":\"active\",\"firmware_version\":\"fw-4.2.9\",\"updated_at_ms\":1757750400100}"
+      }
+     ]
+    },
+    "182": {
+     "source_row": null,
+     "clickhouse_versions": [
+      {
+       "version": 28,
+       "is_deleted": 0,
+       "sink_id": "d17db4e084f0",
+       "applied_at": "2026-09-13 22:07:25.730"
+      }
+     ],
+     "change_history": [
+      {
+       "op": "r",
+       "snapshot": "true",
+       "position": 505167368,
+       "partition": 0,
+       "offset": 28,
+       "source_ts_ms": 1789337243750,
+       "sink_id": "d17db4e084f0",
+       "applied_at": "2026-09-13 22:07:25.806",
+       "after": "{\"device_id\":182,\"tenant_id\":183,\"serial_number\":\"SN-0000000182\",\"model\":\"ecg-patch-3\",\"gateway_id\":1000182,\"status\":\"active\",\"firmware_version\":\"fw-4.0.0\",\"updated_at_ms\":1757750400182}"
+      }
+     ]
+    }
+   },
+   "converged": false,
+   "seconds": 12.6
+  },
+  "device_status": {
+   "columns_compared": [
+    "device_id",
+    "tenant_id",
+    "battery_pct",
+    "signal_dbm",
+    "connectivity",
+    "last_seen_ms",
+    "updated_at_ms"
+   ],
+   "source_rows": 500000,
+   "clickhouse_logical_rows": 500000,
+   "clickhouse_logical_duplicate_keys": 0,
+   "clickhouse_physical_rows": 574112,
+   "clickhouse_physical_extra_versions": 74112,
+   "mismatched_buckets": 0,
+   "missing_in_clickhouse": 0,
+   "ghost_rows_in_clickhouse": 0,
+   "content_mismatches": 0,
+   "samples": {
+    "missing": [],
+    "ghost": [],
+    "content": []
+   },
+   "evidence": {},
+   "converged": true,
+   "seconds": 0.6
+  }
+ },
+ "history": {
+  "deliveries": 8328087,
+  "distinct_change_events": 8328087,
+  "distinct_kafka_records": 8328087,
+  "sink_replays": 0,
+  "capture_replays": 0,
+  "delete_deliveries": 3112,
+  "snapshot_read_deliveries": 5289558
+ },
+ "version_ordering": {
+  "device_registry": {
+   "keys": 2343925,
+   "last_event_differs": 0,
+   "final_state_differs": 0,
+   "sample_keys": []
+  },
+  "device_status": {
+   "keys": 500000,
+   "last_event_differs": 0,
+   "final_state_differs": 0,
+   "sample_keys": []
+  }
+ },
+ "converged": false
+}

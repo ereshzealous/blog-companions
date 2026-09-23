@@ -1,0 +1,17 @@
+{"ts_ms":1789321500252,"event":"environment-ready","detail":{"postgres": "18.6 (Debian 18.6-1.pgdg13+2)", "clickhouse": "26.8.3.105", "kafka_image": "apache/kafka:4.3.1", "debezium_image": "quay.io/debezium/connect:3.6.2.Final", "connect": {"kafka_connect": "4.3.0", "postgres_plugin": [{"class": "io.debezium.connector.postgresql.PostgresConnector", "type": "source", "version": "3.6.2.Final"}]}, "docker_cpus": 15, "docker_memory_bytes": 8321011712, "host": "Apple M5 Pro"}}
+{"ts_ms":1789321500274,"event":"connector-register","detail":{"snapshot.mode":"initial"}}
+{"ts_ms":1789321518561,"event":"initial-load-complete","detail":{}}
+{"ts_ms":1789321519169,"event":"generator-rate","detail":{"rate":1000000}}
+{"ts_ms":1789321519191,"event":"phase-a-start","detail":{}}
+{"ts_ms": 1789321667962, "event": "generator-rate", "detail": {"rate": 110000, "reason": "disk guard: unthrottled writes retained WAL faster than the lab disk allows"}}
+{"ts_ms":1789321670006,"event":"phase-a-end","detail":{}}
+{"ts_ms":1789321670059,"event":"phase-b-start","detail":{"tasks.max":4}}
+{"ts_ms":1789321821686,"event":"phase-b-end","detail":{}}
+{"ts_ms":1789321822392,"event":"generator-rate","detail":{"rate":0}}
+{"ts_ms":1789321823704,"event":"generator-stopped","detail":{}}
+{"ts_ms":1789322136514,"event":"phase-c1-start","detail":{"sink_processes":1}}
+{"ts_ms":1789322227588,"event":"phase-c1-end","detail":{}}
+{"ts_ms":1789322227621,"event":"phase-c2-start","detail":{"sink_processes":3}}
+{"ts_ms": 1789322469362, "event": "unplanned-oom-kill", "detail": {"containers": {"connect-1": {"oom_killed": true, "exit_code": 137, "finished_at": "2026-09-13T17:58:10.416128169Z"}, "connect-2": {"oom_killed": true, "exit_code": 137, "finished_at": "2026-09-13T17:57:47.875095715Z"}}, "note": "Docker VM memory exhausted during phase C2 (3 sinks with large prefetch, plus an unrelated Docker project). Capture had already caught up before phase C1; phases A and B completed before the kills. Sink prefetch reduced for later runs."}}
+{"ts_ms":1789322536830,"event":"phase-c2-end","detail":{}}
+{"ts_ms":1789324451746,"event":"reconcile-capacity","converged":true}

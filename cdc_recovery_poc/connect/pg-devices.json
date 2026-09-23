@@ -1,0 +1,32 @@
+{
+  "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+  "tasks.max": "1",
+
+  "database.hostname": "postgres",
+  "database.port": "5432",
+  "database.dbname": "devices",
+  "database.user": "cdc_capture",
+  "database.password": "${env:CDC_CAPTURE_PASSWORD}",
+
+  "topic.prefix": "pg-devices",
+  "plugin.name": "pgoutput",
+  "slot.name": "cdc_devices_clickhouse",
+  "publication.name": "cdc_devices",
+  "publication.autocreate.mode": "disabled",
+  "table.include.list": "ops.device_registry,ops.device_status,ops.debezium_signal",
+
+  "snapshot.mode": "initial",
+  "signal.enabled.channels": "source",
+  "signal.data.collection": "ops.debezium_signal",
+  "incremental.snapshot.chunk.size": "4096",
+
+  "tombstones.on.delete": "true",
+  "heartbeat.interval.ms": "10000",
+  "max.batch.size": "4096",
+  "max.queue.size": "16384",
+
+  "topic.creation.default.partitions": "6",
+  "topic.creation.default.replication.factor": "1",
+  "topic.creation.default.cleanup.policy": "delete",
+  "topic.creation.default.retention.ms": "604800000"
+}
