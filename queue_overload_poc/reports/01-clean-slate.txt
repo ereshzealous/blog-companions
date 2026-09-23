@@ -1,0 +1,4 @@
+$ docker compose -f live/docker-compose.yml down -v --remove-orphans
+
+
+exit=0

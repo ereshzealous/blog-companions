@@ -1,0 +1,4 @@
+$ bash -c docker compose -f live/docker-compose.yml exec -T kafka /opt/kafka/bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --list | head -20
+
+
+exit=0

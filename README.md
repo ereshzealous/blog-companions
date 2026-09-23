@@ -10,6 +10,7 @@ Each subdirectory is a self-contained, end-to-end demo paired with the article t
 |---|------|---------------|---------|
 | 1 | [`otel_kubernetes_demo/`](./otel_kubernetes_demo) | A production pattern for hybrid OpenTelemetry collector deployments on Kubernetes — sidecar **and** DaemonSet running side-by-side, verified by a 154-span end-to-end trace across gRPC → Kafka → Postgres → WebSocket. | _link to Medium post when published_ |
 | 2 | [`cache_stampede_poc/`](./cache_stampede_poc) | Why one expired hot key can take down the database behind a healthy cache — eight experiments run twice: a deterministic simulator on a virtual clock, and a live Redis 7.4 + PostgreSQL 16 lab where `pg_stat_statements` counts the origin calls. | _link to Medium post when published_ |
+| 3 | [`queue_overload_poc/`](./queue_overload_poc) | Why a durable queue can be perfectly healthy while the customer waits — a 10-minute spike that takes an hour to repay, run twice: a deterministic simulator with 34 predictions registered before the run, and a live Kafka KRaft + PostgreSQL 16 lab where 8× the consumers buy 1.05× the throughput. | _link to Medium post when published_ |
 
 ## Conventions across all demos
 

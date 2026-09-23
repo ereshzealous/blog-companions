@@ -1,0 +1,46 @@
+$ docker compose -f live/docker-compose.yml logs --tail 20
+
+postgres-1  | 
+postgres-1  | 
+postgres-1  | waiting for server to shut down....2026-09-20 17:16:02.772 UTC [41] LOG:  received fast shutdown request
+postgres-1  | 2026-09-20 17:16:02.772 UTC [41] LOG:  aborting any active transactions
+postgres-1  | 2026-09-20 17:16:02.773 UTC [41] LOG:  background worker "logical replication launcher" (PID 47) exited with exit code 1
+postgres-1  | 2026-09-20 17:16:02.773 UTC [42] LOG:  shutting down
+postgres-1  | 2026-09-20 17:16:02.774 UTC [42] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2026-09-20 17:16:02.794 UTC [42] LOG:  checkpoint complete: wrote 930 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.015 s, total=0.021 s; sync files=306, longest=0.006 s, average=0.001 s; distance=4300 kB, estimate=4300 kB; lsn=0/192A2D0, redo lsn=0/192A2D0
+postgres-1  | 2026-09-20 17:16:02.795 UTC [41] LOG:  database system is shut down
+setup-1     | broker reachable
+setup-1     | 
+kafka-1     | [2026-09-20 17:18:23,178] INFO [Partition orders-L6-1789924702-7 broker=1] Log loaded for partition orders-L6-1789924702-7 with initial high watermark 0 (kafka.cluster.Partition)
+kafka-1     | [2026-09-20 17:18:24,362] INFO [GroupCoordinator 1]: Dynamic Member with unknown member id joins group g-L6-1789924702 in Empty state. Created a new member id kafka-python-2.2.3-37a1bed7-0933-4cd5-af30-091eb94d7de4 for this member and add to the group. (kafka.coordinator.group.GroupCoordinator)
+kafka-1     | [2026-09-20 17:18:24,363] INFO [GroupCoordinator 1]: Preparing to rebalance group g-L6-1789924702 in state PreparingRebalance with old generation 0 (__consumer_offsets-38) (reason: Adding new member kafka-python-2.2.3-37a1bed7-0933-4cd5-af30-091eb94d7de4 with group instance id None; client reason: not provided) (kafka.coordinator.group.GroupCoordinator)
+kafka-1     | [2026-09-20 17:18:24,363] INFO [GroupCoordinator 1]: Stabilized group g-L6-1789924702 generation 1 (__consumer_offsets-38) with 1 members (kafka.coordinator.group.GroupCoordinator)
+kafka-1     | [2026-09-20 17:18:24,364] INFO [GroupCoordinator 1]: Assignment received from leader kafka-python-2.2.3-37a1bed7-0933-4cd5-af30-091eb94d7de4 for group g-L6-1789924702 for generation 1. The group has 1 members, 0 of which are static. (kafka.coordinator.group.GroupCoordinator)
+kafka-1     | [2026-09-20 17:18:40,088] INFO [GroupCoordinator 1]: Preparing to rebalance group g-L6-1789924702 in state PreparingRebalance with old generation 1 (__consumer_offsets-38) (reason: Removing member kafka-python-2.2.3-37a1bed7-0933-4cd5-af30-091eb94d7de4 on LeaveGroup; client reason: not provided) (kafka.coordinator.group.GroupCoordinator)
+kafka-1     | [2026-09-20 17:18:40,088] INFO [GroupCoordinator 1]: Group g-L6-1789924702 with generation 2 is now empty (__consumer_offsets-38) (kafka.coordinator.group.GroupCoordinator)
+kafka-1     | [2026-09-20 17:18:40,088] INFO [GroupCoordinator 1]: Member MemberMetadata(memberId=kafka-python-2.2.3-37a1bed7-0933-4cd5-af30-091eb94d7de4, groupInstanceId=None, clientId=kafka-python-2.2.3, clientHost=/172.31.0.4, sessionTimeoutMs=10000, rebalanceTimeoutMs=300000, supportedProtocols=List(range, roundrobin)) has left group g-L6-1789924702 through explicit `LeaveGroup`; client reason: not provided (kafka.coordinator.group.GroupCoordinator)
+kafka-1     | [2026-09-20 17:18:40,123] INFO [ReplicaFetcherManager on broker 1] Removed fetcher for partitions HashSet(orders-L6-1789924702-6, orders-L6-1789924702-2, orders-L6-1789924702-7, orders-L6-1789924702-5, orders-L6-1789924702-4, orders-L6-1789924702-3, orders-L6-1789924702-1, orders-L6-1789924702-0) (kafka.server.ReplicaFetcherManager)
+kafka-1     | [2026-09-20 17:18:40,123] INFO [ReplicaAlterLogDirsManager on broker 1] Removed fetcher for partitions HashSet(orders-L6-1789924702-6, orders-L6-1789924702-2, orders-L6-1789924702-7, orders-L6-1789924702-5, orders-L6-1789924702-4, orders-L6-1789924702-3, orders-L6-1789924702-1, orders-L6-1789924702-0) (kafka.server.ReplicaAlterLogDirsManager)
+kafka-1     | [2026-09-20 17:18:40,124] INFO Log for partition orders-L6-1789924702-0 is renamed to /tmp/kafka-logs/orders-L6-1789924702-0.00b11db2ecaa4ca18ff0e2801859fcdb-delete and is scheduled for deletion (kafka.log.LogManager)
+kafka-1     | [2026-09-20 17:18:40,125] INFO Log for partition orders-L6-1789924702-1 is renamed to /tmp/kafka-logs/orders-L6-1789924702-1.5c5fd4b6c4814139b6b3b65d2a866429-delete and is scheduled for deletion (kafka.log.LogManager)
+kafka-1     | [2026-09-20 17:18:40,125] INFO Log for partition orders-L6-1789924702-4 is renamed to /tmp/kafka-logs/orders-L6-1789924702-4.472b437e9fd74bc1b52cea70e74e9911-delete and is scheduled for deletion (kafka.log.LogManager)
+kafka-1     | [2026-09-20 17:18:40,125] INFO Log for partition orders-L6-1789924702-5 is renamed to /tmp/kafka-logs/orders-L6-1789924702-5.8591b816dc254374b87105a3669d8774-delete and is scheduled for deletion (kafka.log.LogManager)
+kafka-1     | [2026-09-20 17:18:40,126] INFO Log for partition orders-L6-1789924702-2 is renamed to /tmp/kafka-logs/orders-L6-1789924702-2.893095e9235448248358b9109983c4df-delete and is scheduled for deletion (kafka.log.LogManager)
+kafka-1     | [2026-09-20 17:18:40,126] INFO Log for partition orders-L6-1789924702-3 is renamed to /tmp/kafka-logs/orders-L6-1789924702-3.5cbdd1a472d645ca91465cf14638e951-delete and is scheduled for deletion (kafka.log.LogManager)
+kafka-1     | [2026-09-20 17:18:40,127] INFO Log for partition orders-L6-1789924702-6 is renamed to /tmp/kafka-logs/orders-L6-1789924702-6.fc288cce7d8a457babe8e84f60a06473-delete and is scheduled for deletion (kafka.log.LogManager)
+kafka-1     | [2026-09-20 17:18:40,128] INFO Log for partition orders-L6-1789924702-7 is renamed to /tmp/kafka-logs/orders-L6-1789924702-7.2ccebfc68f234ecfb52f7a5b8de4d09c-delete and is scheduled for deletion (kafka.log.LogManager)
+kafka-1     | [2026-09-20 17:18:40,132] INFO [GroupMetadataManager brokerId=1] Group g-L6-1789924702 transitioned to Dead in generation 2 (kafka.coordinator.group.GroupMetadataManager)
+kafka-1     | [2026-09-20 17:18:40,132] INFO [GroupCoordinator 1]: Removed 8 offsets associated with deleted partitions: orders-L6-1789924702-0, orders-L6-1789924702-1, orders-L6-1789924702-2, orders-L6-1789924702-3, orders-L6-1789924702-4, orders-L6-1789924702-5, orders-L6-1789924702-6, orders-L6-1789924702-7. (kafka.coordinator.group.GroupCoordinator)
+postgres-1  |  done
+postgres-1  | server stopped
+postgres-1  | 
+postgres-1  | PostgreSQL init process complete; ready for start up.
+postgres-1  | 
+postgres-1  | 2026-09-20 17:16:02.890 UTC [1] LOG:  starting PostgreSQL 16.14 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1  | 2026-09-20 17:16:02.890 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2026-09-20 17:16:02.890 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2026-09-20 17:16:02.891 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-09-20 17:16:02.892 UTC [59] LOG:  database system was shut down at 2026-09-20 17:16:02 UTC
+postgres-1  | 2026-09-20 17:16:02.894 UTC [1] LOG:  database system is ready to accept connections
+
+exit=0

@@ -1,0 +1,293 @@
+================================================================================
+DISTRIBUTED SYSTEMS #15 — QUEUE OVERLOAD · TIER 1 DETERMINISTIC SIMULATION
+================================================================================
+
+Worked example: order processing during a flash sale.
+  normal 5,000/s · capacity 6,000/s · flash sale 12,000/s for 10 min
+  dependency: C*=30 service=5ms plateau=6,000/s
+  timeliness SLO: oldest message age <= 60 s
+
+  General form:   B_peak = (lambda_s - mu) x D
+                  W_max  = B_peak / mu
+                  T_rec  = B_peak / (mu - lambda_n)
+                  T_rec / D = (lambda_s - mu) / (mu - lambda_n)
+  Here:           B_peak = 6,000 x 600 = 3,600,000
+                  W_max  = 3,600,000 / 6,000 = 600 s = 10 min
+                  T_rec  = 3,600,000 / 1,000 = 3,600 s = 60 min  (6x the spike)
+
+--------------------------------------------------------------------------------
+S1 · Healthy baseline
+     Does the model behave when arrival is below capacity?
+--------------------------------------------------------------------------------
+  consumers              30  (unbounded)
+  priority scheduler     off — arrival order
+  admission control      off
+
+  peak backlog                        0   (critical 0 · deferrable 0)
+  peak oldest age                   0.0 s
+    critical                        0.0 s
+    deferrable                      0.0 s
+  worst wait                        0.0 s   (0.0 s)
+  processed                   3,000,000
+  deferred                            0
+  recovery headroom               1,000 /s
+  time to age SLO                 never
+  time to backlog zero            never
+  downstream in-flight               30   round-trip 5.0 ms
+  downstream saturated            0.0 s
+
+  PRE-REGISTERED PREDICTIONS
+    [ok] peak_depth <= 1000   actual=0
+           below capacity the backlog stays near zero
+    [ok] peak_oldest_age_s <= 1.0   actual=0.0
+           nothing waits: oldest age stays under a second
+    [ok] peak_downstream_response_ms <= 5.01   actual=5.0
+           the dependency runs at its service time
+    [ok] max_wait_s <= 1.0   actual=0.0
+           no order waits measurably
+
+--------------------------------------------------------------------------------
+S2 · Sustained overload
+     What does a durable queue do when arrival exceeds service?
+--------------------------------------------------------------------------------
+  consumers              30  (unbounded)
+  priority scheduler     off — arrival order
+  admission control      off
+
+  peak backlog                3,600,000   (critical 1,617,600 · deferrable 1,977,000)
+  peak oldest age                 300.0 s
+    critical                      299.9 s
+    deferrable                    300.0 s
+  worst wait                      300.0 s   (5.0 min)
+  processed                   4,200,000
+  deferred                            0
+  recovery headroom               1,000 /s
+  time to age SLO                 never
+  time to backlog zero            never
+  downstream in-flight               30   round-trip 5.0 ms
+  downstream saturated            0.0 s
+
+  PRE-REGISTERED PREDICTIONS
+    [ok] peak_depth >= 3500000   actual=3600000
+           backlog grows at the rate deficit to ~3.6M
+    [ok] peak_oldest_age_s >= 290   actual=300.0
+           oldest message age grows to ~300 s
+    [ok] enqueued == 7,800,000 (processed+deferred+depth)   actual=7,800,000
+           the modelled queue conserves every message
+    [ok] peak_downstream_response_ms <= 5.01   actual=5.0
+           the dependency is at capacity but not degraded
+
+--------------------------------------------------------------------------------
+S3 · Latency debt after traffic normalises
+     The spike is over. Is the system?
+--------------------------------------------------------------------------------
+  consumers              30  (unbounded)
+  priority scheduler     off — arrival order
+  admission control      off
+
+  peak backlog                3,599,900   (critical 1,619,685 · deferrable 1,980,215)
+  peak oldest age                 600.0 s
+    critical                      599.9 s
+    deferrable                    600.0 s
+  worst wait                      600.1 s   (10.0 min)
+  processed                  30,300,000
+  deferred                            0
+  recovery headroom               1,000 /s
+  time to age SLO              55.0 min
+  time to backlog zero         60.0 min   (6.0x the spike)
+  downstream in-flight               30   round-trip 5.0 ms
+  downstream saturated            0.0 s
+
+  PRE-REGISTERED PREDICTIONS
+    [ok] max_wait_s >= 580   actual=600.1
+           the worst wait is ~600 s — B_peak / mu
+    [ok] time_to_backlog_zero_s >= 3400   actual=3599.9
+           the backlog needs ~3,600 s to drain at 1,000/s of headroom
+    [ok] debt_ratio >= 5.5   actual=6.0
+           repayment takes ~6x the length of the spike
+    [ok] recovery_headroom_per_s == 1000   actual=1000.0
+           headroom is mu - lambda_n
+
+--------------------------------------------------------------------------------
+S4 · Naive consumer scaling
+     Does adding consumers create downstream capacity?
+     compared against S2
+--------------------------------------------------------------------------------
+  consumers              480  (unbounded)
+  priority scheduler     off — arrival order
+  admission control      off
+
+  peak backlog                3,600,000   (critical 1,617,600 · deferrable 1,977,000)
+  peak oldest age                 300.0 s
+    critical                      299.9 s
+    deferrable                    300.0 s
+  worst wait                      300.0 s   (5.0 min)
+  processed                   4,200,000
+  deferred                            0
+  recovery headroom               1,000 /s
+  time to age SLO                 never
+  time to backlog zero            never
+  downstream in-flight              480   round-trip 80.0 ms
+  downstream saturated         12.0 min
+
+  PRE-REGISTERED PREDICTIONS
+    [ok] peak_downstream_in_flight >= 480   actual=480
+           16x the consumers means 16x the in-flight downstream work
+    [ok] peak_downstream_response_ms >= 79   actual=80.0
+           downstream round-trip rises 16x, from 5 ms to 80 ms
+    [ok] throughput_vs_s2 <= 1.001   actual=1.0
+           throughput does not improve at all over S2
+    [ok] peak_depth_vs_s2 >= 0.999   actual=1.0
+           the backlog is no smaller than with 30 consumers
+    [ok] downstream_saturated_s >= 500   actual=720.0
+           the dependency is saturated throughout
+
+--------------------------------------------------------------------------------
+S5 · Downstream-aware consumption
+     Does bounding concurrency protect the dependency?
+     compared against S2
+--------------------------------------------------------------------------------
+  consumers              480  (clamped to C*)
+  priority scheduler     off — arrival order
+  admission control      off
+
+  peak backlog                3,600,000   (critical 1,617,600 · deferrable 1,977,000)
+  peak oldest age                 300.0 s
+    critical                      299.9 s
+    deferrable                    300.0 s
+  worst wait                      300.0 s   (5.0 min)
+  processed                   4,200,000
+  deferred                            0
+  recovery headroom               1,000 /s
+  time to age SLO                 never
+  time to backlog zero            never
+  downstream in-flight               30   round-trip 5.0 ms
+  downstream saturated            0.0 s
+
+  PRE-REGISTERED PREDICTIONS
+    [ok] peak_downstream_in_flight <= 30   actual=30
+           the same 480-worker fleet offers at most C* = 30
+    [ok] peak_downstream_response_ms <= 5.01   actual=5.0
+           the dependency never leaves its service time
+    [ok] downstream_saturated_s == 0   actual=0.0
+           the dependency is never saturated
+    [ok] peak_depth_vs_s2 >= 0.999   actual=1.0
+           and the backlog still grows exactly as before
+
+--------------------------------------------------------------------------------
+S6 · Priority scheduling only (control)
+     What does prioritising critical work change on its own?
+     compared against S2
+--------------------------------------------------------------------------------
+  consumers              480  (clamped to C*)
+  priority scheduler     on — critical first
+  admission control      off
+
+  peak backlog                3,600,000   (critical 0 · deferrable 3,594,600)
+  peak oldest age                 545.4 s
+    critical                        0.0 s
+    deferrable                    545.4 s
+  worst wait                      545.4 s   (9.1 min)
+  processed                   4,200,000
+  deferred                            0
+  recovery headroom               1,000 /s
+  time to age SLO                 never
+  time to backlog zero            never
+  downstream in-flight               30   round-trip 5.0 ms
+  downstream saturated            0.0 s
+
+  PRE-REGISTERED PREDICTIONS
+    [ok] peak_oldest_age_critical_s <= 1.0   actual=0.0
+           critical orders stay timely: priority alone keeps them at zero wait
+    [ok] peak_oldest_age_deferrable_s >= 290   actual=545.4
+           deferrable work absorbs the entire delay instead
+    [ok] peak_depth_vs_s2 >= 0.999   actual=1.0
+           and the TOTAL backlog is unchanged: priority reorders debt, it does not bound it
+    [ok] deferred == 0   actual=0
+           nothing is shed, by construction
+
+--------------------------------------------------------------------------------
+S7 · Priority + admission control
+     Can backpressure bound the debt that priority only rearranges?
+     compared against S6
+--------------------------------------------------------------------------------
+  consumers              480  (clamped to C*)
+  priority scheduler     on — critical first
+  admission control      age > 30.0 s defers deferrable work
+
+  peak backlog                  197,940   (critical 0 · deferrable 197,940)
+  peak oldest age                 567.0 s
+    critical                        0.0 s
+    deferrable                    567.0 s
+  worst wait                      330.1 s   (5.5 min)
+  processed                   4,057,800
+  deferred                    3,742,200   (none critical)
+  recovery headroom               1,000 /s
+  time to age SLO                 never
+  time to backlog zero            never
+  downstream in-flight               30   round-trip 5.0 ms
+  downstream saturated            0.0 s
+
+  PRE-REGISTERED PREDICTIONS
+    [ok] peak_depth_vs_s6 <= 0.1   actual=0.055
+           admission holds the backlog to a fraction of the priority-only control
+    [ok] deferred >= 1000000   actual=3742200
+           the bound is paid for by deferring deferrable work
+    [ok] deferred_critical == 0   actual=0
+           no customer order is ever shed
+    [ok] peak_oldest_age_critical_s <= 1.0   actual=0.0
+           critical orders remain timely
+    [ok] peak_downstream_response_ms <= 5.01   actual=5.0
+           and the dependency stays at its service time throughout
+
+--------------------------------------------------------------------------------
+S4b · Deadline misses and retry amplification (optional)   [optional — not part of the main proof]
+     What happens once the downstream wait crosses a caller deadline?
+     compared against S2
+--------------------------------------------------------------------------------
+  consumers              600  (unbounded)
+  priority scheduler     off — arrival order
+  admission control      off
+
+  peak backlog                5,174,431   (critical 2,325,232 · deferrable 2,841,681)
+  peak oldest age                 431.2 s
+    critical                      431.1 s
+    deferrable                    431.2 s
+  worst wait                      431.2 s   (7.2 min)
+  processed                   2,625,569
+  deferred                            0
+  recovery headroom               1,000 /s
+  time to age SLO                 never
+  time to backlog zero            never
+  downstream in-flight              600   round-trip 99.21 ms
+  downstream saturated         12.0 min
+  missed deadline             1,705,266   useful capacity 60.6%  ·  attempts/message 1.649
+
+  PRE-REGISTERED PREDICTIONS
+    [ok] peak_downstream_response_ms >= 99   actual=99.21
+           at 600 workers the round-trip reaches the 100 ms deadline
+    [ok] peak_attempts_per_message > 1.2   actual=1.649
+           callers give up and retry, so each message costs more than one attempt
+    [ok] useful_capacity_fraction < 0.9   actual=0.6063
+           a measurable share of downstream capacity redoes writes that already landed
+    [ok] throughput_vs_s2 < 1.0   actual=0.6251
+           the queue drains MORE SLOWLY than with 30 workers, despite 20x the fleet
+
+================================================================================
+CONSUMER SWEEP — what each fleet size actually buys
+================================================================================
+   workers   throughput   round-trip   = service   + waiting   N = X x R
+        15       3,000/s       5.0 ms      5.0 ms      0.0 ms       15.0
+        30       6,000/s       5.0 ms      5.0 ms      0.0 ms       30.0
+        60       6,000/s      10.0 ms      5.0 ms      5.0 ms       60.0   saturated
+       120       6,000/s      20.0 ms      5.0 ms     15.0 ms      120.0   saturated
+       240       6,000/s      40.0 ms      5.0 ms     35.0 ms      240.0   saturated
+       480       6,000/s      80.0 ms      5.0 ms     75.0 ms      480.0   saturated
+       600       6,000/s     100.0 ms      5.0 ms     95.0 ms      600.0   saturated
+
+  Throughput is flat from C* onwards. The extra time is waiting for a slot,
+  not the dependency getting slower: service time never changes.
+
+================================================================================
+RESULT: 8/8 scenarios passed (7 in the main proof, 1 optional), 34 predictions checked, 0 failed
+================================================================================

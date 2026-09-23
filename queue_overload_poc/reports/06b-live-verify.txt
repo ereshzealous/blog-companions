@@ -1,0 +1,45 @@
+$ python3 live/verify_results.py results/tier2/06-live-all.txt
+
+note  L1 ran 176/s against a 320/s dependency (2112 processed, 189.2/s)
+note  L3 used 64 workers against L2's 8 for the same 640/s
+
+ok    L1 healthy: queue delay stays small
+        p95 queue delay 993.8 ms < 2000
+ok    L1 healthy: nothing deferred
+        deferred=0
+ok    L1 healthy: every produced order is in PostgreSQL
+        db_rows=2112 processed=2112
+ok    L2 overload: queue delay rises above the healthy run
+        L2 p95 18465.0 ms > L1 p95 993.8 ms
+ok    L2 overload: the broker holds a real backlog
+        peak consumer-group lag 4529 records
+ok    L2 overload: arrival really did exceed capacity
+        640/s vs capacity 320/s
+ok    L3 scaling: more consumers do not materially raise throughput
+        282.8/s vs 268.9/s (tolerance 1.15x)
+ok    L3 scaling: the dependency is never offered more than C*
+        peak in-flight 8 <= C* 8
+ok    L3 scaling: waiting moved into the consumer
+        fetched-but-unwritten peaked at 3918 while the dependency was never offered more than 8
+ok    L4 bounded: prefetch is held at the configured bound
+        peak local queue 64 <= bound 64
+ok    L4 bounded: far less work is held inside the consumer than in L3
+        64 vs 3918
+ok    L4 bounded: and throughput is not sacrificed for it
+        270.4/s vs 282.8/s
+ok    L4 vs L2: extra workers buy waiting, not throughput
+        round-trip 27.9 -> 129.5 ms while service time stayed 27.9 -> 28.3 ms
+ok    L5 priority: critical orders are actually served
+        3445 critical orders processed
+ok    L5 priority: nothing is shed by the scheduler alone
+        deferred=0
+ok    L6 admission: deferrable work is deferred once it is too old
+        3820 deferrable orders deferred
+ok    L6 admission: no critical order is ever shed
+        critical processed 3445, deferred are all deferrable
+ok    L6 admission: the deferrable backlog is smaller than the control's
+        L6 lag 2560 / delay 5587.5 ms vs L5 lag 4619 / delay 18773.3 ms
+
+Tier 2 semantic assertions: 18/18 passed
+
+exit=0

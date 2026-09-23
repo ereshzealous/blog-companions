@@ -1,0 +1,11 @@
+$ docker compose -f live/docker-compose.yml run --rm -T setup
+
+ Container queue-overload-lab-kafka-1 Running 
+ Container queue-overload-lab-kafka-1 Waiting 
+ Container queue-overload-lab-kafka-1 Healthy 
+ Container queue-overload-lab-setup-run-f016214f07ec Creating 
+ Container queue-overload-lab-setup-run-f016214f07ec Created 
+broker reachable
+
+
+exit=0

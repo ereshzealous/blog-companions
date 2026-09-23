@@ -1,0 +1,83 @@
+$ docker compose -f live/docker-compose.yml run --rm -T --build runner python loadgen.py all
+
+ Container queue-overload-lab-kafka-1 Running 
+ Container queue-overload-lab-setup-1 Creating 
+ Container queue-overload-lab-postgres-1 Running 
+ Container queue-overload-lab-setup-1 Created 
+ Container queue-overload-lab-kafka-1 Waiting 
+ Container queue-overload-lab-kafka-1 Healthy 
+ Container queue-overload-lab-setup-1 Starting 
+ Container queue-overload-lab-setup-1 Started 
+ Image queue-overload-lab-runner Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 662B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 167B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 196B done
+#5 DONE 0.0s
+
+#6 [1/4] FROM docker.io/library/python:3.12-slim@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea
+#6 resolve docker.io/library/python:3.12-slim@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea done
+#6 DONE 0.0s
+
+#7 [2/4] WORKDIR /app
+#7 CACHED
+
+#8 [3/4] RUN pip install --no-cache-dir "kafka-python-ng==2.2.3" "psycopg[binary]==3.2.3"
+#8 CACHED
+
+#9 [4/4] COPY . /app
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:d14bab1c5b2fe09de06a452ed241153b476fb2f352c92cfe7956eb2f013354b6 done
+#10 exporting config sha256:a6dc7a711f8a5543f324fba717c159d7b76946f16d70c83b31bcca839e8c8efb done
+#10 exporting attestation manifest sha256:83bc114410f383ae8b7628211bc1b242c1c8ef5bbc54e860a51a0175489b49da done
+#10 exporting manifest list sha256:2c5bcad34e850b21880aeac983a5f66423834e05ea78d65c05b7a27ecd9642b6 done
+#10 naming to docker.io/library/queue-overload-lab-runner:latest done
+#10 unpacking to docker.io/library/queue-overload-lab-runner:latest done
+#10 DONE 0.0s
+
+#11 resolving provenance for metadata file
+#11 DONE 0.0s
+ Image queue-overload-lab-runner Built 
+ Container queue-overload-lab-kafka-1 Waiting 
+ Container queue-overload-lab-postgres-1 Waiting 
+ Container queue-overload-lab-setup-1 Waiting 
+ Container queue-overload-lab-kafka-1 Healthy 
+ Container queue-overload-lab-postgres-1 Healthy 
+ Container queue-overload-lab-setup-1 Exited 
+ Container queue-overload-lab-runner-run-d2ea29d2cb8c Creating 
+ Container queue-overload-lab-runner-run-d2ea29d2cb8c Created 
+# capacity 320/s (C*=8 x 25ms) · normal 176/s · spike 640/s
+{"id": "L1", "name": "healthy baseline", "produced": 2112, "workers": 8, "prefetch_bound": 64, "priority": false, "admission_ms": null, "capacity_per_s": 320, "rate_per_s": 176, "c_star": 8, "service_ms": 25, "db_rows": 2112, "db_max_queue_ms": 1780, "db_avg_queue_ms": 209, "elapsed_s": 11.16, "throughput_per_s": 189.2, "processed": 2112, "deferred": 0, "by_class": {"critical": 945, "deferrable": 1167}, "round_trip_p50_ms": 28.0, "round_trip_p95_ms": 31.2, "db_service_p50_ms": 28.0, "queue_delay_p95_ms": 993.8, "peak_queue_delay_ms": 1780.3, "peak_unprocessed": 64, "peak_db_inflight": 8, "peak_lag": 203}
+{"id": "L2", "name": "sustained overload", "produced": 7680, "workers": 8, "prefetch_bound": 64, "priority": false, "admission_ms": null, "capacity_per_s": 320, "rate_per_s": 640, "c_star": 8, "service_ms": 25, "db_rows": 7680, "db_max_queue_ms": 20659, "db_avg_queue_ms": 9211, "elapsed_s": 28.56, "throughput_per_s": 268.9, "processed": 7680, "deferred": 0, "by_class": {"critical": 3445, "deferrable": 4235}, "round_trip_p50_ms": 27.9, "round_trip_p95_ms": 32.1, "db_service_p50_ms": 27.9, "queue_delay_p95_ms": 18465.0, "peak_queue_delay_ms": 20659.5, "peak_unprocessed": 64, "peak_db_inflight": 8, "peak_lag": 4529}
+{"id": "L3", "name": "naive consumer scaling", "produced": 7680, "workers": 64, "prefetch_bound": 4096, "priority": false, "admission_ms": null, "capacity_per_s": 320, "rate_per_s": 640, "c_star": 8, "service_ms": 25, "db_rows": 7680, "db_max_queue_ms": 17977, "db_avg_queue_ms": 8421, "elapsed_s": 27.16, "throughput_per_s": 282.8, "processed": 7680, "deferred": 0, "by_class": {"critical": 3445, "deferrable": 4235}, "round_trip_p50_ms": 27.3, "round_trip_p95_ms": 34.3, "db_service_p50_ms": 27.3, "queue_delay_p95_ms": 16152.8, "peak_queue_delay_ms": 17977.5, "peak_unprocessed": 3918, "peak_db_inflight": 8, "peak_lag": 3943}
+{"id": "L4", "name": "bounded consumption", "produced": 7680, "workers": 64, "prefetch_bound": 64, "priority": false, "admission_ms": null, "capacity_per_s": 320, "rate_per_s": 640, "c_star": 8, "service_ms": 25, "db_rows": 7680, "db_max_queue_ms": 20275, "db_avg_queue_ms": 9008, "elapsed_s": 28.4, "throughput_per_s": 270.4, "processed": 7680, "deferred": 0, "by_class": {"critical": 3445, "deferrable": 4235}, "round_trip_p50_ms": 129.5, "round_trip_p95_ms": 230.9, "db_service_p50_ms": 28.3, "queue_delay_p95_ms": 18005.7, "peak_queue_delay_ms": 20275.9, "peak_unprocessed": 64, "peak_db_inflight": 8, "peak_lag": 4492}
+{"id": "L5", "name": "priority only (control)", "produced": 7680, "workers": 64, "prefetch_bound": 64, "priority": true, "admission_ms": null, "capacity_per_s": 320, "rate_per_s": 640, "c_star": 8, "service_ms": 25, "db_rows": 7680, "db_max_queue_ms": 20536, "db_avg_queue_ms": 9029, "elapsed_s": 28.25, "throughput_per_s": 271.8, "processed": 7680, "deferred": 0, "by_class": {"critical": 3445, "deferrable": 4235}, "round_trip_p50_ms": 122.7, "round_trip_p95_ms": 228.3, "db_service_p50_ms": 28.2, "queue_delay_p95_ms": 18773.3, "peak_queue_delay_ms": 20536.1, "peak_unprocessed": 64, "peak_db_inflight": 8, "peak_lag": 4619}
+{"id": "L6", "name": "priority + admission", "produced": 7680, "workers": 64, "prefetch_bound": 64, "priority": true, "admission_ms": 1500, "capacity_per_s": 320, "rate_per_s": 640, "c_star": 8, "service_ms": 25, "db_rows": 3860, "db_max_queue_ms": 7323, "db_avg_queue_ms": 3075, "elapsed_s": 15.83, "throughput_per_s": 243.9, "processed": 3860, "deferred": 3820, "by_class": {"critical": 3445, "deferrable": 415}, "round_trip_p50_ms": 78.0, "round_trip_p95_ms": 158.5, "db_service_p50_ms": 28.2, "queue_delay_p95_ms": 5587.5, "peak_queue_delay_ms": 7323.8, "peak_unprocessed": 64, "peak_db_inflight": 8, "peak_lag": 2560}
+
+SUMMARY
+run  name                      rate/s  workers  processed   thr/s   rt p95  svc p50  prefetch   age p95  deferred
+-----------------------------------------------------------------------------------------------------------------
+L1   healthy baseline             176        8       2112   189.2     31.2     28.0        64     993.8         0
+L2   sustained overload           640        8       7680   268.9     32.1     27.9        64   18465.0         0
+L3   naive consumer scaling       640       64       7680   282.8     34.3     27.3      3918   16152.8         0
+L4   bounded consumption          640       64       7680   270.4    230.9     28.3        64   18005.7         0
+L5   priority only (control)      640       64       7680   271.8    228.3     28.2        64   18773.3         0
+L6   priority + admission         640       64       3860   243.9    158.5     28.2        64    5587.5      3820
+
+exit=0

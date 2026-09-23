@@ -1,0 +1,18 @@
+$ docker compose -f live/docker-compose.yml up -d --build --wait kafka postgres
+
+ Network queue-overload-lab_default Creating 
+ Network queue-overload-lab_default Created 
+ Container queue-overload-lab-postgres-1 Creating 
+ Container queue-overload-lab-kafka-1 Creating 
+ Container queue-overload-lab-postgres-1 Created 
+ Container queue-overload-lab-kafka-1 Created 
+ Container queue-overload-lab-postgres-1 Starting 
+ Container queue-overload-lab-kafka-1 Starting 
+ Container queue-overload-lab-kafka-1 Started 
+ Container queue-overload-lab-postgres-1 Started 
+ Container queue-overload-lab-kafka-1 Waiting 
+ Container queue-overload-lab-postgres-1 Waiting 
+ Container queue-overload-lab-postgres-1 Healthy 
+ Container queue-overload-lab-kafka-1 Healthy 
+
+exit=0

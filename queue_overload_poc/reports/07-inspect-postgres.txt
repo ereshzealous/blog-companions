@@ -1,0 +1,20 @@
+$ docker compose -f live/docker-compose.yml exec -T postgres psql -U postgres -d fulfilment -c SELECT run_id, cls, count(*) AS rows, max(queue_ms) AS max_queue_ms, round(avg(queue_ms)) AS avg_queue_ms FROM fulfilment GROUP BY run_id, cls ORDER BY run_id, cls;
+
+    run_id     |    cls     | rows | max_queue_ms | avg_queue_ms 
+---------------+------------+------+--------------+--------------
+ L1-1789924571 | critical   |  945 |         1466 |          186
+ L1-1789924571 | deferrable | 1167 |         1780 |          227
+ L2-1789924584 | critical   | 3445 |        20659 |         9303
+ L2-1789924584 | deferrable | 4235 |        20572 |         9136
+ L3-1789924614 | critical   | 3445 |        17917 |         8399
+ L3-1789924614 | deferrable | 4235 |        17977 |         8438
+ L4-1789924643 | critical   | 3445 |        20275 |         9043
+ L4-1789924643 | deferrable | 4235 |        20209 |         8980
+ L5-1789924673 | critical   | 3445 |        20460 |         9056
+ L5-1789924673 | deferrable | 4235 |        20536 |         9007
+ L6-1789924702 | critical   | 3445 |         7323 |         3313
+ L6-1789924702 | deferrable |  415 |         1497 |         1095
+(12 rows)
+
+
+exit=0

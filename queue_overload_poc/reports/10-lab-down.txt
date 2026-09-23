@@ -1,0 +1,18 @@
+$ docker compose -f live/docker-compose.yml down -v --remove-orphans
+
+ Container queue-overload-lab-setup-1 Stopping 
+ Container queue-overload-lab-postgres-1 Stopping 
+ Container queue-overload-lab-setup-1 Stopped 
+ Container queue-overload-lab-setup-1 Removing 
+ Container queue-overload-lab-setup-1 Removed 
+ Container queue-overload-lab-kafka-1 Stopping 
+ Container queue-overload-lab-postgres-1 Stopped 
+ Container queue-overload-lab-postgres-1 Removing 
+ Container queue-overload-lab-postgres-1 Removed 
+ Container queue-overload-lab-kafka-1 Stopped 
+ Container queue-overload-lab-kafka-1 Removing 
+ Container queue-overload-lab-kafka-1 Removed 
+ Network queue-overload-lab_default Removing 
+ Network queue-overload-lab_default Removed 
+
+exit=0

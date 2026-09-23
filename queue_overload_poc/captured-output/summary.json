@@ -1,0 +1,1201 @@
+{
+  "scenarios": [
+    {
+      "id": "S1",
+      "name": "Healthy baseline",
+      "question": "Does the model behave when arrival is below capacity?",
+      "optional": false,
+      "config": {
+        "profile": [
+          {
+            "duration_s": 600,
+            "rate": 5000
+          }
+        ],
+        "spike_duration_s": 600,
+        "workers": 30,
+        "downstream_aware": false,
+        "priority_scheduler": false,
+        "downstream": {
+          "useful_concurrency": 30,
+          "service_time_ms": 5.0,
+          "plateau_per_s": 6000.0,
+          "deadline_ms": null
+        },
+        "admission": {
+          "enabled": false,
+          "age_threshold_s": 30.0
+        },
+        "deferrable_fraction": 0.55,
+        "age_slo_s": 60.0
+      },
+      "metrics": {
+        "duration_s": 600,
+        "spike_end_s": 600.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 0,
+        "peak_depth_critical": 0,
+        "peak_depth_deferrable": 0,
+        "final_depth": 0,
+        "peak_oldest_age_s": 0.0,
+        "peak_oldest_age_critical_s": 0.0,
+        "peak_oldest_age_deferrable_s": 0.0,
+        "max_wait_s": 0.0,
+        "max_wait_critical_s": 0.0,
+        "max_wait_deferrable_s": 0.0,
+        "p95_wait_s": 0.0,
+        "processed": 3000000,
+        "enqueued": 3000000,
+        "deferred": 0,
+        "deferred_critical": 0,
+        "completions_downstream": 3600000,
+        "missed_deadline": 0,
+        "wasted_downstream_work": 0,
+        "peak_attempts_per_message": 1.0,
+        "time_to_age_slo_s": null,
+        "time_to_backlog_zero_s": null,
+        "peak_downstream_response_ms": 5.0,
+        "peak_downstream_in_flight": 30,
+        "downstream_saturated_s": 0.0,
+        "downstream_deadline_exceeded_s": 0.0
+      },
+      "derived": {
+        "duration_s": 600,
+        "spike_end_s": 600.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 0,
+        "peak_depth_critical": 0,
+        "peak_depth_deferrable": 0,
+        "final_depth": 0,
+        "peak_oldest_age_s": 0.0,
+        "peak_oldest_age_critical_s": 0.0,
+        "peak_oldest_age_deferrable_s": 0.0,
+        "max_wait_s": 0.0,
+        "max_wait_critical_s": 0.0,
+        "max_wait_deferrable_s": 0.0,
+        "p95_wait_s": 0.0,
+        "processed": 3000000,
+        "enqueued": 3000000,
+        "deferred": 0,
+        "deferred_critical": 0,
+        "completions_downstream": 3600000,
+        "missed_deadline": 0,
+        "wasted_downstream_work": 0,
+        "peak_attempts_per_message": 1.0,
+        "time_to_age_slo_s": null,
+        "time_to_backlog_zero_s": null,
+        "peak_downstream_response_ms": 5.0,
+        "peak_downstream_in_flight": 30,
+        "downstream_saturated_s": 0.0,
+        "downstream_deadline_exceeded_s": 0.0,
+        "conservation_ok": true,
+        "accounted": 3000000,
+        "debt_ratio": null,
+        "predicted_b_peak": -600000,
+        "predicted_w_max_s": -100.0,
+        "predicted_recovery_s": -600.0,
+        "useful_capacity_fraction": 1.0
+      },
+      "predictions": [
+        {
+          "metric": "peak_depth",
+          "op": "<=",
+          "expected": 1000,
+          "actual": 0,
+          "ok": true,
+          "claim": "below capacity the backlog stays near zero"
+        },
+        {
+          "metric": "peak_oldest_age_s",
+          "op": "<=",
+          "expected": 1.0,
+          "actual": 0.0,
+          "ok": true,
+          "claim": "nothing waits: oldest age stays under a second"
+        },
+        {
+          "metric": "peak_downstream_response_ms",
+          "op": "<=",
+          "expected": 5.01,
+          "actual": 5.0,
+          "ok": true,
+          "claim": "the dependency runs at its service time"
+        },
+        {
+          "metric": "max_wait_s",
+          "op": "<=",
+          "expected": 1.0,
+          "actual": 0.0,
+          "ok": true,
+          "claim": "no order waits measurably"
+        }
+      ],
+      "passed": true,
+      "control": null
+    },
+    {
+      "id": "S2",
+      "name": "Sustained overload",
+      "question": "What does a durable queue do when arrival exceeds service?",
+      "optional": false,
+      "config": {
+        "profile": [
+          {
+            "duration_s": 120,
+            "rate": 5000
+          },
+          {
+            "duration_s": 600,
+            "rate": 12000
+          }
+        ],
+        "spike_duration_s": 600,
+        "workers": 30,
+        "downstream_aware": false,
+        "priority_scheduler": false,
+        "downstream": {
+          "useful_concurrency": 30,
+          "service_time_ms": 5.0,
+          "plateau_per_s": 6000.0,
+          "deadline_ms": null
+        },
+        "admission": {
+          "enabled": false,
+          "age_threshold_s": 30.0
+        },
+        "deferrable_fraction": 0.55,
+        "age_slo_s": 60.0
+      },
+      "metrics": {
+        "duration_s": 720,
+        "spike_end_s": 720.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 3600000,
+        "peak_depth_critical": 1617600,
+        "peak_depth_deferrable": 1977000,
+        "final_depth": 3600000,
+        "peak_oldest_age_s": 300.0,
+        "peak_oldest_age_critical_s": 299.9,
+        "peak_oldest_age_deferrable_s": 300.0,
+        "max_wait_s": 300.0,
+        "max_wait_critical_s": 300.0,
+        "max_wait_deferrable_s": 300.0,
+        "p95_wait_s": 282.5,
+        "processed": 4200000,
+        "enqueued": 7800000,
+        "deferred": 0,
+        "deferred_critical": 0,
+        "completions_downstream": 4320000,
+        "missed_deadline": 0,
+        "wasted_downstream_work": 0,
+        "peak_attempts_per_message": 1.0,
+        "time_to_age_slo_s": null,
+        "time_to_backlog_zero_s": null,
+        "peak_downstream_response_ms": 5.0,
+        "peak_downstream_in_flight": 30,
+        "downstream_saturated_s": 0.0,
+        "downstream_deadline_exceeded_s": 0.0
+      },
+      "derived": {
+        "duration_s": 720,
+        "spike_end_s": 720.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 3600000,
+        "peak_depth_critical": 1617600,
+        "peak_depth_deferrable": 1977000,
+        "final_depth": 3600000,
+        "peak_oldest_age_s": 300.0,
+        "peak_oldest_age_critical_s": 299.9,
+        "peak_oldest_age_deferrable_s": 300.0,
+        "max_wait_s": 300.0,
+        "max_wait_critical_s": 300.0,
+        "max_wait_deferrable_s": 300.0,
+        "p95_wait_s": 282.5,
+        "processed": 4200000,
+        "enqueued": 7800000,
+        "deferred": 0,
+        "deferred_critical": 0,
+        "completions_downstream": 4320000,
+        "missed_deadline": 0,
+        "wasted_downstream_work": 0,
+        "peak_attempts_per_message": 1.0,
+        "time_to_age_slo_s": null,
+        "time_to_backlog_zero_s": null,
+        "peak_downstream_response_ms": 5.0,
+        "peak_downstream_in_flight": 30,
+        "downstream_saturated_s": 0.0,
+        "downstream_deadline_exceeded_s": 0.0,
+        "conservation_ok": true,
+        "accounted": 7800000,
+        "debt_ratio": null,
+        "predicted_b_peak": 3600000,
+        "predicted_w_max_s": 600.0,
+        "predicted_recovery_s": null,
+        "useful_capacity_fraction": 1.0
+      },
+      "predictions": [
+        {
+          "metric": "peak_depth",
+          "op": ">=",
+          "expected": 3500000,
+          "actual": 3600000,
+          "ok": true,
+          "claim": "backlog grows at the rate deficit to ~3.6M"
+        },
+        {
+          "metric": "peak_oldest_age_s",
+          "op": ">=",
+          "expected": 290,
+          "actual": 300.0,
+          "ok": true,
+          "claim": "oldest message age grows to ~300 s"
+        },
+        {
+          "metric": "enqueued",
+          "op": "==",
+          "expected": "7,800,000 (processed+deferred+depth)",
+          "actual": "7,800,000",
+          "ok": true,
+          "claim": "the modelled queue conserves every message"
+        },
+        {
+          "metric": "peak_downstream_response_ms",
+          "op": "<=",
+          "expected": 5.01,
+          "actual": 5.0,
+          "ok": true,
+          "claim": "the dependency is at capacity but not degraded"
+        }
+      ],
+      "passed": true,
+      "control": null
+    },
+    {
+      "id": "S3",
+      "name": "Latency debt after traffic normalises",
+      "question": "The spike is over. Is the system?",
+      "optional": false,
+      "config": {
+        "profile": [
+          {
+            "duration_s": 120,
+            "rate": 5000
+          },
+          {
+            "duration_s": 600,
+            "rate": 12000
+          },
+          {
+            "duration_s": 4500,
+            "rate": 5000
+          }
+        ],
+        "spike_duration_s": 600,
+        "workers": 30,
+        "downstream_aware": false,
+        "priority_scheduler": false,
+        "downstream": {
+          "useful_concurrency": 30,
+          "service_time_ms": 5.0,
+          "plateau_per_s": 6000.0,
+          "deadline_ms": null
+        },
+        "admission": {
+          "enabled": false,
+          "age_threshold_s": 30.0
+        },
+        "deferrable_fraction": 0.55,
+        "age_slo_s": 60.0
+      },
+      "metrics": {
+        "duration_s": 5220,
+        "spike_end_s": 720.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 3599900,
+        "peak_depth_critical": 1619685,
+        "peak_depth_deferrable": 1980215,
+        "final_depth": 0,
+        "peak_oldest_age_s": 600.0,
+        "peak_oldest_age_critical_s": 599.9,
+        "peak_oldest_age_deferrable_s": 600.0,
+        "max_wait_s": 600.1,
+        "max_wait_critical_s": 600.0,
+        "max_wait_deferrable_s": 600.1,
+        "p95_wait_s": 564.0,
+        "processed": 30300000,
+        "enqueued": 30300000,
+        "deferred": 0,
+        "deferred_critical": 0,
+        "completions_downstream": 31320000,
+        "missed_deadline": 0,
+        "wasted_downstream_work": 0,
+        "peak_attempts_per_message": 1.0,
+        "time_to_age_slo_s": 3299.7,
+        "time_to_backlog_zero_s": 3599.9,
+        "peak_downstream_response_ms": 5.0,
+        "peak_downstream_in_flight": 30,
+        "downstream_saturated_s": 0.0,
+        "downstream_deadline_exceeded_s": 0.0
+      },
+      "derived": {
+        "duration_s": 5220,
+        "spike_end_s": 720.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 3599900,
+        "peak_depth_critical": 1619685,
+        "peak_depth_deferrable": 1980215,
+        "final_depth": 0,
+        "peak_oldest_age_s": 600.0,
+        "peak_oldest_age_critical_s": 599.9,
+        "peak_oldest_age_deferrable_s": 600.0,
+        "max_wait_s": 600.1,
+        "max_wait_critical_s": 600.0,
+        "max_wait_deferrable_s": 600.1,
+        "p95_wait_s": 564.0,
+        "processed": 30300000,
+        "enqueued": 30300000,
+        "deferred": 0,
+        "deferred_critical": 0,
+        "completions_downstream": 31320000,
+        "missed_deadline": 0,
+        "wasted_downstream_work": 0,
+        "peak_attempts_per_message": 1.0,
+        "time_to_age_slo_s": 3299.7,
+        "time_to_backlog_zero_s": 3599.9,
+        "peak_downstream_response_ms": 5.0,
+        "peak_downstream_in_flight": 30,
+        "downstream_saturated_s": 0.0,
+        "downstream_deadline_exceeded_s": 0.0,
+        "conservation_ok": true,
+        "accounted": 30300000,
+        "debt_ratio": 6.0,
+        "predicted_b_peak": 3600000,
+        "predicted_w_max_s": 600.0,
+        "predicted_recovery_s": 3600.0,
+        "useful_capacity_fraction": 1.0
+      },
+      "predictions": [
+        {
+          "metric": "max_wait_s",
+          "op": ">=",
+          "expected": 580,
+          "actual": 600.1,
+          "ok": true,
+          "claim": "the worst wait is ~600 s \u2014 B_peak / mu"
+        },
+        {
+          "metric": "time_to_backlog_zero_s",
+          "op": ">=",
+          "expected": 3400,
+          "actual": 3599.9,
+          "ok": true,
+          "claim": "the backlog needs ~3,600 s to drain at 1,000/s of headroom"
+        },
+        {
+          "metric": "debt_ratio",
+          "op": ">=",
+          "expected": 5.5,
+          "actual": 6.0,
+          "ok": true,
+          "claim": "repayment takes ~6x the length of the spike"
+        },
+        {
+          "metric": "recovery_headroom_per_s",
+          "op": "==",
+          "expected": 1000,
+          "actual": 1000.0,
+          "ok": true,
+          "claim": "headroom is mu - lambda_n"
+        }
+      ],
+      "passed": true,
+      "control": null
+    },
+    {
+      "id": "S4",
+      "name": "Naive consumer scaling",
+      "question": "Does adding consumers create downstream capacity?",
+      "optional": false,
+      "config": {
+        "profile": [
+          {
+            "duration_s": 120,
+            "rate": 5000
+          },
+          {
+            "duration_s": 600,
+            "rate": 12000
+          }
+        ],
+        "spike_duration_s": 600,
+        "workers": 480,
+        "downstream_aware": false,
+        "priority_scheduler": false,
+        "downstream": {
+          "useful_concurrency": 30,
+          "service_time_ms": 5.0,
+          "plateau_per_s": 6000.0,
+          "deadline_ms": null
+        },
+        "admission": {
+          "enabled": false,
+          "age_threshold_s": 30.0
+        },
+        "deferrable_fraction": 0.55,
+        "age_slo_s": 60.0
+      },
+      "metrics": {
+        "duration_s": 720,
+        "spike_end_s": 720.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 3600000,
+        "peak_depth_critical": 1617600,
+        "peak_depth_deferrable": 1977000,
+        "final_depth": 3600000,
+        "peak_oldest_age_s": 300.0,
+        "peak_oldest_age_critical_s": 299.9,
+        "peak_oldest_age_deferrable_s": 300.0,
+        "max_wait_s": 300.0,
+        "max_wait_critical_s": 300.0,
+        "max_wait_deferrable_s": 300.0,
+        "p95_wait_s": 282.5,
+        "processed": 4200000,
+        "enqueued": 7800000,
+        "deferred": 0,
+        "deferred_critical": 0,
+        "completions_downstream": 4320000,
+        "missed_deadline": 0,
+        "wasted_downstream_work": 0,
+        "peak_attempts_per_message": 1.0,
+        "time_to_age_slo_s": null,
+        "time_to_backlog_zero_s": null,
+        "peak_downstream_response_ms": 80.0,
+        "peak_downstream_in_flight": 480,
+        "downstream_saturated_s": 720.0,
+        "downstream_deadline_exceeded_s": 0.0
+      },
+      "derived": {
+        "duration_s": 720,
+        "spike_end_s": 720.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 3600000,
+        "peak_depth_critical": 1617600,
+        "peak_depth_deferrable": 1977000,
+        "final_depth": 3600000,
+        "peak_oldest_age_s": 300.0,
+        "peak_oldest_age_critical_s": 299.9,
+        "peak_oldest_age_deferrable_s": 300.0,
+        "max_wait_s": 300.0,
+        "max_wait_critical_s": 300.0,
+        "max_wait_deferrable_s": 300.0,
+        "p95_wait_s": 282.5,
+        "processed": 4200000,
+        "enqueued": 7800000,
+        "deferred": 0,
+        "deferred_critical": 0,
+        "completions_downstream": 4320000,
+        "missed_deadline": 0,
+        "wasted_downstream_work": 0,
+        "peak_attempts_per_message": 1.0,
+        "time_to_age_slo_s": null,
+        "time_to_backlog_zero_s": null,
+        "peak_downstream_response_ms": 80.0,
+        "peak_downstream_in_flight": 480,
+        "downstream_saturated_s": 720.0,
+        "downstream_deadline_exceeded_s": 0.0,
+        "conservation_ok": true,
+        "accounted": 7800000,
+        "debt_ratio": null,
+        "predicted_b_peak": 3600000,
+        "predicted_w_max_s": 600.0,
+        "predicted_recovery_s": null,
+        "useful_capacity_fraction": 1.0,
+        "throughput_vs_s2": 1.0,
+        "peak_depth_vs_s2": 1.0,
+        "age_vs_s2": 1.0,
+        "response_vs_s2": 16.0
+      },
+      "predictions": [
+        {
+          "metric": "peak_downstream_in_flight",
+          "op": ">=",
+          "expected": 480,
+          "actual": 480,
+          "ok": true,
+          "claim": "16x the consumers means 16x the in-flight downstream work"
+        },
+        {
+          "metric": "peak_downstream_response_ms",
+          "op": ">=",
+          "expected": 79,
+          "actual": 80.0,
+          "ok": true,
+          "claim": "downstream round-trip rises 16x, from 5 ms to 80 ms"
+        },
+        {
+          "metric": "throughput_vs_s2",
+          "op": "<=",
+          "expected": 1.001,
+          "actual": 1.0,
+          "ok": true,
+          "claim": "throughput does not improve at all over S2"
+        },
+        {
+          "metric": "peak_depth_vs_s2",
+          "op": ">=",
+          "expected": 0.999,
+          "actual": 1.0,
+          "ok": true,
+          "claim": "the backlog is no smaller than with 30 consumers"
+        },
+        {
+          "metric": "downstream_saturated_s",
+          "op": ">=",
+          "expected": 500,
+          "actual": 720.0,
+          "ok": true,
+          "claim": "the dependency is saturated throughout"
+        }
+      ],
+      "passed": true,
+      "control": "S2"
+    },
+    {
+      "id": "S5",
+      "name": "Downstream-aware consumption",
+      "question": "Does bounding concurrency protect the dependency?",
+      "optional": false,
+      "config": {
+        "profile": [
+          {
+            "duration_s": 120,
+            "rate": 5000
+          },
+          {
+            "duration_s": 600,
+            "rate": 12000
+          }
+        ],
+        "spike_duration_s": 600,
+        "workers": 480,
+        "downstream_aware": true,
+        "priority_scheduler": false,
+        "downstream": {
+          "useful_concurrency": 30,
+          "service_time_ms": 5.0,
+          "plateau_per_s": 6000.0,
+          "deadline_ms": null
+        },
+        "admission": {
+          "enabled": false,
+          "age_threshold_s": 30.0
+        },
+        "deferrable_fraction": 0.55,
+        "age_slo_s": 60.0
+      },
+      "metrics": {
+        "duration_s": 720,
+        "spike_end_s": 720.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 3600000,
+        "peak_depth_critical": 1617600,
+        "peak_depth_deferrable": 1977000,
+        "final_depth": 3600000,
+        "peak_oldest_age_s": 300.0,
+        "peak_oldest_age_critical_s": 299.9,
+        "peak_oldest_age_deferrable_s": 300.0,
+        "max_wait_s": 300.0,
+        "max_wait_critical_s": 300.0,
+        "max_wait_deferrable_s": 300.0,
+        "p95_wait_s": 282.5,
+        "processed": 4200000,
+        "enqueued": 7800000,
+        "deferred": 0,
+        "deferred_critical": 0,
+        "completions_downstream": 4320000,
+        "missed_deadline": 0,
+        "wasted_downstream_work": 0,
+        "peak_attempts_per_message": 1.0,
+        "time_to_age_slo_s": null,
+        "time_to_backlog_zero_s": null,
+        "peak_downstream_response_ms": 5.0,
+        "peak_downstream_in_flight": 30,
+        "downstream_saturated_s": 0.0,
+        "downstream_deadline_exceeded_s": 0.0
+      },
+      "derived": {
+        "duration_s": 720,
+        "spike_end_s": 720.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 3600000,
+        "peak_depth_critical": 1617600,
+        "peak_depth_deferrable": 1977000,
+        "final_depth": 3600000,
+        "peak_oldest_age_s": 300.0,
+        "peak_oldest_age_critical_s": 299.9,
+        "peak_oldest_age_deferrable_s": 300.0,
+        "max_wait_s": 300.0,
+        "max_wait_critical_s": 300.0,
+        "max_wait_deferrable_s": 300.0,
+        "p95_wait_s": 282.5,
+        "processed": 4200000,
+        "enqueued": 7800000,
+        "deferred": 0,
+        "deferred_critical": 0,
+        "completions_downstream": 4320000,
+        "missed_deadline": 0,
+        "wasted_downstream_work": 0,
+        "peak_attempts_per_message": 1.0,
+        "time_to_age_slo_s": null,
+        "time_to_backlog_zero_s": null,
+        "peak_downstream_response_ms": 5.0,
+        "peak_downstream_in_flight": 30,
+        "downstream_saturated_s": 0.0,
+        "downstream_deadline_exceeded_s": 0.0,
+        "conservation_ok": true,
+        "accounted": 7800000,
+        "debt_ratio": null,
+        "predicted_b_peak": 3600000,
+        "predicted_w_max_s": 600.0,
+        "predicted_recovery_s": null,
+        "useful_capacity_fraction": 1.0,
+        "throughput_vs_s2": 1.0,
+        "peak_depth_vs_s2": 1.0,
+        "age_vs_s2": 1.0,
+        "response_vs_s2": 1.0
+      },
+      "predictions": [
+        {
+          "metric": "peak_downstream_in_flight",
+          "op": "<=",
+          "expected": 30,
+          "actual": 30,
+          "ok": true,
+          "claim": "the same 480-worker fleet offers at most C* = 30"
+        },
+        {
+          "metric": "peak_downstream_response_ms",
+          "op": "<=",
+          "expected": 5.01,
+          "actual": 5.0,
+          "ok": true,
+          "claim": "the dependency never leaves its service time"
+        },
+        {
+          "metric": "downstream_saturated_s",
+          "op": "==",
+          "expected": 0,
+          "actual": 0.0,
+          "ok": true,
+          "claim": "the dependency is never saturated"
+        },
+        {
+          "metric": "peak_depth_vs_s2",
+          "op": ">=",
+          "expected": 0.999,
+          "actual": 1.0,
+          "ok": true,
+          "claim": "and the backlog still grows exactly as before"
+        }
+      ],
+      "passed": true,
+      "control": "S2"
+    },
+    {
+      "id": "S6",
+      "name": "Priority scheduling only (control)",
+      "question": "What does prioritising critical work change on its own?",
+      "optional": false,
+      "config": {
+        "profile": [
+          {
+            "duration_s": 120,
+            "rate": 5000
+          },
+          {
+            "duration_s": 600,
+            "rate": 12000
+          }
+        ],
+        "spike_duration_s": 600,
+        "workers": 480,
+        "downstream_aware": true,
+        "priority_scheduler": true,
+        "downstream": {
+          "useful_concurrency": 30,
+          "service_time_ms": 5.0,
+          "plateau_per_s": 6000.0,
+          "deadline_ms": null
+        },
+        "admission": {
+          "enabled": false,
+          "age_threshold_s": 30.0
+        },
+        "deferrable_fraction": 0.55,
+        "age_slo_s": 60.0
+      },
+      "metrics": {
+        "duration_s": 720,
+        "spike_end_s": 720.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 3600000,
+        "peak_depth_critical": 0,
+        "peak_depth_deferrable": 3594600,
+        "final_depth": 3600000,
+        "peak_oldest_age_s": 545.4,
+        "peak_oldest_age_critical_s": 0.0,
+        "peak_oldest_age_deferrable_s": 545.4,
+        "max_wait_s": 545.4,
+        "max_wait_critical_s": 0.0,
+        "max_wait_deferrable_s": 545.4,
+        "p95_wait_s": 493.2,
+        "processed": 4200000,
+        "enqueued": 7800000,
+        "deferred": 0,
+        "deferred_critical": 0,
+        "completions_downstream": 4320000,
+        "missed_deadline": 0,
+        "wasted_downstream_work": 0,
+        "peak_attempts_per_message": 1.0,
+        "time_to_age_slo_s": null,
+        "time_to_backlog_zero_s": null,
+        "peak_downstream_response_ms": 5.0,
+        "peak_downstream_in_flight": 30,
+        "downstream_saturated_s": 0.0,
+        "downstream_deadline_exceeded_s": 0.0
+      },
+      "derived": {
+        "duration_s": 720,
+        "spike_end_s": 720.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 3600000,
+        "peak_depth_critical": 0,
+        "peak_depth_deferrable": 3594600,
+        "final_depth": 3600000,
+        "peak_oldest_age_s": 545.4,
+        "peak_oldest_age_critical_s": 0.0,
+        "peak_oldest_age_deferrable_s": 545.4,
+        "max_wait_s": 545.4,
+        "max_wait_critical_s": 0.0,
+        "max_wait_deferrable_s": 545.4,
+        "p95_wait_s": 493.2,
+        "processed": 4200000,
+        "enqueued": 7800000,
+        "deferred": 0,
+        "deferred_critical": 0,
+        "completions_downstream": 4320000,
+        "missed_deadline": 0,
+        "wasted_downstream_work": 0,
+        "peak_attempts_per_message": 1.0,
+        "time_to_age_slo_s": null,
+        "time_to_backlog_zero_s": null,
+        "peak_downstream_response_ms": 5.0,
+        "peak_downstream_in_flight": 30,
+        "downstream_saturated_s": 0.0,
+        "downstream_deadline_exceeded_s": 0.0,
+        "conservation_ok": true,
+        "accounted": 7800000,
+        "debt_ratio": null,
+        "predicted_b_peak": 3600000,
+        "predicted_w_max_s": 600.0,
+        "predicted_recovery_s": null,
+        "useful_capacity_fraction": 1.0,
+        "throughput_vs_s2": 1.0,
+        "peak_depth_vs_s2": 1.0,
+        "age_vs_s2": 1.818,
+        "response_vs_s2": 1.0
+      },
+      "predictions": [
+        {
+          "metric": "peak_oldest_age_critical_s",
+          "op": "<=",
+          "expected": 1.0,
+          "actual": 0.0,
+          "ok": true,
+          "claim": "critical orders stay timely: priority alone keeps them at zero wait"
+        },
+        {
+          "metric": "peak_oldest_age_deferrable_s",
+          "op": ">=",
+          "expected": 290,
+          "actual": 545.4,
+          "ok": true,
+          "claim": "deferrable work absorbs the entire delay instead"
+        },
+        {
+          "metric": "peak_depth_vs_s2",
+          "op": ">=",
+          "expected": 0.999,
+          "actual": 1.0,
+          "ok": true,
+          "claim": "and the TOTAL backlog is unchanged: priority reorders debt, it does not bound it"
+        },
+        {
+          "metric": "deferred",
+          "op": "==",
+          "expected": 0,
+          "actual": 0,
+          "ok": true,
+          "claim": "nothing is shed, by construction"
+        }
+      ],
+      "passed": true,
+      "control": "S2"
+    },
+    {
+      "id": "S7",
+      "name": "Priority + admission control",
+      "question": "Can backpressure bound the debt that priority only rearranges?",
+      "optional": false,
+      "config": {
+        "profile": [
+          {
+            "duration_s": 120,
+            "rate": 5000
+          },
+          {
+            "duration_s": 600,
+            "rate": 12000
+          }
+        ],
+        "spike_duration_s": 600,
+        "workers": 480,
+        "downstream_aware": true,
+        "priority_scheduler": true,
+        "downstream": {
+          "useful_concurrency": 30,
+          "service_time_ms": 5.0,
+          "plateau_per_s": 6000.0,
+          "deadline_ms": null
+        },
+        "admission": {
+          "enabled": true,
+          "age_threshold_s": 30.0
+        },
+        "deferrable_fraction": 0.55,
+        "age_slo_s": 60.0
+      },
+      "metrics": {
+        "duration_s": 720,
+        "spike_end_s": 720.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 197940,
+        "peak_depth_critical": 0,
+        "peak_depth_deferrable": 197940,
+        "final_depth": 0,
+        "peak_oldest_age_s": 567.0,
+        "peak_oldest_age_critical_s": 0.0,
+        "peak_oldest_age_deferrable_s": 567.0,
+        "max_wait_s": 330.1,
+        "max_wait_critical_s": 0.0,
+        "max_wait_deferrable_s": 330.1,
+        "p95_wait_s": 288.5,
+        "processed": 4057800,
+        "enqueued": 4057800,
+        "deferred": 3742200,
+        "deferred_critical": 0,
+        "completions_downstream": 4320000,
+        "missed_deadline": 0,
+        "wasted_downstream_work": 0,
+        "peak_attempts_per_message": 1.0,
+        "time_to_age_slo_s": null,
+        "time_to_backlog_zero_s": null,
+        "peak_downstream_response_ms": 5.0,
+        "peak_downstream_in_flight": 30,
+        "downstream_saturated_s": 0.0,
+        "downstream_deadline_exceeded_s": 0.0
+      },
+      "derived": {
+        "duration_s": 720,
+        "spike_end_s": 720.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 197940,
+        "peak_depth_critical": 0,
+        "peak_depth_deferrable": 197940,
+        "final_depth": 0,
+        "peak_oldest_age_s": 567.0,
+        "peak_oldest_age_critical_s": 0.0,
+        "peak_oldest_age_deferrable_s": 567.0,
+        "max_wait_s": 330.1,
+        "max_wait_critical_s": 0.0,
+        "max_wait_deferrable_s": 330.1,
+        "p95_wait_s": 288.5,
+        "processed": 4057800,
+        "enqueued": 4057800,
+        "deferred": 3742200,
+        "deferred_critical": 0,
+        "completions_downstream": 4320000,
+        "missed_deadline": 0,
+        "wasted_downstream_work": 0,
+        "peak_attempts_per_message": 1.0,
+        "time_to_age_slo_s": null,
+        "time_to_backlog_zero_s": null,
+        "peak_downstream_response_ms": 5.0,
+        "peak_downstream_in_flight": 30,
+        "downstream_saturated_s": 0.0,
+        "downstream_deadline_exceeded_s": 0.0,
+        "conservation_ok": true,
+        "accounted": 7800000,
+        "debt_ratio": null,
+        "predicted_b_peak": 3600000,
+        "predicted_w_max_s": 600.0,
+        "predicted_recovery_s": null,
+        "useful_capacity_fraction": 1.0,
+        "throughput_vs_s6": 0.9661,
+        "peak_depth_vs_s6": 0.055,
+        "age_vs_s6": 1.0396,
+        "response_vs_s6": 1.0
+      },
+      "predictions": [
+        {
+          "metric": "peak_depth_vs_s6",
+          "op": "<=",
+          "expected": 0.1,
+          "actual": 0.055,
+          "ok": true,
+          "claim": "admission holds the backlog to a fraction of the priority-only control"
+        },
+        {
+          "metric": "deferred",
+          "op": ">=",
+          "expected": 1000000,
+          "actual": 3742200,
+          "ok": true,
+          "claim": "the bound is paid for by deferring deferrable work"
+        },
+        {
+          "metric": "deferred_critical",
+          "op": "==",
+          "expected": 0,
+          "actual": 0,
+          "ok": true,
+          "claim": "no customer order is ever shed"
+        },
+        {
+          "metric": "peak_oldest_age_critical_s",
+          "op": "<=",
+          "expected": 1.0,
+          "actual": 0.0,
+          "ok": true,
+          "claim": "critical orders remain timely"
+        },
+        {
+          "metric": "peak_downstream_response_ms",
+          "op": "<=",
+          "expected": 5.01,
+          "actual": 5.0,
+          "ok": true,
+          "claim": "and the dependency stays at its service time throughout"
+        }
+      ],
+      "passed": true,
+      "control": "S6"
+    },
+    {
+      "id": "S4b",
+      "name": "Deadline misses and retry amplification (optional)",
+      "question": "What happens once the downstream wait crosses a caller deadline?",
+      "optional": true,
+      "config": {
+        "profile": [
+          {
+            "duration_s": 120,
+            "rate": 5000
+          },
+          {
+            "duration_s": 600,
+            "rate": 12000
+          }
+        ],
+        "spike_duration_s": 600,
+        "workers": 600,
+        "downstream_aware": false,
+        "priority_scheduler": false,
+        "downstream": {
+          "useful_concurrency": 30,
+          "service_time_ms": 5.0,
+          "plateau_per_s": 6000.0,
+          "deadline_ms": 100.0
+        },
+        "admission": {
+          "enabled": false,
+          "age_threshold_s": 30.0
+        },
+        "deferrable_fraction": 0.55,
+        "age_slo_s": 60.0
+      },
+      "metrics": {
+        "duration_s": 720,
+        "spike_end_s": 720.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 5174431,
+        "peak_depth_critical": 2325232,
+        "peak_depth_deferrable": 2841681,
+        "final_depth": 5174431,
+        "peak_oldest_age_s": 431.2,
+        "peak_oldest_age_critical_s": 431.1,
+        "peak_oldest_age_deferrable_s": 431.2,
+        "max_wait_s": 431.2,
+        "max_wait_critical_s": 431.1,
+        "max_wait_deferrable_s": 431.2,
+        "p95_wait_s": 406.3,
+        "processed": 2625569,
+        "enqueued": 7800000,
+        "deferred": 0,
+        "deferred_critical": 0,
+        "completions_downstream": 4330835,
+        "missed_deadline": 1705266,
+        "wasted_downstream_work": 1705266,
+        "peak_attempts_per_message": 1.649,
+        "time_to_age_slo_s": null,
+        "time_to_backlog_zero_s": null,
+        "peak_downstream_response_ms": 99.21,
+        "peak_downstream_in_flight": 600,
+        "downstream_saturated_s": 720.0,
+        "downstream_deadline_exceeded_s": 720.0
+      },
+      "derived": {
+        "duration_s": 720,
+        "spike_end_s": 720.0,
+        "recovery_headroom_per_s": 1000.0,
+        "peak_depth": 5174431,
+        "peak_depth_critical": 2325232,
+        "peak_depth_deferrable": 2841681,
+        "final_depth": 5174431,
+        "peak_oldest_age_s": 431.2,
+        "peak_oldest_age_critical_s": 431.1,
+        "peak_oldest_age_deferrable_s": 431.2,
+        "max_wait_s": 431.2,
+        "max_wait_critical_s": 431.1,
+        "max_wait_deferrable_s": 431.2,
+        "p95_wait_s": 406.3,
+        "processed": 2625569,
+        "enqueued": 7800000,
+        "deferred": 0,
+        "deferred_critical": 0,
+        "completions_downstream": 4330835,
+        "missed_deadline": 1705266,
+        "wasted_downstream_work": 1705266,
+        "peak_attempts_per_message": 1.649,
+        "time_to_age_slo_s": null,
+        "time_to_backlog_zero_s": null,
+        "peak_downstream_response_ms": 99.21,
+        "peak_downstream_in_flight": 600,
+        "downstream_saturated_s": 720.0,
+        "downstream_deadline_exceeded_s": 720.0,
+        "conservation_ok": true,
+        "accounted": 7800000,
+        "debt_ratio": null,
+        "predicted_b_peak": 3600000,
+        "predicted_w_max_s": 600.0,
+        "predicted_recovery_s": null,
+        "useful_capacity_fraction": 0.6063,
+        "throughput_vs_s2": 0.6251,
+        "peak_depth_vs_s2": 1.4373,
+        "age_vs_s2": 1.4373,
+        "response_vs_s2": 19.842
+      },
+      "predictions": [
+        {
+          "metric": "peak_downstream_response_ms",
+          "op": ">=",
+          "expected": 99,
+          "actual": 99.21,
+          "ok": true,
+          "claim": "at 600 workers the round-trip reaches the 100 ms deadline"
+        },
+        {
+          "metric": "peak_attempts_per_message",
+          "op": ">",
+          "expected": 1.2,
+          "actual": 1.649,
+          "ok": true,
+          "claim": "callers give up and retry, so each message costs more than one attempt"
+        },
+        {
+          "metric": "useful_capacity_fraction",
+          "op": "<",
+          "expected": 0.9,
+          "actual": 0.6063,
+          "ok": true,
+          "claim": "a measurable share of downstream capacity redoes writes that already landed"
+        },
+        {
+          "metric": "throughput_vs_s2",
+          "op": "<",
+          "expected": 1.0,
+          "actual": 0.6251,
+          "ok": true,
+          "claim": "the queue drains MORE SLOWLY than with 30 workers, despite 20x the fleet"
+        }
+      ],
+      "passed": true,
+      "control": "S2"
+    }
+  ],
+  "consumer_sweep": [
+    {
+      "workers": 15,
+      "response_ms": 5.0,
+      "service_ms": 5.0,
+      "wait_ms": 0.0,
+      "throughput_per_s": 3000,
+      "saturated": false,
+      "little_n": 15.0
+    },
+    {
+      "workers": 30,
+      "response_ms": 5.0,
+      "service_ms": 5.0,
+      "wait_ms": 0.0,
+      "throughput_per_s": 6000,
+      "saturated": false,
+      "little_n": 30.0
+    },
+    {
+      "workers": 60,
+      "response_ms": 10.0,
+      "service_ms": 5.0,
+      "wait_ms": 5.0,
+      "throughput_per_s": 6000,
+      "saturated": true,
+      "little_n": 60.0
+    },
+    {
+      "workers": 120,
+      "response_ms": 20.0,
+      "service_ms": 5.0,
+      "wait_ms": 15.0,
+      "throughput_per_s": 6000,
+      "saturated": true,
+      "little_n": 120.0
+    },
+    {
+      "workers": 240,
+      "response_ms": 40.0,
+      "service_ms": 5.0,
+      "wait_ms": 35.0,
+      "throughput_per_s": 6000,
+      "saturated": true,
+      "little_n": 240.0
+    },
+    {
+      "workers": 480,
+      "response_ms": 80.0,
+      "service_ms": 5.0,
+      "wait_ms": 75.0,
+      "throughput_per_s": 6000,
+      "saturated": true,
+      "little_n": 480.0
+    },
+    {
+      "workers": 600,
+      "response_ms": 100.0,
+      "service_ms": 5.0,
+      "wait_ms": 95.0,
+      "throughput_per_s": 6000,
+      "saturated": true,
+      "little_n": 600.0
+    }
+  ]
+}
