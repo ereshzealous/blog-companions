@@ -1,0 +1,93 @@
+{
+ "label": "final",
+ "ts_ms": 1790177874990,
+ "contract_version": 2,
+ "tables": {
+  "device_registry": {
+   "columns_compared": [
+    "device_id",
+    "tenant_id",
+    "serial_number",
+    "model",
+    "gateway_id",
+    "status",
+    "firmware_version",
+    "updated_at_ms",
+    "firmware_channel"
+   ],
+   "source_rows": 2163117,
+   "clickhouse_logical_rows": 2163117,
+   "clickhouse_logical_duplicate_keys": 0,
+   "clickhouse_physical_rows": 5052060,
+   "clickhouse_physical_extra_versions": 2858235,
+   "mismatched_buckets": 0,
+   "missing_in_clickhouse": 0,
+   "ghost_rows_in_clickhouse": 0,
+   "content_mismatches": 0,
+   "samples": {
+    "missing": [],
+    "ghost": [],
+    "content": []
+   },
+   "evidence": {},
+   "converged": true,
+   "seconds": 3.2
+  },
+  "device_status": {
+   "columns_compared": [
+    "device_id",
+    "tenant_id",
+    "battery_pct",
+    "signal_dbm",
+    "connectivity",
+    "last_seen_ms",
+    "updated_at_ms"
+   ],
+   "source_rows": 500000,
+   "clickhouse_logical_rows": 500000,
+   "clickhouse_logical_duplicate_keys": 0,
+   "clickhouse_physical_rows": 1064425,
+   "clickhouse_physical_extra_versions": 564425,
+   "mismatched_buckets": 0,
+   "missing_in_clickhouse": 0,
+   "ghost_rows_in_clickhouse": 0,
+   "content_mismatches": 0,
+   "samples": {
+    "missing": [],
+    "ghost": [],
+    "content": []
+   },
+   "evidence": {},
+   "converged": true,
+   "seconds": 0.7
+  }
+ },
+ "explicit_delete_batch": {
+  "keys": 5000,
+  "still_in_source": 0,
+  "still_visible_in_clickhouse": 0
+ },
+ "history": {
+  "deliveries": 28585063,
+  "distinct_change_events": 28168333,
+  "distinct_kafka_records": 28575063,
+  "sink_replays": 10000,
+  "capture_replays": 406730,
+  "delete_deliveries": 31293,
+  "snapshot_read_deliveries": 4539049
+ },
+ "version_ordering": {
+  "device_registry": {
+   "keys": 2193825,
+   "last_event_differs": 1,
+   "final_state_differs": 1,
+   "sample_keys": [
+    528269
+   ]
+  },
+  "device_status": {
+   "error": "DatabaseError: Received ClickHouse exception, code: 241, server response: Code: 241. DB::Exception: (total) memory limit exceeded: would use 732.43 MiB (attempt to allocate chunk of 4.04 MiB), current RSS: 1007.43 MiB, maximum: 1010.00 MiB. OvercommitTracker decision: Query was selected to stop by O"
+  }
+ },
+ "converged": true
+}

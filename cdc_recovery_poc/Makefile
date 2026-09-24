@@ -2,15 +2,17 @@
 #   make all        capacity -> recovery -> capture pressure -> history loss, then tear down
 #   make up         fresh environment, seeded, connector registered
 #   make verify     check the published runs in results/ without starting anything
+#   make report     build the visual report for every recorded run and open it
 #   make down-all   stop everything and delete the volumes
 # The fault scenarios need LAMBDA (change rate) and MU (measured sink capacity) from the capacity run.
-.PHONY: all up capacity recovery pressure history-loss verify down clean down-all help
+.PHONY: all up capacity recovery pressure history-loss verify report down clean down-all help
 .DEFAULT_GOAL := help
 
 LAMBDA ?= 20000
 MU     ?= 40000
 
-all: capacity recovery pressure history-loss down-all ## every scenario, then teardown
+all: ## every scenario, then verify, report and tear down (about 2.5 h)
+	scripts/run-all.sh $(LAMBDA)
 
 up: ## fresh environment: volumes destroyed, seeded, connector registered, snapshot complete
 	scenarios/00-up.sh setup
@@ -27,8 +29,12 @@ pressure: ## Kafka paused while writes continue; results/capture-pressure-<UTC>
 history-loss: ## expected failure: the slot's history is removed; results/history-loss-<UTC>
 	LAMBDA=$(LAMBDA) scenarios/04-history-loss.sh
 
-verify: ## check the four published runs against their pass criteria (no Docker needed)
+verify: ## check the recorded runs against their pass criteria (no Docker needed)
 	scripts/verify-run.py --published
+
+report: ## build results/index.html and a report.html per run, then open it
+	scripts/build-report.py
+	@command -v open >/dev/null && open results/index.html || echo "open results/index.html"
 
 down: ## stop and remove containers, keep volumes
 	docker compose down --remove-orphans

@@ -83,21 +83,38 @@ def evidence(pg, ch, table, device_id):
 
 
 def version_ordering(ch):
-    rows = ch.query("""
-        SELECT source_table, count(),
-               countIf(last_by_position != last_by_offset),
-               countIf(state_by_position != state_by_offset),
-               groupArrayIf(5)(device_id, state_by_position != state_by_offset)
-        FROM (
-            SELECT source_table, device_id,
-                   argMax(cityHash64(event_id), (lsn, kafka_offset)) AS last_by_position,
-                   argMax(cityHash64(event_id), kafka_offset) AS last_by_offset,
-                   argMax(cityHash64(op = 'd', after_json), (lsn, kafka_offset)) AS state_by_position,
-                   argMax(cityHash64(op = 'd', after_json), kafka_offset) AS state_by_offset
-            FROM cdc.change_history GROUP BY source_table, device_id)
-        GROUP BY source_table ORDER BY source_table""", settings=SPILL).result_rows
-    return {table: {"keys": keys, "last_event_differs": events, "final_state_differs": states, "sample_keys": list(sample)}
-            for table, keys, events, states, sample in rows}
+    """Would LSN ordering and Kafka-offset ordering disagree about any key?
+
+    One table at a time, single-threaded and spilling early: on a 1.4 GB ClickHouse this check used to
+    push the server past its own ceiling and take the whole run's reconciliation down with it. A
+    diagnostic is allowed to fail; the reconciliation it sits next to is not.
+    """
+    settings = {"max_bytes_before_external_group_by": 100_000_000, "max_memory_usage": 400_000_000,
+                "max_threads": 1}
+    out = {}
+    tables = [r[0] for r in ch.query("SELECT DISTINCT source_table FROM cdc.change_history").result_rows]
+    for table in sorted(tables):
+        try:
+            rows = ch.query("""
+                SELECT count(),
+                       countIf(last_by_position != last_by_offset),
+                       countIf(state_by_position != state_by_offset),
+                       groupArrayIf(5)(device_id, state_by_position != state_by_offset)
+                FROM (
+                    SELECT device_id,
+                           argMax(cityHash64(event_id), (lsn, kafka_offset)) AS last_by_position,
+                           argMax(cityHash64(event_id), kafka_offset) AS last_by_offset,
+                           argMax(cityHash64(op = 'd', after_json), (lsn, kafka_offset)) AS state_by_position,
+                           argMax(cityHash64(op = 'd', after_json), kafka_offset) AS state_by_offset
+                    FROM cdc.change_history WHERE source_table = {table:String}
+                    GROUP BY device_id)""",
+                parameters={"table": table}, settings=settings).result_rows
+            keys, events, states, sample = rows[0]
+            out[table] = {"keys": keys, "last_event_differs": events, "final_state_differs": states,
+                          "sample_keys": list(sample)}
+        except Exception as exc:  # noqa: BLE001 - any failure here is reported, never fatal
+            out[table] = {"error": f"{type(exc).__name__}: {exc}"[:300]}
+    return out
 
 
 def compare(label):
@@ -148,7 +165,10 @@ def compare(label):
         "capture_replays": distinct_records - distinct_events,    # same source change present at more than one Kafka offset
         "delete_deliveries": deletes, "snapshot_read_deliveries": reads,
     }
-    report["version_ordering"] = version_ordering(ch)
+    try:
+        report["version_ordering"] = version_ordering(ch)
+    except Exception as exc:  # noqa: BLE001 - the reconciliation is the result; this check is not
+        report["version_ordering"] = {"error": f"{type(exc).__name__}: {exc}"[:300]}
     report["converged"] = all(t["converged"] for t in report["tables"].values())
     path = run_dir() / f"reconcile-{label}.json"
     path.write_text(json.dumps(report, indent=1))

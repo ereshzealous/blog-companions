@@ -14,23 +14,78 @@ It is evidence for **this implementation**, at the versions, rates and limits re
 
 The data is synthetic operational device data: registrations, status, firmware. No personal or clinical data.
 
+## Run the POC
+
+Everything runs from this directory. Three commands:
+
+```bash
+./scripts/init-env.sh      # 1. write .env: pinned image versions and local-only passwords   (seconds)
+./scripts/run-all.sh       # 2. all four scenarios, verified, with the pages built          (~2.5 hours)
+open results/index.html    # 3. look at what happened
+```
+
+`run-all.sh` is the whole POC end to end. It measures capacity with no faults, runs the recovery test using
+the sink capacity it just measured, runs the Kafka outage, runs the expected failure where the replication
+slot loses the history capture needs, tears the lab down, checks every run against its scenario's pass
+criteria, and writes one page per run plus an index.
+
+You need Docker with Compose v2, at least 8 GB for the Docker VM, and `bash`, `python3` and `openssl` on the
+host. Nothing else should be running on that Docker VM while it measures, because other containers change the
+rates. Progress is written to `results/run-all-<UTC>.log` as well as the terminal.
+
+**Less than two hours?** Run one scenario. Each starts from a destroyed environment, so they are independent:
+
+```bash
+./scenarios/01-capacity.sh                             # ~20 min · no faults; measures mu, the sink's capacity
+LAMBDA=20000 MU=<mu> ./scenarios/02-recovery-test.sh   # ~25 min · every fault, under live load
+LAMBDA=20000 ./scenarios/03-capture-pressure.sh        # ~15 min · Kafka unavailable for 240 s
+LAMBDA=20000 ./scenarios/04-history-loss.sh            # ~40 min · the expected failure
+```
+
+**No Docker at all?** The recorded runs are in the repository. Both of these work offline, with no
+dependencies beyond `python3`:
+
+```bash
+./scripts/verify-run.py --published   # the pass criteria of each published run, PASS or FAIL per check
+./scripts/build-report.py             # results/index.html and a report.html for every run
+```
+
+**Something went wrong mid-run?** `run-all.sh` takes a second argument and restarts at that scenario, reusing
+the capacity run's measurement instead of repeating it:
+
+```bash
+./scripts/run-all.sh 20000 recovery        # skip capacity, start at the recovery test
+```
+
+### What a POC run gives you
+
+- `results/index.html` — every run with its verdict; each card opens that run's page
+- `results/<run-id>/report.html` — the verdict and its checks, the fault timeline, four charts from the
+  collector's two-second samples, the reconciliation counts, the alerts
+- `results/<run-id>/report.md` — the same run in text
+- `results/<run-id>/summary.json` — the machine-readable result: findings, reconciliations, alerts, timeline,
+  versions and the metric series
+- the raw files behind all of it: `metrics.jsonl`, `events.jsonl`, `alerts.jsonl`, `generator.jsonl`,
+  `sink-<id>.jsonl`, `reconcile-<label>.json`, `versions.json`
+
 ## Contents
 
-1. [Architecture](#architecture)
-2. [Repository layout](#repository-layout)
-3. [Prerequisites](#prerequisites)
-4. [Quick start: bring the lab up](#quick-start-bring-the-lab-up)
-5. [Run the scenarios](#run-the-scenarios)
-6. [Validate a run](#validate-a-run)
-7. [Inspect a running lab](#inspect-a-running-lab)
-8. [Configuration](#configuration)
-9. [Troubleshooting](#troubleshooting)
-10. [Stop and clean up](#stop-and-clean-up)
-11. [How it works](#how-it-works)
-12. [Published results](#published-results)
-13. [What this does not show](#what-this-does-not-show)
-14. [Hardening and per-source rules](#hardening-and-per-source-rules)
-15. [Security notes](#security-notes)
+1. [Run the POC](#run-the-poc)
+2. [Architecture](#architecture)
+3. [Repository layout](#repository-layout)
+4. [Prerequisites](#prerequisites)
+5. [Quick start: bring the lab up](#quick-start-bring-the-lab-up)
+6. [Run the scenarios](#run-the-scenarios)
+7. [Validate a run](#validate-a-run)
+8. [Inspect a running lab](#inspect-a-running-lab)
+9. [Configuration](#configuration)
+10. [Troubleshooting](#troubleshooting)
+11. [Stop and clean up](#stop-and-clean-up)
+12. [How it works](#how-it-works)
+13. [Published results](#published-results)
+14. [What this does not show](#what-this-does-not-show)
+15. [Hardening and per-source rules](#hardening-and-per-source-rules)
+16. [Security notes](#security-notes)
 
 ## Architecture
 
@@ -187,6 +242,17 @@ LAMBDA=20000 ./scenarios/04-history-loss.sh
 3. Recover explicitly: reset offsets, drop the lost slot, resnapshot.
 4. Reconcile, sweep the rows the resnapshot could not see deleted, and reconcile again.
 
+### Run everything in one command
+
+```bash
+scripts/run-all.sh            # capacity, recovery test, capture pressure, history loss, then verify and report
+scripts/run-all.sh 30000      # the same at a different change rate
+```
+
+Each scenario starts from a destroyed environment, so the four runs are independent. The recovery test uses
+the sink capacity the capacity run just measured rather than a guessed number. Progress is written to
+`results/run-all-<UTC>.log`. Expect about two and a half hours on a laptop.
+
 ## Validate a run
 
 ### What a run leaves behind
@@ -244,6 +310,25 @@ To read a run yourself rather than have it checked, open its `report.md`, or que
 ```bash
 python3 -c "import json;s=json.load(open('results/<run-id>/summary.json'));print(json.dumps(s['findings'],indent=1))"
 ```
+
+### See a run, visually
+
+`scripts/build-report.py` turns a run into a page you can look at:
+
+```bash
+scripts/build-report.py                      # every run, plus results/index.html
+scripts/build-report.py results/<run-id>     # one run
+open results/index.html                      # start here
+```
+
+`results/index.html` lists every run with its verdict and headline numbers. Each card opens that run's
+`report.html`: the verdict and every check behind it, the fault timeline with the minute each fault landed,
+four charts drawn from the collector's two-second samples — Kafka lag, p99 freshness, WAL retained by the
+slot, sink throughput, each with the faults marked — then the reconciliation counts per table and the alerts.
+
+The page is inline SVG and inline CSS with no network calls, so it opens from disk and can be attached to a
+ticket as one file. Nothing on it is typed by hand: every value is read from `summary.json`, `metrics.jsonl`
+and `events.jsonl` in the run folder.
 
 ### Pass criteria
 
@@ -400,6 +485,29 @@ Distinct counts over tens of millions of history rows use `GROUP BY` on 128-bit 
 ![The six proof obligations with the measured evidence under each, and the fault-injection timeline of the final recovery run beside the expected-failure run.](docs/11-proving-the-recovery-contract.png)
 
 All runs used the same laptop (Apple M5 Pro; Docker VM with 15 CPUs and 8 GB) and PostgreSQL 18.6, Debezium 3.6.2 on Kafka Connect 4.3.0, Kafka 4.3.1 and ClickHouse 26.8.3. Every number below is copied from a run's `summary.json` or `reconcile-*.json`. Runs that aborted, failed or were superseded stay in `results/`, with the reason recorded in their `events.jsonl`.
+
+### Reproduced ten days later
+
+The four scenarios were run again on 23 and 24 September 2026 on the same laptop, with the lab's own
+`run-all.sh`. Every contract claim held on the second, independent set of runs:
+
+- Recovery test `recovery-20260923T151517Z`: 2,663,117 rows reconciled, 0 missing, ghost or different;
+  10,000 sink replays, exactly the crashed batch; capture resumed on the other worker in 12.4 s; the drain
+  took 100 s against 95 predicted.
+- Capture pressure `capture-pressure-20260923T153833Z`: 1.481 GB of WAL retained across a 240 s Kafka
+  outage, against 1.478 GB in September; caught up in 179 s.
+- History loss `history-loss-20260923T155256Z`: the slot went `lost`, capture refused to resume for 30
+  minutes, the resnapshot left 41,497 ghost rows and the sweep removed all of them.
+- Capacity `capacity-20260924T033813Z`: `tasks.max = 4` still ran one capture task; a second sink process
+  took applied throughput from 50,606 to 73,819 changes per second.
+
+Rates differ from September because the machine was quieter: capture drained WAL at 154,724 records per
+second rather than 122,815. Ratios and behaviour are what to compare, not absolute throughput.
+
+Three defects in the lab's own measurement code surfaced during those runs and are fixed: a
+version-ordering query that exhausted ClickHouse and took a completed reconciliation down with it, a
+drain phase that waited on a condition an idle source can never satisfy, and a capacity fill that
+measured nothing when capture kept up with the generator. Each is described where it was fixed.
 
 ### Capacity · `capacity-20260913T190718Z`
 

@@ -1,0 +1,16 @@
+{"ts_ms":1790177935608,"event":"connect-worker-ready","detail":{"worker":"connect-1","attempt":1}}
+{"ts_ms":1790177946336,"event":"connect-worker-ready","detail":{"worker":"connect-2","attempt":1}}
+{"ts_ms":1790177947080,"event":"environment-ready","detail":{"postgres": "18.6 (Debian 18.6-1.pgdg13+2)", "clickhouse": "26.8.3.105", "kafka_image": "apache/kafka:4.3.1", "debezium_image": "quay.io/debezium/connect:3.6.2.Final", "connect": {"kafka_connect": "4.3.0", "postgres_plugin": [{"class": "io.debezium.connector.postgresql.PostgresConnector", "type": "source", "version": "3.6.2.Final"}]}, "docker_cpus": 15, "docker_memory_bytes": 8321011712, "host": "Apple M5 Pro"}}
+{"ts_ms":1790177947099,"event":"connector-register","detail":{"snapshot.mode":"initial"}}
+{"ts_ms":1790177948425,"event":"sink-started","sink_id":"1caaac296968","version_basis":"kafka_offset"}
+{"ts_ms":1790177948524,"event":"sink-started","sink_id":"db83052aaeb3","version_basis":"kafka_offset"}
+{"ts_ms":1790177994709,"event":"initial-load-complete","detail":{}}
+{"ts_ms":1790177994731,"event":"generator-rate","detail":{"rate":20000}}
+{"ts_ms":1790177995620,"event":"baseline-start","detail":{"lambda":20000}}
+{"ts_ms":1790178115714,"event":"kafka-paused","detail":{"retained_wal_bytes":381169192}}
+{"ts_ms":1790178355909,"event":"kafka-unpaused","detail":{"retained_wal_bytes":1481341864}}
+{"ts_ms":1790178535580,"event":"caught-up","detail":{"seconds_after_unpause":179}}
+{"ts_ms":1790178655631,"event":"generator-rate","detail":{"rate":0}}
+{"ts_ms":1790178656206,"event":"generator-stopped","detail":{}}
+{"ts_ms":1790178772912,"event":"reconcile-final","converged":true}
+{"ts_ms":1790178773309,"event":"oom-check","detail":{"cdc-lab-clickhouse-1":false,"cdc-lab-collector-1":false,"cdc-lab-connect-1-1":false,"cdc-lab-connect-2-1":false,"cdc-lab-generator-1":false,"cdc-lab-kafka-1":false,"cdc-lab-postgres-1":false,"cdc-lab-sink-1":false,"cdc-lab-sink-2":false,"cdc-lab-tools-1":false}}

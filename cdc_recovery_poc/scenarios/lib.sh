@@ -77,6 +77,25 @@ EOF
 }
 
 # wait_until <timeout_s> <description> <python expression over m>
+# End a phase when a metric stops moving. Capture is caught up when Kafka's end offsets stop growing.
+# The slot's confirmed position is not a usable signal here: once the source goes idle, Debezium has
+# nothing left to acknowledge, so unconfirmed WAL plateaus at whatever the last fill left behind.
+wait_flat() {
+  local timeout=$1 desc=$2 field=$3 stable=${4:-30} deadline value previous="" since now
+  deadline=$(( $(date +%s) + timeout ))
+  since=$(date +%s)
+  while :; do
+    value=$(last "m.get('$field')" 2>/dev/null || echo None)
+    now=$(date +%s)
+    if [[ "$value" != "$previous" ]]; then previous=$value; since=$now; fi
+    if [[ -n "$previous" && "$previous" != "None" && "$previous" != "0" ]] && (( now - since >= stable )); then
+      say "reached: $desc (${field} flat at ${previous} for ${stable}s)"; return 0
+    fi
+    if (( now >= deadline )); then say "timeout after ${timeout}s: $desc"; return 1; fi
+    sleep 3
+  done
+}
+
 wait_until() {
   local timeout=$1 desc=$2 expr=$3 deadline
   deadline=$(( $(date +%s) + timeout ))

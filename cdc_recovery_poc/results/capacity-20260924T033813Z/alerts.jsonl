@@ -1,0 +1,6 @@
+{"ts_ms":1790221253147,"alert":"freshness-slo-breach","state":"firing"}
+{"ts_ms":1790221313173,"alert":"capture-unassigned","state":"firing"}
+{"ts_ms":1790221435230,"alert":"capture-unassigned","state":"resolved"}
+{"ts_ms":1790221739437,"alert":"capture-unassigned","state":"firing"}
+{"ts_ms":1790221861495,"alert":"capture-unassigned","state":"resolved"}
+{"ts_ms":1790223022141,"alert":"freshness-slo-breach","state":"resolved"}

@@ -1,0 +1,25 @@
+{"ts_ms":1790178799375,"event":"connect-worker-ready","detail":{"worker":"connect-1","attempt":1}}
+{"ts_ms":1790178810115,"event":"connect-worker-ready","detail":{"worker":"connect-2","attempt":1}}
+{"ts_ms":1790178810876,"event":"environment-ready","detail":{"postgres": "18.6 (Debian 18.6-1.pgdg13+2)", "clickhouse": "26.8.3.105", "kafka_image": "apache/kafka:4.3.1", "debezium_image": "quay.io/debezium/connect:3.6.2.Final", "connect": {"kafka_connect": "4.3.0", "postgres_plugin": [{"class": "io.debezium.connector.postgresql.PostgresConnector", "type": "source", "version": "3.6.2.Final"}]}, "docker_cpus": 15, "docker_memory_bytes": 8321011712, "host": "Apple M5 Pro"}}
+{"ts_ms":1790178810895,"event":"connector-register","detail":{"snapshot.mode":"initial"}}
+{"ts_ms":1790178812098,"event":"sink-started","sink_id":"91997e52675b","version_basis":"kafka_offset"}
+{"ts_ms":1790178812193,"event":"sink-started","sink_id":"5d2db7bcdac6","version_basis":"kafka_offset"}
+{"ts_ms":1790178858434,"event":"initial-load-complete","detail":{}}
+{"ts_ms":1790178858456,"event":"generator-rate","detail":{"rate":20000}}
+{"ts_ms":1790178859310,"event":"baseline-start","detail":{"lambda":20000}}
+{"ts_ms":1790178949549,"event":"slot-retention-bounded","detail":{"max_slot_wal_keep_size":"1GB"}}
+{"ts_ms":1790178949956,"event":"capture-stopped","detail":{"confirmed_flush_lsn":"0/3E591080"}}
+{"ts_ms":1790179072741,"event":"source-history-lost","detail":{"wal_status":"lost","invalidation_reason":"wal_removed"}}
+{"ts_ms":1790179072926,"event":"normal-resume-requested","detail":{"observe_s":1900}}
+{"ts_ms":1790179257076,"event":"normal-resume-stalled","detail":{"connector_state": "RUNNING", "task_states": [], "slot_retry_log_lines": 92, "last_slot_retry_log": "2026-09-23T16:00:56,944 WARN   Postgres||lifecycle  Cannot obtain valid replication slot 'cdc_devices_clickhouse' for plugin 'pgoutput' and database 'devices' [during attempt 93 out of 900, concurrent tx probably blocks taking snapshot.   [io.debezium.connecto", "trace": "", "seconds_after_resume": 185}}
+{"ts_ms":1790180885503,"event":"normal-resume-refused","detail":{"connector_state": "RUNNING", "task_states": ["FAILED"], "slot_retry_log_lines": 900, "last_slot_retry_log": "2026-09-23T16:27:50,971 WARN   Postgres||lifecycle  Cannot obtain valid replication slot 'cdc_devices_clickhouse' for plugin 'pgoutput' and database 'devices' [during attempt 900 out of 900, concurrent tx probably blocks taking snapshot.   [io.debezium.connect", "trace": "org.apache.kafka.connect.errors.ConnectException: Unable to obtain valid replication slot. Make sure there are no long-running transactions running in parallel as they may hinder the allocation of the replication slot when starting this connector", "seconds_after_resume": 1813}}
+{"ts_ms":1790180915541,"event":"evidence-window-closed","detail":{}}
+{"ts_ms":1790180915564,"event":"recovery-start","detail":{}}
+{"ts_ms":1790180919543,"event":"resnapshot-start","detail":{"ts_ms":1790180919524,"source_rows":2789417}}
+{"ts_ms":1790180980874,"event":"resnapshot-reads-applied","detail":{"reads":2789507}}
+{"ts_ms":1790180980896,"event":"generator-rate","detail":{"rate":0}}
+{"ts_ms":1790180982156,"event":"generator-stopped","detail":{}}
+{"ts_ms":1790181102781,"event":"reconcile-after-resnapshot","converged":false}
+{"ts_ms":1790181103919,"event":"resnapshot-sweep","detail":{"swept_registry":41497,"swept_status":0}}
+{"ts_ms":1790181119332,"event":"reconcile-after-sweep","converged":true}
+{"ts_ms":1790181119699,"event":"oom-check","detail":{"cdc-lab-clickhouse-1":false,"cdc-lab-collector-1":false,"cdc-lab-connect-1-1":false,"cdc-lab-connect-2-1":false,"cdc-lab-generator-1":false,"cdc-lab-kafka-1":false,"cdc-lab-postgres-1":false,"cdc-lab-sink-1":false,"cdc-lab-sink-2":false,"cdc-lab-tools-1":false}}

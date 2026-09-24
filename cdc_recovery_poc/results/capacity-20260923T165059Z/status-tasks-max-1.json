@@ -1,0 +1,17 @@
+{
+ "name": "pg-devices",
+ "connector": {
+  "state": "RUNNING",
+  "worker_id": "connect-1:8083",
+  "version": "3.6.2.Final"
+ },
+ "tasks": [
+  {
+   "id": 0,
+   "state": "RUNNING",
+   "worker_id": "connect-1:8083",
+   "version": "3.6.2.Final"
+  }
+ ],
+ "type": "source"
+}

@@ -1,0 +1,35 @@
+{"ts_ms":1790176535070,"event":"connect-worker-ready","detail":{"worker":"connect-1","attempt":1}}
+{"ts_ms":1790176545755,"event":"connect-worker-ready","detail":{"worker":"connect-2","attempt":1}}
+{"ts_ms":1790176546532,"event":"environment-ready","detail":{"postgres": "18.6 (Debian 18.6-1.pgdg13+2)", "clickhouse": "26.8.3.105", "kafka_image": "apache/kafka:4.3.1", "debezium_image": "quay.io/debezium/connect:3.6.2.Final", "connect": {"kafka_connect": "4.3.0", "postgres_plugin": [{"class": "io.debezium.connector.postgresql.PostgresConnector", "type": "source", "version": "3.6.2.Final"}]}, "docker_cpus": 15, "docker_memory_bytes": 8321011712, "host": "Apple M5 Pro"}}
+{"ts_ms":1790176546553,"event":"connector-register","detail":{"snapshot.mode":"initial"}}
+{"ts_ms":1790176547868,"event":"sink-started","sink_id":"8487ffa10434","version_basis":"kafka_offset"}
+{"ts_ms":1790176547977,"event":"sink-started","sink_id":"d55b27443cb2","version_basis":"kafka_offset"}
+{"ts_ms":1790176594222,"event":"initial-load-complete","detail":{}}
+{"ts_ms":1790176594586,"event":"generator-rate","detail":{"rate":20000}}
+{"ts_ms":1790176595404,"event":"baseline-start","detail":{"lambda":20000,"mu_measured":72883}}
+{"ts_ms":1790176775550,"event":"source-ddl","detail":{"ddl":"ALTER TABLE ops.device_registry ADD COLUMN firmware_channel text NOT NULL DEFAULT 'stable'"}}
+{"ts_ms":1790176776501,"event":"sink-unmapped-fields","sink_id":"d55b27443cb2","fields":["device_registry.firmware_channel"],"contract_version":1}
+{"ts_ms":1790176776793,"event":"sink-unmapped-fields","sink_id":"8487ffa10434","fields":["device_registry.firmware_channel"],"contract_version":1}
+{"ts_ms":1790176820815,"event":"contract-v2","detail":{"clickhouse":"ADD COLUMN firmware_channel Nullable(String)"}}
+{"ts_ms":1790176851144,"event":"new-column-null-before-backfill","detail":{"null_rows":2005801,"live_rows":2036170,"source_value":"stable"}}
+{"ts_ms":1790176851278,"event":"incremental-snapshot-signal","detail":{"signal_id":"snap-1790176851168","collections":["ops.device_registry"]}}
+{"ts_ms":1790176941440,"event":"clickhouse-throttled","detail":{"cpus":0.5,"lag_growth_per_s":-241}}
+{"ts_ms":1790176986572,"event":"clickhouse-throttled","detail":{"cpus":0.3,"lag_growth_per_s":178}}
+{"ts_ms":1790177031681,"event":"clickhouse-throttled","detail":{"cpus":0.2,"lag_growth_per_s":-38}}
+{"ts_ms":1790177076807,"event":"clickhouse-throttled","detail":{"cpus":0.12,"lag_growth_per_s":2190}}
+{"ts_ms":1790177121931,"event":"clickhouse-throttled","detail":{"cpus":0.08,"lag_growth_per_s":8339}}
+{"ts_ms":1790177167265,"event":"connect-worker-killed","detail":{"worker":"connect-1","slot_confirmed_flush_lsn":"0/C75EB040"}}
+{"ts_ms":1790177227681,"event":"sink-crash-armed","detail":{}}
+{"ts_ms":1790177228279,"event":"sink-crash-after-insert-before-commit","sink_id":"8487ffa10434","batch_id":"16c2e5d36f89","rows":10000,"offsets":{"pg-devices.ops.device_status[0]":[1786547,1796546]}}
+{"ts_ms":1790177229089,"event":"sink-started","sink_id":"8487ffa10434","version_basis":"kafka_offset"}
+{"ts_ms":1790177290679,"event":"delete-batch","detail":{"keys":5000}}
+{"ts_ms":1790177290766,"event":"capture-task-running","detail":{"worker":"connect-2:8083"}}
+{"ts_ms":1790177290934,"event":"connect-worker-restarted","detail":{"worker":"connect-1"}}
+{"ts_ms":1790177497110,"event":"clickhouse-restored","detail":{"backlog":5010701,"lambda_observed":19998,"mu_measured":72883,"predicted_drain_s":95}}
+{"ts_ms":1790177597572,"event":"backlog-drained","detail":{"observed_drain_s":100,"predicted_drain_s":95}}
+{"ts_ms":1790177777639,"event":"steady-state-after-recovery","detail":{}}
+{"ts_ms":1790177778065,"event":"new-column-null-after-backfill","detail":{"null_rows":0,"live_rows":2162836}}
+{"ts_ms":1790177778089,"event":"generator-rate","detail":{"rate":0}}
+{"ts_ms":1790177779351,"event":"generator-stopped","detail":{}}
+{"ts_ms":1790177906743,"event":"reconcile-final","converged":true}
+{"ts_ms":1790177907138,"event":"oom-check","detail":{"cdc-lab-clickhouse-1":false,"cdc-lab-collector-1":false,"cdc-lab-connect-1-1":false,"cdc-lab-connect-2-1":false,"cdc-lab-generator-1":false,"cdc-lab-kafka-1":false,"cdc-lab-postgres-1":false,"cdc-lab-sink-1":false,"cdc-lab-sink-2":false,"cdc-lab-tools-1":false}}

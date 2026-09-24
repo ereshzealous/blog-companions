@@ -8,7 +8,8 @@ source "$(dirname "$0")/lib.sh"
 "$LAB/scenarios/00-up.sh" capacity
 RUN_ID=$(cat control/run-id)
 FILL_RATE=${FILL_RATE:-150000}
-FILL_S=${FILL_S:-90}
+FILL_S=${FILL_S:-120}       # capture runs during this window: measures capture rate under live writes
+RESERVOIR_S=${RESERVOIR_S:-120}  # capture paused during this window: builds the WAL backlog to drain
 
 docker compose stop sink
 set_rate 0
@@ -25,10 +26,23 @@ fill_and_drain() {
   event "phase-fill-tasks$tasks-start" "{\"rate\":$FILL_RATE}"
   set_rate "$FILL_RATE"
   sleep "$FILL_S"
-  set_rate 0
   event "phase-fill-tasks$tasks-end"
+
+  # Capture can keep up with the generator on a fast machine, and then no backlog forms and there is
+  # nothing to drain. Stopping capture while the source keeps writing builds the reservoir on purpose,
+  # so the drain measures capture throughput rather than the generator's.
+  say "tasks.max=$tasks: pause capture for ${RESERVOIR_S}s while the source keeps writing"
+  connectctl stop
+  connectctl wait STOPPED 180
+  event "phase-reservoir-tasks$tasks-start" "{\"seconds\":$RESERVOIR_S}"
+  sleep "$RESERVOIR_S"
+  set_rate 0
+  event "phase-reservoir-tasks$tasks-end"
+  connectctl resume
+  connectctl wait RUNNING 300
+
   event "phase-catchup-tasks$tasks-start" "{\"tasks.max\":$tasks}"
-  wait_until 1800 "capture caught up with tasks.max=$tasks" "(m.get('unconfirmed_wal_bytes') or 0) < 64*1024*1024"
+  wait_flat 1800 "capture caught up with tasks.max=$tasks" kafka_end_offsets 30
   event "phase-catchup-tasks$tasks-end"
 }
 fill_and_drain 1

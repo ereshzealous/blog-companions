@@ -1,0 +1,172 @@
+{
+ "label": "after-resnapshot",
+ "ts_ms": 1790181077846,
+ "contract_version": 1,
+ "tables": {
+  "device_registry": {
+   "columns_compared": [
+    "device_id",
+    "tenant_id",
+    "serial_number",
+    "model",
+    "gateway_id",
+    "status",
+    "firmware_version",
+    "updated_at_ms"
+   ],
+   "source_rows": 2297630,
+   "clickhouse_logical_rows": 2339127,
+   "clickhouse_logical_duplicate_keys": 0,
+   "clickhouse_physical_rows": 3339737,
+   "clickhouse_physical_extra_versions": 997262,
+   "mismatched_buckets": 4096,
+   "missing_in_clickhouse": 0,
+   "ghost_rows_in_clickhouse": 41497,
+   "content_mismatches": 0,
+   "samples": {
+    "missing": [],
+    "ghost": [
+     36,
+     63,
+     69,
+     74,
+     225,
+     245,
+     4156,
+     4193,
+     4284,
+     4311
+    ],
+    "content": []
+   },
+   "evidence": {
+    "36": {
+     "source_row": null,
+     "clickhouse_versions": [
+      {
+       "version": 6,
+       "is_deleted": 0,
+       "sink_id": "91997e52675b",
+       "applied_at": "2026-09-23 15:53:34.218"
+      }
+     ],
+     "change_history": [
+      {
+       "op": "r",
+       "snapshot": "true",
+       "position": 505167320,
+       "partition": 4,
+       "offset": 6,
+       "source_ts_ms": 1790178811259,
+       "sink_id": "91997e52675b",
+       "applied_at": "2026-09-23 15:53:34.286",
+       "after": "{\"device_id\":36,\"tenant_id\":37,\"serial_number\":\"SN-0000000036\",\"model\":\"pulse-ox-1\",\"gateway_id\":1000036,\"status\":\"active\",\"firmware_version\":\"fw-4.1.10\",\"updated_at_ms\":1757750400036}"
+      }
+     ]
+    },
+    "63": {
+     "source_row": null,
+     "clickhouse_versions": [
+      {
+       "version": 11,
+       "is_deleted": 0,
+       "sink_id": "91997e52675b",
+       "applied_at": "2026-09-23 15:53:33.465"
+      }
+     ],
+     "change_history": [
+      {
+       "op": "r",
+       "snapshot": "true",
+       "position": 505167320,
+       "partition": 1,
+       "offset": 11,
+       "source_ts_ms": 1790178811259,
+       "sink_id": "91997e52675b",
+       "applied_at": "2026-09-23 15:53:33.533",
+       "after": "{\"device_id\":63,\"tenant_id\":64,\"serial_number\":\"SN-0000000063\",\"model\":\"glucose-4\",\"gateway_id\":1000063,\"status\":\"active\",\"firmware_version\":\"fw-4.0.11\",\"updated_at_ms\":1757750400063}"
+      }
+     ]
+    },
+    "69": {
+     "source_row": null,
+     "clickhouse_versions": [
+      {
+       "version": 12,
+       "is_deleted": 0,
+       "sink_id": "91997e52675b",
+       "applied_at": "2026-09-23 15:53:34.028"
+      }
+     ],
+     "change_history": [
+      {
+       "op": "r",
+       "snapshot": "true",
+       "position": 505167320,
+       "partition": 3,
+       "offset": 12,
+       "source_ts_ms": 1790178811259,
+       "sink_id": "91997e52675b",
+       "applied_at": "2026-09-23 15:53:34.097",
+       "after": "{\"device_id\":69,\"tenant_id\":70,\"serial_number\":\"SN-0000000069\",\"model\":\"gateway-hub-2\",\"gateway_id\":1000069,\"status\":\"active\",\"firmware_version\":\"fw-4.6.4\",\"updated_at_ms\":1757750400069}"
+      }
+     ]
+    }
+   },
+   "converged": false,
+   "seconds": 12.2
+  },
+  "device_status": {
+   "columns_compared": [
+    "device_id",
+    "tenant_id",
+    "battery_pct",
+    "signal_dbm",
+    "connectivity",
+    "last_seen_ms",
+    "updated_at_ms"
+   ],
+   "source_rows": 500000,
+   "clickhouse_logical_rows": 500000,
+   "clickhouse_logical_duplicate_keys": 0,
+   "clickhouse_physical_rows": 1115461,
+   "clickhouse_physical_extra_versions": 615461,
+   "mismatched_buckets": 0,
+   "missing_in_clickhouse": 0,
+   "ghost_rows_in_clickhouse": 0,
+   "content_mismatches": 0,
+   "samples": {
+    "missing": [],
+    "ghost": [],
+    "content": []
+   },
+   "evidence": {},
+   "converged": true,
+   "seconds": 0.6
+  }
+ },
+ "history": {
+  "deliveries": 8319326,
+  "distinct_change_events": 8319326,
+  "distinct_kafka_records": 8319326,
+  "sink_replays": 0,
+  "capture_replays": 0,
+  "delete_deliveries": 3348,
+  "snapshot_read_deliveries": 5289507
+ },
+ "version_ordering": {
+  "device_registry": {
+   "keys": 2342475,
+   "last_event_differs": 0,
+   "final_state_differs": 0,
+   "sample_keys": []
+  },
+  "device_status": {
+   "keys": 500000,
+   "last_event_differs": 0,
+   "final_state_differs": 0,
+   "sample_keys": []
+  }
+ },
+ "converged": false
+}

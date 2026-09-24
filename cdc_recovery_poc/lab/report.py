@@ -121,7 +121,10 @@ def capacity(summary, ch):
         if name.startswith("catchup"):
             # Offsets confirm on a flush interval, so the phase end lags the real catch-up: fit only while Kafka grew.
             grew = [b for a, b in zip(m, m[1:]) if (b.get("kafka_end_offsets") or 0) > (a.get("kafka_end_offsets") or 0)]
-            m = [x for x in m if grew and x["ts_ms"] <= grew[-1]["ts_ms"]]
+            trimmed = [x for x in m if grew and x["ts_ms"] <= grew[-1]["ts_ms"]]
+            # A fast drain can finish inside a couple of samples, leaving nothing to fit. Keep the
+            # whole phase window rather than reporting null: a coarse rate beats no measurement.
+            m = trimmed if len(trimmed) >= 3 else window(METRICS, s["ts_ms"], e["ts_ms"])
         p = {"seconds": round(rel(e["ts_ms"]) - rel(s["ts_ms"]), 1),
              "source_changes_per_s": mean(window(GENERATOR, s["ts_ms"] + 10000, e["ts_ms"]), "changes_per_s"),
              "kafka_records_per_s": rate(m, "kafka_end_offsets"),

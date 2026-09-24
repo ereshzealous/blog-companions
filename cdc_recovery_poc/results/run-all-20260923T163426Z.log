@@ -1,0 +1,193 @@
+
+=== 16:34:26Z · run-all started; lambda=20000; log results/run-all-20260923T163426Z.log
+
+=== 16:34:26Z · starting at capacity-only; taking mu from capacity-20260923T143225Z
+
+=== 16:34:26Z · mu=72883 changes/s
+
+=== 16:34:26Z · stopping the lab
+
+=== 16:34:26Z · verifying
+
+capacity · capacity-20260913T174438Z
+  postgres 18.6 (Debian 18.6-1.pgdg13+2) · clickhouse 26.8.3.105 · kafka_image apache/kafka:4.3.1 · debezium_image quay.io/debezium/connect:3.6.2.Final
+  FAIL  scenario finished (events.jsonl ends with oom-check)  —  last event: reconcile-capacity
+  PASS  no container was OOM-killed  —  none
+  PASS  reconcile capacity converged=True  —  converged=True
+  PASS  capacity: device_registry has no missing, ghost, different or duplicate rows  —  source=2416498 all zero
+  PASS  capacity: device_status has no missing, ghost, different or duplicate rows  —  source=500000 all zero
+  FAIL  tasks.max=4 still runs one capture task  —  tasks running: None
+  FAIL  a second sink process adds throughput  —  missing
+  4/7 checks passed
+
+capacity · capacity-20260913T190718Z
+  postgres 18.6 (Debian 18.6-1.pgdg13+2) · clickhouse 26.8.3.105 · kafka_image apache/kafka:4.3.1 · debezium_image quay.io/debezium/connect:3.6.2.Final
+  PASS  scenario finished (events.jsonl ends with oom-check)  —  last event: oom-check
+  PASS  no container was OOM-killed  —  none
+  PASS  reconcile capacity converged=True  —  converged=True
+  PASS  capacity: device_registry has no missing, ghost, different or duplicate rows  —  source=2188426 all zero
+  PASS  capacity: device_status has no missing, ghost, different or duplicate rows  —  source=500000 all zero
+  PASS  tasks.max=4 still runs one capture task  —  tasks running: 1
+  PASS  a second sink process adds throughput  —  46,344 -> 73,105 changes/s
+  7/7 checks passed
+
+capacity · capacity-20260923T143225Z
+  postgres 18.6 (Debian 18.6-1.pgdg13+2) · clickhouse 26.8.3.105 · kafka_image apache/kafka:4.3.1 · debezium_image quay.io/debezium/connect:3.6.2.Final
+  PASS  scenario finished (events.jsonl ends with oom-check)  —  last event: oom-check
+  PASS  no container was OOM-killed  —  none
+  PASS  reconcile capacity converged=True  —  converged=True
+  PASS  capacity: device_registry has no missing, ghost, different or duplicate rows  —  source=2185084 all zero
+  PASS  capacity: device_status has no missing, ghost, different or duplicate rows  —  source=500000 all zero
+  FAIL  tasks.max=4 still runs one capture task  —  tasks running: None
+  PASS  a second sink process adds throughput  —  49,410 -> 72,884 changes/s
+  6/7 checks passed
+
+capture-pressure · capture-pressure-20260913T210016Z
+  postgres 18.6 (Debian 18.6-1.pgdg13+2) · clickhouse 26.8.3.105 · kafka_image apache/kafka:4.3.1 · debezium_image quay.io/debezium/connect:3.6.2.Final
+  PASS  scenario finished (events.jsonl ends with oom-check)  —  last event: oom-check
+  PASS  no container was OOM-killed  —  none
+  PASS  reconcile final converged=True  —  converged=True
+  PASS  final: device_registry has no missing, ghost, different or duplicate rows  —  source=2082939 all zero
+  PASS  final: device_status has no missing, ghost, different or duplicate rows  —  source=500000 all zero
+  PASS  outage recorded: kafka-paused
+  PASS  outage recorded: kafka-unpaused
+  PASS  outage recorded: caught-up
+  PASS  the source kept writing into WAL while Kafka was down  —  1.57 GB retained after 240.40000000000003 s, caught up in 124 s
+  9/9 checks passed
+
+capture-pressure · capture-pressure-20260913T215324Z
+  postgres 18.6 (Debian 18.6-1.pgdg13+2) · clickhouse 26.8.3.105 · kafka_image apache/kafka:4.3.1 · debezium_image quay.io/debezium/connect:3.6.2.Final
+  PASS  scenario finished (events.jsonl ends with oom-check)  —  last event: oom-check
+  PASS  no container was OOM-killed  —  none
+  PASS  reconcile final converged=True  —  converged=True
+  PASS  final: device_registry has no missing, ghost, different or duplicate rows  —  source=2084577 all zero
+  PASS  final: device_status has no missing, ghost, different or duplicate rows  —  source=500000 all zero
+  PASS  outage recorded: kafka-paused
+  PASS  outage recorded: kafka-unpaused
+  PASS  outage recorded: caught-up
+  PASS  the source kept writing into WAL while Kafka was down  —  1.48 GB retained after 240.3 s, caught up in 124 s
+  9/9 checks passed
+
+capture-pressure · capture-pressure-20260923T153833Z
+  postgres 18.6 (Debian 18.6-1.pgdg13+2) · clickhouse 26.8.3.105 · kafka_image apache/kafka:4.3.1 · debezium_image quay.io/debezium/connect:3.6.2.Final
+  PASS  scenario finished (events.jsonl ends with oom-check)  —  last event: oom-check
+  PASS  no container was OOM-killed  —  none
+  PASS  reconcile final converged=True  —  converged=True
+  PASS  final: device_registry has no missing, ghost, different or duplicate rows  —  source=2093434 all zero
+  PASS  final: device_status has no missing, ghost, different or duplicate rows  —  source=500000 all zero
+  PASS  outage recorded: kafka-paused
+  PASS  outage recorded: kafka-unpaused
+  PASS  outage recorded: caught-up
+  PASS  the source kept writing into WAL while Kafka was down  —  1.48 GB retained after 240.20000000000002 s, caught up in 179 s
+  9/9 checks passed
+
+history-loss · history-loss-20260913T211339Z
+  postgres 18.6 (Debian 18.6-1.pgdg13+2) · clickhouse 26.8.3.105 · kafka_image apache/kafka:4.3.1 · debezium_image quay.io/debezium/connect:3.6.2.Final
+  FAIL  scenario finished (events.jsonl ends with oom-check)  —  last event: post-run-finding
+  PASS  no container was OOM-killed  —  none
+  PASS  reconcile after-resnapshot converged=False  —  converged=False
+  PASS  after the resnapshot only ghost rows remain (deletes it could not see)  —  8,706 ghost rows, 0 missing, 0 different
+  PASS  reconcile after-sweep converged=True  —  converged=True
+  PASS  after-sweep: device_registry has no missing, ghost, different or duplicate rows  —  source=2077082 all zero
+  PASS  after-sweep: device_status has no missing, ghost, different or duplicate rows  —  source=500000 all zero
+  PASS  the lost slot raised an alert  —  capture-unassigned, source-history-lost, source-history-unreserved
+  FAIL  capture never pretended to resume: lost, refused, then resnapshot and sweep  —  source-history-lost -> resnapshot-sweep
+  7/9 checks passed
+
+history-loss · history-loss-20260913T220653Z
+  postgres 18.6 (Debian 18.6-1.pgdg13+2) · clickhouse 26.8.3.105 · kafka_image apache/kafka:4.3.1 · debezium_image quay.io/debezium/connect:3.6.2.Final
+  PASS  scenario finished (events.jsonl ends with oom-check)  —  last event: oom-check
+  PASS  no container was OOM-killed  —  none
+  PASS  reconcile after-resnapshot converged=False  —  converged=False
+  PASS  after the resnapshot only ghost rows remain (deletes it could not see)  —  41,731 ghost rows, 0 missing, 0 different
+  PASS  reconcile after-sweep converged=True  —  converged=True
+  PASS  after-sweep: device_registry has no missing, ghost, different or duplicate rows  —  source=2299082 all zero
+  PASS  after-sweep: device_status has no missing, ghost, different or duplicate rows  —  source=500000 all zero
+  PASS  the lost slot raised an alert  —  capture-failed, capture-unassigned, source-history-lost, source-history-unreserved
+  PASS  capture never pretended to resume: lost, refused, then resnapshot and sweep  —  source-history-lost -> normal-resume-requested -> normal-resume-stalled -> normal-resume-refused -> resnapshot-sweep
+  9/9 checks passed
+
+history-loss · history-loss-20260923T155256Z
+  postgres 18.6 (Debian 18.6-1.pgdg13+2) · clickhouse 26.8.3.105 · kafka_image apache/kafka:4.3.1 · debezium_image quay.io/debezium/connect:3.6.2.Final
+  PASS  scenario finished (events.jsonl ends with oom-check)  —  last event: oom-check
+  PASS  no container was OOM-killed  —  none
+  PASS  reconcile after-resnapshot converged=False  —  converged=False
+  PASS  after the resnapshot only ghost rows remain (deletes it could not see)  —  41,497 ghost rows, 0 missing, 0 different
+  PASS  reconcile after-sweep converged=True  —  converged=True
+  PASS  after-sweep: device_registry has no missing, ghost, different or duplicate rows  —  source=2297630 all zero
+  PASS  after-sweep: device_status has no missing, ghost, different or duplicate rows  —  source=500000 all zero
+  PASS  the lost slot raised an alert  —  capture-failed, capture-unassigned, source-history-lost, source-history-unreserved
+  PASS  capture never pretended to resume: lost, refused, then resnapshot and sweep  —  source-history-lost -> normal-resume-requested -> normal-resume-stalled -> normal-resume-refused -> resnapshot-sweep
+  9/9 checks passed
+
+recovery · recovery-20260913T201024Z
+  postgres 18.6 (Debian 18.6-1.pgdg13+2) · clickhouse 26.8.3.105 · kafka_image apache/kafka:4.3.1 · debezium_image quay.io/debezium/connect:3.6.2.Final
+  FAIL  scenario finished (events.jsonl ends with oom-check)  —  last event: post-run-finding
+  PASS  no container was OOM-killed  —  none
+  FAIL  reconcile final converged=True  —  converged=False
+  FAIL  final: device_registry has no missing, ghost, different or duplicate rows  —  source=2164442 {'content_mismatches': 1336238}
+  PASS  final: device_status has no missing, ghost, different or duplicate rows  —  source=500000 all zero
+  PASS  no deleted key is still visible downstream  —  5000 keys deleted, 0 still visible
+  PASS  the crashed batch replayed, and nothing else  —  crashed batch 9,951 rows, sink replays 9,951
+  FAIL  the backfill reached every row  —  NULL rows after backfill: 1336916
+  PASS  drain measured (not a pass condition)  —  6,229,707 records, predicted 117 s
+  5/9 checks passed
+
+recovery · recovery-20260913T203641Z
+  postgres 18.6 (Debian 18.6-1.pgdg13+2) · clickhouse 26.8.3.105 · kafka_image apache/kafka:4.3.1 · debezium_image quay.io/debezium/connect:3.6.2.Final
+  FAIL  scenario finished (events.jsonl ends with oom-check)  —  last event: post-run-finding
+  PASS  no container was OOM-killed  —  none
+  FAIL  reconcile final converged=True  —  converged=False
+  FAIL  final: device_registry has no missing, ghost, different or duplicate rows  —  source=2161992 {'content_mismatches': 1}
+  PASS  final: device_status has no missing, ghost, different or duplicate rows  —  source=500000 all zero
+  PASS  no deleted key is still visible downstream  —  5000 keys deleted, 0 still visible
+  PASS  the crashed batch replayed, and nothing else  —  crashed batch 9,982 rows, sink replays 9,982
+  PASS  the backfill reached every row  —  NULL rows after backfill: 0
+  PASS  drain measured (not a pass condition)  —  5,691,230 records, predicted 105 s
+  6/9 checks passed
+
+recovery · recovery-20260913T212902Z
+  postgres 18.6 (Debian 18.6-1.pgdg13+2) · clickhouse 26.8.3.105 · kafka_image apache/kafka:4.3.1 · debezium_image quay.io/debezium/connect:3.6.2.Final
+  PASS  scenario finished (events.jsonl ends with oom-check)  —  last event: oom-check
+  PASS  no container was OOM-killed  —  none
+  PASS  reconcile final converged=True  —  converged=True
+  PASS  final: device_registry has no missing, ghost, different or duplicate rows  —  source=2150391 all zero
+  PASS  final: device_status has no missing, ghost, different or duplicate rows  —  source=500000 all zero
+  PASS  no deleted key is still visible downstream  —  5000 keys deleted, 0 still visible
+  PASS  the crashed batch replayed, and nothing else  —  crashed batch 9,976 rows, sink replays 9,976
+  PASS  the backfill reached every row  —  NULL rows after backfill: 0
+  PASS  drain measured (not a pass condition)  —  6,111,435 records, predicted 115 s
+  9/9 checks passed
+
+recovery · recovery-20260923T151517Z
+  postgres 18.6 (Debian 18.6-1.pgdg13+2) · clickhouse 26.8.3.105 · kafka_image apache/kafka:4.3.1 · debezium_image quay.io/debezium/connect:3.6.2.Final
+  PASS  scenario finished (events.jsonl ends with oom-check)  —  last event: oom-check
+  PASS  no container was OOM-killed  —  none
+  PASS  reconcile final converged=True  —  converged=True
+  PASS  final: device_registry has no missing, ghost, different or duplicate rows  —  source=2163117 all zero
+  PASS  final: device_status has no missing, ghost, different or duplicate rows  —  source=500000 all zero
+  PASS  no deleted key is still visible downstream  —  5000 keys deleted, 0 still visible
+  PASS  the crashed batch replayed, and nothing else  —  crashed batch 10,000 rows, sink replays 10,000
+  PASS  the backfill reached every row  —  NULL rows after backfill: 0
+  PASS  drain measured (not a pass condition)  —  5,010,701 records, predicted 95 s
+  9/9 checks passed
+
+8/13 runs pass their scenario's criteria
+
+=== 16:34:26Z · building the visual report
+recovery-20260923T151517Z: report.html written (9/9 checks)
+recovery-20260913T212902Z: report.html written (9/9 checks)
+recovery-20260913T203641Z: report.html written (6/9 checks)
+recovery-20260913T201024Z: report.html written (5/9 checks)
+history-loss-20260923T155256Z: report.html written (9/9 checks)
+history-loss-20260913T220653Z: report.html written (9/9 checks)
+history-loss-20260913T211339Z: report.html written (7/9 checks)
+capture-pressure-20260923T153833Z: report.html written (9/9 checks)
+capture-pressure-20260913T215324Z: report.html written (9/9 checks)
+capture-pressure-20260913T210016Z: report.html written (9/9 checks)
+capacity-20260923T143225Z: report.html written (6/7 checks)
+capacity-20260913T190718Z: report.html written (7/7 checks)
+capacity-20260913T174438Z: report.html written (4/7 checks)
+results/index.html written (13 runs)
+
+=== 16:34:26Z · done: 

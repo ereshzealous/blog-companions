@@ -1,0 +1,10 @@
+{"ts_ms":1790178950914,"alert":"capture-unassigned","state":"firing"}
+{"ts_ms":1790179052968,"alert":"source-history-unreserved","state":"firing"}
+{"ts_ms":1790179072977,"alert":"source-history-lost","state":"firing"}
+{"ts_ms":1790179072977,"alert":"source-history-unreserved","state":"resolved"}
+{"ts_ms":1790180873829,"alert":"capture-failed","state":"firing"}
+{"ts_ms":1790180873829,"alert":"capture-unassigned","state":"resolved"}
+{"ts_ms":1790180915849,"alert":"capture-unassigned","state":"firing"}
+{"ts_ms":1790180915849,"alert":"capture-failed","state":"resolved"}
+{"ts_ms":1790180919849,"alert":"capture-unassigned","state":"resolved"}
+{"ts_ms":1790180919849,"alert":"source-history-lost","state":"resolved"}

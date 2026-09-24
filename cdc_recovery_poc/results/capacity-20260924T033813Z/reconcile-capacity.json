@@ -1,0 +1,85 @@
+{
+ "label": "capacity",
+ "ts_ms": 1790223090267,
+ "contract_version": 1,
+ "tables": {
+  "device_registry": {
+   "columns_compared": [
+    "device_id",
+    "tenant_id",
+    "serial_number",
+    "model",
+    "gateway_id",
+    "status",
+    "firmware_version",
+    "updated_at_ms"
+   ],
+   "source_rows": 2472068,
+   "clickhouse_logical_rows": 2472068,
+   "clickhouse_logical_duplicate_keys": 0,
+   "clickhouse_physical_rows": 4753344,
+   "clickhouse_physical_extra_versions": 2208894,
+   "mismatched_buckets": 0,
+   "missing_in_clickhouse": 0,
+   "ghost_rows_in_clickhouse": 0,
+   "content_mismatches": 0,
+   "samples": {
+    "missing": [],
+    "ghost": [],
+    "content": []
+   },
+   "evidence": {},
+   "converged": true,
+   "seconds": 5.6
+  },
+  "device_status": {
+   "columns_compared": [
+    "device_id",
+    "tenant_id",
+    "battery_pct",
+    "signal_dbm",
+    "connectivity",
+    "last_seen_ms",
+    "updated_at_ms"
+   ],
+   "source_rows": 500000,
+   "clickhouse_logical_rows": 500000,
+   "clickhouse_logical_duplicate_keys": 0,
+   "clickhouse_physical_rows": 554138,
+   "clickhouse_physical_extra_versions": 54138,
+   "mismatched_buckets": 0,
+   "missing_in_clickhouse": 0,
+   "ghost_rows_in_clickhouse": 0,
+   "content_mismatches": 0,
+   "samples": {
+    "missing": [],
+    "ghost": [],
+    "content": []
+   },
+   "evidence": {},
+   "converged": true,
+   "seconds": 0.6
+  }
+ },
+ "history": {
+  "deliveries": 70611421,
+  "distinct_change_events": 70611421,
+  "distinct_kafka_records": 70611421,
+  "sink_replays": 0,
+  "capture_replays": 0,
+  "delete_deliveries": 72382,
+  "snapshot_read_deliveries": 2500000
+ },
+ "version_ordering": {
+  "device_registry": {
+   "keys": 2544450,
+   "last_event_differs": 0,
+   "final_state_differs": 0,
+   "sample_keys": []
+  },
+  "device_status": {
+   "error": "DatabaseError: Received ClickHouse exception, code: 241, server response: Code: 241. DB::Exception: Query memory limit exceeded: would use 381.77 MiB (attempt to allocate chunk of 4.05 MiB), maximum: 381.47 MiB: While executing SourceFromNativeStream. (MEMORY_LIMIT_EXCEEDED) (for url http://clickhou"
+  }
+ },
+ "converged": true
+}
