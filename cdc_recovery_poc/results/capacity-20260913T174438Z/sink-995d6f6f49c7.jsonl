@@ -1,3 +1,0 @@
-{"ts_ms":1789321507403,"sink_id":"995d6f6f49c7","contract_version":1,"records":140000,"batches":7,"history_rows":140000,"current_rows":140000,"tombstones":0,"insert_ms_avg":144.6,"insert_ms_max":166.2,"unmapped_fields":[]}
-{"ts_ms":1789321512499,"sink_id":"995d6f6f49c7","contract_version":1,"records":400000,"batches":20,"history_rows":400000,"current_rows":400000,"tombstones":0,"insert_ms_avg":148.2,"insert_ms_max":202.5,"unmapped_fields":[]}
-{"ts_ms":1789321517649,"sink_id":"995d6f6f49c7","contract_version":1,"records":245220,"batches":13,"history_rows":245220,"current_rows":245220,"tombstones":0,"insert_ms_avg":172.1,"insert_ms_max":268.8,"unmapped_fields":[]}

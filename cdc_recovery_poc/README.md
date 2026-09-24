@@ -186,7 +186,7 @@ The lab is now idle: capture is running, and no load is being generated. The sce
 
 Every scenario calls `00-up.sh` first. **Starting a scenario destroys the previous environment's containers and volumes.** The `results/` directory is kept.
 
-Each run writes `results/<scenario>-<UTC start time>/`, for example `results/recovery-20260913T212902Z/`. Output also streams to the terminal; to keep a copy, append `2>&1 | tee <name>.log`.
+Each run writes `results/<scenario>-<UTC start time>/`, for example `results/recovery-20260923T151517Z/`. Output also streams to the terminal; to keep a copy, append `2>&1 | tee <name>.log`.
 
 Run them in this order, because the recovery test needs the sink capacity measured by the capacity run.
 
@@ -287,17 +287,17 @@ scripts/verify-run.py results/<run-id>       # one run
 For the published recovery run it prints:
 
 ```text
-recovery · recovery-20260913T212902Z
+recovery · recovery-20260923T151517Z
   postgres 18.6 (Debian 18.6-1.pgdg13+2) · clickhouse 26.8.3.105 · kafka_image apache/kafka:4.3.1 · debezium_image quay.io/debezium/connect:3.6.2.Final
   PASS  scenario finished (events.jsonl ends with oom-check)  —  last event: oom-check
   PASS  no container was OOM-killed  —  none
   PASS  reconcile final converged=True  —  converged=True
-  PASS  final: device_registry has no missing, ghost, different or duplicate rows  —  source=2150391 all zero
+  PASS  final: device_registry has no missing, ghost, different or duplicate rows  —  source=2163117 all zero
   PASS  final: device_status has no missing, ghost, different or duplicate rows  —  source=500000 all zero
   PASS  no deleted key is still visible downstream  —  5000 keys deleted, 0 still visible
-  PASS  the crashed batch replayed, and nothing else  —  crashed batch 9,976 rows, sink replays 9,976
+  PASS  the crashed batch replayed, and nothing else  —  crashed batch 10,000 rows, sink replays 10,000
   PASS  the backfill reached every row  —  NULL rows after backfill: 0
-  PASS  drain measured (not a pass condition)  —  6,111,435 records, predicted 115 s
+  PASS  drain measured (not a pass condition)  —  5,010,701 records, predicted 95 s
   9/9 checks passed
 ```
 
@@ -484,120 +484,106 @@ Distinct counts over tens of millions of history rows use `GROUP BY` on 128-bit 
 
 ![The six proof obligations with the measured evidence under each, and the fault-injection timeline of the final recovery run beside the expected-failure run.](docs/11-proving-the-recovery-contract.png)
 
-All runs used the same laptop (Apple M5 Pro; Docker VM with 15 CPUs and 8 GB) and PostgreSQL 18.6, Debezium 3.6.2 on Kafka Connect 4.3.0, Kafka 4.3.1 and ClickHouse 26.8.3. Every number below is copied from a run's `summary.json` or `reconcile-*.json`. Runs that aborted, failed or were superseded stay in `results/`, with the reason recorded in their `events.jsonl`.
+Six runs are kept: the four that make up the current evidence set, run on 23 and 24 September 2026, and
+two earlier recovery runs that failed reconciliation and are kept because the failures a proof layer
+catches are evidence too. Every run used the same laptop (Apple M5 Pro; Docker VM with 15 CPUs and 8 GB)
+with PostgreSQL 18.6, Debezium 3.6.2 on Kafka Connect 4.3, Kafka 4.3.1 and ClickHouse 26.8.3. Every number
+below is copied from a run's `summary.json` or `reconcile-*.json`; none is typed in by hand.
 
-### Reproduced ten days later
+### Capacity · `capacity-20260924T033813Z`
 
-The four scenarios were run again on 23 and 24 September 2026 on the same laptop, with the lab's own
-`run-all.sh`. Every contract claim held on the second, independent set of runs:
+No faults. This run measures what the boundaries can do before anything is broken.
 
-- Recovery test `recovery-20260923T151517Z`: 2,663,117 rows reconciled, 0 missing, ghost or different;
-  10,000 sink replays, exactly the crashed batch; capture resumed on the other worker in 12.4 s; the drain
-  took 100 s against 95 predicted.
-- Capture pressure `capture-pressure-20260923T153833Z`: 1.481 GB of WAL retained across a 240 s Kafka
-  outage, against 1.478 GB in September; caught up in 179 s.
-- History loss `history-loss-20260923T155256Z`: the slot went `lost`, capture refused to resume for 30
-  minutes, the resnapshot left 41,497 ghost rows and the sweep removed all of them.
-- Capacity `capacity-20260924T033813Z`: `tasks.max = 4` still ran one capture task; a second sink process
-  took applied throughput from 50,606 to 73,819 changes per second.
+- With the source committing 148,000 changes per second, the single PostgreSQL capture task published
+  136,000 records per second.
+- Capture was then stopped for 120 seconds while writes continued, so unconfirmed WAL peaked at 3.70 GB.
+  Draining that backlog with no source load ran at 155,000 records per second.
+- With `tasks.max = 4`, Connect still ran **one** task, and the drain measured 154,000 records per second.
+  The log fixes capture capacity; `tasks.max` does not move it.
+- One sink process applied 50,606 changes per second; two in one consumer group applied 73,819.
 
-Rates differ from September because the machine was quieter: capture drained WAL at 154,724 records per
-second rather than 122,815. Ratios and behaviour are what to compare, not absolute throughput.
+### Recovery test · `recovery-20260923T151517Z`
 
-Three defects in the lab's own measurement code surfaced during those runs and are fixed: a
-version-ordering query that exhausted ClickHouse and took a completed reconciliation down with it, a
-drain phase that waited on a condition an idle source can never satisfy, and a capacity fill that
-measured nothing when capture kept up with the generator. Each is described where it was fixed.
+Live load: 20,000 changes per second throughout, with μ = 72,883 measured before the faults.
 
-### Capacity · `capacity-20260913T190718Z`
+- **Schema change and backfill.** After ClickHouse added `firmware_channel`, 2,005,801 of 2,036,170 live
+  rows read NULL while PostgreSQL returned `stable`. An incremental snapshot applied 2,039,049 reads in 33
+  seconds and left 0 of 2,162,836 live rows NULL.
+- **ClickHouse throttled.** Stepping ClickHouse down to 0.08 CPUs made lag grow by 8,339 records per
+  second. Lag peaked at 5,062,568 records.
+- **Connect worker killed.** Capture resumed on the other worker after 12.4 seconds; Connect's status
+  still reported the task RUNNING on the dead worker for 7.8 seconds. Debezium re-delivered 406,730
+  changes on resume.
+- **Sink crash after insert, before commit.** The crashed batch held 10,000 rows. History counts exactly
+  10,000 sink replays and 0 duplicate current-state keys.
+- **Drain.** At restore the backlog was 5,010,701 records. B / (μ − λ) with μ = 72,883 and observed
+  λ = 19,998 predicted 95 seconds; the drain took 100. The sink reached 90% of its measured rate 8 seconds
+  in, peaked at 76,000 per second and later dipped to about 39,000, with no insert retries.
+- **Freshness.** p99 from source commit to queryable was 1.2 seconds at baseline, 4.7 minutes in the worst
+  10-second bucket, and 1.5 seconds after recovery.
+- **Reconciliation.** 2,163,117 device-registry and 500,000 device-status rows compared key by key: 0
+  missing, 0 ghost, 0 different, 0 logical duplicate keys, and 0 of the 5,000 deleted devices still
+  visible.
+- **Version ordering.** Replaying device-registry history ordered by source position instead of Kafka
+  offset would change the final state of **1** key in this run (`device_id 528269`). The same check on
+  device-status did not complete: ClickHouse hit its memory ceiling, and the run recorded the error
+  instead of failing the reconciliation, which is what the check is supposed to do.
 
-- With the source committing 150,000 changes per second, the single PostgreSQL capture task published 118,000 records per second. Unconfirmed WAL on the slot peaked at 1.9 GB.
-- With no source load, the task drained that WAL at 123,000 records per second. With `tasks.max = 4`, Connect still ran one task, and the drain measured 121,000 per second.
-- One sink process applied 46,000 changes per second; two processes in one consumer group applied 73,105. That figure is μ for the recovery test.
-
-### Recovery test · `recovery-20260913T212902Z`
-
-Live load: 20,000 changes per second throughout.
-
-- **Schema change and backfill.** After ClickHouse added `firmware_channel`, 1,984,742 of 2,016,796 live rows read NULL while PostgreSQL returned `stable`. The incremental snapshot applied 2,019,339 reads in 32.4 seconds from its signal, and afterwards 0 of 2,150,251 live rows were NULL.
-- **ClickHouse throttled.** Stepping ClickHouse down to 0.08 CPUs made lag grow by 12,638 records per second. Lag peaked at 6,358,563 records, and the oldest unapplied change was 320 seconds old.
-- **Connect worker killed.** Capture resumed on the other worker after 12.1 seconds; Connect's status still reported the task RUNNING on the dead worker for 6.3 seconds. Debezium restarted from its last flushed offset, and 1,232,466 change events were delivered a second time, about one 60-second `offset.flush.interval.ms` at this rate.
-- **Sink crash after insert, before commit.** The crashed batch held 9,976 rows. History counts exactly 9,976 sink replays.
-- **Drain.** At restore the backlog was 6,111,435 records. B / (μ − λ) with μ = 73,105 and observed λ = 19,997 predicted 115 seconds; the drain took 155. The applied rate reached 90% of μ only 24 seconds after the restore and dipped to about 39,000–42,000 per second between 46 and 70 seconds, with 0 insert retries and a maximum insert time of 471 ms. The effective drain rate was 59,360 per second. The lab has no ClickHouse parts or merge metric, so the dip is recorded, not explained.
-- **Freshness.** p99 from source commit to queryable was 2.5 seconds at baseline, 5.7 minutes in the worst 10-second bucket, and 1.4 seconds after recovery.
-- **Reconciliation.** 2,150,391 device-registry and 500,000 device-status rows compared key by key: 0 missing, 0 ghost, 0 different, 0 logical duplicate keys. 3,915,261 extra physical versions were waiting for merges, as expected. All 5,000 explicitly deleted keys were gone from current state.
-- **Version ordering.** Replaying history ordered by source position instead of Kafka offset would change the final state of 0 keys in this run.
-
-### Capture pressure · `capture-pressure-20260913T215324Z`
+### Capture pressure · `capture-pressure-20260923T153833Z`
 
 Kafka was paused for 240 seconds while the generator kept writing 20,000 changes per second.
 
-- **The source was unaffected.** PostgreSQL committed 20,000 changes per second during the outage, the same as at baseline.
-- **WAL became the reservoir.** WAL retained by the slot grew from 369 MB at the pause to 1.48 GB when Kafka returned, and peaked at 1.89 GB while capture caught up.
-- **Status stayed green.** Connect reported the connector and task RUNNING for the whole outage.
-- **The freshness alert was blind.** Sink lag and the age of the oldest unapplied change are read from Kafka, so they had no value while Kafka was paused, and the 60-second freshness alert could not fire. It fired when Kafka returned, reporting an oldest unapplied change of 241 seconds. During the outage, only PostgreSQL-side metrics (retained WAL and slot position) showed the problem. Collector samples came every 5 seconds instead of 2, because each pass waited on Kafka timeouts.
-- **Recovery replayed work.** About 6 seconds after Kafka returned, the capture task reported FAILED for about 4 seconds, then RUNNING again. The scenario does not restart tasks, and the Connect logs were not kept, so what restarted it is not recorded. 981,138 change events were delivered a second time. Both sink processes restarted at the same moment, and 12,288 records replayed.
-- **Caught up** 124 seconds after Kafka returned: oldest unapplied change under 5 seconds, unconfirmed WAL under 256 MB, task RUNNING.
-- **Reconciliation.** 2,084,577 device-registry and 500,000 device-status rows: 0 missing, 0 ghost, 0 different, 0 logical duplicate keys. Version ordering: 0 keys would differ.
+- **The source was unaffected.** PostgreSQL committed 20,000 changes per second during the outage, the
+  same as at baseline.
+- **WAL became the reservoir.** WAL retained by the slot grew from 0.38 GB at the pause to 1.48 GB when
+  Kafka returned, and peaked at 1.95 GB while capture caught up.
+- **Status stayed green.** Connect reported the connector and task RUNNING for the whole outage, and the
+  freshness alert, computed from Kafka, could not fire until Kafka came back.
+- **Caught up** 179 seconds after Kafka returned.
+- **Reconciliation.** 2,093,434 device-registry and 500,000 device-status rows: 0 missing, 0 ghost, 0
+  different, 0 logical duplicate keys. Capture re-delivered 971,601 changes; the sink replayed none.
 
-### History loss · `history-loss-20260913T220653Z`
+### History loss · `history-loss-20260923T155256Z`
 
-`max_slot_wal_keep_size` was set to 1 GB and capture was stopped while the generator kept writing 20,000 changes per second.
+`max_slot_wal_keep_size` was set to 1 GB and capture was stopped while the generator kept writing.
 
-- **History lost.** The slot went `lost` (`invalidation_reason = wal_removed`) 123 seconds after capture stopped. The `capture-unassigned` alert had fired when capture stopped, `source-history-unreserved` fired 20 seconds before the loss, and `source-history-lost` fired at the next collector sample.
-- **Resume did not fail fast.** A normal resume left Connect reporting the connector RUNNING with no tasks. Debezium logged "Cannot obtain valid replication slot … attempt N out of 900" every 2 seconds. A lost slot has no `confirmed_flush_lsn`, and Debezium 3.6.2 treats that as a slot still being created: `PostgresConnection.readReplicationSlotInfo` retries 900 times with a 2-second pause (constants read from the 3.6.2 jar).
-- **Then it failed, misleadingly.** 1,812 seconds (30.2 minutes) after the resume, the task went FAILED with `ConnectException: Unable to obtain valid replication slot. Make sure there are no long-running transactions running in parallel …`. The message does not mention the lost slot. The connector itself stayed RUNNING.
-- **Operator recovery.** Offsets reset, the lost slot dropped, then a new initial snapshot: 2,789,558 reads applied in 62 seconds.
-- **Ghost rows.** Reconciliation after the resnapshot showed 0 missing and 0 different, but 41,731 device-registry rows still visible in ClickHouse that the source had deleted while history was lost. A resnapshot cannot emit those deletes.
-- **Sweep.** Every current-state row not re-emitted since the resnapshot began got a newer delete version: 41,731 rows. Reconciliation after the sweep: 2,299,082 device-registry and 500,000 device-status rows, 0 missing, 0 ghost, 0 different.
-- **The first history-loss run** (`history-loss-20260913T211339Z`) waited only 180 seconds for the resume to fail, recorded it as not refused, and was superseded by this run, which observes the full retry window.
+- **History lost.** The slot went `lost` (`invalidation_reason = wal_removed`) 123 seconds after capture
+  stopped, and the `source-history-lost` alert fired at the next sample.
+- **Resume did not fail fast.** Connect reported the connector RUNNING with no tasks while Debezium
+  retried the slot; 1,812 seconds (30.2 minutes) after the resume the task went FAILED, blaming
+  long-running transactions rather than the missing history.
+- **Operator recovery.** Offsets reset, the lost slot dropped, then a new initial snapshot: 2,789,507
+  reads applied in 61 seconds.
+- **Ghost rows.** Reconciliation after the resnapshot showed 0 missing and 0 different, but 41,497
+  device-registry rows still visible that the source had deleted while its history was gone. A resnapshot
+  cannot emit a delete for a row that is no longer there.
+- **Sweep.** Every current-state row not re-emitted since the resnapshot began got a newer delete version:
+  41,497 rows. Reconciliation after the sweep: 2,297,630 and 500,000 rows, all zero.
 
 ### What failed along the way
 
-- **Snapshot reads versioned 0** (`recovery-20260913T201024Z`). Incremental snapshot read events carry `source.lsn = null`. The sink used the LSN or 0 as the ReplacingMergeTree version, so 2,037,954 backfill reads lost to older rows and 1,336,238 rows kept a NULL column. Only reconciliation caught it.
-- **One row wrong, not attributed** (`recovery-20260913T203641Z`). With the version set to the source position, one device-registry row still differed. The run did not save that key's history. The sink now versions rows by Kafka offset, and `reconcile.py` saves the source row, ClickHouse versions and change history of every wrong key, and counts keys whose outcome depends on the version basis.
-- **Resume on a lost slot did not fail within 180 seconds** (`history-loss-20260913T211339Z`). See History loss.
-- **Resource limits.** Three capacity runs aborted on sink, ClickHouse or Connect memory limits. One recovery run aborted when a Connect JVM ran out of heap during plugin scanning because both workers started at once; workers now start one at a time.
+- **Snapshot reads versioned 0** (`recovery-20260913T201024Z`). Incremental snapshot read events carry
+  `source.lsn = null`. The sink used the LSN or 0 as the ReplacingMergeTree version, so older rows won and
+  1,336,238 device-registry rows stayed NULL after a backfill that had in fact delivered every row.
+- **One row wrong, not attributed** (`recovery-20260913T203641Z`). With the version set to the source
+  position, one device-registry row still differed, and the run could not explain it. The sink now
+  versions by Kafka offset.
+- **Three defects in the lab's own measurement code**, all found by re-running on 23–24 September and all
+  fixed: a version-ordering query that exhausted ClickHouse and took a completed reconciliation down with
+  it; a drain phase that waited for unconfirmed WAL to fall below a fixed threshold, which an idle source
+  can never satisfy; and a capacity fill that measured an idle system whenever capture kept up with the
+  generator. The contract claims held; the instrumentation around them did not.
 
 ### Run index
 
-- **`smoke-20260913T173433Z`** · smoke · incomplete: no summary
-- **`capacity-20260913T174438Z`** · capacity · completed, superseded by `capacity-20260913T190718Z`
-  - sink version: LSN, 0 for snapshot reads
-  - reconcile `capacity`: converged, 0 rows missing, ghost or different
-- **`capacity-20260913T183803Z`** · capacity · aborted: sink processes restarted repeatedly under a 256 MB memory limit during the initial load; superseded by the next capacity run
-- **`capacity-20260913T184238Z`** · capacity · aborted: sink-1 restarted 3 times while one process drained six partitions, because librdkafka prefetch queues per partition exceeded the 512 MB container limit; superseded by the next capacity run
-- **`capacity-20260913T185320Z`** · capacity · aborted: ClickHouse rejected inserts at its 746 MiB server memory limit during the sink drain (code 241), and the sink process exited instead of retrying; a Connect worker was OOM-killed at its 700 MB container limit. Superseded by the next capacity run.
-- **`capacity-20260913T190718Z`** · capacity · completed
-  - sink version: LSN, 0 for snapshot reads
-  - reconcile `capacity`: converged, 0 rows missing, ghost or different
-- **`recovery-20260913T193148Z`** · recovery · aborted: connect-2 exited at startup with java.lang.OutOfMemoryError (Java heap space) during the plugin classpath scan; 00-up.sh waited on its REST endpoint without a timeout
-- **`recovery-20260913T201024Z`** · recovery · completed, superseded by `recovery-20260913T212902Z`
-  - sink version: LSN, 0 for snapshot reads
-  - reconcile `final`: NOT converged, 1,336,238 rows missing, ghost or different
-  - finding: incremental snapshot read events carry source.lsn = null; the sink used lsn or 0 as the ReplacingMergeTree version, so 2,037,954 backfill reads (firmware_channel = 'stable') lost to older versions and the column stayed NULL on 1,336,238 live rows. Fix: sink version = source.lsn, else the last position in source.sequence; recovery test re-run
-- **`recovery-20260913T203641Z`** · recovery · completed, superseded by `recovery-20260913T212902Z`
-  - sink version: source position (LSN or snapshot stream position)
-  - reconcile `final`: NOT converged, 1 row missing, ghost or different
-  - finding: 1 content mismatch in device_registry (device_id 1527342). Not attributed: this run did not save the history of wrong keys, and the environment was reset before it could be inspected. A candidate mechanism is a change written before an incremental snapshot chunk was read and committed after the chunk's high watermark, whose LSN is lower than the read's recorded stream position. reconcile.py now counts keys where source-position ordering and Kafka-offset ordering disagree; in recovery-20260913T212902Z it found 0, so that run neither confirms nor rules out the mechanism. Fix: sink version = Kafka offset (emission order per key); reconcile.py saves source row, ClickHouse versions and change history for wrong keys; recovery test re-run as recovery-20260913T212902Z
-- **`capture-pressure-20260913T210016Z`** · capture-pressure · completed, superseded by `capture-pressure-20260913T215324Z`
-  - sink version: source position (LSN or snapshot stream position)
-  - reconcile `final`: converged, 0 rows missing, ghost or different
-- **`history-loss-20260913T211339Z`** · history-loss · completed, superseded by `history-loss-20260913T220653Z`
-  - sink version: source position (LSN or snapshot stream position)
-  - reconcile `after-resnapshot`: NOT converged, 8,706 rows missing, ghost or different
-  - reconcile `after-sweep`: converged, 0 rows missing, ghost or different
-  - finding: normal resume on the lost slot was not refused within the script's 180 s wait. Kafka Connect reported the connector RUNNING with no tasks while Debezium logged 'Cannot obtain valid replication slot ... attempt N out of 900' every 2 s (142 lines in connect-slot-retries.log before the scenario stopped the connector for recovery). Debezium 3.6.2 PostgresConnection.readReplicationSlotInfo retries 900 times with a 2 s pause (constants read from the 3.6.2 jar with javap), then throws ConnectException. The source-history-lost and capture-unassigned alerts fired. Fix: 04-history-loss.sh now observes the resume for up to 1,900 s and records the stall and the eventual failure; history-loss re-run
-- **`recovery-20260913T212902Z`** · recovery · completed
-  - sink version: Kafka offset
-  - reconcile `final`: converged, 0 rows missing, ghost or different
-- **`capture-pressure-20260913T215324Z`** · capture-pressure · completed
-  - sink version: Kafka offset
-  - reconcile `final`: converged, 0 rows missing, ghost or different
-- **`history-loss-20260913T220653Z`** · history-loss · completed
-  - sink version: Kafka offset
-  - reconcile `after-resnapshot`: NOT converged, 41,731 rows missing, ghost or different
-  - reconcile `after-sweep`: converged, 0 rows missing, ghost or different
+- **`capacity-20260924T033813Z`** · capacity · 7/7 checks · μ = 73,819 for two sink processes
+- **`recovery-20260923T151517Z`** · recovery test · 9/9 checks · every fault under live load, converged
+- **`capture-pressure-20260923T153833Z`** · capture pressure · 9/9 checks · 240 s Kafka outage, converged
+- **`history-loss-20260923T155256Z`** · history loss · 9/9 checks · expected failure, converged after the sweep
+- **`recovery-20260913T201024Z`** · recovery test · failed reconciliation, kept as evidence
+- **`recovery-20260913T203641Z`** · recovery test · failed reconciliation, kept as evidence
+
+Run `scripts/verify-run.py` to check these yourself, and `scripts/build-report.py` to read them as pages.
 
 ## What this does not show
 
