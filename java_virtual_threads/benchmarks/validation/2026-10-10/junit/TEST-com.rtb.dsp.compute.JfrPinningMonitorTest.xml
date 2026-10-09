@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.rtb.dsp.compute.JfrPinningMonitorTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-09T19:15:57.337Z" hostname="local-test-host" time="1.666">
+  <properties />
+  <testcase name="reportsVirtualThreadBlockedEnteringAContendedMonitor()" classname="com.rtb.dsp.compute.JfrPinningMonitorTest" time="0.714" />
+  <testcase name="reportsVirtualThreadParkedInsideSynchronized()" classname="com.rtb.dsp.compute.JfrPinningMonitorTest" time="0.951" />
+  </testsuite>

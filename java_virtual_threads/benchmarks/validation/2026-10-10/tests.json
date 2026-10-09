@@ -1,0 +1,171 @@
+{
+  "date": "2026-10-10",
+  "command": "JAVA_HOME=<JDK_21> ./gradlew --no-daemon clean test",
+  "environment": {
+    "system": "Darwin",
+    "release": "25.5.0",
+    "machine": "arm64",
+    "jdk": "21.0.10",
+    "gradle": "8.14.3"
+  },
+  "tests": {
+    "tests": 39,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "name": "com.rtb.dsp.RtbDspApplicationIT",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.907",
+      "timestamp": "2026-10-09T19:15:56.013Z"
+    },
+    {
+      "name": "com.rtb.dsp.compute.AuctionContextTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.01",
+      "timestamp": "2026-10-09T19:15:57.326Z"
+    },
+    {
+      "name": "com.rtb.dsp.compute.JfrPinningMonitorTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.666",
+      "timestamp": "2026-10-09T19:15:57.337Z"
+    },
+    {
+      "name": "com.rtb.dsp.data.ReplicaHealthTrackerTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.001",
+      "timestamp": "2026-10-09T19:15:59.004Z"
+    },
+    {
+      "name": "com.rtb.dsp.data.ReplicaRoutingTest",
+      "tests": "4",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.129",
+      "timestamp": "2026-10-09T19:15:59.006Z"
+    },
+    {
+      "name": "com.rtb.dsp.data.SingleFlightTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.154",
+      "timestamp": "2026-10-09T19:15:59.136Z"
+    },
+    {
+      "name": "com.rtb.dsp.model.ModelCodecTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.002",
+      "timestamp": "2026-10-09T19:15:59.291Z"
+    },
+    {
+      "name": "com.rtb.dsp.resilience.AdaptiveAimdLimiterTest",
+      "tests": "7",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.776",
+      "timestamp": "2026-10-09T19:15:59.294Z"
+    },
+    {
+      "name": "com.rtb.dsp.resilience.BoundedWinNoticePublisherTest",
+      "tests": "4",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.569",
+      "timestamp": "2026-10-09T19:16:00.072Z"
+    },
+    {
+      "name": "com.rtb.dsp.resilience.RtbAdmissionFilterTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.004",
+      "timestamp": "2026-10-09T19:16:00.642Z"
+    }
+  ],
+  "source_sha256": {
+    "build.gradle.kts": "452fa235d1fe2f2edaa208f063ce8dde5348f6c5e3250d25bfd02a1f41bbca5e",
+    "settings.gradle.kts": "4fa2ec7d1a5a166bb05ec32086742c9ad0ab03777fa06dbf8899bfe95ab4fafe",
+    "src/main/java/com/rtb/dsp/RtbDspApplication.java": "0a7e6a65b4f6d857772f9857441a721b036d87cd82d98c8afc98b525ac5fedd5",
+    "src/main/java/com/rtb/dsp/bidding/BidController.java": "6f552661fa679df9b831671670997ed4e18660755da574f2dac9c6346f4093a2",
+    "src/main/java/com/rtb/dsp/bidding/BiddingService.java": "4fec740be360ba5b3be2d354009ecac699599498d3e9f2a2ddedaec0f418f44c",
+    "src/main/java/com/rtb/dsp/bidding/CampaignCatalog.java": "ae4eaa8dc6d8c162aae341c9de165bf64bedbda269234b561f65d3b76d60b342",
+    "src/main/java/com/rtb/dsp/compute/AuctionContext.java": "56640b00001b0b72c65ec895f8a5859b9ffd442116603d64d68973b5bec57e99",
+    "src/main/java/com/rtb/dsp/compute/AuctionContextData.java": "130aee2dbe99110e4a06b276623f308d08187955181a5ae92bc1ac8a36b664e6",
+    "src/main/java/com/rtb/dsp/compute/JfrPinningMonitor.java": "cc64ecf57348f8c503be0e16859c9bb7decd2ea2c6decae111f4a9dbdb6fe5aa",
+    "src/main/java/com/rtb/dsp/compute/ScopedAuctionFilter.java": "72bcbbcd288cc46bdd749df67353325c134f350445e3056198e54cfcf136ad0d",
+    "src/main/java/com/rtb/dsp/config/BudgetCacheConfig.java": "7034eb5f9f87b52a9c2d59482b127fb8fdc169449ce49b89abf04699ecb6ea57",
+    "src/main/java/com/rtb/dsp/config/DataSourceConfig.java": "d11d1b9ac8bcb0ca773eef9db7b0dad49fe05c42d57fe2741e795f1b4310bb1e",
+    "src/main/java/com/rtb/dsp/config/FlowControlConfig.java": "32c654150ffc325d6299a7c84c3fad3ea0865f750f764728f7d10b9c508253b0",
+    "src/main/java/com/rtb/dsp/config/RtbProperties.java": "b29fc1f41cabc1e94b9ef344c542142a58ca6f1cbd1bfa0861d28ee58b2e73d9",
+    "src/main/java/com/rtb/dsp/data/BudgetLedger.java": "cbddb34c794eadd6436dbfab7c6f742368c63ec66a27cd6a4de8328b670acdc0",
+    "src/main/java/com/rtb/dsp/data/CampaignBudgetRepository.java": "0c8d3aa681e0921f28619ca6d585f323db7c6053358ffb90cc861994a65faba1",
+    "src/main/java/com/rtb/dsp/data/MultiTierBudgetCache.java": "81c406ee8696ffc8b66585479e21d87de9578225969f627e62f3d54c97820beb",
+    "src/main/java/com/rtb/dsp/data/PostgresReplicaLagProbe.java": "ec8f3aeb49a667ba40d2f3ad55226ca49dbaa1e6db8ba5c9fb6ea667396abaa9",
+    "src/main/java/com/rtb/dsp/data/RedisBudgetInvalidationSub.java": "493ae7c958eab7914e4f9faeac43325e7b6aa77a4ed7b739d0cfd9af28727c09",
+    "src/main/java/com/rtb/dsp/data/ReplicaHealthTracker.java": "47a93602629d56d4a0bb91d84d6eeec02d14079ed6d830d803045b38bb433ed5",
+    "src/main/java/com/rtb/dsp/data/ResilientRoutingDataSource.java": "bd212cf2973e3c8a960591508739ddd6c5536948b154dbecc6f8c639cadffd69",
+    "src/main/java/com/rtb/dsp/data/SingleFlight.java": "5493a50de4e5995f1e95d5c587389ca03121ac6538ae8d93cfca24a6e028efc0",
+    "src/main/java/com/rtb/dsp/data/WinNoticeLedgerConsumer.java": "0c899c0a9f0390e0d44bdbb3cdcb5155103556f17043899c023aa687e29efbe9",
+    "src/main/java/com/rtb/dsp/model/BudgetSnapshot.java": "2988a4fa4ed7620c340778e9690853fbc8f89eb0e579346c8e4c2cc0605fd804",
+    "src/main/java/com/rtb/dsp/model/CampaignBudget.java": "607ae641900c58b171bc0580feef2d9a5e2b28681396224bc292f5b20b27f482",
+    "src/main/java/com/rtb/dsp/model/OpenRtbBidRequest.java": "56540c18a797e1b5521057a11ee1274514c5f10bc83e9439fe9f4e0767c4ac87",
+    "src/main/java/com/rtb/dsp/model/OpenRtbBidResponse.java": "cbaa4feadcc6ef8960976877cfa049d8788ad14e961f335b4411c496dae8aeec",
+    "src/main/java/com/rtb/dsp/model/WinNotice.java": "4e96501b25f444e86159226007514491589e12b20b12ce24f3137778a6fe4baf",
+    "src/main/java/com/rtb/dsp/resilience/AdaptiveAimdLimiter.java": "85b1729c7fa2cfa4117736f065f0ba157894ea20696f7ba45b448b632abe42e2",
+    "src/main/java/com/rtb/dsp/resilience/BoundedWinNoticePublisher.java": "2f3c464db8ac7c7b1261dd21dbacec5b51cdbb26e269fc4c4fd0ecf68de1f9a3",
+    "src/main/java/com/rtb/dsp/resilience/KafkaWinNoticeSink.java": "1422ed6498d248f6c91777d4f0cd70b705ac70511e4cd18de06763b986f22c7b",
+    "src/main/java/com/rtb/dsp/resilience/RtbAdmissionFilter.java": "d79583b464f0581617b14a8d531fd2a5e6ede33175ebb774e5a7a5ee531d14c6",
+    "src/main/resources/application.yml": "a839d9fdc92ee4fda217d299784e1411abc074e94ee1d5f64f24e248c50b239a",
+    "src/main/resources/db/schema.sql": "e693d2616c016c30dd81a7d438042452f92d09e33ce87d3e6e557906caff3553",
+    "src/main/resources/db/seed.sql": "b86ff70715c7b584f6d20169fd14b92097da8102a800a07094265748be6a5b85",
+    "src/test/java/com/rtb/dsp/RtbDspApplicationIT.java": "4758bea8eb2e5043aef5c99c520895225e49c3b83c930b44d96f3d9777f9d5c3",
+    "src/test/java/com/rtb/dsp/benchmarks/JMHAdaptiveLimiterBenchmark.java": "ef2f6f60d1b8d3abcebd07301734b7dc7cdadbfae9ed5b98e4d8d42b0578f6c6",
+    "src/test/java/com/rtb/dsp/benchmarks/JMHScopedValueVsThreadLocalBenchmark.java": "1b83d88a581c806f54647cdd77ffd01e247350d5af0243c54c19425b42b7f2dc",
+    "src/test/java/com/rtb/dsp/benchmarks/JMHSingleFlightCacheStampedeBenchmark.java": "0dc57bdf405b72e803a4baf14f533bdefbace5fef1345b7f3dbdb3106ef4b308",
+    "src/test/java/com/rtb/dsp/benchmarks/SurgeSimulation.java": "f154e4300f7dae6c45a65a05e377aaf80d4672de72073e0a2daa32bb81358d54",
+    "src/test/java/com/rtb/dsp/compute/AuctionContextTest.java": "fca29087a61e0ee61553f087582b2264ffc1b7455586d180a12f82afb7cddef2",
+    "src/test/java/com/rtb/dsp/compute/JfrPinningMonitorTest.java": "6fca1618d5feb6996fd4bb3ab6318d6efab9523228716f0e84554813e9abbca4",
+    "src/test/java/com/rtb/dsp/data/ReplicaHealthTrackerTest.java": "16da395dde2f9ed61c734fbd69dfcb87e86cbbbd556c9b34a41d6ced4ca7f40a",
+    "src/test/java/com/rtb/dsp/data/ReplicaRoutingTest.java": "fa8b8a264d8b29a38c0dfd8d0440726a58131a70b076826ec27dcba1cc8528f0",
+    "src/test/java/com/rtb/dsp/data/SingleFlightTest.java": "8c9664c336dcb23c4806c2b370c83d3acd60fdcdda236a2ca3b36cc98f192040",
+    "src/test/java/com/rtb/dsp/model/ModelCodecTest.java": "91d30713d9b2dc5e3227f7fda060525be802658906a38e0b05632f597b1e5948",
+    "src/test/java/com/rtb/dsp/resilience/AdaptiveAimdLimiterTest.java": "d7571eed54a3a3fed609977b89248ffb6c7dea8f0b6e72d65f00b394239b0891",
+    "src/test/java/com/rtb/dsp/resilience/BoundedWinNoticePublisherTest.java": "0897ebb08f4c65f8d6729498d0f5a943e10e7f7b45a937ba06f3d7043bb7672b",
+    "src/test/java/com/rtb/dsp/resilience/RtbAdmissionFilterTest.java": "522f6cd39776634f4e09a9860e6582729053439de34c11e559497f328837eda1",
+    "tools/benchmark_console.py": "9b9e0d85b09a28c18d6f5b5ddb44bc451fea3913b13a92691337242ed630899e",
+    "tools/benchmark_data.py": "ad93aa046ef665b99d1f5213e9c3be9d599420a4cb6124959d05d9e841e62c7b",
+    "tools/console/console.css": "2408338379dbad4509d02add58569b5f3ab6d18cde271dd2acc885b41d8c3f2e",
+    "tools/console/console.js": "ba8784da015e00ebb90ad4a1c91d7d61f02ec59f9fa22a630172c1db7755a436",
+    "tools/console/index.html": "ae5ba4c7a10827bfe199cde6ab7b4fd81e3b8388ae5057dd877f3527bb23f949",
+    "tools/test_benchmark_console.py": "6368d99e67e5ade6ce03fb2d5c075ac9f0ae8741d0a3e1d6a99f278c0a5802a8"
+  },
+  "notes": [
+    "Executed from a standalone copy in the target Git repository, without article or diagram assets.",
+    "Testcontainers integration tests share a PostgreSQL container across primary/replica pools; physical replication is not covered.",
+    "JUnit standard output/error omitted and hostname normalized; test outcomes, timing and names retained."
+  ]
+}

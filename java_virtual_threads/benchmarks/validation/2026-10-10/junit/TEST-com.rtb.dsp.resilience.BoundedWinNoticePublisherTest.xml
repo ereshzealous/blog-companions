@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.rtb.dsp.resilience.BoundedWinNoticePublisherTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-09T19:16:00.072Z" hostname="local-test-host" time="0.569">
+  <properties />
+  <testcase name="drainsEverythingInBatchesNoLargerThanMaxBatch()" classname="com.rtb.dsp.resilience.BoundedWinNoticePublisherTest" time="0.046" />
+  <testcase name="anUnacknowledgedBatchIsRetriedNotDropped()" classname="com.rtb.dsp.resilience.BoundedWinNoticePublisherTest" time="0.207" />
+  <testcase name="stopDrainsWhatIsAlreadyBuffered()" classname="com.rtb.dsp.resilience.BoundedWinNoticePublisherTest" time="0.035" />
+  <testcase name="aFullBufferPushesBackInsteadOfGrowing()" classname="com.rtb.dsp.resilience.BoundedWinNoticePublisherTest" time="0.28" />
+  </testsuite>

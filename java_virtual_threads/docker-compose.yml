@@ -1,0 +1,110 @@
+name: rtb-dsp
+
+# Local topology for the bidder. Host ports: Postgres 6100 (primary) / 6101 (streaming replica),
+# Redis 6800, Kafka 9092. The replica is a real physical standby (pg_basebackup + replication
+# slot), so ReplicaHealthTracker measures genuine replay lag rather than a simulated number.
+
+services:
+  postgres-primary:
+    image: postgres:16-alpine
+    container_name: rtb-postgres-primary
+    environment:
+      POSTGRES_DB: dsp_db
+      POSTGRES_USER: dsp_user
+      POSTGRES_PASSWORD: dsp_pass
+      REPLICATION_USER: replicator
+      REPLICATION_PASSWORD: replicator_pass
+    command:
+      - postgres
+      - -c
+      - wal_level=replica
+      - -c
+      - max_wal_senders=10
+      - -c
+      - max_replication_slots=10
+      - -c
+      - wal_keep_size=256MB
+      - -c
+      - max_connections=200
+    ports:
+      - "6100:5432"
+    volumes:
+      - ./docker/postgres/primary/00-replication.sh:/docker-entrypoint-initdb.d/00-replication.sh:ro
+      - ./src/main/resources/db/schema.sql:/docker-entrypoint-initdb.d/10-schema.sql:ro
+      - ./src/main/resources/db/seed.sql:/docker-entrypoint-initdb.d/20-seed.sql:ro
+      - pg-primary-data:/var/lib/postgresql/data
+    healthcheck:
+      # TCP, not the unix socket: the init-time server listens on the socket only, so a socket
+      # probe would report healthy before the replication role and slot exist.
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -p 5432 -U dsp_user -d dsp_db"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  postgres-replica:
+    image: postgres:16-alpine
+    container_name: rtb-postgres-replica
+    user: postgres
+    depends_on:
+      postgres-primary:
+        condition: service_healthy
+    environment:
+      PRIMARY_HOST: postgres-primary
+      REPLICATION_USER: replicator
+      REPLICATION_PASSWORD: replicator_pass
+      REPLICATION_SLOT: replica_1
+      PGDATA: /var/lib/postgresql/data
+    entrypoint: ["/bin/bash", "/opt/replica/entrypoint.sh"]
+    ports:
+      - "6101:5432"
+    volumes:
+      - ./docker/postgres/replica/entrypoint.sh:/opt/replica/entrypoint.sh:ro
+      - pg-replica-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -p 5432 -U dsp_user -d dsp_db"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: rtb-redis
+    command: ["redis-server", "--save", "", "--appendonly", "no", "--maxmemory", "512mb", "--maxmemory-policy", "allkeys-lru"]
+    ports:
+      - "6800:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  kafka:
+    image: apache/kafka:3.9.1
+    container_name: rtb-kafka
+    ports:
+      - "9092:9092"
+    environment:
+      CLUSTER_ID: t1FfrInTQ-KVTEzKqtXyhw
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_NUM_PARTITIONS: 12
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 > /dev/null 2>&1"]
+      interval: 5s
+      timeout: 10s
+      retries: 30
+
+volumes:
+  pg-primary-data:
+  pg-replica-data:

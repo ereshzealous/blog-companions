@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RTB Performance Console</title>
+<link rel="stylesheet" href="/console.css"><script src="/console.js" defer></script></head>
+<body><header><div><div class="eyebrow">JAVA AT SCALE · PERFORMANCE</div><h1>RTB Performance Console</h1>
+<p>Live measurements. Recorded runs. Evidence you can inspect.</p></div><span id="connection" class="badge">Connecting…</span></header>
+<nav id="tabs" aria-label="Console views"><button data-view="live" class="active">Live bidder &amp; Docker</button><button data-view="runs">Benchmark runs</button></nav>
+<p id="error" role="alert" hidden></p>
+<main><section id="live-view"><div class="section-heading"><h2>What is running now</h2><span id="sample-time">Waiting for the first capture</span></div>
+<div id="live-cards" class="cards"></div><p class="note">HTTP rates cover the instrumented bid endpoint. Admission sheds are counted separately. Live latency below is the interval mean; benchmark P99 values appear under runs. The bidder JVM and a forked JMH JVM are different processes.</p>
+<div id="live-charts" class="charts"></div><section class="panel"><h2>Docker services</h2><p class="note">Containers in the rtb-dsp Compose project · Docker CPU can exceed 100% when using multiple cores.</p><div id="docker"></div></section>
+<details class="panel"><summary>Capture location and connection details</summary><p id="capture-path"></p><pre id="live-errors"></pre></details></section>
+<section id="runs-view" hidden><div class="run-layout"><aside id="run-history" aria-label="Run history"></aside><div id="run-content"><p>Loading runs…</p></div></div></section></main>
+<footer>1.2M req/s is a fleet design target. Component tests and local smoke runs do not demonstrate fleet capacity.</footer></body></html>

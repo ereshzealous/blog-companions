@@ -1,0 +1,8 @@
+{
+  "auctionId": "example-auction",
+  "exchange": "example",
+  "imp": {"id": "1", "banner": {"w": 300, "h": 250}},
+  "deviceGeo": {"country": "US", "region": "CA", "lat": 0, "lon": 0},
+  "bidFloorMicros": 1000000,
+  "ingressEpochNanos": 0
+}

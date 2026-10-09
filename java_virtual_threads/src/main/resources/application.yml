@@ -1,0 +1,139 @@
+spring:
+  application:
+    name: rtb-dsp
+  threads:
+    virtual:
+      enabled: true          # Boot-managed Tomcat, scheduler and Kafka listener executors; not the custom Redis listener
+  main:
+    keep-alive: true         # virtual threads are daemons; keep the JVM up when nothing else is
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none           # schema is owned by db/schema.sql
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  sql:
+    init:
+      mode: never            # schema and seed are applied by the Postgres init scripts
+  data:
+    redis:
+      host: localhost
+      port: 6800
+      timeout: 25ms          # a budget read slower than this is a miss, not a wait
+      connect-timeout: 500ms
+      client-type: lettuce
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      acks: all
+      batch-size: 65536
+      compression-type: lz4
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        linger.ms: 20
+        enable.idempotence: true
+        max.in.flight.requests.per.connection: 5
+        max.block.ms: 1000
+        delivery.timeout.ms: 30000
+        request.timeout.ms: 10000
+    consumer:
+      group-id: rtb-budget-ledger
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+rtb:
+  datasource:
+    primary:
+      pool-name: primary
+      jdbc-url: jdbc:postgresql://localhost:6100/dsp_db
+      username: dsp_user
+      password: dsp_pass
+      maximum-pool-size: 10
+      minimum-idle: 10
+      connection-timeout: 250        # Hikari's floor; the default of 30 s outlives every auction
+      validation-timeout: 250
+    replica:
+      pool-name: replica
+      jdbc-url: jdbc:postgresql://localhost:6101/dsp_db
+      username: dsp_user
+      password: dsp_pass
+      maximum-pool-size: 40
+      minimum-idle: 40
+      connection-timeout: 250
+      validation-timeout: 250
+      read-only: true
+      initialization-fail-timeout: -1   # start even if the replica is down; the lag probe keeps it bypassed
+  replica:
+    lag-threshold: 200ms
+    probe-interval: 500ms
+    close-after-healthy-probes: 3
+  auction:
+    default-tmax: 80ms
+    network-margin: 30ms           # 80 ms tmax - 30 ms margin = 50 ms bidder SLA
+    max-candidates: 3
+    seat: rtb-dsp-seat-1
+  cache:
+    l1-ttl: 10s
+    l1-max-size: 20000
+    l2-ttl: 30s
+    invalidation-channel: "campaign:budget:invalidations"
+    single-flight-timeout: 40ms
+  limiter:
+    expected-rps: 30000
+    baseline-latency: 8ms
+    min-limit: 8
+    max-limit: 5000
+    target-p90: 35ms
+    backoff-ratio: 0.7
+    additive-step: 32              # +8/50 recovered too slowly after a surge; see SurgeSimulation
+    window: 100ms
+    min-window-samples: 16
+  admission:
+    shed-response: NO_BID          # NO_BID -> 204, UNAVAILABLE -> 503 + Retry-After: 1
+  win-notices:
+    topic: rtb.win-notices
+    partitions: 12
+    queue-capacity: 10000
+    flush-interval: 20ms
+    max-batch: 512
+    offer-timeout: 5ms
+    ack-timeout: 2s
+  pinning:
+    enabled: true
+    threshold: 5ms
+    max-sites: 64
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  metrics:
+    tags:
+      application: rtb-dsp
+
+logging:
+  level:
+    com.rtb.dsp: INFO
+
+---
+# Redis Cluster for production-shaped deployments. Lettuce refreshes topology adaptively, so a
+# failover or resharding is picked up on MOVED/ASK instead of on the next periodic refresh.
+spring:
+  config:
+    activate:
+      on-profile: redis-cluster
+  data:
+    redis:
+      cluster:
+        nodes: ${REDIS_CLUSTER_NODES:localhost:6800,localhost:6801,localhost:6802}
+        max-redirects: 3
+      lettuce:
+        cluster:
+          refresh:
+            adaptive: true
+            period: 30s

@@ -1,0 +1,41 @@
+[
+  {
+    "width": 1280,
+    "panels": 7,
+    "configurations": 13,
+    "artifacts": 9,
+    "overflow": false,
+    "externalAssets": 0,
+    "expandedOverflow": false,
+    "overflowing": [],
+    "errors": [],
+    "requests": [],
+    "pass": true
+  },
+  {
+    "width": 390,
+    "panels": 7,
+    "configurations": 13,
+    "artifacts": 9,
+    "overflow": false,
+    "externalAssets": 0,
+    "expandedOverflow": false,
+    "overflowing": [],
+    "errors": [],
+    "requests": [],
+    "pass": true
+  },
+  {
+    "width": 320,
+    "panels": 7,
+    "configurations": 13,
+    "artifacts": 9,
+    "overflow": false,
+    "externalAssets": 0,
+    "expandedOverflow": false,
+    "overflowing": [],
+    "errors": [],
+    "requests": [],
+    "pass": true
+  }
+]

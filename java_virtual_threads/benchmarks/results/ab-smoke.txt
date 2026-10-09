@@ -1,0 +1,8 @@
+Complete requests:      100000
+Failed requests:        99712
+   (Connect: 0, Receive: 0, Length: 99712, Exceptions: 0)
+Requests per second:    33164.07 [#/sec] (mean)
+  50%      5
+  90%      7
+  99%     69
+ 100%    585 (longest request)

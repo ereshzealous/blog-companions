@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.rtb.dsp.data.SingleFlightTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-09T19:15:59.136Z" hostname="local-test-host" time="0.154">
+  <properties />
+  <testcase name="thousandConcurrentMissesCauseOneLoad()" classname="com.rtb.dsp.data.SingleFlightTest" time="0.065" />
+  <testcase name="cancellingTheRequestThatStartedTheLoadDoesNotPoisonIt()" classname="com.rtb.dsp.data.SingleFlightTest" time="0.051" />
+  <testcase name="theSharedLoadDoesNotSeeTheCallersAuction()" classname="com.rtb.dsp.data.SingleFlightTest" time="0.002" />
+  <testcase name="anImpatientWaiterTimesOutWithoutFailingTheSharedLoad()" classname="com.rtb.dsp.data.SingleFlightTest" time="0.033" />
+  <testcase name="failureReachesEveryWaiterAndTheNextCallRetries()" classname="com.rtb.dsp.data.SingleFlightTest" time="0.002" />
+  </testsuite>

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.rtb.dsp.RtbDspApplicationIT" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-09T19:15:56.013Z" hostname="local-test-host" time="0.907">
+  <properties />
+  <testcase name="bidsFromTheDatabaseThenFromL1()" classname="com.rtb.dsp.RtbDspApplicationIT" time="0.476" />
+  <testcase name="winNoticeSettlesOnceAndInvalidatesTheCaches()" classname="com.rtb.dsp.RtbDspApplicationIT" time="0.422" />
+  <testcase name="floorAboveEveryCampaignIsANoBid()" classname="com.rtb.dsp.RtbDspApplicationIT" time="0.006" />
+  </testsuite>

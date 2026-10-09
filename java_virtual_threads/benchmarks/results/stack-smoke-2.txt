@@ -1,0 +1,19 @@
+Complete requests:      100000
+Failed requests:        94780
+   (Connect: 0, Receive: 0, Length: 94780, Exceptions: 0)
+Requests per second:    32050.12 [#/sec] (mean)
+  50%      5
+  90%      7
+  99%     83
+ 100%    344 (longest request)
+http_server_requests_seconds_count{application="rtb-dsp",error="none",exception="none",method="POST",outcome="SUCCESS",status="200",uri="/openrtb/2.6/bid"} 120000
+rtb_admission_limit{application="rtb-dsp"} 304.0
+rtb_admission_shed_total{application="rtb-dsp",response="NO_BID"} 0.0
+rtb_vthread_monitor_blocked_total{application="rtb-dsp",site="NioChannel.close:83"} 2.0
+rtb_vthread_pinned_duration_seconds{application="rtb-dsp",quantile="0.5"} 0.0
+rtb_vthread_pinned_duration_seconds{application="rtb-dsp",quantile="0.99"} 0.0
+rtb_vthread_pinned_duration_seconds_count{application="rtb-dsp"} 0
+rtb_vthread_pinned_duration_seconds_sum{application="rtb-dsp"} 0.0
+rtb_vthread_pinned_duration_seconds_max{application="rtb-dsp"} 0.0
+2026-10-09T19:26:51.852+05:30  WARN 90093 --- [rtb-dsp] [ Event Stream 1] com.rtb.dsp.compute.JfrPinningMonitor    : jdk.JavaMonitorEnter for 8 ms at NioChannel.close:83
+SMOKE2-DONE

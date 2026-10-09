@@ -1,0 +1,2595 @@
+# JMH version: 1.37
+# VM version: JDK 21.0.10, OpenJDK 64-Bit Server VM, 21.0.10
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: --enable-preview --enable-preview -Xms2g -Xmx2g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 2 s each
+# Measurement: 5 iterations, 2 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.scopedValue_reusedThread
+
+# Run progress: 0.00% complete, ETA 00:01:04
+# Fork: 1 of 1
+# Warmup Iteration   1: 14.026 ns/op
+# Warmup Iteration   2: 13.274 ns/op
+# Warmup Iteration   3: 13.550 ns/op
+Iteration   1: 14.874 ns/op
+                 gc.alloc.rate:      3589.722 MB/sec
+                 gc.alloc.rate.norm: 56.000 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            7.000 ms
+
+Iteration   2: 14.528 ns/op
+                 gc.alloc.rate:      3673.465 MB/sec
+                 gc.alloc.rate.norm: 56.000 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            15.000 ms
+
+Iteration   3: 13.102 ns/op
+                 gc.alloc.rate:      4075.886 MB/sec
+                 gc.alloc.rate.norm: 56.000 B/op
+                 gc.count:           6.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   4: 13.043 ns/op
+                 gc.alloc.rate:      4094.414 MB/sec
+                 gc.alloc.rate.norm: 56.000 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            6.000 ms
+
+Iteration   5: 13.044 ns/op
+                 gc.alloc.rate:      4094.118 MB/sec
+                 gc.alloc.rate.norm: 56.000 B/op
+                 gc.count:           7.000 counts
+                 gc.time:            5.000 ms
+
+
+
+Result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.scopedValue_reusedThread":
+  13.718 ±(99.9%) 3.488 ns/op [Average]
+  (min, avg, max) = (13.043, 13.718, 14.874), stdev = 0.906
+  CI (99.9%): [10.230, 17.207] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.scopedValue_reusedThread:gc.alloc.rate":
+  3905.521 ±(99.9%) 970.050 MB/sec [Average]
+  (min, avg, max) = (3589.722, 3905.521, 4094.414), stdev = 251.919
+  CI (99.9%): [2935.471, 4875.571] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.scopedValue_reusedThread:gc.alloc.rate.norm":
+  56.000 ±(99.9%) 0.001 B/op [Average]
+  (min, avg, max) = (56.000, 56.000, 56.000), stdev = 0.001
+  CI (99.9%): [56.000, 56.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.scopedValue_reusedThread:gc.count":
+  32.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (6.000, 6.400, 7.000), stdev = 0.548
+  CI (99.9%): [32.000, 32.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.scopedValue_reusedThread:gc.time":
+  38.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (5.000, 7.600, 15.000), stdev = 4.219
+  CI (99.9%): [38.000, 38.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.10, OpenJDK 64-Bit Server VM, 21.0.10
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: --enable-preview --enable-preview -Xms2g -Xmx2g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 2 s each
+# Measurement: 5 iterations, 2 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.scopedValue_virtualThreadPerTask
+
+# Run progress: 24.93% complete, ETA 00:00:48
+# Fork: 1 of 1
+# Warmup Iteration   1: 185.254 ns/op
+# Warmup Iteration   2: 175.342 ns/op
+# Warmup Iteration   3: 179.075 ns/op
+Iteration   1: 176.803 ns/op
+                 gc.alloc.rate:      2848.146 MB/sec
+                 gc.alloc.rate.norm: 528.048 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            11.000 ms
+
+Iteration   2: 178.184 ns/op
+                 gc.alloc.rate:      2826.051 MB/sec
+                 gc.alloc.rate.norm: 528.047 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            10.000 ms
+
+Iteration   3: 177.516 ns/op
+                 gc.alloc.rate:      2836.689 MB/sec
+                 gc.alloc.rate.norm: 528.046 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            9.000 ms
+
+Iteration   4: 174.755 ns/op
+                 gc.alloc.rate:      2881.518 MB/sec
+                 gc.alloc.rate.norm: 528.048 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            10.000 ms
+
+Iteration   5: 178.294 ns/op
+                 gc.alloc.rate:      2824.318 MB/sec
+                 gc.alloc.rate.norm: 528.046 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            10.000 ms
+
+
+
+Result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.scopedValue_virtualThreadPerTask":
+  177.110 ±(99.9%) 5.568 ns/op [Average]
+  (min, avg, max) = (174.755, 177.110, 178.294), stdev = 1.446
+  CI (99.9%): [171.543, 182.678] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.scopedValue_virtualThreadPerTask:gc.alloc.rate":
+  2843.344 ±(99.9%) 90.011 MB/sec [Average]
+  (min, avg, max) = (2824.318, 2843.344, 2881.518), stdev = 23.376
+  CI (99.9%): [2753.333, 2933.355] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.scopedValue_virtualThreadPerTask:gc.alloc.rate.norm":
+  528.047 ±(99.9%) 0.003 B/op [Average]
+  (min, avg, max) = (528.046, 528.047, 528.048), stdev = 0.001
+  CI (99.9%): [528.044, 528.050] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.scopedValue_virtualThreadPerTask:gc.count":
+  24.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (4.000, 4.800, 5.000), stdev = 0.447
+  CI (99.9%): [24.000, 24.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.scopedValue_virtualThreadPerTask:gc.time":
+  50.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (9.000, 10.000, 11.000), stdev = 0.707
+  CI (99.9%): [50.000, 50.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.10, OpenJDK 64-Bit Server VM, 21.0.10
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: --enable-preview --enable-preview -Xms2g -Xmx2g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 2 s each
+# Measurement: 5 iterations, 2 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.threadLocal_reusedThread
+
+# Run progress: 49.87% complete, ETA 00:00:32
+# Fork: 1 of 1
+# Warmup Iteration   1: 42.333 ns/op
+# Warmup Iteration   2: 40.389 ns/op
+# Warmup Iteration   3: 39.490 ns/op
+Iteration   1: 41.662 ns/op
+                 gc.alloc.rate:      732.465 MB/sec
+                 gc.alloc.rate.norm: 32.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   2: 39.804 ns/op
+                 gc.alloc.rate:      766.660 MB/sec
+                 gc.alloc.rate.norm: 32.000 B/op
+                 gc.count:           2.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   3: 40.320 ns/op
+                 gc.alloc.rate:      756.850 MB/sec
+                 gc.alloc.rate.norm: 32.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   4: 39.490 ns/op
+                 gc.alloc.rate:      772.752 MB/sec
+                 gc.alloc.rate.norm: 32.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   5: 41.178 ns/op
+                 gc.alloc.rate:      741.082 MB/sec
+                 gc.alloc.rate.norm: 32.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+
+
+Result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.threadLocal_reusedThread":
+  40.491 ±(99.9%) 3.522 ns/op [Average]
+  (min, avg, max) = (39.490, 40.491, 41.662), stdev = 0.915
+  CI (99.9%): [36.969, 44.013] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.threadLocal_reusedThread:gc.alloc.rate":
+  753.962 ±(99.9%) 65.309 MB/sec [Average]
+  (min, avg, max) = (732.465, 753.962, 772.752), stdev = 16.961
+  CI (99.9%): [688.652, 819.271] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.threadLocal_reusedThread:gc.alloc.rate.norm":
+  32.000 ±(99.9%) 0.001 B/op [Average]
+  (min, avg, max) = (32.000, 32.000, 32.000), stdev = 0.001
+  CI (99.9%): [32.000, 32.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.threadLocal_reusedThread:gc.count":
+  6.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (1.000, 1.200, 2.000), stdev = 0.447
+  CI (99.9%): [6.000, 6.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.threadLocal_reusedThread:gc.time":
+  7.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (1.000, 1.400, 3.000), stdev = 0.894
+  CI (99.9%): [7.000, 7.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.10, OpenJDK 64-Bit Server VM, 21.0.10
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: --enable-preview --enable-preview -Xms2g -Xmx2g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 3 iterations, 2 s each
+# Measurement: 5 iterations, 2 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.threadLocal_virtualThreadPerTask
+
+# Run progress: 74.80% complete, ETA 00:00:16
+# Fork: 1 of 1
+# Warmup Iteration   1: 230.650 ns/op
+# Warmup Iteration   2: 210.029 ns/op
+# Warmup Iteration   3: 214.351 ns/op
+Iteration   1: 184.245 ns/op
+                 gc.alloc.rate:      2401.784 MB/sec
+                 gc.alloc.rate.norm: 464.041 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            15.000 ms
+
+Iteration   2: 171.169 ns/op
+                 gc.alloc.rate:      2585.278 MB/sec
+                 gc.alloc.rate.norm: 464.039 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            15.000 ms
+
+Iteration   3: 170.134 ns/op
+                 gc.alloc.rate:      2601.004 MB/sec
+                 gc.alloc.rate.norm: 464.041 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            13.000 ms
+
+Iteration   4: 170.814 ns/op
+                 gc.alloc.rate:      2590.641 MB/sec
+                 gc.alloc.rate.norm: 464.040 B/op
+                 gc.count:           4.000 counts
+                 gc.time:            11.000 ms
+
+Iteration   5: 173.127 ns/op
+                 gc.alloc.rate:      2556.052 MB/sec
+                 gc.alloc.rate.norm: 464.042 B/op
+                 gc.count:           5.000 counts
+                 gc.time:            17.000 ms
+
+
+
+Result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.threadLocal_virtualThreadPerTask":
+  173.898 ±(99.9%) 22.682 ns/op [Average]
+  (min, avg, max) = (170.134, 173.898, 184.245), stdev = 5.890
+  CI (99.9%): [151.216, 196.580] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.threadLocal_virtualThreadPerTask:gc.alloc.rate":
+  2546.952 ±(99.9%) 319.022 MB/sec [Average]
+  (min, avg, max) = (2401.784, 2546.952, 2601.004), stdev = 82.849
+  CI (99.9%): [2227.929, 2865.974] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.threadLocal_virtualThreadPerTask:gc.alloc.rate.norm":
+  464.041 ±(99.9%) 0.004 B/op [Average]
+  (min, avg, max) = (464.039, 464.041, 464.042), stdev = 0.001
+  CI (99.9%): [464.036, 464.045] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.threadLocal_virtualThreadPerTask:gc.count":
+  22.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (4.000, 4.400, 5.000), stdev = 0.548
+  CI (99.9%): [22.000, 22.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHScopedValueVsThreadLocalBenchmark.threadLocal_virtualThreadPerTask:gc.time":
+  71.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (11.000, 14.200, 17.000), stdev = 2.280
+  CI (99.9%): [71.000, 71.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.10, OpenJDK 64-Bit Server VM, 21.0.10
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: --enable-preview --enable-preview -Xms2g -Xmx2g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, single-shot each
+# Measurement: 5 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge
+# Parameters: (gate = STATIC_SEMAPHORE_5000)
+
+# Run progress: 99.74% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 3517.202 ms/op
+Iteration   1: 3514.839 ms/op
+                 gc.alloc.rate:      10.987 MB/sec
+                 gc.alloc.rate.norm: 40494344.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+                 goodputPct:         66.511 #
+                 p50AdmittedMs:      5.284 #
+                 p99AdmittedMs:      893.962 #
+                 p99AllMs:           889.771 #
+                 peakInFlight:       5000.000 #
+                 recoveryMs:         200.000 #
+                 shedPct:            11.971 #
+                 timeoutPct:         20.240 #
+
+Iteration   2: 3513.817 ms/op
+                 gc.alloc.rate:      9.719 MB/sec
+                 gc.alloc.rate.norm: 35809488.000 B/op
+                 gc.count:           ≈ 0 counts
+                 goodputPct:         66.366 #
+                 p50AdmittedMs:      5.326 #
+                 p99AdmittedMs:      905.018 #
+                 p99AllMs:           900.701 #
+                 peakInFlight:       5000.000 #
+                 recoveryMs:         200.000 #
+                 shedPct:            12.289 #
+                 timeoutPct:         20.180 #
+
+Iteration   3: 3512.742 ms/op
+                 gc.alloc.rate:      9.686 MB/sec
+                 gc.alloc.rate.norm: 35678400.000 B/op
+                 gc.count:           ≈ 0 counts
+                 goodputPct:         63.386 #
+                 p50AdmittedMs:      5.289 #
+                 p99AdmittedMs:      955.872 #
+                 p99AllMs:           952.381 #
+                 peakInFlight:       5000.000 #
+                 recoveryMs:         300.000 #
+                 shedPct:            13.706 #
+                 timeoutPct:         24.897 #
+
+Iteration   4: 3512.668 ms/op
+                 gc.alloc.rate:      9.741 MB/sec
+                 gc.alloc.rate.norm: 35881864.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+                 goodputPct:         66.986 #
+                 p50AdmittedMs:      5.240 #
+                 p99AdmittedMs:      896.500 #
+                 p99AllMs:           892.254 #
+                 peakInFlight:       5000.000 #
+                 recoveryMs:         200.000 #
+                 shedPct:            12.054 #
+                 timeoutPct:         19.926 #
+
+Iteration   5: 3511.967 ms/op
+                 gc.alloc.rate:      9.742 MB/sec
+                 gc.alloc.rate.norm: 35875552.000 B/op
+                 gc.count:           ≈ 0 counts
+                 goodputPct:         66.871 #
+                 p50AdmittedMs:      5.240 #
+                 p99AdmittedMs:      899.527 #
+                 p99AllMs:           895.743 #
+                 peakInFlight:       5000.000 #
+                 recoveryMs:         200.000 #
+                 shedPct:            12.126 #
+                 timeoutPct:         19.994 #
+
+
+
+Result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge":
+  N = 5
+  mean =   3513.207 ±(99.9%) 4.339 ms/op
+
+  Histogram, ms/op:
+    [3511.000, 3511.250) = 0 
+    [3511.250, 3511.500) = 0 
+    [3511.500, 3511.750) = 0 
+    [3511.750, 3512.000) = 1 
+    [3512.000, 3512.250) = 0 
+    [3512.250, 3512.500) = 0 
+    [3512.500, 3512.750) = 2 
+    [3512.750, 3513.000) = 0 
+    [3513.000, 3513.250) = 0 
+    [3513.250, 3513.500) = 0 
+    [3513.500, 3513.750) = 0 
+    [3513.750, 3514.000) = 1 
+    [3514.000, 3514.250) = 0 
+    [3514.250, 3514.500) = 0 
+    [3514.500, 3514.750) = 0 
+
+  Percentiles, ms/op:
+      p(0.0000) =   3511.967 ms/op
+     p(50.0000) =   3512.742 ms/op
+     p(90.0000) =   3514.839 ms/op
+     p(95.0000) =   3514.839 ms/op
+     p(99.0000) =   3514.839 ms/op
+     p(99.9000) =   3514.839 ms/op
+     p(99.9900) =   3514.839 ms/op
+     p(99.9990) =   3514.839 ms/op
+     p(99.9999) =   3514.839 ms/op
+    p(100.0000) =   3514.839 ms/op
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:gc.alloc.rate":
+  9.975 ±(99.9%) 2.180 MB/sec [Average]
+  (min, avg, max) = (9.686, 9.975, 10.987), stdev = 0.566
+  CI (99.9%): [7.795, 12.155] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:gc.alloc.rate.norm":
+  36747929.600 ±(99.9%) 8070590.358 B/op [Average]
+  (min, avg, max) = (35678400.000, 36747929.600, 40494344.000), stdev = 2095906.687
+  CI (99.9%): [28677339.242, 44818519.958] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.400, 1.000), stdev = 0.548
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:gc.time":
+  4.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.800, 2.000), stdev = 1.095
+  CI (99.9%): [4.000, 4.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:goodputPct":
+  330.120 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (63.386, 66.024, 66.986), stdev = 1.496
+  CI (99.9%): [330.120, 330.120] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:p50AdmittedMs":
+  26.379 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (5.240, 5.276, 5.326), stdev = 0.037
+  CI (99.9%): [26.379, 26.379] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:p99AdmittedMs":
+  4550.878 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (893.962, 910.176, 955.872), stdev = 25.875
+  CI (99.9%): [4550.878, 4550.878] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:p99AllMs":
+  4530.850 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (889.771, 906.170, 952.381), stdev = 26.157
+  CI (99.9%): [4530.850, 4530.850] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:peakInFlight":
+  25000.000 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (5000.000, 5000.000, 5000.000), stdev = 0.001
+  CI (99.9%): [25000.000, 25000.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:recoveryMs":
+  1100.000 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (200.000, 220.000, 300.000), stdev = 44.721
+  CI (99.9%): [1100.000, 1100.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:shedPct":
+  62.146 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (11.971, 12.429, 13.706), stdev = 0.723
+  CI (99.9%): [62.146, 62.146] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:timeoutPct":
+  105.237 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (19.926, 21.047, 24.897), stdev = 2.156
+  CI (99.9%): [105.237, 105.237] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.10, OpenJDK 64-Bit Server VM, 21.0.10
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: --enable-preview --enable-preview -Xms2g -Xmx2g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, single-shot each
+# Measurement: 5 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge
+# Parameters: (gate = AIMD_STEP8_MIN50)
+
+# Run progress: 99.75% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 3521.745 ms/op
+Iteration   1: 3517.645 ms/op
+                 gc.alloc.rate:      8.117 MB/sec
+                 gc.alloc.rate.norm: 29939384.000 B/op
+                 gc.count:           ≈ 0 counts
+                 goodputPct:         63.926 #
+                 p50AdmittedMs:      5.202 #
+                 p99AdmittedMs:      150.288 #
+                 p99AllMs:           150.186 #
+                 peakInFlight:       122.000 #
+                 recoveryMs:         500.000 #
+                 shedPct:            34.711 #
+                 timeoutPct:         1.363 #
+
+Iteration   2: 3515.873 ms/op
+                 gc.alloc.rate:      7.674 MB/sec
+                 gc.alloc.rate.norm: 28291720.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            4.000 ms
+                 goodputPct:         63.860 #
+                 p50AdmittedMs:      5.202 #
+                 p99AdmittedMs:      150.294 #
+                 p99AllMs:           150.192 #
+                 peakInFlight:       122.000 #
+                 recoveryMs:         500.000 #
+                 shedPct:            34.777 #
+                 timeoutPct:         1.363 #
+
+Iteration   3: 3515.996 ms/op
+                 gc.alloc.rate:      8.715 MB/sec
+                 gc.alloc.rate.norm: 32131784.000 B/op
+                 gc.count:           ≈ 0 counts
+                 goodputPct:         63.926 #
+                 p50AdmittedMs:      5.205 #
+                 p99AdmittedMs:      150.278 #
+                 p99AllMs:           150.178 #
+                 peakInFlight:       122.000 #
+                 recoveryMs:         500.000 #
+                 shedPct:            34.711 #
+                 timeoutPct:         1.363 #
+
+Iteration   4: 3515.945 ms/op
+                 gc.alloc.rate:      7.984 MB/sec
+                 gc.alloc.rate.norm: 29435288.000 B/op
+                 gc.count:           ≈ 0 counts
+                 goodputPct:         64.040 #
+                 p50AdmittedMs:      5.199 #
+                 p99AdmittedMs:      150.250 #
+                 p99AllMs:           150.164 #
+                 peakInFlight:       122.000 #
+                 recoveryMs:         500.000 #
+                 shedPct:            34.597 #
+                 timeoutPct:         1.363 #
+
+Iteration   5: 3512.070 ms/op
+                 gc.alloc.rate:      7.936 MB/sec
+                 gc.alloc.rate.norm: 29228416.000 B/op
+                 gc.count:           ≈ 0 counts
+                 goodputPct:         63.520 #
+                 p50AdmittedMs:      5.200 #
+                 p99AdmittedMs:      150.324 #
+                 p99AllMs:           150.089 #
+                 peakInFlight:       114.000 #
+                 recoveryMs:         500.000 #
+                 shedPct:            35.463 #
+                 timeoutPct:         1.017 #
+
+
+
+Result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge":
+  N = 5
+  mean =   3515.506 ±(99.9%) 7.927 ms/op
+
+  Histogram, ms/op:
+    [3512.000, 3512.500) = 1 
+    [3512.500, 3513.000) = 0 
+    [3513.000, 3513.500) = 0 
+    [3513.500, 3514.000) = 0 
+    [3514.000, 3514.500) = 0 
+    [3514.500, 3515.000) = 0 
+    [3515.000, 3515.500) = 0 
+    [3515.500, 3516.000) = 3 
+    [3516.000, 3516.500) = 0 
+    [3516.500, 3517.000) = 0 
+    [3517.000, 3517.500) = 0 
+
+  Percentiles, ms/op:
+      p(0.0000) =   3512.070 ms/op
+     p(50.0000) =   3515.945 ms/op
+     p(90.0000) =   3517.645 ms/op
+     p(95.0000) =   3517.645 ms/op
+     p(99.0000) =   3517.645 ms/op
+     p(99.9000) =   3517.645 ms/op
+     p(99.9900) =   3517.645 ms/op
+     p(99.9990) =   3517.645 ms/op
+     p(99.9999) =   3517.645 ms/op
+    p(100.0000) =   3517.645 ms/op
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:gc.alloc.rate":
+  8.085 ±(99.9%) 1.491 MB/sec [Average]
+  (min, avg, max) = (7.674, 8.085, 8.715), stdev = 0.387
+  CI (99.9%): [6.594, 9.576] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:gc.alloc.rate.norm":
+  29805318.400 ±(99.9%) 5510301.992 B/op [Average]
+  (min, avg, max) = (28291720.000, 29805318.400, 32131784.000), stdev = 1431007.928
+  CI (99.9%): [24295016.408, 35315620.392] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:gc.count":
+  1.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.200, 1.000), stdev = 0.447
+  CI (99.9%): [1.000, 1.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:gc.time":
+  4.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.800, 4.000), stdev = 1.789
+  CI (99.9%): [4.000, 4.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:goodputPct":
+  319.271 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (63.520, 63.854, 64.040), stdev = 0.198
+  CI (99.9%): [319.271, 319.271] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:p50AdmittedMs":
+  26.007 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (5.199, 5.201, 5.205), stdev = 0.002
+  CI (99.9%): [26.007, 26.007] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:p99AdmittedMs":
+  751.434 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (150.250, 150.287, 150.324), stdev = 0.027
+  CI (99.9%): [751.434, 751.434] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:p99AllMs":
+  750.809 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (150.089, 150.162, 150.192), stdev = 0.042
+  CI (99.9%): [750.809, 750.809] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:peakInFlight":
+  602.000 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (114.000, 120.400, 122.000), stdev = 3.578
+  CI (99.9%): [602.000, 602.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:recoveryMs":
+  2500.000 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (500.000, 500.000, 500.000), stdev = 0.001
+  CI (99.9%): [2500.000, 2500.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:shedPct":
+  174.260 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (34.597, 34.852, 35.463), stdev = 0.348
+  CI (99.9%): [174.260, 174.260] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:timeoutPct":
+  6.469 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (1.017, 1.294, 1.363), stdev = 0.155
+  CI (99.9%): [6.469, 6.469] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.10, OpenJDK 64-Bit Server VM, 21.0.10
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: --enable-preview --enable-preview -Xms2g -Xmx2g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, single-shot each
+# Measurement: 5 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge
+# Parameters: (gate = AIMD_STEP32_MIN16)
+
+# Run progress: 99.76% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 3522.880 ms/op
+Iteration   1: 3517.647 ms/op
+                 gc.alloc.rate:      8.659 MB/sec
+                 gc.alloc.rate.norm: 31942080.000 B/op
+                 gc.count:           ≈ 0 counts
+                 goodputPct:         65.714 #
+                 p50AdmittedMs:      5.198 #
+                 p99AdmittedMs:      150.292 #
+                 p99AllMs:           6.379 #
+                 peakInFlight:       114.000 #
+                 recoveryMs:         300.000 #
+                 shedPct:            33.309 #
+                 timeoutPct:         0.977 #
+
+Iteration   2: 3513.161 ms/op
+                 gc.alloc.rate:      7.839 MB/sec
+                 gc.alloc.rate.norm: 28878968.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+                 goodputPct:         66.486 #
+                 p50AdmittedMs:      5.201 #
+                 p99AdmittedMs:      150.314 #
+                 p99AllMs:           150.223 #
+                 peakInFlight:       146.000 #
+                 recoveryMs:         200.000 #
+                 shedPct:            31.974 #
+                 timeoutPct:         1.540 #
+
+Iteration   3: 3512.152 ms/op
+                 gc.alloc.rate:      7.997 MB/sec
+                 gc.alloc.rate.norm: 29452248.000 B/op
+                 gc.count:           ≈ 0 counts
+                 goodputPct:         65.797 #
+                 p50AdmittedMs:      5.198 #
+                 p99AdmittedMs:      150.209 #
+                 p99AllMs:           6.448 #
+                 peakInFlight:       114.000 #
+                 recoveryMs:         300.000 #
+                 shedPct:            33.226 #
+                 timeoutPct:         0.977 #
+
+Iteration   4: 3512.380 ms/op
+                 gc.alloc.rate:      8.066 MB/sec
+                 gc.alloc.rate.norm: 29706960.000 B/op
+                 gc.count:           ≈ 0 counts
+                 goodputPct:         66.774 #
+                 p50AdmittedMs:      5.202 #
+                 p99AdmittedMs:      150.258 #
+                 p99AllMs:           150.188 #
+                 peakInFlight:       146.000 #
+                 recoveryMs:         200.000 #
+                 shedPct:            31.686 #
+                 timeoutPct:         1.540 #
+
+Iteration   5: 3511.973 ms/op
+                 gc.alloc.rate:      8.504 MB/sec
+                 gc.alloc.rate.norm: 31317808.000 B/op
+                 gc.count:           ≈ 0 counts
+                 goodputPct:         66.886 #
+                 p50AdmittedMs:      5.199 #
+                 p99AdmittedMs:      150.273 #
+                 p99AllMs:           150.202 #
+                 peakInFlight:       146.000 #
+                 recoveryMs:         200.000 #
+                 shedPct:            31.574 #
+                 timeoutPct:         1.540 #
+
+
+
+Result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge":
+  N = 5
+  mean =   3513.463 ±(99.9%) 9.175 ms/op
+
+  Histogram, ms/op:
+    [3511.000, 3511.500) = 0 
+    [3511.500, 3512.000) = 1 
+    [3512.000, 3512.500) = 2 
+    [3512.500, 3513.000) = 0 
+    [3513.000, 3513.500) = 1 
+    [3513.500, 3514.000) = 0 
+    [3514.000, 3514.500) = 0 
+    [3514.500, 3515.000) = 0 
+    [3515.000, 3515.500) = 0 
+    [3515.500, 3516.000) = 0 
+    [3516.000, 3516.500) = 0 
+    [3516.500, 3517.000) = 0 
+    [3517.000, 3517.500) = 0 
+
+  Percentiles, ms/op:
+      p(0.0000) =   3511.973 ms/op
+     p(50.0000) =   3512.380 ms/op
+     p(90.0000) =   3517.647 ms/op
+     p(95.0000) =   3517.647 ms/op
+     p(99.0000) =   3517.647 ms/op
+     p(99.9000) =   3517.647 ms/op
+     p(99.9900) =   3517.647 ms/op
+     p(99.9990) =   3517.647 ms/op
+     p(99.9999) =   3517.647 ms/op
+    p(100.0000) =   3517.647 ms/op
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:gc.alloc.rate":
+  8.213 ±(99.9%) 1.351 MB/sec [Average]
+  (min, avg, max) = (7.839, 8.213, 8.659), stdev = 0.351
+  CI (99.9%): [6.862, 9.564] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:gc.alloc.rate.norm":
+  30259612.800 ±(99.9%) 5025760.110 B/op [Average]
+  (min, avg, max) = (28878968.000, 30259612.800, 31942080.000), stdev = 1305173.941
+  CI (99.9%): [25233852.690, 35285372.910] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:gc.count":
+  1.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.200, 1.000), stdev = 0.447
+  CI (99.9%): [1.000, 1.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:gc.time":
+  1.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.200, 1.000), stdev = 0.447
+  CI (99.9%): [1.000, 1.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:goodputPct":
+  331.657 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (65.714, 66.331, 66.886), stdev = 0.546
+  CI (99.9%): [331.657, 331.657] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:p50AdmittedMs":
+  25.998 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (5.198, 5.200, 5.202), stdev = 0.002
+  CI (99.9%): [25.998, 25.998] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:p99AdmittedMs":
+  751.346 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (150.209, 150.269, 150.314), stdev = 0.040
+  CI (99.9%): [751.346, 751.346] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:p99AllMs":
+  463.439 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (6.379, 92.688, 150.223), stdev = 78.758
+  CI (99.9%): [463.439, 463.439] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:peakInFlight":
+  666.000 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (114.000, 133.200, 146.000), stdev = 17.527
+  CI (99.9%): [666.000, 666.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:recoveryMs":
+  1200.000 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (200.000, 240.000, 300.000), stdev = 54.772
+  CI (99.9%): [1200.000, 1200.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:shedPct":
+  161.769 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (31.574, 32.354, 33.309), stdev = 0.847
+  CI (99.9%): [161.769, 161.769] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHAdaptiveLimiterBenchmark.latencySurge:timeoutPct":
+  6.574 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (0.977, 1.315, 1.540), stdev = 0.308
+  CI (99.9%): [6.574, 6.574] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.10, OpenJDK 64-Bit Server VM, 21.0.10
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: --enable-preview --enable-preview -Xms2g -Xmx2g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, single-shot each
+# Measurement: 20 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires
+# Parameters: (queryMillis = 2, strategy = NAIVE)
+
+# Run progress: 99.77% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 41.669 ms/op
+# Warmup Iteration   2: 39.515 ms/op
+# Warmup Iteration   3: 43.914 ms/op
+# Warmup Iteration   4: 48.699 ms/op
+# Warmup Iteration   5: 54.635 ms/op
+Iteration   1: 50.308 ms/op
+                 bystanderStallMs:   0.326 #
+                 dbQueries:          885.000 #
+                 gc.alloc.rate:      194.230 MB/sec
+                 gc.alloc.rate.norm: 11174448.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   2: 37.182 ms/op
+                 bystanderStallMs:   0.346 #
+                 dbQueries:          659.000 #
+                 gc.alloc.rate:      203.558 MB/sec
+                 gc.alloc.rate.norm: 9248880.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   3: 52.224 ms/op
+                 bystanderStallMs:   0.301 #
+                 dbQueries:          950.000 #
+                 gc.alloc.rate:      162.990 MB/sec
+                 gc.alloc.rate.norm: 9499544.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   4: 56.804 ms/op
+                 bystanderStallMs:   0.374 #
+                 dbQueries:          1034.000 #
+                 gc.alloc.rate:      147.110 MB/sec
+                 gc.alloc.rate.norm: 9300064.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          114.000 #
+
+Iteration   5: 51.831 ms/op
+                 bystanderStallMs:   0.293 #
+                 dbQueries:          943.000 #
+                 gc.alloc.rate:      176.831 MB/sec
+                 gc.alloc.rate.norm: 10187568.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   6: 60.854 ms/op
+                 bystanderStallMs:   0.288 #
+                 dbQueries:          1113.000 #
+                 gc.alloc.rate:      145.858 MB/sec
+                 gc.alloc.rate.norm: 9912608.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          193.000 #
+
+Iteration   7: 56.216 ms/op
+                 bystanderStallMs:   0.290 #
+                 dbQueries:          1017.000 #
+                 gc.alloc.rate:      159.493 MB/sec
+                 gc.alloc.rate.norm: 10002336.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          57.000 #
+
+Iteration   8: 62.600 ms/op
+                 bystanderStallMs:   0.292 #
+                 dbQueries:          1155.000 #
+                 gc.alloc.rate:      144.469 MB/sec
+                 gc.alloc.rate.norm: 10126032.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          235.000 #
+
+Iteration   9: 68.916 ms/op
+                 bystanderStallMs:   0.291 #
+                 dbQueries:          1212.000 #
+                 gc.alloc.rate:      132.369 MB/sec
+                 gc.alloc.rate.norm: 10183968.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          293.000 #
+
+Iteration  10: 64.886 ms/op
+                 bystanderStallMs:   0.280 #
+                 dbQueries:          1196.000 #
+                 gc.alloc.rate:      141.999 MB/sec
+                 gc.alloc.rate.norm: 10172368.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          276.000 #
+
+Iteration  11: 62.642 ms/op
+                 bystanderStallMs:   0.289 #
+                 dbQueries:          1158.000 #
+                 gc.alloc.rate:      146.466 MB/sec
+                 gc.alloc.rate.norm: 10128944.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          236.000 #
+
+Iteration  12: 43.422 ms/op
+                 bystanderStallMs:   0.353 #
+                 dbQueries:          776.000 #
+                 gc.alloc.rate:      185.919 MB/sec
+                 gc.alloc.rate.norm: 9681072.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            3.000 ms
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  13: 60.332 ms/op
+                 bystanderStallMs:   0.294 #
+                 dbQueries:          1099.000 #
+                 gc.alloc.rate:      148.588 MB/sec
+                 gc.alloc.rate.norm: 10072168.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          139.000 #
+
+Iteration  14: 77.856 ms/op
+                 bystanderStallMs:   0.292 #
+                 dbQueries:          1373.000 #
+                 gc.alloc.rate:      120.371 MB/sec
+                 gc.alloc.rate.norm: 10359312.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          493.000 #
+
+Iteration  15: 62.466 ms/op
+                 bystanderStallMs:   0.293 #
+                 dbQueries:          1138.000 #
+                 gc.alloc.rate:      146.422 MB/sec
+                 gc.alloc.rate.norm: 10112360.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          178.000 #
+
+Iteration  16: 62.605 ms/op
+                 bystanderStallMs:   0.293 #
+                 dbQueries:          1127.000 #
+                 gc.alloc.rate:      146.602 MB/sec
+                 gc.alloc.rate.norm: 10100000.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          202.000 #
+
+Iteration  17: 61.005 ms/op
+                 bystanderStallMs:   0.412 #
+                 dbQueries:          1091.000 #
+                 gc.alloc.rate:      146.658 MB/sec
+                 gc.alloc.rate.norm: 10069656.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          171.000 #
+
+Iteration  18: 77.713 ms/op
+                 bystanderStallMs:   1.693 #
+                 dbQueries:          1303.000 #
+                 gc.alloc.rate:      122.044 MB/sec
+                 gc.alloc.rate.norm: 10328056.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          503.000 #
+
+Iteration  19: 78.688 ms/op
+                 bystanderStallMs:   4.310 #
+                 dbQueries:          1138.000 #
+                 gc.alloc.rate:      117.847 MB/sec
+                 gc.alloc.rate.norm: 10129496.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          458.000 #
+
+Iteration  20: 228.692 ms/op
+                 bystanderStallMs:   1.593 #
+                 dbQueries:          4200.000 #
+                 gc.alloc.rate:      55.093 MB/sec
+                 gc.alloc.rate.norm: 13416640.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          3320.000 #
+
+
+
+Result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires":
+  N = 20
+  mean =     68.862 ±(99.9%) 33.949 ms/op
+
+  Histogram, ms/op:
+    [  0.000,  25.000) = 0 
+    [ 25.000,  50.000) = 2 
+    [ 50.000,  75.000) = 14 
+    [ 75.000, 100.000) = 3 
+    [100.000, 125.000) = 0 
+    [125.000, 150.000) = 0 
+    [150.000, 175.000) = 0 
+    [175.000, 200.000) = 0 
+    [200.000, 225.000) = 0 
+    [225.000, 250.000) = 1 
+    [250.000, 275.000) = 0 
+
+  Percentiles, ms/op:
+      p(0.0000) =     37.182 ms/op
+     p(50.0000) =     61.736 ms/op
+     p(90.0000) =     78.605 ms/op
+     p(95.0000) =    221.192 ms/op
+     p(99.0000) =    228.692 ms/op
+     p(99.9000) =    228.692 ms/op
+     p(99.9900) =    228.692 ms/op
+     p(99.9990) =    228.692 ms/op
+     p(99.9999) =    228.692 ms/op
+    p(100.0000) =    228.692 ms/op
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:bystanderStallMs":
+  12.901 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (0.280, 0.645, 4.310), stdev = 0.955
+  CI (99.9%): [12.901, 12.901] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:dbQueries":
+  24567.000 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (659.000, 1228.350, 4200.000), stdev = 719.369
+  CI (99.9%): [24567.000, 24567.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate":
+  147.246 ±(99.9%) 27.549 MB/sec [Average]
+  (min, avg, max) = (55.093, 147.246, 203.558), stdev = 31.725
+  CI (99.9%): [119.697, 174.795] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate.norm":
+  10210276.000 ±(99.9%) 745386.350 B/op [Average]
+  (min, avg, max) = (9248880.000, 10210276.000, 13416640.000), stdev = 858388.029
+  CI (99.9%): [9464889.650, 10955662.350] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.100, 1.000), stdev = 0.308
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.time":
+  4.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.200, 3.000), stdev = 0.696
+  CI (99.9%): [4.000, 4.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:poolTimeouts":
+  ≈ 0 #
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:slaMisses":
+  6868.000 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (≈ 0, 343.400, 3320.000), stdev = 718.816
+  CI (99.9%): [6868.000, 6868.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.10, OpenJDK 64-Bit Server VM, 21.0.10
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: --enable-preview --enable-preview -Xms2g -Xmx2g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, single-shot each
+# Measurement: 20 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires
+# Parameters: (queryMillis = 2, strategy = SINGLE_FLIGHT)
+
+# Run progress: 99.81% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 50.931 ms/op
+# Warmup Iteration   2: 13.647 ms/op
+# Warmup Iteration   3: 12.596 ms/op
+# Warmup Iteration   4: 5.592 ms/op
+# Warmup Iteration   5: 5.357 ms/op
+Iteration   1: 20.549 ms/op
+                 bystanderStallMs:   1.427 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      349.217 MB/sec
+                 gc.alloc.rate.norm: 9714168.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   2: 16.976 ms/op
+                 bystanderStallMs:   0.386 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      483.650 MB/sec
+                 gc.alloc.rate.norm: 10621640.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   3: 15.895 ms/op
+                 bystanderStallMs:   0.288 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      580.255 MB/sec
+                 gc.alloc.rate.norm: 11801704.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   4: 7.238 ms/op
+                 bystanderStallMs:   0.473 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      901.338 MB/sec
+                 gc.alloc.rate.norm: 10097088.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   5: 10.503 ms/op
+                 bystanderStallMs:   0.661 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      709.950 MB/sec
+                 gc.alloc.rate.norm: 10046352.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   6: 17.069 ms/op
+                 bystanderStallMs:   0.411 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      430.436 MB/sec
+                 gc.alloc.rate.norm: 9849176.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   7: 13.846 ms/op
+                 bystanderStallMs:   0.293 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      554.391 MB/sec
+                 gc.alloc.rate.norm: 10018448.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   8: 19.927 ms/op
+                 bystanderStallMs:   0.534 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      472.735 MB/sec
+                 gc.alloc.rate.norm: 11866776.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   9: 13.337 ms/op
+                 bystanderStallMs:   0.286 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      545.856 MB/sec
+                 gc.alloc.rate.norm: 9623648.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  10: 28.882 ms/op
+                 bystanderStallMs:   2.171 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      266.061 MB/sec
+                 gc.alloc.rate.norm: 9137600.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  11: 14.091 ms/op
+                 bystanderStallMs:   0.491 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      544.082 MB/sec
+                 gc.alloc.rate.norm: 9617136.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  12: 12.905 ms/op
+                 bystanderStallMs:   0.333 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      545.248 MB/sec
+                 gc.alloc.rate.norm: 9620016.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  13: 14.817 ms/op
+                 bystanderStallMs:   0.431 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      498.145 MB/sec
+                 gc.alloc.rate.norm: 9634312.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  14: 21.276 ms/op
+                 bystanderStallMs:   ≈ 0 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      364.154 MB/sec
+                 gc.alloc.rate.norm: 10769280.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  15: 13.442 ms/op
+                 bystanderStallMs:   0.444 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      528.794 MB/sec
+                 gc.alloc.rate.norm: 9476552.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  16: 11.537 ms/op
+                 bystanderStallMs:   0.319 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      587.018 MB/sec
+                 gc.alloc.rate.norm: 9520584.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  17: 5.412 ms/op
+                 bystanderStallMs:   0.416 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      1120.020 MB/sec
+                 gc.alloc.rate.norm: 11032168.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  18: 5.896 ms/op
+                 bystanderStallMs:   ≈ 0 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      978.817 MB/sec
+                 gc.alloc.rate.norm: 9638544.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  19: 11.528 ms/op
+                 bystanderStallMs:   0.666 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      608.651 MB/sec
+                 gc.alloc.rate.norm: 9521000.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  20: 6.737 ms/op
+                 bystanderStallMs:   0.996 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      939.502 MB/sec
+                 gc.alloc.rate.norm: 9500560.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+
+
+Result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires":
+  N = 20
+  mean =     14.093 ±(99.9%) 5.036 ms/op
+
+  Histogram, ms/op:
+    [ 0.000,  2.500) = 0 
+    [ 2.500,  5.000) = 0 
+    [ 5.000,  7.500) = 4 
+    [ 7.500, 10.000) = 0 
+    [10.000, 12.500) = 3 
+    [12.500, 15.000) = 6 
+    [15.000, 17.500) = 3 
+    [17.500, 20.000) = 1 
+    [20.000, 22.500) = 2 
+    [22.500, 25.000) = 0 
+    [25.000, 27.500) = 0 
+
+  Percentiles, ms/op:
+      p(0.0000) =      5.412 ms/op
+     p(50.0000) =     13.644 ms/op
+     p(90.0000) =     21.203 ms/op
+     p(95.0000) =     28.502 ms/op
+     p(99.0000) =     28.882 ms/op
+     p(99.9000) =     28.882 ms/op
+     p(99.9900) =     28.882 ms/op
+     p(99.9990) =     28.882 ms/op
+     p(99.9999) =     28.882 ms/op
+    p(100.0000) =     28.882 ms/op
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:bystanderStallMs":
+  11.027 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (≈ 0, 0.551, 2.171), stdev = 0.494
+  CI (99.9%): [11.027, 11.027] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:dbQueries":
+  20.000 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (1.000, 1.000, 1.000), stdev = 0.001
+  CI (99.9%): [20.000, 20.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate":
+  600.416 ±(99.9%) 193.946 MB/sec [Average]
+  (min, avg, max) = (266.061, 600.416, 1120.020), stdev = 223.348
+  CI (99.9%): [406.470, 794.362] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate.norm":
+  10055337.600 ±(99.9%) 668279.363 B/op [Average]
+  (min, avg, max) = (9137600.000, 10055337.600, 11866776.000), stdev = 769591.508
+  CI (99.9%): [9387058.237, 10723616.963] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.100, 1.000), stdev = 0.308
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.time":
+  4.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.200, 2.000), stdev = 0.616
+  CI (99.9%): [4.000, 4.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:poolTimeouts":
+  ≈ 0 #
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:slaMisses":
+  ≈ 0 #
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.10, OpenJDK 64-Bit Server VM, 21.0.10
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: --enable-preview --enable-preview -Xms2g -Xmx2g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, single-shot each
+# Measurement: 20 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires
+# Parameters: (queryMillis = 2, strategy = CAFFEINE_COMPUTE)
+
+# Run progress: 99.84% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 40.846 ms/op
+# Warmup Iteration   2: 32.460 ms/op
+# Warmup Iteration   3: 20.801 ms/op
+# Warmup Iteration   4: 18.402 ms/op
+# Warmup Iteration   5: 17.679 ms/op
+Iteration   1: 17.768 ms/op
+                 bystanderStallMs:   1.556 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      409.331 MB/sec
+                 gc.alloc.rate.norm: 9096552.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   2: 25.175 ms/op
+                 bystanderStallMs:   1.562 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      279.955 MB/sec
+                 gc.alloc.rate.norm: 9098624.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   3: 18.321 ms/op
+                 bystanderStallMs:   1.543 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      390.198 MB/sec
+                 gc.alloc.rate.norm: 9096640.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   4: 18.719 ms/op
+                 bystanderStallMs:   1.543 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      388.560 MB/sec
+                 gc.alloc.rate.norm: 9096640.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   5: 18.156 ms/op
+                 bystanderStallMs:   1.585 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      391.333 MB/sec
+                 gc.alloc.rate.norm: 9096672.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   6: 18.428 ms/op
+                 bystanderStallMs:   1.605 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      385.999 MB/sec
+                 gc.alloc.rate.norm: 9096672.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   7: 17.862 ms/op
+                 bystanderStallMs:   1.552 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      410.945 MB/sec
+                 gc.alloc.rate.norm: 9096472.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   8: 17.933 ms/op
+                 bystanderStallMs:   1.569 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      414.332 MB/sec
+                 gc.alloc.rate.norm: 9096264.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   9: 19.155 ms/op
+                 bystanderStallMs:   1.545 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      387.411 MB/sec
+                 gc.alloc.rate.norm: 9096464.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  10: 17.916 ms/op
+                 bystanderStallMs:   1.545 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      391.224 MB/sec
+                 gc.alloc.rate.norm: 9096544.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  11: 17.521 ms/op
+                 bystanderStallMs:   1.542 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      418.499 MB/sec
+                 gc.alloc.rate.norm: 9095856.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  12: 18.003 ms/op
+                 bystanderStallMs:   1.524 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      411.508 MB/sec
+                 gc.alloc.rate.norm: 9095856.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  13: 21.090 ms/op
+                 bystanderStallMs:   1.577 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      336.351 MB/sec
+                 gc.alloc.rate.norm: 9096416.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  14: 20.400 ms/op
+                 bystanderStallMs:   ≈ 0 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      348.947 MB/sec
+                 gc.alloc.rate.norm: 9094248.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  15: 18.710 ms/op
+                 bystanderStallMs:   1.536 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      393.958 MB/sec
+                 gc.alloc.rate.norm: 9095896.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  16: 18.505 ms/op
+                 bystanderStallMs:   1.525 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      390.505 MB/sec
+                 gc.alloc.rate.norm: 9095848.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  17: 19.753 ms/op
+                 bystanderStallMs:   1.546 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      386.193 MB/sec
+                 gc.alloc.rate.norm: 9574584.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  18: 19.016 ms/op
+                 bystanderStallMs:   ≈ 0 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      382.635 MB/sec
+                 gc.alloc.rate.norm: 9414344.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  19: 18.499 ms/op
+                 bystanderStallMs:   1.411 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      403.359 MB/sec
+                 gc.alloc.rate.norm: 9416160.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  20: 19.123 ms/op
+                 bystanderStallMs:   1.541 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      411.061 MB/sec
+                 gc.alloc.rate.norm: 9416064.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+
+
+Result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires":
+  N = 20
+  mean =     19.002 ±(99.9%) 1.485 ms/op
+
+  Histogram, ms/op:
+    [17.000, 17.500) = 0 
+    [17.500, 18.000) = 5 
+    [18.000, 18.500) = 5 
+    [18.500, 19.000) = 3 
+    [19.000, 19.500) = 3 
+    [19.500, 20.000) = 1 
+    [20.000, 20.500) = 1 
+    [20.500, 21.000) = 0 
+    [21.000, 21.500) = 1 
+    [21.500, 22.000) = 0 
+    [22.000, 22.500) = 0 
+    [22.500, 23.000) = 0 
+    [23.000, 23.500) = 0 
+    [23.500, 24.000) = 0 
+    [24.000, 24.500) = 0 
+    [24.500, 25.000) = 0 
+    [25.000, 25.500) = 1 
+
+  Percentiles, ms/op:
+      p(0.0000) =     17.521 ms/op
+     p(50.0000) =     18.502 ms/op
+     p(90.0000) =     21.021 ms/op
+     p(95.0000) =     24.970 ms/op
+     p(99.0000) =     25.175 ms/op
+     p(99.9000) =     25.175 ms/op
+     p(99.9900) =     25.175 ms/op
+     p(99.9990) =     25.175 ms/op
+     p(99.9999) =     25.175 ms/op
+    p(100.0000) =     25.175 ms/op
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:bystanderStallMs":
+  27.807 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (≈ 0, 1.390, 1.605), stdev = 0.477
+  CI (99.9%): [27.807, 27.807] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:dbQueries":
+  20.000 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (1.000, 1.000, 1.000), stdev = 0.001
+  CI (99.9%): [20.000, 20.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate":
+  386.615 ±(99.9%) 28.073 MB/sec [Average]
+  (min, avg, max) = (279.955, 386.615, 418.499), stdev = 32.329
+  CI (99.9%): [358.542, 414.688] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate.norm":
+  9168140.800 ±(99.9%) 130824.352 B/op [Average]
+  (min, avg, max) = (9094248.000, 9168140.800, 9574584.000), stdev = 150657.519
+  CI (99.9%): [9037316.448, 9298965.152] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.100, 1.000), stdev = 0.308
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.time":
+  3.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.150, 2.000), stdev = 0.489
+  CI (99.9%): [3.000, 3.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:poolTimeouts":
+  ≈ 0 #
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:slaMisses":
+  ≈ 0 #
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.10, OpenJDK 64-Bit Server VM, 21.0.10
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: --enable-preview --enable-preview -Xms2g -Xmx2g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, single-shot each
+# Measurement: 20 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires
+# Parameters: (queryMillis = 20, strategy = NAIVE)
+
+# Run progress: 99.88% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 370.844 ms/op
+# Warmup Iteration   2: 318.176 ms/op
+# Warmup Iteration   3: 287.047 ms/op
+# Warmup Iteration   4: 285.182 ms/op
+# Warmup Iteration   5: 283.202 ms/op
+Iteration   1: 283.981 ms/op
+                 bystanderStallMs:   2.432 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      48.183 MB/sec
+                 gc.alloc.rate.norm: 14627448.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       8291.000 #
+                 slaMisses:          8771.000 #
+
+Iteration   2: 289.993 ms/op
+                 bystanderStallMs:   7.812 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      40.743 MB/sec
+                 gc.alloc.rate.norm: 12525264.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       8723.000 #
+                 slaMisses:          9203.000 #
+
+Iteration   3: 278.983 ms/op
+                 bystanderStallMs:   16.713 #
+                 dbQueries:          520.000 #
+                 gc.alloc.rate:      42.489 MB/sec
+                 gc.alloc.rate.norm: 12585560.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9480.000 #
+                 slaMisses:          9920.000 #
+
+Iteration   4: 290.084 ms/op
+                 bystanderStallMs:   4.550 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      41.100 MB/sec
+                 gc.alloc.rate.norm: 12618664.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9440.000 #
+                 slaMisses:          9920.000 #
+
+Iteration   5: 292.136 ms/op
+                 bystanderStallMs:   8.392 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      39.769 MB/sec
+                 gc.alloc.rate.norm: 12332992.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9180.000 #
+                 slaMisses:          9660.000 #
+
+Iteration   6: 299.828 ms/op
+                 bystanderStallMs:   14.276 #
+                 dbQueries:          536.000 #
+                 gc.alloc.rate:      43.293 MB/sec
+                 gc.alloc.rate.norm: 13921536.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            3.000 ms
+                 poolTimeouts:       5331.000 #
+                 slaMisses:          5787.000 #
+
+Iteration   7: 288.339 ms/op
+                 bystanderStallMs:   5.818 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      40.135 MB/sec
+                 gc.alloc.rate.norm: 12272512.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9440.000 #
+                 slaMisses:          9920.000 #
+
+Iteration   8: 286.475 ms/op
+                 bystanderStallMs:   4.405 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      40.198 MB/sec
+                 gc.alloc.rate.norm: 12222344.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9161.000 #
+                 slaMisses:          9641.000 #
+
+Iteration   9: 288.846 ms/op
+                 bystanderStallMs:   4.715 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      39.850 MB/sec
+                 gc.alloc.rate.norm: 12235288.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9201.000 #
+                 slaMisses:          9681.000 #
+
+Iteration  10: 287.360 ms/op
+                 bystanderStallMs:   5.433 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      40.229 MB/sec
+                 gc.alloc.rate.norm: 12261344.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9355.000 #
+                 slaMisses:          9835.000 #
+
+Iteration  11: 291.593 ms/op
+                 bystanderStallMs:   4.971 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      39.563 MB/sec
+                 gc.alloc.rate.norm: 12272256.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9259.000 #
+                 slaMisses:          9739.000 #
+
+Iteration  12: 293.823 ms/op
+                 bystanderStallMs:   7.441 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      39.325 MB/sec
+                 gc.alloc.rate.norm: 12274656.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9440.000 #
+                 slaMisses:          9920.000 #
+
+Iteration  13: 287.668 ms/op
+                 bystanderStallMs:   5.559 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      40.217 MB/sec
+                 gc.alloc.rate.norm: 12288120.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9438.000 #
+                 slaMisses:          9918.000 #
+
+Iteration  14: 290.855 ms/op
+                 bystanderStallMs:   7.926 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      47.290 MB/sec
+                 gc.alloc.rate.norm: 14667856.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+                 poolTimeouts:       6420.000 #
+                 slaMisses:          6900.000 #
+
+Iteration  15: 291.514 ms/op
+                 bystanderStallMs:   5.908 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      42.085 MB/sec
+                 gc.alloc.rate.norm: 13021184.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9285.000 #
+                 slaMisses:          9765.000 #
+
+Iteration  16: 288.732 ms/op
+                 bystanderStallMs:   5.051 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      41.315 MB/sec
+                 gc.alloc.rate.norm: 12651336.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9292.000 #
+                 slaMisses:          9772.000 #
+
+Iteration  17: 287.089 ms/op
+                 bystanderStallMs:   5.156 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      41.588 MB/sec
+                 gc.alloc.rate.norm: 12663216.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9328.000 #
+                 slaMisses:          9808.000 #
+
+Iteration  18: 286.713 ms/op
+                 bystanderStallMs:   4.592 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      41.363 MB/sec
+                 gc.alloc.rate.norm: 12621648.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9152.000 #
+                 slaMisses:          9632.000 #
+
+Iteration  19: 286.957 ms/op
+                 bystanderStallMs:   4.756 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      41.383 MB/sec
+                 gc.alloc.rate.norm: 12629984.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9158.000 #
+                 slaMisses:          9638.000 #
+
+Iteration  20: 292.563 ms/op
+                 bystanderStallMs:   6.373 #
+                 dbQueries:          560.000 #
+                 gc.alloc.rate:      40.786 MB/sec
+                 gc.alloc.rate.norm: 12685768.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       9420.000 #
+                 slaMisses:          9900.000 #
+
+
+
+Result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires":
+  N = 20
+  mean =    289.177 ±(99.9%) 3.624 ms/op
+
+  Histogram, ms/op:
+    [270.000, 272.500) = 0 
+    [272.500, 275.000) = 0 
+    [275.000, 277.500) = 0 
+    [277.500, 280.000) = 1 
+    [280.000, 282.500) = 0 
+    [282.500, 285.000) = 1 
+    [285.000, 287.500) = 5 
+    [287.500, 290.000) = 5 
+    [290.000, 292.500) = 5 
+    [292.500, 295.000) = 2 
+    [295.000, 297.500) = 0 
+
+  Percentiles, ms/op:
+      p(0.0000) =    278.983 ms/op
+     p(50.0000) =    288.789 ms/op
+     p(90.0000) =    293.697 ms/op
+     p(95.0000) =    299.528 ms/op
+     p(99.0000) =    299.828 ms/op
+     p(99.9000) =    299.828 ms/op
+     p(99.9900) =    299.828 ms/op
+     p(99.9990) =    299.828 ms/op
+     p(99.9999) =    299.828 ms/op
+    p(100.0000) =    299.828 ms/op
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:bystanderStallMs":
+  132.280 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (2.432, 6.614, 16.713), stdev = 3.375
+  CI (99.9%): [132.280, 132.280] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:dbQueries":
+  11136.000 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (520.000, 556.800, 560.000), stdev = 10.186
+  CI (99.9%): [11136.000, 11136.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate":
+  41.545 ±(99.9%) 2.042 MB/sec [Average]
+  (min, avg, max) = (39.325, 41.545, 48.183), stdev = 2.351
+  CI (99.9%): [39.504, 43.587] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate.norm":
+  12768948.800 ±(99.9%) 649831.936 B/op [Average]
+  (min, avg, max) = (12222344.000, 12768948.800, 14667856.000), stdev = 748347.424
+  CI (99.9%): [12119116.864, 13418780.736] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.100, 1.000), stdev = 0.308
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.time":
+  4.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.200, 3.000), stdev = 0.696
+  CI (99.9%): [4.000, 4.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:poolTimeouts":
+  177794.000 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (5331.000, 8889.700, 9480.000), stdev = 1082.090
+  CI (99.9%): [177794.000, 177794.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:slaMisses":
+  187330.000 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (5787.000, 9366.500, 9920.000), stdev = 1085.140
+  CI (99.9%): [187330.000, 187330.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.10, OpenJDK 64-Bit Server VM, 21.0.10
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: --enable-preview --enable-preview -Xms2g -Xmx2g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, single-shot each
+# Measurement: 20 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires
+# Parameters: (queryMillis = 20, strategy = SINGLE_FLIGHT)
+
+# Run progress: 99.92% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 54.863 ms/op
+# Warmup Iteration   2: 36.609 ms/op
+# Warmup Iteration   3: 29.414 ms/op
+# Warmup Iteration   4: 26.925 ms/op
+# Warmup Iteration   5: 29.111 ms/op
+Iteration   1: 26.700 ms/op
+                 bystanderStallMs:   3.634 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      647.625 MB/sec
+                 gc.alloc.rate.norm: 20539224.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   2: 26.932 ms/op
+                 bystanderStallMs:   4.524 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      503.713 MB/sec
+                 gc.alloc.rate.norm: 15960136.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   3: 26.365 ms/op
+                 bystanderStallMs:   5.051 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      515.512 MB/sec
+                 gc.alloc.rate.norm: 15960632.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   4: 26.181 ms/op
+                 bystanderStallMs:   4.086 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      511.111 MB/sec
+                 gc.alloc.rate.norm: 15966672.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   5: 26.637 ms/op
+                 bystanderStallMs:   1.985 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      434.090 MB/sec
+                 gc.alloc.rate.norm: 14827848.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   6: 27.146 ms/op
+                 bystanderStallMs:   5.965 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      497.044 MB/sec
+                 gc.alloc.rate.norm: 15946776.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   7: 27.090 ms/op
+                 bystanderStallMs:   6.081 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      484.305 MB/sec
+                 gc.alloc.rate.norm: 15767912.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   8: 27.041 ms/op
+                 bystanderStallMs:   5.577 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      504.011 MB/sec
+                 gc.alloc.rate.norm: 15546416.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   9: 27.046 ms/op
+                 bystanderStallMs:   4.948 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      483.210 MB/sec
+                 gc.alloc.rate.norm: 15544960.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  10: 27.059 ms/op
+                 bystanderStallMs:   5.935 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      489.126 MB/sec
+                 gc.alloc.rate.norm: 15548936.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  11: 27.187 ms/op
+                 bystanderStallMs:   3.641 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      491.166 MB/sec
+                 gc.alloc.rate.norm: 15546888.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  12: 28.067 ms/op
+                 bystanderStallMs:   6.202 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      438.146 MB/sec
+                 gc.alloc.rate.norm: 14637416.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  13: 27.041 ms/op
+                 bystanderStallMs:   4.778 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      492.263 MB/sec
+                 gc.alloc.rate.norm: 15520600.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  14: 27.078 ms/op
+                 bystanderStallMs:   4.946 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      488.582 MB/sec
+                 gc.alloc.rate.norm: 15544640.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  15: 27.159 ms/op
+                 bystanderStallMs:   5.724 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      490.497 MB/sec
+                 gc.alloc.rate.norm: 15546000.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  16: 26.997 ms/op
+                 bystanderStallMs:   4.660 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      491.558 MB/sec
+                 gc.alloc.rate.norm: 15543864.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  17: 27.026 ms/op
+                 bystanderStallMs:   3.732 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      484.633 MB/sec
+                 gc.alloc.rate.norm: 15544032.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  18: 27.033 ms/op
+                 bystanderStallMs:   4.795 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      480.634 MB/sec
+                 gc.alloc.rate.norm: 15543864.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  19: 27.089 ms/op
+                 bystanderStallMs:   4.081 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      480.747 MB/sec
+                 gc.alloc.rate.norm: 15543904.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  20: 31.979 ms/op
+                 bystanderStallMs:   4.231 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      412.302 MB/sec
+                 gc.alloc.rate.norm: 15541112.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+
+
+Result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires":
+  N = 20
+  mean =     27.243 ±(99.9%) 1.019 ms/op
+
+  Histogram, ms/op:
+    [26.000, 26.500) = 2 
+    [26.500, 27.000) = 4 
+    [27.000, 27.500) = 12 
+    [27.500, 28.000) = 0 
+    [28.000, 28.500) = 1 
+    [28.500, 29.000) = 0 
+    [29.000, 29.500) = 0 
+    [29.500, 30.000) = 0 
+    [30.000, 30.500) = 0 
+    [30.500, 31.000) = 0 
+    [31.000, 31.500) = 0 
+
+  Percentiles, ms/op:
+      p(0.0000) =     26.181 ms/op
+     p(50.0000) =     27.043 ms/op
+     p(90.0000) =     27.979 ms/op
+     p(95.0000) =     31.784 ms/op
+     p(99.0000) =     31.979 ms/op
+     p(99.9000) =     31.979 ms/op
+     p(99.9900) =     31.979 ms/op
+     p(99.9990) =     31.979 ms/op
+     p(99.9999) =     31.979 ms/op
+    p(100.0000) =     31.979 ms/op
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:bystanderStallMs":
+  94.577 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (1.985, 4.729, 6.202), stdev = 1.050
+  CI (99.9%): [94.577, 94.577] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:dbQueries":
+  20.000 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (1.000, 1.000, 1.000), stdev = 0.001
+  CI (99.9%): [20.000, 20.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate":
+  491.014 ±(99.9%) 39.089 MB/sec [Average]
+  (min, avg, max) = (412.302, 491.014, 647.625), stdev = 45.015
+  CI (99.9%): [451.925, 530.103] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate.norm":
+  15806091.600 ±(99.9%) 1008969.094 B/op [Average]
+  (min, avg, max) = (14637416.000, 15806091.600, 20539224.000), stdev = 1161930.309
+  CI (99.9%): [14797122.506, 16815060.694] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.100, 1.000), stdev = 0.308
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.time":
+  3.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.150, 2.000), stdev = 0.489
+  CI (99.9%): [3.000, 3.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:poolTimeouts":
+  ≈ 0 #
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:slaMisses":
+  ≈ 0 #
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.10, OpenJDK 64-Bit Server VM, 21.0.10
+# VM invoker: /opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/bin/java
+# VM options: --enable-preview --enable-preview -Xms2g -Xmx2g
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, single-shot each
+# Measurement: 20 iterations, single-shot each
+# Timeout: 10 min per iteration
+# Threads: 1 thread
+# Benchmark mode: Single shot invocation time
+# Benchmark: com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires
+# Parameters: (queryMillis = 20, strategy = CAFFEINE_COMPUTE)
+
+# Run progress: 99.96% complete, ETA 00:00:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 66.752 ms/op
+# Warmup Iteration   2: 50.717 ms/op
+# Warmup Iteration   3: 41.818 ms/op
+# Warmup Iteration   4: 38.241 ms/op
+# Warmup Iteration   5: 41.439 ms/op
+Iteration   1: 42.867 ms/op
+                 bystanderStallMs:   24.137 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      210.290 MB/sec
+                 gc.alloc.rate.norm: 10191592.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   2: 47.341 ms/op
+                 bystanderStallMs:   24.151 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      208.449 MB/sec
+                 gc.alloc.rate.norm: 11746504.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   3: 41.164 ms/op
+                 bystanderStallMs:   24.130 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      216.746 MB/sec
+                 gc.alloc.rate.norm: 10056584.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   4: 41.683 ms/op
+                 bystanderStallMs:   24.051 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      213.729 MB/sec
+                 gc.alloc.rate.norm: 10056376.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   5: 41.771 ms/op
+                 bystanderStallMs:   24.062 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      208.083 MB/sec
+                 gc.alloc.rate.norm: 10056752.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   6: 41.525 ms/op
+                 bystanderStallMs:   24.062 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      213.493 MB/sec
+                 gc.alloc.rate.norm: 10056584.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   7: 41.792 ms/op
+                 bystanderStallMs:   24.112 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      209.758 MB/sec
+                 gc.alloc.rate.norm: 10056752.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   8: 36.983 ms/op
+                 bystanderStallMs:   19.540 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      239.482 MB/sec
+                 gc.alloc.rate.norm: 10056488.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration   9: 41.476 ms/op
+                 bystanderStallMs:   24.116 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      215.367 MB/sec
+                 gc.alloc.rate.norm: 10057144.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  10: 38.530 ms/op
+                 bystanderStallMs:   21.325 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      226.490 MB/sec
+                 gc.alloc.rate.norm: 10056456.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  11: 48.393 ms/op
+                 bystanderStallMs:   24.133 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      175.168 MB/sec
+                 gc.alloc.rate.norm: 10057288.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  12: 37.350 ms/op
+                 bystanderStallMs:   19.267 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      232.851 MB/sec
+                 gc.alloc.rate.norm: 10056760.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  13: 41.903 ms/op
+                 bystanderStallMs:   23.760 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      209.837 MB/sec
+                 gc.alloc.rate.norm: 10056208.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  14: 43.254 ms/op
+                 bystanderStallMs:   24.161 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      202.991 MB/sec
+                 gc.alloc.rate.norm: 10056088.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  15: 38.449 ms/op
+                 bystanderStallMs:   20.850 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      232.440 MB/sec
+                 gc.alloc.rate.norm: 10055848.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  16: 38.808 ms/op
+                 bystanderStallMs:   21.817 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      226.402 MB/sec
+                 gc.alloc.rate.norm: 10056384.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  17: 41.646 ms/op
+                 bystanderStallMs:   24.110 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      217.886 MB/sec
+                 gc.alloc.rate.norm: 10055944.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  18: 41.922 ms/op
+                 bystanderStallMs:   24.046 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      208.947 MB/sec
+                 gc.alloc.rate.norm: 10056208.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  19: 39.473 ms/op
+                 bystanderStallMs:   ≈ 0 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      220.085 MB/sec
+                 gc.alloc.rate.norm: 10054064.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+Iteration  20: 42.059 ms/op
+                 bystanderStallMs:   23.946 #
+                 dbQueries:          1.000 #
+                 gc.alloc.rate:      207.912 MB/sec
+                 gc.alloc.rate.norm: 10056208.000 B/op
+                 gc.count:           ≈ 0 counts
+                 poolTimeouts:       ≈ 0 #
+                 slaMisses:          ≈ 0 #
+
+
+
+Result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires":
+  N = 20
+  mean =     41.419 ±(99.9%) 2.477 ms/op
+
+  Histogram, ms/op:
+    [30.000, 31.250) = 0 
+    [31.250, 32.500) = 0 
+    [32.500, 33.750) = 0 
+    [33.750, 35.000) = 0 
+    [35.000, 36.250) = 0 
+    [36.250, 37.500) = 2 
+    [37.500, 38.750) = 2 
+    [38.750, 40.000) = 2 
+    [40.000, 41.250) = 1 
+    [41.250, 42.500) = 9 
+    [42.500, 43.750) = 2 
+    [43.750, 45.000) = 0 
+    [45.000, 46.250) = 0 
+    [46.250, 47.500) = 1 
+    [47.500, 48.750) = 1 
+
+  Percentiles, ms/op:
+      p(0.0000) =     36.983 ms/op
+     p(50.0000) =     41.665 ms/op
+     p(90.0000) =     46.932 ms/op
+     p(95.0000) =     48.340 ms/op
+     p(99.0000) =     48.393 ms/op
+     p(99.9000) =     48.393 ms/op
+     p(99.9900) =     48.393 ms/op
+     p(99.9990) =     48.393 ms/op
+     p(99.9999) =     48.393 ms/op
+    p(100.0000) =     48.393 ms/op
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:bystanderStallMs":
+  439.775 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (≈ 0, 21.989, 24.161), stdev = 5.426
+  CI (99.9%): [439.775, 439.775] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:dbQueries":
+  20.000 ±(99.9%) 0.001 # [Sum]
+  (min, avg, max) = (1.000, 1.000, 1.000), stdev = 0.001
+  CI (99.9%): [20.000, 20.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate":
+  214.820 ±(99.9%) 11.802 MB/sec [Average]
+  (min, avg, max) = (175.168, 214.820, 239.482), stdev = 13.591
+  CI (99.9%): [203.018, 226.622] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate.norm":
+  10147611.600 ±(99.9%) 327848.346 B/op [Average]
+  (min, avg, max) = (10054064.000, 10147611.600, 11746504.000), stdev = 377550.642
+  CI (99.9%): [9819763.254, 10475459.946] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.100, 1.000), stdev = 0.308
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.time":
+  4.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.200, 2.000), stdev = 0.616
+  CI (99.9%): [4.000, 4.000] (assumes normal distribution)
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:poolTimeouts":
+  ≈ 0 #
+
+Secondary result "com.rtb.dsp.benchmarks.JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:slaMisses":
+  ≈ 0 #
+
+
+# Run complete. Total time: 00:02:21
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                                                                                (gate)  (queryMillis)        (strategy)  Mode  Cnt         Score         Error   Units
+JMHScopedValueVsThreadLocalBenchmark.scopedValue_reusedThread                                               N/A            N/A               N/A  avgt    5        13.718 ±       3.488   ns/op
+JMHScopedValueVsThreadLocalBenchmark.scopedValue_reusedThread:gc.alloc.rate                                 N/A            N/A               N/A  avgt    5      3905.521 ±     970.050  MB/sec
+JMHScopedValueVsThreadLocalBenchmark.scopedValue_reusedThread:gc.alloc.rate.norm                            N/A            N/A               N/A  avgt    5        56.000 ±       0.001    B/op
+JMHScopedValueVsThreadLocalBenchmark.scopedValue_reusedThread:gc.count                                      N/A            N/A               N/A  avgt    5        32.000                counts
+JMHScopedValueVsThreadLocalBenchmark.scopedValue_reusedThread:gc.time                                       N/A            N/A               N/A  avgt    5        38.000                    ms
+JMHScopedValueVsThreadLocalBenchmark.scopedValue_virtualThreadPerTask                                       N/A            N/A               N/A  avgt    5       177.110 ±       5.568   ns/op
+JMHScopedValueVsThreadLocalBenchmark.scopedValue_virtualThreadPerTask:gc.alloc.rate                         N/A            N/A               N/A  avgt    5      2843.344 ±      90.011  MB/sec
+JMHScopedValueVsThreadLocalBenchmark.scopedValue_virtualThreadPerTask:gc.alloc.rate.norm                    N/A            N/A               N/A  avgt    5       528.047 ±       0.003    B/op
+JMHScopedValueVsThreadLocalBenchmark.scopedValue_virtualThreadPerTask:gc.count                              N/A            N/A               N/A  avgt    5        24.000                counts
+JMHScopedValueVsThreadLocalBenchmark.scopedValue_virtualThreadPerTask:gc.time                               N/A            N/A               N/A  avgt    5        50.000                    ms
+JMHScopedValueVsThreadLocalBenchmark.threadLocal_reusedThread                                               N/A            N/A               N/A  avgt    5        40.491 ±       3.522   ns/op
+JMHScopedValueVsThreadLocalBenchmark.threadLocal_reusedThread:gc.alloc.rate                                 N/A            N/A               N/A  avgt    5       753.962 ±      65.309  MB/sec
+JMHScopedValueVsThreadLocalBenchmark.threadLocal_reusedThread:gc.alloc.rate.norm                            N/A            N/A               N/A  avgt    5        32.000 ±       0.001    B/op
+JMHScopedValueVsThreadLocalBenchmark.threadLocal_reusedThread:gc.count                                      N/A            N/A               N/A  avgt    5         6.000                counts
+JMHScopedValueVsThreadLocalBenchmark.threadLocal_reusedThread:gc.time                                       N/A            N/A               N/A  avgt    5         7.000                    ms
+JMHScopedValueVsThreadLocalBenchmark.threadLocal_virtualThreadPerTask                                       N/A            N/A               N/A  avgt    5       173.898 ±      22.682   ns/op
+JMHScopedValueVsThreadLocalBenchmark.threadLocal_virtualThreadPerTask:gc.alloc.rate                         N/A            N/A               N/A  avgt    5      2546.952 ±     319.022  MB/sec
+JMHScopedValueVsThreadLocalBenchmark.threadLocal_virtualThreadPerTask:gc.alloc.rate.norm                    N/A            N/A               N/A  avgt    5       464.041 ±       0.004    B/op
+JMHScopedValueVsThreadLocalBenchmark.threadLocal_virtualThreadPerTask:gc.count                              N/A            N/A               N/A  avgt    5        22.000                counts
+JMHScopedValueVsThreadLocalBenchmark.threadLocal_virtualThreadPerTask:gc.time                               N/A            N/A               N/A  avgt    5        71.000                    ms
+JMHAdaptiveLimiterBenchmark.latencySurge                                                  STATIC_SEMAPHORE_5000            N/A               N/A    ss    5      3513.207 ±       4.339   ms/op
+JMHAdaptiveLimiterBenchmark.latencySurge:gc.alloc.rate                                    STATIC_SEMAPHORE_5000            N/A               N/A    ss    5         9.975 ±       2.180  MB/sec
+JMHAdaptiveLimiterBenchmark.latencySurge:gc.alloc.rate.norm                               STATIC_SEMAPHORE_5000            N/A               N/A    ss    5  36747929.600 ± 8070590.358    B/op
+JMHAdaptiveLimiterBenchmark.latencySurge:gc.count                                         STATIC_SEMAPHORE_5000            N/A               N/A    ss    5         2.000                counts
+JMHAdaptiveLimiterBenchmark.latencySurge:gc.time                                          STATIC_SEMAPHORE_5000            N/A               N/A    ss    5         4.000                    ms
+JMHAdaptiveLimiterBenchmark.latencySurge:goodputPct                                       STATIC_SEMAPHORE_5000            N/A               N/A    ss    5       330.120                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:p50AdmittedMs                                    STATIC_SEMAPHORE_5000            N/A               N/A    ss    5        26.379                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:p99AdmittedMs                                    STATIC_SEMAPHORE_5000            N/A               N/A    ss    5      4550.878                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:p99AllMs                                         STATIC_SEMAPHORE_5000            N/A               N/A    ss    5      4530.850                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:peakInFlight                                     STATIC_SEMAPHORE_5000            N/A               N/A    ss    5     25000.000                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:recoveryMs                                       STATIC_SEMAPHORE_5000            N/A               N/A    ss    5      1100.000                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:shedPct                                          STATIC_SEMAPHORE_5000            N/A               N/A    ss    5        62.146                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:timeoutPct                                       STATIC_SEMAPHORE_5000            N/A               N/A    ss    5       105.237                     #
+JMHAdaptiveLimiterBenchmark.latencySurge                                                       AIMD_STEP8_MIN50            N/A               N/A    ss    5      3515.506 ±       7.927   ms/op
+JMHAdaptiveLimiterBenchmark.latencySurge:gc.alloc.rate                                         AIMD_STEP8_MIN50            N/A               N/A    ss    5         8.085 ±       1.491  MB/sec
+JMHAdaptiveLimiterBenchmark.latencySurge:gc.alloc.rate.norm                                    AIMD_STEP8_MIN50            N/A               N/A    ss    5  29805318.400 ± 5510301.992    B/op
+JMHAdaptiveLimiterBenchmark.latencySurge:gc.count                                              AIMD_STEP8_MIN50            N/A               N/A    ss    5         1.000                counts
+JMHAdaptiveLimiterBenchmark.latencySurge:gc.time                                               AIMD_STEP8_MIN50            N/A               N/A    ss    5         4.000                    ms
+JMHAdaptiveLimiterBenchmark.latencySurge:goodputPct                                            AIMD_STEP8_MIN50            N/A               N/A    ss    5       319.271                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:p50AdmittedMs                                         AIMD_STEP8_MIN50            N/A               N/A    ss    5        26.007                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:p99AdmittedMs                                         AIMD_STEP8_MIN50            N/A               N/A    ss    5       751.434                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:p99AllMs                                              AIMD_STEP8_MIN50            N/A               N/A    ss    5       750.809                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:peakInFlight                                          AIMD_STEP8_MIN50            N/A               N/A    ss    5       602.000                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:recoveryMs                                            AIMD_STEP8_MIN50            N/A               N/A    ss    5      2500.000                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:shedPct                                               AIMD_STEP8_MIN50            N/A               N/A    ss    5       174.260                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:timeoutPct                                            AIMD_STEP8_MIN50            N/A               N/A    ss    5         6.469                     #
+JMHAdaptiveLimiterBenchmark.latencySurge                                                      AIMD_STEP32_MIN16            N/A               N/A    ss    5      3513.463 ±       9.175   ms/op
+JMHAdaptiveLimiterBenchmark.latencySurge:gc.alloc.rate                                        AIMD_STEP32_MIN16            N/A               N/A    ss    5         8.213 ±       1.351  MB/sec
+JMHAdaptiveLimiterBenchmark.latencySurge:gc.alloc.rate.norm                                   AIMD_STEP32_MIN16            N/A               N/A    ss    5  30259612.800 ± 5025760.110    B/op
+JMHAdaptiveLimiterBenchmark.latencySurge:gc.count                                             AIMD_STEP32_MIN16            N/A               N/A    ss    5         1.000                counts
+JMHAdaptiveLimiterBenchmark.latencySurge:gc.time                                              AIMD_STEP32_MIN16            N/A               N/A    ss    5         1.000                    ms
+JMHAdaptiveLimiterBenchmark.latencySurge:goodputPct                                           AIMD_STEP32_MIN16            N/A               N/A    ss    5       331.657                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:p50AdmittedMs                                        AIMD_STEP32_MIN16            N/A               N/A    ss    5        25.998                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:p99AdmittedMs                                        AIMD_STEP32_MIN16            N/A               N/A    ss    5       751.346                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:p99AllMs                                             AIMD_STEP32_MIN16            N/A               N/A    ss    5       463.439                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:peakInFlight                                         AIMD_STEP32_MIN16            N/A               N/A    ss    5       666.000                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:recoveryMs                                           AIMD_STEP32_MIN16            N/A               N/A    ss    5      1200.000                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:shedPct                                              AIMD_STEP32_MIN16            N/A               N/A    ss    5       161.769                     #
+JMHAdaptiveLimiterBenchmark.latencySurge:timeoutPct                                           AIMD_STEP32_MIN16            N/A               N/A    ss    5         6.574                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires                                                         N/A              2             NAIVE    ss   20        68.862 ±      33.949   ms/op
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:bystanderStallMs                                        N/A              2             NAIVE    ss   20        12.901                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:dbQueries                                               N/A              2             NAIVE    ss   20     24567.000                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate                                           N/A              2             NAIVE    ss   20       147.246 ±      27.549  MB/sec
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate.norm                                      N/A              2             NAIVE    ss   20  10210276.000 ±  745386.350    B/op
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.count                                                N/A              2             NAIVE    ss   20         2.000                counts
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.time                                                 N/A              2             NAIVE    ss   20         4.000                    ms
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:poolTimeouts                                            N/A              2             NAIVE    ss   20           ≈ 0                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:slaMisses                                               N/A              2             NAIVE    ss   20      6868.000                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires                                                         N/A              2     SINGLE_FLIGHT    ss   20        14.093 ±       5.036   ms/op
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:bystanderStallMs                                        N/A              2     SINGLE_FLIGHT    ss   20        11.027                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:dbQueries                                               N/A              2     SINGLE_FLIGHT    ss   20        20.000                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate                                           N/A              2     SINGLE_FLIGHT    ss   20       600.416 ±     193.946  MB/sec
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate.norm                                      N/A              2     SINGLE_FLIGHT    ss   20  10055337.600 ±  668279.363    B/op
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.count                                                N/A              2     SINGLE_FLIGHT    ss   20         2.000                counts
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.time                                                 N/A              2     SINGLE_FLIGHT    ss   20         4.000                    ms
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:poolTimeouts                                            N/A              2     SINGLE_FLIGHT    ss   20           ≈ 0                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:slaMisses                                               N/A              2     SINGLE_FLIGHT    ss   20           ≈ 0                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires                                                         N/A              2  CAFFEINE_COMPUTE    ss   20        19.002 ±       1.485   ms/op
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:bystanderStallMs                                        N/A              2  CAFFEINE_COMPUTE    ss   20        27.807                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:dbQueries                                               N/A              2  CAFFEINE_COMPUTE    ss   20        20.000                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate                                           N/A              2  CAFFEINE_COMPUTE    ss   20       386.615 ±      28.073  MB/sec
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate.norm                                      N/A              2  CAFFEINE_COMPUTE    ss   20   9168140.800 ±  130824.352    B/op
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.count                                                N/A              2  CAFFEINE_COMPUTE    ss   20         2.000                counts
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.time                                                 N/A              2  CAFFEINE_COMPUTE    ss   20         3.000                    ms
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:poolTimeouts                                            N/A              2  CAFFEINE_COMPUTE    ss   20           ≈ 0                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:slaMisses                                               N/A              2  CAFFEINE_COMPUTE    ss   20           ≈ 0                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires                                                         N/A             20             NAIVE    ss   20       289.177 ±       3.624   ms/op
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:bystanderStallMs                                        N/A             20             NAIVE    ss   20       132.280                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:dbQueries                                               N/A             20             NAIVE    ss   20     11136.000                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate                                           N/A             20             NAIVE    ss   20        41.545 ±       2.042  MB/sec
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate.norm                                      N/A             20             NAIVE    ss   20  12768948.800 ±  649831.936    B/op
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.count                                                N/A             20             NAIVE    ss   20         2.000                counts
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.time                                                 N/A             20             NAIVE    ss   20         4.000                    ms
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:poolTimeouts                                            N/A             20             NAIVE    ss   20    177794.000                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:slaMisses                                               N/A             20             NAIVE    ss   20    187330.000                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires                                                         N/A             20     SINGLE_FLIGHT    ss   20        27.243 ±       1.019   ms/op
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:bystanderStallMs                                        N/A             20     SINGLE_FLIGHT    ss   20        94.577                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:dbQueries                                               N/A             20     SINGLE_FLIGHT    ss   20        20.000                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate                                           N/A             20     SINGLE_FLIGHT    ss   20       491.014 ±      39.089  MB/sec
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate.norm                                      N/A             20     SINGLE_FLIGHT    ss   20  15806091.600 ± 1008969.094    B/op
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.count                                                N/A             20     SINGLE_FLIGHT    ss   20         2.000                counts
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.time                                                 N/A             20     SINGLE_FLIGHT    ss   20         3.000                    ms
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:poolTimeouts                                            N/A             20     SINGLE_FLIGHT    ss   20           ≈ 0                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:slaMisses                                               N/A             20     SINGLE_FLIGHT    ss   20           ≈ 0                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires                                                         N/A             20  CAFFEINE_COMPUTE    ss   20        41.419 ±       2.477   ms/op
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:bystanderStallMs                                        N/A             20  CAFFEINE_COMPUTE    ss   20       439.775                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:dbQueries                                               N/A             20  CAFFEINE_COMPUTE    ss   20        20.000                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate                                           N/A             20  CAFFEINE_COMPUTE    ss   20       214.820 ±      11.802  MB/sec
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.alloc.rate.norm                                      N/A             20  CAFFEINE_COMPUTE    ss   20  10147611.600 ±  327848.346    B/op
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.count                                                N/A             20  CAFFEINE_COMPUTE    ss   20         2.000                counts
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:gc.time                                                 N/A             20  CAFFEINE_COMPUTE    ss   20         4.000                    ms
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:poolTimeouts                                            N/A             20  CAFFEINE_COMPUTE    ss   20           ≈ 0                     #
+JMHSingleFlightCacheStampedeBenchmark.hotKeyExpires:slaMisses                                               N/A             20  CAFFEINE_COMPUTE    ss   20           ≈ 0                     #
+
+Benchmark result is saved to build/results/jmh/results.json

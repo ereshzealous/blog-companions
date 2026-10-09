@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.rtb.dsp.model.ModelCodecTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-09T19:15:59.291Z" hostname="local-test-host" time="0.002">
+  <properties />
+  <testcase name="pacingAndBalanceBothGateSpend()" classname="com.rtb.dsp.model.ModelCodecTest" time="0.0" />
+  <testcase name="budgetSnapshotRoundTripsThroughItsL2Encoding()" classname="com.rtb.dsp.model.ModelCodecTest" time="0.001" />
+  <testcase name="winNoticeSurvivesAuctionIdsContainingTheSeparator()" classname="com.rtb.dsp.model.ModelCodecTest" time="0.0" />
+  </testsuite>

@@ -1,0 +1,56 @@
+{
+  "java_tests": {
+    "tests": 39,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "python_tests": {
+    "tests": 10,
+    "failures": 0,
+    "errors": 0
+  },
+  "compose_config": "pass",
+  "jmh_capture": {
+    "command": "./gradlew --no-daemon jmh -PjmhInclude=scopedValue_reusedThread -PjmhVerify=true",
+    "kind": "JMH pipeline verification",
+    "status": "succeeded",
+    "configurations": 1,
+    "outputs": [
+      "results.json",
+      "human.txt",
+      "manifest.json",
+      "report.json",
+      "report.html"
+    ],
+    "source_changed_during_run": false,
+    "note": "Pipeline verification only; these short-run measurements are not published performance evidence."
+  },
+  "standalone_report": {
+    "status": "pass",
+    "viewports": [
+      1280,
+      390,
+      320
+    ],
+    "panels": 7,
+    "configurations": 13,
+    "artifacts": 9,
+    "external_assets": 0,
+    "network_requests": 0,
+    "overflow_with_raw_output_expanded": false,
+    "evidence": "html-report.json",
+    "renderer_sha256": {
+      "tools/console/console.css": "b1c10e6435b3c3436345e9e7ffc1cb284448233e9b5d4188eb93a490ec94d2f1",
+      "tools/console/console.js": "ba8784da015e00ebb90ad4a1c91d7d61f02ec59f9fa22a630172c1db7755a436",
+      "tools/console/index.html": "ae5ba4c7a10827bfe199cde6ab7b4fd81e3b8388ae5057dd877f3527bb23f949"
+    }
+  },
+  "local_services": {
+    "bidder_health": "UP",
+    "sample_auction_http_status": 200,
+    "console_bidder_connected": true,
+    "docker_containers": 4,
+    "collection_errors": {}
+  }
+}

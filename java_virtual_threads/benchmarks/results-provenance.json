@@ -1,0 +1,51 @@
+{
+  "recorded_date": "2026-10-09",
+  "publication_note": "Only absolute workstation prefixes in the JMH text output, execution log and surge summary were replaced with relative paths. Numerical measurements are unchanged.",
+  "files": {
+    "ab-smoke.txt": {
+      "original_sha256": "9cbed637080192488f225c1e8abc0d2c003c78271514cbcc1e0f46f84e3e07ab",
+      "published_sha256": "9cbed637080192488f225c1e8abc0d2c003c78271514cbcc1e0f46f84e3e07ab",
+      "path_normalized": false
+    },
+    "jmh-human.txt": {
+      "original_sha256": "dcc64256c8caabbc337871b5347ea59ccf41751d361ea84632b31086f38090d6",
+      "published_sha256": "5c334f2f36a2733cd1c08ab11288480b92498a06167dacd73bb07bf8fae362d2",
+      "path_normalized": true
+    },
+    "jmh-results.json": {
+      "original_sha256": "b50ebf760af6a1340f5112636e0ee720c43814f112ee0b7f8f1ab3f94d9f2031",
+      "published_sha256": "b50ebf760af6a1340f5112636e0ee720c43814f112ee0b7f8f1ab3f94d9f2031",
+      "path_normalized": false
+    },
+    "jmh-run.log": {
+      "original_sha256": "a44086dedfadef21a1df97677eb9313dc33422039878ba3e07066ccf0eb76e9a",
+      "published_sha256": "949a448b1804a4efd2f9d20368f7fccac4edb6db20e75f56f867b24d59f47083",
+      "path_normalized": true
+    },
+    "stack-smoke-2.txt": {
+      "original_sha256": "69f57bd99819d89314a3fca460eb3318649e7f25da7b8df58139e5eef011d84f",
+      "published_sha256": "69f57bd99819d89314a3fca460eb3318649e7f25da7b8df58139e5eef011d84f",
+      "path_normalized": false
+    },
+    "stack-smoke.md": {
+      "original_sha256": "f56d57adf3a407f30ef735ece178ffe5f4d65bbfee477a8a97cc19bbcef67e1a",
+      "published_sha256": "f56d57adf3a407f30ef735ece178ffe5f4d65bbfee477a8a97cc19bbcef67e1a",
+      "path_normalized": false
+    },
+    "surge-outcomes.csv": {
+      "original_sha256": "4845b91c3508fa7f159ea768d654294b00051ea490eb5e56d293b25f766b90ef",
+      "published_sha256": "4845b91c3508fa7f159ea768d654294b00051ea490eb5e56d293b25f766b90ef",
+      "path_normalized": false
+    },
+    "surge-summary.txt": {
+      "original_sha256": "e4277be7e13480d495fa45095711ffafef2a07bda27ee785b249327d08e2df29",
+      "published_sha256": "c1738d6342e356448d48072ee675393a4e846603119398b6c236a1542475b80c",
+      "path_normalized": true
+    },
+    "surge-timeline.csv": {
+      "original_sha256": "e7809c382bff5edf50dd53742f0fc9da9a1b8f652b298aeaac3c36147ff78d19",
+      "published_sha256": "e7809c382bff5edf50dd53742f0fc9da9a1b8f652b298aeaac3c36147ff78d19",
+      "path_normalized": false
+    }
+  }
+}

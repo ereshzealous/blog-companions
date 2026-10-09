@@ -1,0 +1,7 @@
+10000 req/s for 3.5 s, downstream capacity 256, SLA 50 ms, tmax 80 ms
+gate                   requests    p50 adm    p99 adm  p99.9 adm    p99 all   timeouts      shed    goodput     peak   recovery
+static semaphore 5000     35000        5.3      894.4      916.9      890.2      20.5%     12.0%      66.4%     5000        200
+AIMD +8/50 samples        35000        5.3      150.4      158.3      150.1       1.0%     40.1%      58.9%      114        700
+AIMD +32/16 samples       35000        5.3      150.4      156.4      150.3       1.9%     31.6%      66.5%      178        200
+outcomes -> benchmarks/results/surge-outcomes.csv
+timeline -> benchmarks/results/surge-timeline.csv

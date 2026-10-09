@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.rtb.dsp.resilience.AdaptiveAimdLimiterTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-09T19:15:59.294Z" hostname="local-test-host" time="0.776">
+  <properties />
+  <testcase name="neverBacksOffBelowTheMinimum()" classname="com.rtb.dsp.resilience.AdaptiveAimdLimiterTest" time="0.327" />
+  <testcase name="multiplicativeDecreaseWhenP90ExceedsTarget()" classname="com.rtb.dsp.resilience.AdaptiveAimdLimiterTest" time="0.132" />
+  <testcase name="anIdleLimiterDoesNotDriftUpwards()" classname="com.rtb.dsp.resilience.AdaptiveAimdLimiterTest" time="0.191" />
+  <testcase name="additiveIncreaseWhenHealthyAndTheLimitIsInUse()" classname="com.rtb.dsp.resilience.AdaptiveAimdLimiterTest" time="0.061" />
+  <testcase name="littlesLawSeedsTheInitialLimit()" classname="com.rtb.dsp.resilience.AdaptiveAimdLimiterTest" time="0.0" />
+  <testcase name="rejectsImmediatelyAtTheLimit()" classname="com.rtb.dsp.resilience.AdaptiveAimdLimiterTest" time="0.0" />
+  <testcase name="aDroppedRequestBacksOffEvenWithLowLatency()" classname="com.rtb.dsp.resilience.AdaptiveAimdLimiterTest" time="0.062" />
+  </testsuite>

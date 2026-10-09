@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.rtb.dsp.data.ReplicaHealthTrackerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-09T19:15:59.004Z" hostname="local-test-host" time="0.001">
+  <properties />
+  <testcase name="aFailedProbeOpensTheCircuitAndResetsTheHealthyStreak()" classname="com.rtb.dsp.data.ReplicaHealthTrackerTest" time="0.0" />
+  <testcase name="startsBypassedAndClosesOnlyAfterConsecutiveHealthyProbes()" classname="com.rtb.dsp.data.ReplicaHealthTrackerTest" time="0.001" />
+  <testcase name="oneProbeOverThresholdOpensTheCircuit()" classname="com.rtb.dsp.data.ReplicaHealthTrackerTest" time="0.0" />
+  </testsuite>

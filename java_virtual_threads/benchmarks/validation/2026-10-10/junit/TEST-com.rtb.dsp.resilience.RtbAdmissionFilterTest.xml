@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.rtb.dsp.resilience.RtbAdmissionFilterTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-09T19:16:00.642Z" hostname="local-test-host" time="0.004">
+  <properties />
+  <testcase name="overCapacityBidRequestsGetAnImmediateNoBid()" classname="com.rtb.dsp.resilience.RtbAdmissionFilterTest" time="0.003" />
+  <testcase name="unavailableModeAnswers503WithRetryAfter()" classname="com.rtb.dsp.resilience.RtbAdmissionFilterTest" time="0.001" />
+  <testcase name="admittedRequestsReleaseTheirSlot()" classname="com.rtb.dsp.resilience.RtbAdmissionFilterTest" time="0.0" />
+  </testsuite>
