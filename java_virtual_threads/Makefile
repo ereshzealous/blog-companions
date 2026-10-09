@@ -25,7 +25,7 @@ surge:
 	./gradlew surgeBenchmark
 
 report:
-	python3 tools/benchmark_console.py export --input benchmarks/results --output build/reports/benchmarks/saved.html
+	python3 tools/build_benchmark_report.py
 
 down-all:
 	docker compose down --remove-orphans

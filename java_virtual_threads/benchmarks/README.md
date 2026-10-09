@@ -1,6 +1,8 @@
 # Benchmark and test evidence
 
-`results/` contains the saved measurements. New runs go into ignored `runs/` directories;
+`results/` contains the saved measurements and the [HTML results report](results/benchmark-results.html).
+Download the raw HTML from GitHub and open it in your browser, or open it from a local clone.
+New runs go into ignored `runs/` directories;
 continuous local telemetry goes into ignored `captures/` directories. They survive `gradlew clean`.
 
 ## Read and reproduce
@@ -8,14 +10,21 @@ continuous local telemetry goes into ignored `captures/` directories. They survi
 From the project directory:
 
 ```bash
-python3 tools/benchmark_console.py export --input benchmarks/results --output build/reports/benchmarks/saved.html
+python3 tools/build_benchmark_report.py
+# Equivalent: make report
 ./gradlew clean test
 python3 -m unittest discover -s tools -p test_benchmark_console.py
 ./gradlew jmh
 ./gradlew surgeBenchmark
 ```
 
-Open `build/reports/benchmarks/saved.html` to inspect the saved data offline. To follow new runs
+The [build script](../tools/build_benchmark_report.py) writes `benchmarks/results/benchmark-results.html`
+using [the shared renderer](../tools/benchmark_report.py), the recorded result files, and the bundled
+[styles and fonts](../tools/report/). Tables, CSS charts and raw output are generated from the evidence;
+the result is a standalone HTML file with no runtime network requests or JavaScript.
+This rebuild does not rerun any benchmark. An alternate destination can be set with `--output PATH`.
+
+To follow new runs
 and see live bidder/Docker metrics, start `python3 tools/benchmark_console.py serve` and open
 http://127.0.0.1:8090. The bidder must be running for live JVM/HTTP measurements.
 
@@ -37,6 +46,7 @@ while admitted-only p99 remains about 150 ms.
 
 | File | Contents |
 |---|---|
+| [benchmark-results.html](results/benchmark-results.html) | Offline report: three experiments, two HTTP smoke runs, commands and raw output |
 | [jmh-results.json](results/jmh-results.json) | All 13 JMH configurations, raw samples, error estimates and GC allocation metrics |
 | [jmh-human.txt](results/jmh-human.txt) | Human-readable JMH output (workstation path normalized) |
 | [jmh-run.log](results/jmh-run.log) | Historical Gradle/JMH execution log |

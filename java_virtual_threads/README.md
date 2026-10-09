@@ -94,16 +94,26 @@ This short mode verifies capture and rendering; it is not a publishable performa
 
 ## Saved results
 
-See [the evidence guide](benchmarks/README.md) for measured values, source files and limitations.
-To view the checked-in measurements without starting Docker or rerunning a benchmark:
+Open the checked-in [benchmark results and run guide](benchmarks/results/benchmark-results.html)
+in your browser. On GitHub, download the raw HTML file first; the file viewer shows its source.
+It contains the three experiment panels and both HTTP smoke runs in the same report as the article series.
+
+To regenerate it from the saved measurements, run from `java_virtual_threads/`:
 
 ```bash
-make report
-# Open build/reports/benchmarks/saved.html in your browser.
+python3 tools/build_benchmark_report.py
+# Equivalent shortcut: make report
+# Output: benchmarks/results/benchmark-results.html
 ```
 
-The report embeds its data, CSS and JavaScript and works offline. The console uses system fonts
-and has no dependency on the blog's images, diagrams or authoring tools.
+The included [build script](tools/build_benchmark_report.py) uses
+[the shared renderer](tools/benchmark_report.py) to read the saved JMH JSON, HTTP logs and
+surge summary. It calculates the tables and CSS bars, embeds the original output, and includes
+the styles and fonts from [tools/report/](tools/report/). The HTML works offline and needs no
+JavaScript. Rebuilding it requires only Python 3.10+; it does not run benchmarks or start Docker.
+
+See [the evidence guide](benchmarks/README.md) for methods, source files and limitations.
+New benchmark runs still generate their own console reports automatically under `benchmarks/runs/`.
 
 To repeat a short HTTP smoke run while the bidder is running:
 
@@ -126,7 +136,7 @@ docker-compose.yml    Local PostgreSQL, Redis and Kafka topology
 gradle/, gradlew*     Pinned Gradle wrapper
 tools/                Live console, evidence readers and Python tests
 examples/             Request fixture for curl and ApacheBench
-benchmarks/results/   Saved component and HTTP measurements
+benchmarks/results/   Saved measurements and benchmark-results.html
 benchmarks/validation/ Checked-in test results and source hashes
 ```
 
