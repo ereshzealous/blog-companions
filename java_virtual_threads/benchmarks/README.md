@@ -1,31 +1,32 @@
 # Benchmark and test evidence
 
-Open [benchmark-results.html](results/benchmark-results.html) for three experiments, two HTTP smoke runs,
-run commands and raw output. On GitHub, download the raw HTML first.
+`results/` contains the saved measurements and the [HTML results report](results/benchmark-results.html).
+Download the raw HTML from GitHub and open it in your browser, or open it from a local clone.
+New runs go into ignored `runs/` directories;
+continuous local telemetry goes into ignored `captures/` directories. They survive `gradlew clean`.
 
 ## Read and reproduce
 
-From `java_virtual_threads/`, rebuild the saved report:
+From the project directory:
 
 ```bash
 python3 tools/build_benchmark_report.py
-```
-
-Shortcut: **`make report`**. Output: **`benchmarks/results/benchmark-results.html`**.
-
-The [generator](../tools/build_benchmark_report.py) reads saved measurements and embeds the charts,
-raw output, fonts and styles. It needs only Python 3.10+ and does not rerun benchmarks.
-Use `--output PATH` for another destination.
-
-To collect new measurements:
-
-```bash
+# Equivalent: make report
+./gradlew clean test
+python3 -m unittest discover -s tools -p test_benchmark_console.py
 ./gradlew jmh
 ./gradlew surgeBenchmark
 ```
 
-For live bidder/Docker metrics and run history, start `python3 tools/benchmark_console.py serve`
-and open http://127.0.0.1:8090. See [setup and tests](../README.md#run-locally).
+The [build script](../tools/build_benchmark_report.py) writes `benchmarks/results/benchmark-results.html`
+using [the shared renderer](../tools/benchmark_report.py), the recorded result files, and the bundled
+[styles and fonts](../tools/report/). Tables, CSS charts and raw output are generated from the evidence;
+the result is a standalone HTML file with no runtime network requests or JavaScript.
+This rebuild does not rerun any benchmark. An alternate destination can be set with `--output PATH`.
+
+To follow new runs
+and see live bidder/Docker metrics, start `python3 tools/benchmark_console.py serve` and open
+http://127.0.0.1:8090. The bidder must be running for live JVM/HTTP measurements.
 
 ## Recorded observations
 
@@ -36,9 +37,10 @@ and open http://127.0.0.1:8090. See [setup and tests](../README.md#run-locally).
 | Simulated surge, fixed versus tuned gate | Timeouts 21.0% → 1.3%; shedding 12.4% → 32.4%; bids within 50 ms 66.0% → 66.3% | Failure behavior improves substantially; useful completion rate changes little |
 | Same-host HTTP smoke tests | 33,164.07 and 32,050.12 requests/s; client p99 69 and 83 ms | Short local baselines, not sustained capacity within the auction deadline |
 
-JMH event counters use the mean of raw episode samples, not the summed event score.
-Surge CSVs contain representative episodes, separate from those means. The tuned gate's overall
-p99 is about 93 ms; admitted-only p99 remains about 150 ms.
+JMH auxiliary event counters are reported here as the mean of raw episode samples, not as
+JMH's summed event score. The separate surge CSV contains representative episodes, not the
+samples used to estimate those JMH means. The tuned surge gate's overall p99 is about 93 ms,
+while admitted-only p99 remains about 150 ms.
 
 ## Files
 
@@ -56,34 +58,38 @@ p99 is about 93 ms; admitted-only p99 remains about 150 ms.
 | [results-provenance.json](results-provenance.json) | Original and publication hashes; path normalization details |
 | [validation/](validation/) | Test results, environment and source hashes for the packaged project |
 
-**Recorded environment:** Apple M5 Pro, 15 cores, 24 GB; macOS 26.5, OpenJDK 21.0.10,
-Docker 29.8 and Gradle 8.14.3. Workstation paths in `jmh-human.txt`, `jmh-run.log` and
-`surge-summary.txt` were shortened for publication. Measurements are unchanged; provenance records both hashes.
+The original benchmark machine was an Apple M5 Pro (15 cores), 24 GB, macOS 26.5, OpenJDK
+21.0.10, Docker 29.8 and Gradle 8.14.3. Only workstation directory prefixes in `jmh-human.txt`,
+`jmh-run.log` and `surge-summary.txt` were replaced with relative paths for publication; measurements are unchanged.
 
-Smoke notes report response-length mismatches. Successful-bid throughput still requires HTTP status
-and business-outcome accounting. One run exceeded the 80 ms exchange timeout at client p99.
+Historical smoke notes attribute ApacheBench failures to response-length differences. Those
+notes are retained as recorded; status and business-outcome accounting is still needed before
+claiming a successful-bid rate. One smoke run exceeded the 80 ms exchange timeout at client p99.
 
 ## What a new run captures
 
-Each JMH or surge run writes `benchmarks/runs/<run-id>/` with:
+Each `./gradlew jmh` or `./gradlew surgeBenchmark` invocation creates a unique run directory with:
 
 - A manifest: command, timestamps, run status, host metadata, source hashes and artifact hashes.
 - Original JMH JSON/TXT or surge CSV/TXT results.
 - `report.json` and a standalone offline `report.html`, rendered from that run's data.
 
-The latest attempt appears at `build/reports/benchmarks/latest.html`. Failed runs never substitute
-older results. A forcibly stopped process may leave a `running` manifest; treat it as incomplete.
+The latest attempted run is also exported to `build/reports/benchmarks/latest.html`. A failed
+run remains failed; its report never substitutes an earlier successful dataset. If a process
+is forcibly killed, its manifest may remain `running` and must be treated as incomplete.
 
-The console reader supports JMH JSON/JSONL, the supplied surge CSV schemas and ApacheBench TXT.
-`-PjmhVerify=true` checks capture and rendering; its short run is not performance evidence.
+The reader accepts JMH JSON arrays or JSONL containing complete JMH result objects, the supplied
+surge CSV schemas, and ApacheBench TXT. It does not infer metrics from arbitrary log files.
+`-PjmhVerify=true` selects a short pipeline check, not a performance experiment.
 
-Every five seconds, the console records bidder Actuator/Prometheus metrics and `rtb-dsp` Docker
-stats to `benchmarks/captures/` as JSONL. These describe the bidder JVM, not the forked JMH JVM.
-Live HTTP latency is an interval mean; client p99, distributed tracing and fleet telemetry are not implemented.
-Runs and captures are ignored by Git and survive `gradlew clean`.
+The console samples Actuator/Prometheus metrics and Docker stats every five seconds, writing
+JSONL in `captures/`. It restricts Docker sampling to the `rtb-dsp` Compose project. Bidder JVM
+telemetry is separate from forked JMH measurements. Live HTTP latency is an interval mean;
+client p99, distributed tracing and fleet-wide telemetry are not implemented.
 
 ## Capacity remains an open experiment
 
-The **1.2M requests/s fleet target remains unmeasured**. Test multiple instances behind a load balancer
-with a separate constant-rate generator. Measure useful completions and client tail latency under steady
-load, cold caches, replica lag and slow dependencies. Multiplying laptop throughput by pod count is not proof.
+The **1.2M requests/s fleet target has not been measured**. A credible next test needs a separate
+constant-rate generator, several bidder instances behind a load balancer, and outcome-classified
+client latency under steady load, cold caches, replica lag and slow dependencies. Scaling the
+laptop's peak by a pod count is not evidence that the fleet will meet its deadline.

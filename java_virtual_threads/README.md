@@ -1,48 +1,37 @@
 # Java virtual threads: a real-time bidder
 
-A Java 21 POC for scoped context, shared cache loads, adaptive admission and asynchronous win settlement.
+A runnable Java 21 proof of concept for deadline-bound bidding: virtual threads and scoped
+context, shared cache loads, adaptive admission, and asynchronous win settlement.
 
-**Measured:** ~32–33k HTTP requests/s on one laptop; client p99 **69 ms and 83 ms**.
-**Unmeasured:** the **1.2M requests/s** fleet target. These short smoke runs do not establish sustained capacity or successful bids per second.
-
-## Saved results
-
-Download [benchmark-results.html](benchmarks/results/benchmark-results.html) and open it in your browser.
-It includes three experiments, two HTTP smoke runs, commands and raw output.
-
-To rebuild it, run from `java_virtual_threads/`:
-
-```bash
-python3 tools/build_benchmark_report.py
-```
-
-Shortcut: **`make report`**. Output: **`benchmarks/results/benchmark-results.html`**.
-
-Only Python 3.10+ is needed. The [generator](tools/build_benchmark_report.py) reads saved measurements;
-it does not rerun benchmarks. The report embeds its fonts and styles and works offline without JavaScript.
-See [benchmark methods and evidence](benchmarks/README.md).
+The saved single-instance HTTP smoke runs reached about **32–33k requests/s**, with client
+p99 latencies of **69 ms and 83 ms**. **1.2M requests/s is an unmeasured fleet design target.**
+These short local runs do not establish sustained capacity or successful bids per second.
 
 ## Requirements
 
-- **JDK 21** with `JAVA_HOME` set. The build enables preview APIs; the wrapper supplies Gradle 8.14.3.
-- **Docker + Compose v2**, running. Integration tests use Testcontainers.
-- **Python 3.10+** on macOS/Linux or WSL2; no Python packages required.
-- Internet access for initial dependency and image downloads.
-- Optional: `make` for shortcuts, ApacheBench (`ab`) for HTTP smoke tests.
+- **JDK 21**, with `JAVA_HOME` pointing to it. The build enables the JDK 21 preview APIs.
+- **Docker with Compose v2**, running and accessible to your user. Tests use Testcontainers.
+- **Python 3.10+** on macOS or Linux; use WSL2 on Windows. Python tools use only the standard library.
+- Internet access for the first Gradle dependency and Docker image downloads.
+- Optional: `make` for command shortcuts and ApacheBench (`ab`) for the HTTP smoke command.
+
+The Gradle wrapper pins Gradle 8.14.3; a separate Gradle installation is unnecessary.
 
 ## Run locally
 
 ```bash
 git clone git@github.com:ereshzealous/blog-companions.git
 cd blog-companions/java_virtual_threads
+java -version
 docker compose up -d --wait
 ./gradlew test
 ./gradlew bootRun
 ```
 
-The bidder runs on **8080**. `make all` starts infrastructure, runs Java/Python tests and starts the bidder.
+The last command runs the bidder in the foreground on port **8080**. `make all` runs the same
+setup, tests (including the Python checks), and bidder startup. Leave that terminal running.
 
-In another terminal, from the same directory:
+In another terminal, from this directory:
 
 ```bash
 curl -fsS http://localhost:8080/actuator/health
@@ -51,76 +40,116 @@ curl -i -H 'Content-Type: application/json' -H 'x-openrtb-tmax: 80' \
 python3 tools/benchmark_console.py serve
 ```
 
-Open **http://127.0.0.1:8090** for bidder/Docker metrics and benchmark history.
-Bids return **200**; no-bids return **204**. The 80 ms exchange budget reserves 30 ms for the return path.
+Open **http://127.0.0.1:8090** for live bidder/Docker metrics and benchmark history.
+An eligible auction returns a bid with HTTP 200; no-bids return 204. The configured auction
+budget is 80 ms at the exchange, with 30 ms reserved for the return path.
 
 | Service | Host port |
 |---|---:|
 | Bidder / Actuator | 8080 |
 | Live console | 8090 |
-| PostgreSQL primary / standby | 6100 / 6101 |
+| PostgreSQL primary | 6100 |
+| PostgreSQL physical standby | 6101 |
 | Redis | 6800 |
 | Kafka | 9092 |
 
-Compose seeds sample campaigns on first startup and uses demo credentials matching `application.yml`.
-To stop, press Ctrl+C in the bidder and console terminals, then run
-`docker compose down --remove-orphans` (or `make down-all`). PostgreSQL volumes are retained.
+Compose initializes the schema and sample campaigns on first startup. Its credentials are
+local demo values, paired with `src/main/resources/application.yml`.
+
+Stop the bidder and console with Ctrl+C in their terminals, then run `make down-all` or
+`docker compose down --remove-orphans`. PostgreSQL volumes are retained.
 
 ## Tests and benchmarks
 
-Run from `java_virtual_threads/`:
+Run these commands from `java_virtual_threads/`:
 
-| Task | Command |
-|---|---|
-| Java tests | `./gradlew clean test` |
-| Python checks | `python3 -m unittest discover -s tools -p test_benchmark_console.py` |
-| All JMH experiments | `./gradlew jmh` |
-| One JMH experiment | `./gradlew jmh -PjmhInclude=ScopedValue` — also accepts `Stampede` or `AdaptiveLimiter` |
-| Surge simulation | `./gradlew surgeBenchmark` |
-| Short capture check | `./gradlew jmh -PjmhInclude=scopedValue_reusedThread -PjmhVerify=true` |
+```bash
+./gradlew clean test
+python3 -m unittest discover -s tools -p test_benchmark_console.py
+./gradlew jmh
+./gradlew jmh -PjmhInclude=ScopedValue
+./gradlew jmh -PjmhInclude=Stampede
+./gradlew jmh -PjmhInclude=AdaptiveLimiter
+./gradlew surgeBenchmark
+```
 
-JMH and surge benchmarks simulate dependencies and need no Docker. Integration tests start their own
-containers; their replica-routing checks do not test physical replication. Compose provides a real standby.
-The short capture check validates report generation, not performance.
+JMH and the surge simulation model dependencies and do not require Compose. The full test
+suite starts its own PostgreSQL, Redis and Kafka containers through Testcontainers; its
+replica-routing tests do not test physical replication. The Compose topology has a real standby.
+Gradle writes the test report to `build/reports/tests/test/index.html` and JUnit XML to
+`build/test-results/test/`. Checked-in test evidence is under `benchmarks/validation/`.
 
-| Output | Location |
-|---|---|
-| Java test report / JUnit XML | `build/reports/tests/test/index.html` / `build/test-results/test/` |
-| Each benchmark run | `benchmarks/runs/<run-id>/` — raw results, manifest, JSON and HTML reports |
-| Latest attempted run | `build/reports/benchmarks/latest.html` — failed runs remain marked failed |
-| Checked-in test evidence | [benchmarks/validation/](benchmarks/validation/) |
+Each benchmark invocation writes a unique directory under `benchmarks/runs/`, containing raw
+results, a manifest, `report.json` and an offline `report.html`. The live console discovers
+new runs automatically. The latest attempted run is also exported to
+`build/reports/benchmarks/latest.html`; failed runs are marked as failed.
 
-The console discovers new runs automatically. Runs and live captures survive `gradlew clean` and are ignored by Git.
-Saved measurements are never overwritten by a benchmark run.
+For a quick check of the capture pipeline:
 
-## HTTP smoke test
+```bash
+./gradlew jmh -PjmhInclude=scopedValue_reusedThread -PjmhVerify=true
+```
 
-With the bidder running:
+This short mode verifies capture and rendering; it is not a publishable performance measurement.
+
+## Saved results
+
+Open the checked-in [benchmark results and run guide](benchmarks/results/benchmark-results.html)
+in your browser. On GitHub, download the raw HTML file first; the file viewer shows its source.
+It contains the three experiment panels and both HTTP smoke runs in the same report as the article series.
+
+To regenerate it from the saved measurements, run from `java_virtual_threads/`:
+
+```bash
+python3 tools/build_benchmark_report.py
+# Equivalent shortcut: make report
+# Output: benchmarks/results/benchmark-results.html
+```
+
+The included [build script](tools/build_benchmark_report.py) uses
+[the shared renderer](tools/benchmark_report.py) to read the saved JMH JSON, HTTP logs and
+surge summary. It calculates the tables and CSS bars, embeds the original output, and includes
+the styles and fonts from [tools/report/](tools/report/). The HTML works offline and needs no
+JavaScript. Rebuilding it requires only Python 3.10+; it does not run benchmarks or start Docker.
+
+See [the evidence guide](benchmarks/README.md) for methods, source files and limitations.
+New benchmark runs still generate their own console reports automatically under `benchmarks/runs/`.
+
+To repeat a short HTTP smoke run while the bidder is running:
 
 ```bash
 ab -n 100000 -c 256 -k -p examples/bid-request.json \
   -T application/json http://localhost:8080/openrtb/2.6/bid
 ```
 
-ApacheBench is a closed-loop client. Classify HTTP status and bid outcomes before treating its rate as useful throughput.
-Variable response lengths alone do not identify failed bids.
+ApacheBench is a closed-loop client. Save the output and classify responses by HTTP status and
+bid outcome before interpreting its request rate as useful throughput. Response bodies contain
+variable latency fields, so response-length differences alone do not classify business failures.
 
 ## Project layout
 
-| Path | Contents |
-|---|---|
-| `src/main/` | Bidder, configuration, schema and seed data |
-| `src/test/` | Tests, JMH benchmarks and surge simulation |
-| `docker/`, `docker-compose.yml` | Local infrastructure |
-| `gradle/`, `gradlew*`, `*.gradle.kts` | Build and wrapper |
-| `tools/` | Console, report generator and evidence readers |
-| `examples/` | Request fixture |
-| `benchmarks/` | Saved measurements, HTML report and test evidence |
+```text
+src/main/             Bidder code, configuration, database schema and seed data
+src/test/             Unit/integration tests, JMH benchmarks and surge simulation
+docker/               PostgreSQL primary/standby initialization
+docker-compose.yml    Local PostgreSQL, Redis and Kafka topology
+gradle/, gradlew*     Pinned Gradle wrapper
+tools/                Live console, evidence readers and Python tests
+examples/             Request fixture for curl and ApacheBench
+benchmarks/results/   Saved measurements and benchmark-results.html
+benchmarks/validation/ Checked-in test results and source hashes
+```
+
+Local builds, caches, new benchmark runs and live captures are ignored by Git. Saved evidence
+is committed deliberately; running a benchmark never overwrites it.
 
 ## Limits of this POC
 
-- Admission bounds queues; it cannot make a slow dependency meet the deadline.
-- Win notices are acknowledged after an in-memory enqueue, before Kafka confirms durability. A crash can lose accepted notices.
-- Cached budgets need an allocation or reservation policy to enforce fleet-wide spend caps.
-- The console uses Actuator/Prometheus and Docker stats. It shows mean HTTP latency, not p99, and has no OpenTelemetry collector or trace store.
-- Fleet capacity needs a separate constant-rate generator, multiple instances, and useful-completion and tail-latency measurements under failures.
+- Admission can contain queue growth but cannot make a slow dependency meet the decision deadline.
+- Win-notice HTTP acceptance currently acknowledges an in-memory enqueue before Kafka confirms
+  durability. A process crash can lose an accepted notice; ledger deduplication does not fix ingress loss.
+- Cached budgets do not enforce a strict fleet-wide spend cap; that needs an allocation or reservation policy.
+- The console reads Actuator/Prometheus metrics and Docker stats. It is not an OpenTelemetry
+  collector or distributed trace store. Live HTTP latency is an interval mean, not p99.
+- A credible capacity claim needs a separate constant-rate load generator, multiple bidder
+  instances, and measured useful completions and tail latency under failures.
