@@ -1,0 +1,53 @@
+{
+  "scope": "Correctness of broker-acknowledged HTTP ingress and independently bounded shared SQL loads; not a throughput measurement",
+  "tests": 46,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "suites": [
+    {
+      "name": "com.rtb.dsp.resilience.AdaptiveAimdLimiterTest",
+      "tests": 7
+    },
+    {
+      "name": "com.rtb.dsp.compute.AuctionContextTest",
+      "tests": 5
+    },
+    {
+      "name": "com.rtb.dsp.compute.JfrPinningMonitorTest",
+      "tests": 2
+    },
+    {
+      "name": "com.rtb.dsp.data.ReplicaRoutingTest",
+      "tests": 4
+    },
+    {
+      "name": "com.rtb.dsp.model.ModelCodecTest",
+      "tests": 3
+    },
+    {
+      "name": "com.rtb.dsp.data.ReplicaHealthTrackerTest",
+      "tests": 3
+    },
+    {
+      "name": "com.rtb.dsp.RtbDspApplicationIT",
+      "tests": 4
+    },
+    {
+      "name": "com.rtb.dsp.resilience.BoundedWinNoticePublisherTest",
+      "tests": 7
+    },
+    {
+      "name": "com.rtb.dsp.resilience.RtbAdmissionFilterTest",
+      "tests": 3
+    },
+    {
+      "name": "com.rtb.dsp.data.SingleFlightTest",
+      "tests": 5
+    },
+    {
+      "name": "com.rtb.dsp.bidding.WinNoticeIngressTest",
+      "tests": 3
+    }
+  ]
+}

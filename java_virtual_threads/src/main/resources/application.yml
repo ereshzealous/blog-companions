@@ -56,6 +56,10 @@ rtb:
       minimum-idle: 10
       connection-timeout: 250        # Hikari's floor; the default of 30 s outlives every auction
       validation-timeout: 250
+      data-source-properties:
+        connectTimeout: 2
+        socketTimeout: 2
+        options: -c statement_timeout=1000
     replica:
       pool-name: replica
       jdbc-url: jdbc:postgresql://localhost:6101/dsp_db
@@ -65,6 +69,10 @@ rtb:
       minimum-idle: 40
       connection-timeout: 250
       validation-timeout: 250
+      data-source-properties:
+        connectTimeout: 2
+        socketTimeout: 2
+        options: -c statement_timeout=1000
       read-only: true
       initialization-fail-timeout: -1   # start even if the replica is down; the lag probe keeps it bypassed
   replica:
@@ -101,6 +109,7 @@ rtb:
     flush-interval: 20ms
     max-batch: 512
     offer-timeout: 5ms
+    response-timeout: 3s
     ack-timeout: 2s
   pinning:
     enabled: true

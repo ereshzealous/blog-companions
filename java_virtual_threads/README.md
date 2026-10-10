@@ -146,10 +146,14 @@ is committed deliberately; running a benchmark never overwrites it.
 ## Limits of this POC
 
 - Admission can contain queue growth but cannot make a slow dependency meet the decision deadline.
-- Win-notice HTTP acceptance currently acknowledges an in-memory enqueue before Kafka confirms
-  durability. A process crash can lose an accepted notice; ledger deduplication does not fix ingress loss.
+- Win notices return HTTP 204 only after Kafka acknowledgment. A full queue or a 3-second receipt
+  timeout returns 503 with Retry-After. Retry the same auction ID: a timed-out notice may still arrive.
+  The local single-replica broker does not provide broker redundancy; settlement remains asynchronous.
 - Cached budgets do not enforce a strict fleet-wide spend cap; that needs an allocation or reservation policy.
 - The console reads Actuator/Prometheus metrics and Docker stats. It is not an OpenTelemetry
   collector or distributed trace store. Live HTTP latency is an interval mean, not p99.
 - A credible capacity claim needs a separate constant-rate load generator, multiple bidder
   instances, and measured useful completions and tail latency under failures.
+
+The saved benchmark results predate the acknowledgment hardening and SQL timeout limits. They remain
+historical evidence; rerun the suite and load tests before comparing performance of this version.

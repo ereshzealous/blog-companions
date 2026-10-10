@@ -9,9 +9,12 @@ import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BoundedWinNoticePublisherTest {
 
@@ -26,7 +29,7 @@ class BoundedWinNoticePublisherTest {
 
     private BoundedWinNoticePublisher start(int capacity, int maxBatch, BoundedWinNoticePublisher.BatchSink sink) {
         publisher = new BoundedWinNoticePublisher(capacity, Duration.ofMillis(20), maxBatch, Duration.ofMillis(5),
-                sink, new SimpleMeterRegistry());
+                Duration.ofSeconds(3), sink, new SimpleMeterRegistry());
         publisher.start();
         return publisher;
     }
@@ -41,7 +44,7 @@ class BoundedWinNoticePublisherTest {
         var p = start(10_000, 256, batch -> batchSizes.add(batch.size()));
 
         for (int i = 0; i < 2_000; i++) {
-            assertThat(p.offer(win(i))).isTrue();
+            assertThat(p.submit(win(i))).isNotCompletedExceptionally();
         }
         awaitPublished(p, 2_000);
 
@@ -58,7 +61,7 @@ class BoundedWinNoticePublisherTest {
         int accepted = 0;
         int rejected = 0;
         for (int i = 0; i < 50; i++) {
-            if (p.offer(win(i))) {
+            if (!p.submit(win(i)).isCompletedExceptionally()) {
                 accepted++;
             } else {
                 rejected++;
@@ -84,7 +87,7 @@ class BoundedWinNoticePublisherTest {
         });
 
         for (int i = 0; i < 10; i++) {
-            p.offer(win(i));
+            p.submit(win(i));
         }
         awaitPublished(p, 10);
 
@@ -97,10 +100,55 @@ class BoundedWinNoticePublisherTest {
         List<String> delivered = new CopyOnWriteArrayList<>();
         var p = start(1_000, 64, batch -> batch.forEach(n -> delivered.add(n.auctionId())));
         for (int i = 0; i < 300; i++) {
-            p.offer(win(i));
+            p.submit(win(i));
         }
         p.stop();
         assertThat(delivered).hasSize(300);
+    }
+
+    @Test
+    void receiptWaitsForBrokerAcknowledgment() throws Exception {
+        var entered = new CountDownLatch(1);
+        var acknowledged = new CountDownLatch(1);
+        var p = start(10, 1, batch -> {
+            entered.countDown();
+            acknowledged.await();
+        });
+        var receipt = p.submit(win(1));
+        assertThat(entered.await(2, TimeUnit.SECONDS)).isTrue();
+        assertThat(receipt).isNotDone();
+        acknowledged.countDown();
+        receipt.get(2, TimeUnit.SECONDS);
+    }
+
+    @Test
+    void responseTimeoutDoesNotCancelDelivery() throws Exception {
+        var acknowledged = new CountDownLatch(1);
+        publisher = new BoundedWinNoticePublisher(10, Duration.ofMillis(1), 1, Duration.ofMillis(5),
+                Duration.ofMillis(30), batch -> acknowledged.await(), new SimpleMeterRegistry());
+        publisher.start();
+        var receipt = publisher.submit(win(1));
+        assertThatThrownBy(() -> receipt.get(2, TimeUnit.SECONDS)).hasCauseInstanceOf(TimeoutException.class);
+        acknowledged.countDown();
+        awaitPublished(publisher, 1);
+        assertThat(receipt).isCompletedExceptionally();
+    }
+
+    @Test
+    void shutdownFailsUnacknowledgedReceiptsAndRejectsNewWork() throws Exception {
+        var entered = new CountDownLatch(1);
+        publisher = new BoundedWinNoticePublisher(10, Duration.ofMillis(1), 1, Duration.ofMillis(5),
+                Duration.ofSeconds(30), batch -> {
+                    entered.countDown();
+                    new CountDownLatch(1).await();
+                }, new SimpleMeterRegistry());
+        publisher.start();
+        var receipt = publisher.submit(win(1));
+        assertThat(entered.await(2, TimeUnit.SECONDS)).isTrue();
+        publisher.stop();
+        assertThat(receipt).isCompletedExceptionally();
+        assertThat(publisher.submit(win(2))).isCompletedExceptionally();
+        assertThat(publisher.isRunning()).isFalse();
     }
 
     private static void awaitPublished(BoundedWinNoticePublisher p, long expected) throws InterruptedException {

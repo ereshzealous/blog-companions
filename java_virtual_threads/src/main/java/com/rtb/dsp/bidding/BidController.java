@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/openrtb/2.6")
@@ -37,18 +38,20 @@ public class BidController {
                 .orElseGet(() -> ResponseEntity.noContent().build());
     }
 
-    /** Win URL (nurl). The exchange substitutes the clearing price; we answer before it is settled. */
+    /** Broker acceptance precedes success; ledger settlement remains asynchronous. */
     @GetMapping("/win")
-    public ResponseEntity<Void> win(@RequestParam String auctionId, @RequestParam long campaignId,
+    public CompletableFuture<ResponseEntity<Void>> win(@RequestParam String auctionId, @RequestParam long campaignId,
                                     @RequestParam long priceMicros) throws InterruptedException {
         WinNotice notice = new WinNotice(auctionId, campaignId, priceMicros, System.currentTimeMillis());
-        if (winNotices.offer(notice)) {
-            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
-        }
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
-                .header("Retry-After", "1")
-                .header(RtbAdmissionFilter.HEADER_LOAD_SHED, "true")
-                .build();
+        return winNotices.submit(notice).handle((ignored, failure) -> {
+            if (failure == null) {
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                    .header("Retry-After", "1")
+                    .header(RtbAdmissionFilter.HEADER_LOAD_SHED, "true")
+                    .build();
+        });
     }
 
     private static long epochNanos(Instant now) {

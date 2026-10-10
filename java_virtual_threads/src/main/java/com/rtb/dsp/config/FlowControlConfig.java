@@ -68,6 +68,6 @@ public class FlowControlConfig {
                                                                RtbProperties props, MeterRegistry registry) {
         RtbProperties.WinNotices w = props.winNotices();
         return new BoundedWinNoticePublisher(w.queueCapacity(), w.flushInterval(), w.maxBatch(), w.offerTimeout(),
-                new KafkaWinNoticeSink(kafka, w.topic(), w.ackTimeout()), registry);
+                w.responseTimeout(), new KafkaWinNoticeSink(kafka, w.topic(), w.ackTimeout()), registry);
     }
 }

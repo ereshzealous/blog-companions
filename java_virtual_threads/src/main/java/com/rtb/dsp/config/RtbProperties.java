@@ -68,6 +68,7 @@ public record RtbProperties(
             @DefaultValue("20ms") Duration flushInterval,
             @DefaultValue("512") int maxBatch,
             @DefaultValue("5ms") Duration offerTimeout,
+            @DefaultValue("3s") Duration responseTimeout,
             @DefaultValue("2s") Duration ackTimeout) {
     }
 

@@ -8,6 +8,7 @@ import com.rtb.dsp.model.OpenRtbBidResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -28,8 +29,10 @@ import org.testcontainers.utility.MountableFile;
 
 import java.time.Duration;
 import java.util.function.BooleanSupplier;
+import javax.sql.DataSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * Primary and replica pools share one PostgreSQL container; this tests routing, not replication.
@@ -83,6 +86,9 @@ class RtbDspApplicationIT {
     ResilientRoutingDataSource routing;
     @Autowired
     MultiTierBudgetCache budgets;
+    @Autowired
+    @Qualifier("replicaDataSource")
+    DataSource replicaDataSource;
 
     @BeforeEach
     void replicaIsTrusted() {
@@ -123,14 +129,22 @@ class RtbDspApplicationIT {
     }
 
     @Test
+    void sharedLoaderSqlHasAnIndependentServerTimeout() {
+        JdbcTemplate replica = new JdbcTemplate(replicaDataSource);
+        assertThat(replica.queryForObject("SHOW statement_timeout", String.class)).isEqualTo("1s");
+        assertThatThrownBy(() -> replica.execute("SELECT pg_sleep(3)"))
+                .hasRootCauseMessage("ERROR: canceling statement due to statement timeout");
+    }
+
+    @Test
     void winNoticeSettlesOnceAndInvalidatesTheCaches() {
         assertThat(bid("it-3", "DE", 1_000_000).getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(bid("it-4", "DE", 1_000_000).getBody().latency().budgetTier()).isEqualTo("L1");
         long before = remaining(3);
 
         String win = "/openrtb/2.6/win?auctionId=it-win-1&campaignId=3&priceMicros=7650000";
-        assertThat(http.getForEntity(win, Void.class).getStatusCode()).isEqualTo(HttpStatus.ACCEPTED);
-        assertThat(http.getForEntity(win, Void.class).getStatusCode()).isEqualTo(HttpStatus.ACCEPTED);
+        assertThat(http.getForEntity(win, Void.class).getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+        assertThat(http.getForEntity(win, Void.class).getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
         await(Duration.ofSeconds(30), () -> remaining(3) == before - 7_650_000);
         await(Duration.ofSeconds(10), () -> !"L1".equals(bid("it-5", "DE", 1_000_000).getBody().latency().budgetTier()));
