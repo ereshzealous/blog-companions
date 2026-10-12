@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://connectedfleet.example/contracts/cf.device-state.v1.schema.json",
+  "title": "Versioned device configuration/state document from MongoDB change streams (Debezium)",
+  "description": "Canonical Kafka topic cf.device-state.v1 -> ClickHouse table device_state_versions. Frozen 2026-10-10 (schema_version 1). Key: device_id.",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "mgstate-<cluster time seconds>-<ord>-<device_id>"
+    },
+    "device_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Kafka partition key for every canonical topic"
+    },
+    "event_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the fact happened at the source (event-time analytics)"
+    },
+    "emitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the source system emitted/committed it (not the ingestion time)"
+    },
+    "source_system": {
+      "type": "string",
+      "description": "mongodb.connectedfleet.device_state"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "operation": {
+      "enum": [
+        "snapshot",
+        "insert",
+        "update",
+        "delete"
+      ]
+    },
+    "is_deleted": {
+      "type": "boolean"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "(cluster time seconds << 32) | ord, from the change event source block"
+    },
+    "config_profile": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 64
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "sampling_interval_s": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 86400
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reporting_mode": {
+      "anyOf": [
+        {
+          "enum": [
+            "normal",
+            "power_saving",
+            "diagnostic"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "desired_firmware": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 64
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "full_document": {
+      "type": "boolean",
+      "description": "true when the event carried the full post-change document; false for patch-only updates"
+    }
+  },
+  "required": [
+    "event_id",
+    "device_id",
+    "event_time",
+    "emitted_at",
+    "source_system",
+    "schema_version",
+    "operation",
+    "is_deleted",
+    "version",
+    "full_document"
+  ],
+  "additionalProperties": true,
+  "x-clickhouse-table": "device_state_versions",
+  "x-null-policy": "Absent optional field == explicit null in typed storage; the normalizer counts them separately.",
+  "x-notes": "With capture.mode=change_streams_update_full the document is looked up after the change, so it can already include later updates (documented race). Patch-only updates leave unknown fields null with full_document=false."
+}

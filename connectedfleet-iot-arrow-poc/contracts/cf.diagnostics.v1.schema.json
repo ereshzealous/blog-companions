@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://connectedfleet.example/contracts/cf.diagnostics.v1.schema.json",
+  "title": "Historical diagnostic row imported from a CSV file",
+  "description": "Canonical Kafka topic cf.diagnostics.v1 -> ClickHouse table diagnostic_events. Frozen 2026-10-10 (schema_version 1). Key: device_id.",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "csv-<first 16 hex of file sha256>-<row number>: re-importing the same file yields the same ids"
+    },
+    "device_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Kafka partition key for every canonical topic"
+    },
+    "event_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the fact happened at the source (event-time analytics)"
+    },
+    "emitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the source system emitted/committed it (not the ingestion time)"
+    },
+    "source_system": {
+      "type": "string",
+      "description": "csv-import"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "file_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "row_number": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "error_code": {
+      "type": "string",
+      "maxLength": 32
+    },
+    "severity": {
+      "enum": [
+        "info",
+        "warning",
+        "error",
+        "critical"
+      ]
+    },
+    "battery_pct": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "temperature_c": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": -60,
+          "maximum": 150
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "firmware_version": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 64
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "note": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 512
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "event_id",
+    "device_id",
+    "event_time",
+    "emitted_at",
+    "source_system",
+    "schema_version",
+    "file_sha256",
+    "row_number",
+    "error_code",
+    "severity"
+  ],
+  "additionalProperties": true,
+  "x-clickhouse-table": "diagnostic_events",
+  "x-null-policy": "Absent optional field == explicit null in typed storage; the normalizer counts them separately.",
+  "x-notes": "emitted_at is the import time, so a re-import is a physical duplicate with a new emitted_at but the same logical event_id."
+}

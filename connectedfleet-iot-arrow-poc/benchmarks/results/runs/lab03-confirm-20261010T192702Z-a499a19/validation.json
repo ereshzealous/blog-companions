@@ -1,0 +1,110 @@
+{
+  "run": {
+    "run_id": "lab03-confirm-20261010T192702Z-a499a19",
+    "valid": true,
+    "reasons": [],
+    "warnings": [],
+    "cases_total": 14,
+    "cases_valid": 14
+  },
+  "cases": [
+    {
+      "case_id": "E4-0000",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0001",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0002",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0003",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0004",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0005",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0006",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0007",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0008",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0009",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0010",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0011",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0012",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0013",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    }
+  ]
+}

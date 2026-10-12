@@ -1,0 +1,80 @@
+# Lab 03 confirm profile (review feedback, 2026-10-11): repeat only the measurements that decide the
+# architecture, at a scale where wall-clock time means something, with lane order rotated per repetition.
+#   E1  whole lanes at 1,000 and 10,000 rows per batch, 1M events, 5 measured reps; adds the tuned sink
+#   E1 live  latency after the worker-loop flush fix, sustained 20 s at 1,000 events/s, 3 measured reps
+#   E2  the four compute x insert combinations at batch 10,000, 1M events, three shapes, 5 measured reps
+#   E3  CSV backfill at 100K and 1M rows with server-side cost (query_log), streamed direct upload, 5 reps
+#   E4  poison handling for three sink configurations, DLQ recovery, crash window, null edge (1 pass)
+# Results stay separate from the smoke runs (own run id, own commit); nothing is pooled across commits.
+profile: confirm
+seed: 20261011
+warmups: 1
+repetitions: 3                # minimum over experiments; per-experiment `repetitions` below may be higher
+kafka_partitions: 1
+consumer_parallelism: 1
+lane_order: rotate
+host_guard:                   # shared laptop (B-007, B-008): time cases only on a quiet host, re-run any that overlapped other work
+  threshold_pct: 50           # a native process above this %CPU (ps decaying average) counts as busy
+  quiet_s: 60                 # other work must stay within case_limit_pct this long before a case starts
+  poll_s: 5
+  case_limit_pct: 150         # other host work (whole-host CPU minus Docker's VM, Docker Desktop and the harness incl. its finished children); above this a case waits, or runs again
+  max_attempts: 6             # the last attempt is kept and labelled; the validator excludes it if still busy
+  max_wait_s: 43200           # a case waits up to 12 h for a quiet host; then it is recorded as an error
+timeouts:
+  lane_drain_s: 1800
+  live_s: 900
+
+experiments:
+  E1:
+    enabled: true
+    lanes: [sink, sink_tuned, row, arrow]
+    event_counts: [1000000]
+    batch_sizes: [1000, 10000]
+    flush_timeout_ms: 1000
+    repetitions: 5
+    shape: {name: dense, null_fraction: 0.04, string_heavy: false}
+    exclusions: []
+    live:
+      enabled: true
+      event_count: 20000
+      rate_eps: 1000
+      batch_sizes: [1000]
+      flush_timeouts_ms: [250, 1000]
+      repetitions: 3
+
+  E2:
+    enabled: true
+    event_count: 1000000
+    batch_sizes: [10000]
+    flush_timeout_ms: 1000
+    repetitions: 5
+    variants:
+      - [row, native]
+      - [arrow, arrowstream]
+      - [row, arrowstream]
+      - [arrow, native]
+    shapes:
+      - {name: dense, null_fraction: 0.04, string_heavy: false}
+      - {name: null_heavy, null_fraction: 0.40, string_heavy: false}
+      - {name: string_heavy, null_fraction: 0.04, string_heavy: true}
+
+  E3:
+    enabled: true
+    rows: [100000, 1000000]
+    batch_size: 10000
+    compression: [none, gzip]
+    methods: [direct, row, arrow]
+    repetitions: 5
+
+  E4:
+    enabled: true
+    event_count: 5000
+    batch_size: 500
+    flush_timeout_ms: 500
+    poison_records: 1
+    null_edge_fraction: 0.9
+    sink_variants: [sink, sink_tuned, sink_skip]
+
+  E5:
+    enabled: false              # optional interop; not run (no cross-engine claim is made)
+    event_count: 100000

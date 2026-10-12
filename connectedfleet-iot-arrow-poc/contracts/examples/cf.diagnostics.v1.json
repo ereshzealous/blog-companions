@@ -1,0 +1,16 @@
+{
+  "event_id": "csv-9f2c4e1a7b3d5f60-42",
+  "device_id": "sensor-01042",
+  "event_time": "2026-09-30T23:14:05.000Z",
+  "emitted_at": "2026-10-09T09:00:00.000Z",
+  "source_system": "csv-import",
+  "schema_version": 1,
+  "file_sha256": "9f2c4e1a7b3d5f60000000000000000000000000000000000000000000000000",
+  "row_number": 42,
+  "error_code": "E-BATT-017",
+  "severity": "warning",
+  "battery_pct": 9,
+  "temperature_c": 47.2,
+  "firmware_version": "3.1.9",
+  "note": "battery sag under load"
+}

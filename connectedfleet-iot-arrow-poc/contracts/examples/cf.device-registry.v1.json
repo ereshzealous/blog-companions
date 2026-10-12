@@ -1,0 +1,16 @@
+{
+  "event_id": "pgreg-0/1A2B3C4-sensor-01042",
+  "device_id": "sensor-01042",
+  "event_time": "2026-10-09T08:31:12.000Z",
+  "emitted_at": "2026-10-09T08:31:12.120Z",
+  "source_system": "postgres.public.device_registry",
+  "schema_version": 1,
+  "operation": "update",
+  "is_deleted": false,
+  "version": 27409348,
+  "customer_id": "acme-logistics",
+  "site_id": "factory-12",
+  "firmware_version": "3.2.1",
+  "state": "active",
+  "updated_at": "2026-10-09T08:31:12.000Z"
+}

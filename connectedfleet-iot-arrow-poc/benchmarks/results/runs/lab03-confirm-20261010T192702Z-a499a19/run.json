@@ -1,0 +1,2733 @@
+{
+  "schema_version": 1,
+  "run_id": "lab03-confirm-20261010T192702Z-a499a19",
+  "lab": "lab-03",
+  "profile": "confirm",
+  "status": "COMPLETED",
+  "started_at_utc": "2026-10-10T19:27:02Z",
+  "ended_at_utc": "2026-10-10T19:35:45Z",
+  "code": {
+    "git_sha": "a499a19278ba46bd2dcf91adfc38e0e01eba05ab",
+    "git_dirty": false
+  },
+  "host": {
+    "os": "macOS-26.5-arm64-arm-64bit",
+    "architecture": "arm64",
+    "processor": "arm",
+    "cpu_count": 15,
+    "ram_bytes": 25769803776,
+    "in_container": false
+  },
+  "versions": {
+    "python": "3.12.13",
+    "python_implementation": "CPython",
+    "pyarrow": "25.0.1",
+    "arrow_cpp": "25.0.1",
+    "arrow_memory_pool": "mimalloc",
+    "stack": {
+      "captured_at_utc": "2026-10-10T16:39:05+00:00",
+      "compose_images": [
+        {
+          "ID": "sha256:6c242ab3989ef60acb1859d05142bc84b0d20df70ece29ebcc50cb52c295034b",
+          "ContainerName": "connectedfleet-connect-1",
+          "Repository": "",
+          "Tag": "",
+          "Platform": "unknown",
+          "Size": 0
+        },
+        {
+          "ID": "sha256:1f995ad6fdb93244a1addab1b58f934a0bc2f5643c38e02f5e9d7f0c7d227a7b",
+          "ContainerName": "connectedfleet-mongodb-1",
+          "Repository": "mongo",
+          "Tag": "7.0.43",
+          "Platform": "linux/arm64/v8",
+          "Size": 1126083428,
+          "Created": "2026-10-02T01:32:03.312463295Z",
+          "LastTagTime": "2026-10-10T16:37:01.756286344Z"
+        },
+        {
+          "ID": "sha256:55a55347b1b959ae51d40373901e81aa671d7fc9e6d05d0603d1e0ad3ac22c6d",
+          "ContainerName": "connectedfleet-clickhouse-1",
+          "Repository": "clickhouse/clickhouse-server",
+          "Tag": "26.3.47.6",
+          "Platform": "linux/arm64",
+          "Size": 1102139409,
+          "Created": "2026-10-10T13:09:08.994204102Z",
+          "LastTagTime": "2026-10-10T16:31:21.114582548Z"
+        },
+        {
+          "ID": "sha256:1213eb3943d551e5ed1fca7a4e109001cee35770b66a02a0c37a8964efe09b69",
+          "ContainerName": "connectedfleet-kafka-1",
+          "Repository": "apache/kafka",
+          "Tag": "4.2.2",
+          "Platform": "linux/arm64",
+          "Size": 678380045,
+          "Created": "2026-09-21T18:14:22.881170158Z",
+          "LastTagTime": "2026-10-10T16:31:05.803865013Z"
+        },
+        {
+          "ID": "sha256:2d2b8998d31037bf721cfdf764d76ba74171b4fab3431b7f72c27c56ddbdf9e3",
+          "ContainerName": "connectedfleet-postgres-1",
+          "Repository": "postgres",
+          "Tag": "17.11",
+          "Platform": "linux/arm64/v8",
+          "Size": 661340390,
+          "Created": "2026-10-06T01:36:10.65337644Z",
+          "LastTagTime": "2026-10-10T16:31:01.550677761Z"
+        }
+      ],
+      "clickhouse": "26.3.47.6",
+      "kafka_connect": {
+        "version": "4.3.0",
+        "commit": "a9ce3221537b8653",
+        "kafka_cluster_id": "5L6g3nShT-eMCtK--X86sw"
+      },
+      "connector_plugins": [
+        {
+          "class": "com.clickhouse.kafka.connect.ClickHouseSinkConnector",
+          "type": "sink",
+          "version": "v1.6.0"
+        },
+        {
+          "class": "io.debezium.connector.jdbc.JdbcSinkConnector",
+          "type": "sink",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.mongodb.MongoDbSinkConnector",
+          "type": "sink",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.cockroachdb.CockroachDBConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.db2.Db2Connector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.db2as400.As400RpcConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.informix.InformixConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.mariadb.MariaDbConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.mongodb.MongoDbConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.mysql.MySqlConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.oracle.OracleConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.postgresql.PostgresConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.spanner.SpannerConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.sqlserver.SqlServerConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.vitess.VitessConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "org.apache.kafka.connect.mirror.MirrorCheckpointConnector",
+          "type": "source",
+          "version": "4.3.0"
+        },
+        {
+          "class": "org.apache.kafka.connect.mirror.MirrorHeartbeatConnector",
+          "type": "source",
+          "version": "4.3.0"
+        },
+        {
+          "class": "org.apache.kafka.connect.mirror.MirrorSourceConnector",
+          "type": "source",
+          "version": "4.3.0"
+        }
+      ],
+      "postgres": "17.11 (Debian 17.11-1.pgdg13+2)",
+      "mongodb": "7.0.43",
+      "python": "3.12.13",
+      "pyarrow": "25.0.1",
+      "confluent_kafka": "2",
+      "librdkafka": "2.15.1",
+      "clickhouse_connect": "1.8.0"
+    }
+  },
+  "workload_spec": {
+    "profile": "confirm",
+    "seed": 20261011,
+    "warmups": 1,
+    "repetitions": 3,
+    "kafka_partitions": 1,
+    "consumer_parallelism": 1,
+    "lane_order": "rotate",
+    "timeouts": {
+      "lane_drain_s": 1800,
+      "live_s": 900
+    },
+    "experiments": {
+      "E1": {
+        "enabled": true,
+        "lanes": [
+          "sink",
+          "sink_tuned",
+          "row",
+          "arrow"
+        ],
+        "event_counts": [
+          1000000
+        ],
+        "batch_sizes": [
+          1000,
+          10000
+        ],
+        "flush_timeout_ms": 1000,
+        "repetitions": 5,
+        "shape": {
+          "name": "dense",
+          "null_fraction": 0.04,
+          "string_heavy": false
+        },
+        "exclusions": [],
+        "live": {
+          "enabled": true,
+          "event_count": 20000,
+          "rate_eps": 1000,
+          "batch_sizes": [
+            1000
+          ],
+          "flush_timeouts_ms": [
+            250,
+            1000
+          ],
+          "repetitions": 3
+        }
+      },
+      "E2": {
+        "enabled": true,
+        "event_count": 1000000,
+        "batch_sizes": [
+          10000
+        ],
+        "flush_timeout_ms": 1000,
+        "repetitions": 5,
+        "variants": [
+          [
+            "row",
+            "native"
+          ],
+          [
+            "arrow",
+            "arrowstream"
+          ],
+          [
+            "row",
+            "arrowstream"
+          ],
+          [
+            "arrow",
+            "native"
+          ]
+        ],
+        "shapes": [
+          {
+            "name": "dense",
+            "null_fraction": 0.04,
+            "string_heavy": false
+          },
+          {
+            "name": "null_heavy",
+            "null_fraction": 0.4,
+            "string_heavy": false
+          },
+          {
+            "name": "string_heavy",
+            "null_fraction": 0.04,
+            "string_heavy": true
+          }
+        ]
+      },
+      "E3": {
+        "enabled": true,
+        "rows": [
+          100000,
+          1000000
+        ],
+        "batch_size": 10000,
+        "compression": [
+          "none",
+          "gzip"
+        ],
+        "methods": [
+          "direct",
+          "row",
+          "arrow"
+        ],
+        "repetitions": 5
+      },
+      "E4": {
+        "enabled": true,
+        "event_count": 5000,
+        "batch_size": 500,
+        "flush_timeout_ms": 500,
+        "poison_records": 1,
+        "null_edge_fraction": 0.9,
+        "sink_variants": [
+          "sink",
+          "sink_tuned",
+          "sink_skip"
+        ]
+      },
+      "E5": {
+        "enabled": false,
+        "event_count": 100000
+      }
+    }
+  },
+  "workloads": {
+    "E4-5000": {
+      "count": 5000,
+      "seed": 20261015,
+      "null_fraction": 0.04,
+      "string_heavy": false,
+      "devices": 1000,
+      "id_prefix": "e4",
+      "digest_sha256": "06f465f1e8f308ada751c08e3052c3c013a9209db30abdd9c25e09b374bb8b92",
+      "expected_nulls": {
+        "temperature_c": 182,
+        "battery_pct": 214,
+        "signal_dbm": 187
+      },
+      "expected_risk": {
+        "true": 108,
+        "false": 4829,
+        "unknown": 63
+      },
+      "topic": "cfbench.lab03-confirm-20261010T192702Z-a499a19-e4.telemetry",
+      "produced": {
+        "topic": "cfbench.lab03-confirm-20261010T192702Z-a499a19-e4.telemetry",
+        "sent": 5000,
+        "poison": 1,
+        "started_at": 1791660424.144534,
+        "ended_at": 1791660424.6551466,
+        "spec": {
+          "count": 5000,
+          "seed": 20261015,
+          "null_fraction": 0.04,
+          "string_heavy": false,
+          "devices": 1000,
+          "id_prefix": "e4"
+        }
+      },
+      "poison_records": 1
+    },
+    "E4-null-edge": {
+      "count": 2000,
+      "seed": 20261016,
+      "null_fraction": 0.9,
+      "string_heavy": false,
+      "devices": 1000,
+      "id_prefix": "e4null",
+      "digest_sha256": "73e055ae7e60591dac64eade877e827f860c6a30234a709139c3fa9630ee8881",
+      "expected_nulls": {
+        "temperature_c": 1828,
+        "battery_pct": 1818,
+        "signal_dbm": 1808
+      },
+      "expected_risk": {
+        "true": 0,
+        "false": 290,
+        "unknown": 1710
+      },
+      "topic": "cfbench.lab03-confirm-20261010T192702Z-a499a19-e4-null.telemetry",
+      "produced": {
+        "topic": "cfbench.lab03-confirm-20261010T192702Z-a499a19-e4-null.telemetry",
+        "sent": 2000,
+        "poison": 0,
+        "started_at": 1791660937.8422072,
+        "ended_at": 1791660938.3532605,
+        "spec": {
+          "count": 2000,
+          "seed": 20261016,
+          "null_fraction": 0.9,
+          "string_heavy": false,
+          "devices": 1000,
+          "id_prefix": "e4null"
+        }
+      }
+    },
+    "E4-lab02-link": {
+      "lab02_run_id": "lab02-20261010T164622Z-nogit",
+      "lab02_status": "PASS",
+      "checks": [
+        {
+          "name": "clickhouse reachable",
+          "ok": true,
+          "expected": true,
+          "observed": true,
+          "lane": null,
+          "note": ""
+        },
+        {
+          "name": "connect plugins loaded",
+          "ok": true,
+          "expected": [],
+          "observed": [],
+          "lane": null,
+          "note": ""
+        },
+        {
+          "name": "connector cf-pg-registry RUNNING",
+          "ok": true,
+          "expected": "RUNNING",
+          "observed": true,
+          "lane": null,
+          "note": ""
+        },
+        {
+          "name": "connector cf-pg-outbox RUNNING",
+          "ok": true,
+          "expected": "RUNNING",
+          "observed": true,
+          "lane": null,
+          "note": ""
+        },
+        {
+          "name": "connector cf-mongo-state RUNNING",
+          "ok": true,
+          "expected": "RUNNING",
+          "observed": true,
+          "lane": null,
+          "note": ""
+        },
+        {
+          "name": "connector cf-clickhouse-sink RUNNING",
+          "ok": true,
+          "expected": "RUNNING",
+          "observed": true,
+          "lane": null,
+          "note": ""
+        },
+        {
+          "name": "rollback left no outbox row",
+          "ok": true,
+          "expected": false,
+          "observed": false,
+          "lane": null,
+          "note": ""
+        },
+        {
+          "name": "rollback left business row unchanged",
+          "ok": true,
+          "expected": "3.2.1",
+          "observed": "3.2.1",
+          "lane": null,
+          "note": ""
+        },
+        {
+          "name": "lane caught up (telemetry, registry versions, state versions)",
+          "ok": true,
+          "expected": [
+            498,
+            5,
+            4
+          ],
+          "observed": [
+            498,
+            5,
+            4
+          ],
+          "lane": "sink",
+          "note": ""
+        },
+        {
+          "name": "lane caught up (telemetry, registry versions, state versions)",
+          "ok": true,
+          "expected": [
+            498,
+            5,
+            4
+          ],
+          "observed": [
+            498,
+            5,
+            4
+          ],
+          "lane": "row",
+          "note": ""
+        },
+        {
+          "name": "lane caught up (telemetry, registry versions, state versions)",
+          "ok": true,
+          "expected": [
+            498,
+            5,
+            4
+          ],
+          "observed": [
+            498,
+            5,
+            4
+          ],
+          "lane": "arrow",
+          "note": ""
+        },
+        {
+          "name": "telemetry logical rows",
+          "ok": true,
+          "expected": 498,
+          "observed": {
+            "physical": 498,
+            "logical": 498
+          },
+          "lane": "sink",
+          "note": ""
+        },
+        {
+          "name": "committed outbox events present (exact ids/types)",
+          "ok": true,
+          "expected": {
+            "ee135340-cd53-5062-a96e-ff0136510934": "DeviceActivated",
+            "85983a5c-ba2c-5771-bc9a-75bd076c9d63": "DeviceActivated",
+            "552fa666-f91b-5af1-828b-08db1ac1d005": "FirmwareUpdated",
+            "5039de16-a78e-55aa-add4-eafd1ab09a52": "DeviceDeactivated"
+          },
+          "observed": {
+            "ee135340-cd53-5062-a96e-ff0136510934": "DeviceActivated",
+            "552fa666-f91b-5af1-828b-08db1ac1d005": "FirmwareUpdated",
+            "85983a5c-ba2c-5771-bc9a-75bd076c9d63": "DeviceActivated",
+            "5039de16-a78e-55aa-add4-eafd1ab09a52": "DeviceDeactivated"
+          },
+          "lane": "sink",
+          "note": ""
+        },
+        {
+          "name": "rolled-back outbox event absent",
+          "ok": true,
+          "expected": "absent",
+          "observed": "absent",
+          "lane": "sink",
+          "note": ""
+        },
+        {
+          "name": "registry CDC versions (insert/update/delete)",
+          "ok": true,
+          "expected": [
+            "delete",
+            "insert",
+            "insert",
+            "update",
+            "update"
+          ],
+          "observed": [
+            "delete",
+            "insert",
+            "insert",
+            "update",
+            "update"
+          ],
+          "lane": "sink",
+          "note": ""
+        },
+        {
+          "name": "registry current state after FINAL (dev1 3.2.1 present, dev2 deleted)",
+          "ok": true,
+          "expected": [
+            [
+              "dev-668645-01",
+              "3.2.1"
+            ]
+          ],
+          "observed": [
+            [
+              "dev-668645-01",
+              "3.2.1"
+            ]
+          ],
+          "lane": "sink",
+          "note": ""
+        },
+        {
+          "name": "mongo change versions (insert/update/insert/delete)",
+          "ok": true,
+          "expected": 4,
+          "observed": [
+            "insert",
+            "update",
+            "insert",
+            "delete"
+          ],
+          "lane": "sink",
+          "note": ""
+        },
+        {
+          "name": "mongo current state after FINAL (dev1 interval 60, dev2 deleted)",
+          "ok": true,
+          "expected": [
+            [
+              "dev-668645-01",
+              60
+            ]
+          ],
+          "observed": [
+            [
+              "dev-668645-01",
+              60
+            ]
+          ],
+          "lane": "sink",
+          "note": "full-document lookup can reflect a later update; checked on final state only"
+        },
+        {
+          "name": "CSV re-import: 20 logical rows, physical >= 2x",
+          "ok": true,
+          "expected": {
+            "logical": 20,
+            "physical": ">=40"
+          },
+          "observed": {
+            "physical": 120,
+            "logical": 20
+          },
+          "lane": "sink",
+          "note": ""
+        },
+        {
+          "name": "initial PostgreSQL snapshot rows captured (op r)",
+          "ok": true,
+          "expected": ">=3",
+          "observed": 3,
+          "lane": "sink",
+          "note": "present once the lane consumed the topic from the beginning"
+        },
+        {
+          "name": "telemetry logical rows",
+          "ok": true,
+          "expected": 498,
+          "observed": {
+            "physical": 498,
+            "logical": 498
+          },
+          "lane": "row",
+          "note": ""
+        },
+        {
+          "name": "committed outbox events present (exact ids/types)",
+          "ok": true,
+          "expected": {
+            "ee135340-cd53-5062-a96e-ff0136510934": "DeviceActivated",
+            "85983a5c-ba2c-5771-bc9a-75bd076c9d63": "DeviceActivated",
+            "552fa666-f91b-5af1-828b-08db1ac1d005": "FirmwareUpdated",
+            "5039de16-a78e-55aa-add4-eafd1ab09a52": "DeviceDeactivated"
+          },
+          "observed": {
+            "ee135340-cd53-5062-a96e-ff0136510934": "DeviceActivated",
+            "552fa666-f91b-5af1-828b-08db1ac1d005": "FirmwareUpdated",
+            "85983a5c-ba2c-5771-bc9a-75bd076c9d63": "DeviceActivated",
+            "5039de16-a78e-55aa-add4-eafd1ab09a52": "DeviceDeactivated"
+          },
+          "lane": "row",
+          "note": ""
+        },
+        {
+          "name": "rolled-back outbox event absent",
+          "ok": true,
+          "expected": "absent",
+          "observed": "absent",
+          "lane": "row",
+          "note": ""
+        },
+        {
+          "name": "registry CDC versions (insert/update/delete)",
+          "ok": true,
+          "expected": [
+            "delete",
+            "insert",
+            "insert",
+            "update",
+            "update"
+          ],
+          "observed": [
+            "delete",
+            "insert",
+            "insert",
+            "update",
+            "update"
+          ],
+          "lane": "row",
+          "note": ""
+        },
+        {
+          "name": "registry current state after FINAL (dev1 3.2.1 present, dev2 deleted)",
+          "ok": true,
+          "expected": [
+            [
+              "dev-668645-01",
+              "3.2.1"
+            ]
+          ],
+          "observed": [
+            [
+              "dev-668645-01",
+              "3.2.1"
+            ]
+          ],
+          "lane": "row",
+          "note": ""
+        },
+        {
+          "name": "mongo change versions (insert/update/insert/delete)",
+          "ok": true,
+          "expected": 4,
+          "observed": [
+            "insert",
+            "update",
+            "insert",
+            "delete"
+          ],
+          "lane": "row",
+          "note": ""
+        },
+        {
+          "name": "mongo current state after FINAL (dev1 interval 60, dev2 deleted)",
+          "ok": true,
+          "expected": [
+            [
+              "dev-668645-01",
+              60
+            ]
+          ],
+          "observed": [
+            [
+              "dev-668645-01",
+              60
+            ]
+          ],
+          "lane": "row",
+          "note": "full-document lookup can reflect a later update; checked on final state only"
+        },
+        {
+          "name": "CSV re-import: 20 logical rows, physical >= 2x",
+          "ok": true,
+          "expected": {
+            "logical": 20,
+            "physical": ">=40"
+          },
+          "observed": {
+            "physical": 120,
+            "logical": 20
+          },
+          "lane": "row",
+          "note": ""
+        },
+        {
+          "name": "initial PostgreSQL snapshot rows captured (op r)",
+          "ok": true,
+          "expected": ">=3",
+          "observed": 3,
+          "lane": "row",
+          "note": "present once the lane consumed the topic from the beginning"
+        },
+        {
+          "name": "telemetry logical rows",
+          "ok": true,
+          "expected": 498,
+          "observed": {
+            "physical": 498,
+            "logical": 498
+          },
+          "lane": "arrow",
+          "note": ""
+        },
+        {
+          "name": "committed outbox events present (exact ids/types)",
+          "ok": true,
+          "expected": {
+            "ee135340-cd53-5062-a96e-ff0136510934": "DeviceActivated",
+            "85983a5c-ba2c-5771-bc9a-75bd076c9d63": "DeviceActivated",
+            "552fa666-f91b-5af1-828b-08db1ac1d005": "FirmwareUpdated",
+            "5039de16-a78e-55aa-add4-eafd1ab09a52": "DeviceDeactivated"
+          },
+          "observed": {
+            "ee135340-cd53-5062-a96e-ff0136510934": "DeviceActivated",
+            "552fa666-f91b-5af1-828b-08db1ac1d005": "FirmwareUpdated",
+            "85983a5c-ba2c-5771-bc9a-75bd076c9d63": "DeviceActivated",
+            "5039de16-a78e-55aa-add4-eafd1ab09a52": "DeviceDeactivated"
+          },
+          "lane": "arrow",
+          "note": ""
+        },
+        {
+          "name": "rolled-back outbox event absent",
+          "ok": true,
+          "expected": "absent",
+          "observed": "absent",
+          "lane": "arrow",
+          "note": ""
+        },
+        {
+          "name": "registry CDC versions (insert/update/delete)",
+          "ok": true,
+          "expected": [
+            "delete",
+            "insert",
+            "insert",
+            "update",
+            "update"
+          ],
+          "observed": [
+            "delete",
+            "insert",
+            "insert",
+            "update",
+            "update"
+          ],
+          "lane": "arrow",
+          "note": ""
+        },
+        {
+          "name": "registry current state after FINAL (dev1 3.2.1 present, dev2 deleted)",
+          "ok": true,
+          "expected": [
+            [
+              "dev-668645-01",
+              "3.2.1"
+            ]
+          ],
+          "observed": [
+            [
+              "dev-668645-01",
+              "3.2.1"
+            ]
+          ],
+          "lane": "arrow",
+          "note": ""
+        },
+        {
+          "name": "mongo change versions (insert/update/insert/delete)",
+          "ok": true,
+          "expected": 4,
+          "observed": [
+            "insert",
+            "update",
+            "insert",
+            "delete"
+          ],
+          "lane": "arrow",
+          "note": ""
+        },
+        {
+          "name": "mongo current state after FINAL (dev1 interval 60, dev2 deleted)",
+          "ok": true,
+          "expected": [
+            [
+              "dev-668645-01",
+              60
+            ]
+          ],
+          "observed": [
+            [
+              "dev-668645-01",
+              60
+            ]
+          ],
+          "lane": "arrow",
+          "note": "full-document lookup can reflect a later update; checked on final state only"
+        },
+        {
+          "name": "CSV re-import: 20 logical rows, physical >= 2x",
+          "ok": true,
+          "expected": {
+            "logical": 20,
+            "physical": ">=40"
+          },
+          "observed": {
+            "physical": 120,
+            "logical": 20
+          },
+          "lane": "arrow",
+          "note": ""
+        },
+        {
+          "name": "initial PostgreSQL snapshot rows captured (op r)",
+          "ok": true,
+          "expected": ">=3",
+          "observed": 3,
+          "lane": "arrow",
+          "note": "present once the lane consumed the topic from the beginning"
+        },
+        {
+          "name": "poison telemetry routed to normalizer DLQ (once each)",
+          "ok": true,
+          "expected": 2,
+          "observed": 2,
+          "lane": null,
+          "note": ""
+        },
+        {
+          "name": "telemetry_fact: identical logical content in all three databases",
+          "ok": true,
+          "expected": "equal",
+          "observed": {
+            "sink": "2774037641976990942/814",
+            "row": "2774037641976990942/814",
+            "arrow": "2774037641976990942/814"
+          },
+          "lane": null,
+          "note": ""
+        },
+        {
+          "name": "lifecycle_events: identical logical content in all three databases",
+          "ok": true,
+          "expected": "equal",
+          "observed": {
+            "sink": "12430331710418361973/12",
+            "row": "12430331710418361973/12",
+            "arrow": "12430331710418361973/12"
+          },
+          "lane": null,
+          "note": ""
+        },
+        {
+          "name": "device_registry_versions: identical logical content in all three databases",
+          "ok": true,
+          "expected": "equal",
+          "observed": {
+            "sink": "14490416433759765259/20",
+            "row": "14490416433759765259/20",
+            "arrow": "14490416433759765259/20"
+          },
+          "lane": null,
+          "note": ""
+        },
+        {
+          "name": "device_state_versions: identical logical content in all three databases",
+          "ok": true,
+          "expected": "equal",
+          "observed": {
+            "sink": "1702356444476858719/12",
+            "row": "1702356444476858719/12",
+            "arrow": "1702356444476858719/12"
+          },
+          "lane": null,
+          "note": ""
+        },
+        {
+          "name": "diagnostic_events: identical logical content in all three databases",
+          "ok": true,
+          "expected": "equal",
+          "observed": {
+            "sink": "1881617073922337547/20",
+            "row": "1881617073922337547/20",
+            "arrow": "1881617073922337547/20"
+          },
+          "lane": null,
+          "note": ""
+        },
+        {
+          "name": "fault worker exited inside the crash window",
+          "ok": true,
+          "expected": 86,
+          "observed": 86,
+          "lane": "row",
+          "note": ""
+        },
+        {
+          "name": "after restart: logical rows complete",
+          "ok": true,
+          "expected": 120,
+          "observed": {
+            "physical": 170,
+            "logical": 120
+          },
+          "lane": "row",
+          "note": ""
+        },
+        {
+          "name": "after restart: physical duplicates exist (at-least-once, not exactly-once)",
+          "ok": true,
+          "expected": "physical > logical",
+          "observed": {
+            "physical": 170,
+            "logical": 120
+          },
+          "lane": "row",
+          "note": "rows inserted before the crash: {'physical': 50, 'logical': 50}"
+        },
+        {
+          "name": "change after connector restart reaches all lanes exactly once (logically)",
+          "ok": true,
+          "expected": 1,
+          "observed": {
+            "sink": {
+              "physical": 1,
+              "logical": 1
+            },
+            "row": {
+              "physical": 1,
+              "logical": 1
+            },
+            "arrow": {
+              "physical": 1,
+              "logical": 1
+            }
+          },
+          "lane": null,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "measurement_definitions": {
+    "wall_rows_per_s": "validated logical rows / seconds from lane start (connector PUT or container start) until all rows are queryable; includes startup",
+    "insert_window_rows_per_s": "validated logical rows / (max(ingested_at) - min(ingested_at)); steady-state insert rate, excludes startup",
+    "effective_batch_rows": "logical rows / number of distinct server insert timestamps (ingested_at); shows the batch size each lane really used",
+    "latency": "live mode only: ingested_at (ClickHouse server clock, Docker VM) - emitted_at (producer send clock, same Docker VM); p50/p95/p99 over all rows of the run",
+    "resources.lane_a": "Kafka Connect container (JVM): cgroup v2 cpu.stat usage delta + peak docker-stats memory; source connectors paused",
+    "resources.lane_bc": "worker process: getrusage CPU (user+sys) and ru_maxrss; container docker-stats peak also recorded",
+    "phases": "lanes B/C only: summed perf_counter_ns per phase from the worker metrics; lane A internals are not observable"
+  },
+  "cases": [
+    {
+      "case_id": "E4-0000",
+      "experiment": "E4",
+      "lane": "sink",
+      "variant": {},
+      "mode": "scenario",
+      "warmup": false,
+      "repetition": 0,
+      "workload_key": "E4-5000",
+      "config": {
+        "batch_size": 500,
+        "flush_timeout_ms": 500,
+        "scenario": "happy_path_with_poison"
+      },
+      "status": "COMPLETED",
+      "error": null,
+      "measurements": {
+        "counts": {
+          "physical": 4501,
+          "logical": 4501
+        },
+        "content_hash": "10528011773653783509/4501",
+        "nulls": {
+          "temperature_c": 154,
+          "battery_pct": 186,
+          "signal_dbm": 174
+        },
+        "parts_active": 1,
+        "insert_batches": 10,
+        "effective_batch_rows": 450.1,
+        "insert_window_s": 59.956,
+        "insert_window_rows_per_s": 75.07171926079124,
+        "latency_mode": "drain",
+        "latency_ms": null,
+        "schema": [
+          [
+            "event_id",
+            "String"
+          ],
+          [
+            "device_id",
+            "String"
+          ],
+          [
+            "event_time",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "emitted_at",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "source_system",
+            "LowCardinality(String)"
+          ],
+          [
+            "schema_version",
+            "UInt8"
+          ],
+          [
+            "temperature_c",
+            "Nullable(Float64)"
+          ],
+          [
+            "battery_pct",
+            "Nullable(UInt8)"
+          ],
+          [
+            "signal_dbm",
+            "Nullable(Int16)"
+          ],
+          [
+            "firmware_version",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "site_id",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "ingested_at",
+            "DateTime64(3, 'UTC')"
+          ]
+        ],
+        "lane_runtime": {
+          "connector": "cfbench-a-c0787b42",
+          "variant": "sink",
+          "complete": false,
+          "error": null
+        },
+        "wall_s": 130.30104479200236,
+        "wall_rows_per_s": 34.54308449471668,
+        "connector_overrides": {
+          "database": "bench_sink",
+          "consumer.override.max.poll.records": "500",
+          "consumer.override.max.partition.fetch.bytes": "67108864",
+          "consumer.override.fetch.max.bytes": "134217728",
+          "ignorePartitionsWhenBatching": "true",
+          "bufferCount": "500",
+          "bufferFlushTime": "500"
+        },
+        "resources": {
+          "scope": "container (Kafka Connect JVM)",
+          "cpu_s": 2.178375000000017,
+          "cpu_s_integrated": 1.8992552550792694,
+          "peak_mem_bytes": 1511828488.192
+        },
+        "phases_ns": null,
+        "phases_note": "not observable inside the connector",
+        "payload_bytes": null,
+        "lag": {
+          "samples": 125,
+          "max_lag": 0,
+          "mean_lag": 0.0
+        },
+        "dlq_delta": 500,
+        "poison_in_table": 0
+      }
+    },
+    {
+      "case_id": "E4-0001",
+      "experiment": "E4",
+      "lane": "sink",
+      "variant": {},
+      "mode": "scenario",
+      "warmup": false,
+      "repetition": 0,
+      "workload_key": "E4-5000",
+      "config": {
+        "batch_size": 500,
+        "flush_timeout_ms": 500,
+        "scenario": "replay_new_group"
+      },
+      "status": "COMPLETED",
+      "error": null,
+      "measurements": {
+        "counts": {
+          "physical": 9002,
+          "logical": 4501
+        },
+        "content_hash": "10528011773653783509/4501",
+        "nulls": {
+          "temperature_c": 154,
+          "battery_pct": 186,
+          "signal_dbm": 174
+        },
+        "parts_active": 2,
+        "insert_batches": 20,
+        "effective_batch_rows": 225.05,
+        "insert_window_s": 192.487,
+        "insert_window_rows_per_s": 23.383397320338517,
+        "latency_mode": "drain",
+        "latency_ms": null,
+        "schema": [
+          [
+            "event_id",
+            "String"
+          ],
+          [
+            "device_id",
+            "String"
+          ],
+          [
+            "event_time",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "emitted_at",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "source_system",
+            "LowCardinality(String)"
+          ],
+          [
+            "schema_version",
+            "UInt8"
+          ],
+          [
+            "temperature_c",
+            "Nullable(Float64)"
+          ],
+          [
+            "battery_pct",
+            "Nullable(UInt8)"
+          ],
+          [
+            "signal_dbm",
+            "Nullable(Int16)"
+          ],
+          [
+            "firmware_version",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "site_id",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "ingested_at",
+            "DateTime64(3, 'UTC')"
+          ]
+        ],
+        "lane_runtime": {
+          "connector": "cfbench-a-80356d25",
+          "variant": "sink",
+          "complete": true,
+          "error": null
+        },
+        "wall_s": 60.30812399999559,
+        "wall_rows_per_s": 74.63339433341235,
+        "connector_overrides": {
+          "database": "bench_sink",
+          "consumer.override.max.poll.records": "500",
+          "consumer.override.max.partition.fetch.bytes": "67108864",
+          "consumer.override.fetch.max.bytes": "134217728",
+          "ignorePartitionsWhenBatching": "true",
+          "bufferCount": "500",
+          "bufferFlushTime": "500"
+        },
+        "resources": {
+          "scope": "container (Kafka Connect JVM)",
+          "cpu_s": 1.747946000000013,
+          "cpu_s_integrated": 1.2370259002923965,
+          "peak_mem_bytes": 1511828488.192
+        },
+        "phases_ns": null,
+        "phases_note": "not observable inside the connector",
+        "payload_bytes": null,
+        "lag": {
+          "samples": 58,
+          "max_lag": 0,
+          "mean_lag": 0.0
+        },
+        "first_pass_counts": {
+          "physical": 4501,
+          "logical": 4501
+        }
+      }
+    },
+    {
+      "case_id": "E4-0002",
+      "experiment": "E4",
+      "lane": "sink",
+      "variant": {},
+      "mode": "scenario",
+      "warmup": false,
+      "repetition": 0,
+      "workload_key": "E4-5000",
+      "config": {
+        "batch_size": 500,
+        "flush_timeout_ms": 500,
+        "scenario": "dlq_recovery"
+      },
+      "status": "COMPLETED",
+      "error": null,
+      "measurements": {
+        "counts": {
+          "physical": 9502,
+          "logical": 5000
+        },
+        "content_hash": "10152887901659634349/5000",
+        "nulls": {
+          "temperature_c": 182,
+          "battery_pct": 214,
+          "signal_dbm": 187
+        },
+        "parts_active": 3,
+        "insert_batches": 21,
+        "effective_batch_rows": 238.0952380952381,
+        "insert_window_s": 196.978,
+        "insert_window_rows_per_s": 25.383545370548994,
+        "latency_mode": "drain",
+        "latency_ms": null,
+        "schema": [
+          [
+            "event_id",
+            "String"
+          ],
+          [
+            "device_id",
+            "String"
+          ],
+          [
+            "event_time",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "emitted_at",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "source_system",
+            "LowCardinality(String)"
+          ],
+          [
+            "schema_version",
+            "UInt8"
+          ],
+          [
+            "temperature_c",
+            "Nullable(Float64)"
+          ],
+          [
+            "battery_pct",
+            "Nullable(UInt8)"
+          ],
+          [
+            "signal_dbm",
+            "Nullable(Int16)"
+          ],
+          [
+            "firmware_version",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "site_id",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "ingested_at",
+            "DateTime64(3, 'UTC')"
+          ]
+        ],
+        "lane_runtime": {
+          "connector": "cfbench-a-93894628",
+          "variant": "sink",
+          "complete": true,
+          "error": null
+        },
+        "wall_s": 2.393335250002565,
+        "wall_rows_per_s": 2089.134817194809,
+        "connector_overrides": {
+          "database": "bench_sink",
+          "consumer.override.max.poll.records": "500",
+          "consumer.override.max.partition.fetch.bytes": "67108864",
+          "consumer.override.fetch.max.bytes": "134217728",
+          "ignorePartitionsWhenBatching": "true",
+          "bufferCount": "500",
+          "bufferFlushTime": "500"
+        },
+        "resources": {
+          "scope": "container (Kafka Connect JVM)",
+          "cpu_s": 1.249988999999971,
+          "cpu_s_integrated": 1.9639370296478271,
+          "peak_mem_bytes": 1511828488.192
+        },
+        "phases_ns": null,
+        "phases_note": "not observable inside the connector",
+        "payload_bytes": null,
+        "lag": {
+          "samples": 3,
+          "max_lag": null,
+          "mean_lag": null
+        },
+        "recovery": {
+          "read": 1000,
+          "replayed": 998,
+          "quarantined": 2,
+          "quarantined_ids": [
+            "poison-20261015-0"
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "E4-0003",
+      "experiment": "E4",
+      "lane": "sink_tuned",
+      "variant": {},
+      "mode": "scenario",
+      "warmup": false,
+      "repetition": 0,
+      "workload_key": "E4-5000",
+      "config": {
+        "batch_size": 500,
+        "flush_timeout_ms": 500,
+        "scenario": "happy_path_with_poison"
+      },
+      "status": "COMPLETED",
+      "error": null,
+      "measurements": {
+        "counts": {
+          "physical": 4501,
+          "logical": 4501
+        },
+        "content_hash": "10528011773653783509/4501",
+        "nulls": {
+          "temperature_c": 154,
+          "battery_pct": 186,
+          "signal_dbm": 174
+        },
+        "parts_active": 5,
+        "insert_batches": 10,
+        "effective_batch_rows": 450.1,
+        "insert_window_s": 0.274,
+        "insert_window_rows_per_s": 16427.007299270073,
+        "latency_mode": "drain",
+        "latency_ms": null,
+        "schema": [
+          [
+            "event_id",
+            "String"
+          ],
+          [
+            "device_id",
+            "String"
+          ],
+          [
+            "event_time",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "emitted_at",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "source_system",
+            "LowCardinality(String)"
+          ],
+          [
+            "schema_version",
+            "UInt8"
+          ],
+          [
+            "temperature_c",
+            "Nullable(Float64)"
+          ],
+          [
+            "battery_pct",
+            "Nullable(UInt8)"
+          ],
+          [
+            "signal_dbm",
+            "Nullable(Int16)"
+          ],
+          [
+            "firmware_version",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "site_id",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "ingested_at",
+            "DateTime64(3, 'UTC')"
+          ]
+        ],
+        "lane_runtime": {
+          "connector": "cfbench-a-223dd15e",
+          "variant": "sink_tuned",
+          "complete": false,
+          "error": null
+        },
+        "wall_s": 72.24998504199903,
+        "wall_rows_per_s": 62.29759075221347,
+        "connector_overrides": {
+          "database": "bench_sink",
+          "consumer.override.max.poll.records": "500",
+          "consumer.override.max.partition.fetch.bytes": "67108864",
+          "consumer.override.fetch.max.bytes": "134217728",
+          "ignorePartitionsWhenBatching": "true",
+          "bufferCount": "0",
+          "consumer.override.fetch.max.wait.ms": "500",
+          "consumer.override.fetch.min.bytes": "150000"
+        },
+        "resources": {
+          "scope": "container (Kafka Connect JVM)",
+          "cpu_s": 1.8848509999999692,
+          "cpu_s_integrated": 2.302631503844262,
+          "peak_mem_bytes": 1511828488.192
+        },
+        "phases_ns": null,
+        "phases_note": "not observable inside the connector",
+        "payload_bytes": null,
+        "lag": {
+          "samples": 69,
+          "max_lag": 0,
+          "mean_lag": 0.0
+        },
+        "dlq_delta": 500,
+        "poison_in_table": 0
+      }
+    },
+    {
+      "case_id": "E4-0004",
+      "experiment": "E4",
+      "lane": "sink_skip",
+      "variant": {},
+      "mode": "scenario",
+      "warmup": false,
+      "repetition": 0,
+      "workload_key": "E4-5000",
+      "config": {
+        "batch_size": 500,
+        "flush_timeout_ms": 500,
+        "scenario": "happy_path_with_poison"
+      },
+      "status": "COMPLETED",
+      "error": null,
+      "measurements": {
+        "counts": {
+          "physical": 4502,
+          "logical": 4502
+        },
+        "content_hash": "17445840518441804841/4502",
+        "nulls": {
+          "temperature_c": 154,
+          "battery_pct": 186,
+          "signal_dbm": 174
+        },
+        "parts_active": 2,
+        "insert_batches": 11,
+        "effective_batch_rows": 409.27272727272725,
+        "insert_window_s": 59.971,
+        "insert_window_rows_per_s": 75.06961698154109,
+        "latency_mode": "drain",
+        "latency_ms": null,
+        "schema": [
+          [
+            "event_id",
+            "String"
+          ],
+          [
+            "device_id",
+            "String"
+          ],
+          [
+            "event_time",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "emitted_at",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "source_system",
+            "LowCardinality(String)"
+          ],
+          [
+            "schema_version",
+            "UInt8"
+          ],
+          [
+            "temperature_c",
+            "Nullable(Float64)"
+          ],
+          [
+            "battery_pct",
+            "Nullable(UInt8)"
+          ],
+          [
+            "signal_dbm",
+            "Nullable(Int16)"
+          ],
+          [
+            "firmware_version",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "site_id",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "ingested_at",
+            "DateTime64(3, 'UTC')"
+          ]
+        ],
+        "lane_runtime": {
+          "connector": "cfbench-a-413ffe97",
+          "variant": "sink_skip",
+          "complete": false,
+          "error": null
+        },
+        "wall_s": 130.28849475000607,
+        "wall_rows_per_s": 34.554087132853226,
+        "connector_overrides": {
+          "database": "bench_sink",
+          "consumer.override.max.poll.records": "500",
+          "consumer.override.max.partition.fetch.bytes": "67108864",
+          "consumer.override.fetch.max.bytes": "134217728",
+          "ignorePartitionsWhenBatching": "true",
+          "bufferCount": "500",
+          "bufferFlushTime": "500",
+          "clickhouseSettings": "date_time_input_format=best_effort,input_format_skip_unknown_fields=1,input_format_json_read_bools_as_numbers=1,precise_float_parsing=1,input_format_allow_errors_num=1000"
+        },
+        "resources": {
+          "scope": "container (Kafka Connect JVM)",
+          "cpu_s": 1.9333449999999743,
+          "cpu_s_integrated": 1.5319560982942582,
+          "peak_mem_bytes": 1512902230.016
+        },
+        "phases_ns": null,
+        "phases_note": "not observable inside the connector",
+        "payload_bytes": null,
+        "lag": {
+          "samples": 125,
+          "max_lag": 0,
+          "mean_lag": 0.0
+        },
+        "dlq_delta": 0,
+        "poison_in_table": 0
+      }
+    },
+    {
+      "case_id": "E4-0005",
+      "experiment": "E4",
+      "lane": "row",
+      "variant": {},
+      "mode": "scenario",
+      "warmup": false,
+      "repetition": 0,
+      "workload_key": "E4-5000",
+      "config": {
+        "batch_size": 500,
+        "flush_timeout_ms": 500,
+        "scenario": "happy_path_with_poison"
+      },
+      "status": "COMPLETED",
+      "error": null,
+      "measurements": {
+        "counts": {
+          "physical": 5000,
+          "logical": 5000
+        },
+        "content_hash": "10152887901659634349/5000",
+        "nulls": {
+          "temperature_c": 182,
+          "battery_pct": 214,
+          "signal_dbm": 187
+        },
+        "parts_active": 2,
+        "insert_batches": 11,
+        "effective_batch_rows": 454.54545454545456,
+        "insert_window_s": 0.554,
+        "insert_window_rows_per_s": 9025.270758122742,
+        "latency_mode": "drain",
+        "latency_ms": null,
+        "schema": [
+          [
+            "event_id",
+            "String"
+          ],
+          [
+            "device_id",
+            "String"
+          ],
+          [
+            "event_time",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "emitted_at",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "source_system",
+            "LowCardinality(String)"
+          ],
+          [
+            "schema_version",
+            "UInt8"
+          ],
+          [
+            "temperature_c",
+            "Nullable(Float64)"
+          ],
+          [
+            "battery_pct",
+            "Nullable(UInt8)"
+          ],
+          [
+            "signal_dbm",
+            "Nullable(Int16)"
+          ],
+          [
+            "firmware_version",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "site_id",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "ingested_at",
+            "DateTime64(3, 'UTC')"
+          ]
+        ],
+        "lane_runtime": {
+          "container": "cfbench-row-f636ea54",
+          "group": "cfbench-E4-5000-3865c8",
+          "exit_code": 0,
+          "complete": true,
+          "log_tail": "{\"consumed\": 5001, \"inserted_rows\": 5000, \"rejected\": 1, \"tombstones\": 0, \"flushes\": 11, \"retries\": 0, \"committed\": {\"cfbench.lab03-confirm-20261010T192702Z-a499a19-e4.telemetry[0]\": 5001}}\n"
+        },
+        "wall_s": 1.2348522079992108,
+        "wall_rows_per_s": 4049.0675463919124,
+        "resources": {
+          "scope": "worker process (getrusage) + container (docker stats)",
+          "cpu_s": 0.288032,
+          "max_rss_bytes": 81526784,
+          "cpu_s_integrated": 0.0,
+          "peak_mem_bytes": 0.0
+        },
+        "phases_ns": {
+          "decode": 8807293,
+          "validate": 6287166,
+          "build": 3795081,
+          "transform": 1459,
+          "serialize": 0,
+          "insert": 30943416
+        },
+        "flushes": 11,
+        "payload_bytes": null,
+        "lag": {
+          "samples": 2,
+          "max_lag": 0,
+          "mean_lag": 0.0
+        },
+        "dlq_delta": 1,
+        "poison_in_table": 0
+      }
+    },
+    {
+      "case_id": "E4-0006",
+      "experiment": "E4",
+      "lane": "row",
+      "variant": {},
+      "mode": "scenario",
+      "warmup": false,
+      "repetition": 0,
+      "workload_key": "E4-5000",
+      "config": {
+        "batch_size": 500,
+        "flush_timeout_ms": 500,
+        "scenario": "replay_new_group"
+      },
+      "status": "COMPLETED",
+      "error": null,
+      "measurements": {
+        "counts": {
+          "physical": 10000,
+          "logical": 5000
+        },
+        "content_hash": "10152887901659634349/5000",
+        "nulls": {
+          "temperature_c": 182,
+          "battery_pct": 214,
+          "signal_dbm": 187
+        },
+        "parts_active": 3,
+        "insert_batches": 22,
+        "effective_batch_rows": 227.27272727272728,
+        "insert_window_s": 2.657,
+        "insert_window_rows_per_s": 1881.821603312006,
+        "latency_mode": "drain",
+        "latency_ms": null,
+        "schema": [
+          [
+            "event_id",
+            "String"
+          ],
+          [
+            "device_id",
+            "String"
+          ],
+          [
+            "event_time",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "emitted_at",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "source_system",
+            "LowCardinality(String)"
+          ],
+          [
+            "schema_version",
+            "UInt8"
+          ],
+          [
+            "temperature_c",
+            "Nullable(Float64)"
+          ],
+          [
+            "battery_pct",
+            "Nullable(UInt8)"
+          ],
+          [
+            "signal_dbm",
+            "Nullable(Int16)"
+          ],
+          [
+            "firmware_version",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "site_id",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "ingested_at",
+            "DateTime64(3, 'UTC')"
+          ]
+        ],
+        "lane_runtime": {
+          "container": "cfbench-row-79f9b4ae",
+          "group": "cfbench-E4-5000-6235b5",
+          "exit_code": 0,
+          "complete": true,
+          "log_tail": "{\"consumed\": 5001, \"inserted_rows\": 5000, \"rejected\": 1, \"tombstones\": 0, \"flushes\": 11, \"retries\": 0, \"committed\": {\"cfbench.lab03-confirm-20261010T192702Z-a499a19-e4.telemetry[0]\": 5001}}\n"
+        },
+        "wall_s": 0.9966887080008746,
+        "wall_rows_per_s": 5016.611465408127,
+        "resources": {
+          "scope": "worker process (getrusage) + container (docker stats)",
+          "cpu_s": 0.244007,
+          "max_rss_bytes": 81522688,
+          "cpu_s_integrated": 0.0,
+          "peak_mem_bytes": 0.0
+        },
+        "phases_ns": {
+          "decode": 7609123,
+          "validate": 5589541,
+          "build": 3367081,
+          "transform": 1003,
+          "serialize": 0,
+          "insert": 27443626
+        },
+        "flushes": 11,
+        "payload_bytes": null,
+        "lag": {
+          "samples": 1,
+          "max_lag": null,
+          "mean_lag": null
+        },
+        "first_pass_counts": {
+          "physical": 5000,
+          "logical": 5000
+        }
+      }
+    },
+    {
+      "case_id": "E4-0007",
+      "experiment": "E4",
+      "lane": "arrow",
+      "variant": {},
+      "mode": "scenario",
+      "warmup": false,
+      "repetition": 0,
+      "workload_key": "E4-5000",
+      "config": {
+        "batch_size": 500,
+        "flush_timeout_ms": 500,
+        "scenario": "happy_path_with_poison"
+      },
+      "status": "COMPLETED",
+      "error": null,
+      "measurements": {
+        "counts": {
+          "physical": 5000,
+          "logical": 5000
+        },
+        "content_hash": "10152887901659634349/5000",
+        "nulls": {
+          "temperature_c": 182,
+          "battery_pct": 214,
+          "signal_dbm": 187
+        },
+        "parts_active": 2,
+        "insert_batches": 11,
+        "effective_batch_rows": 454.54545454545456,
+        "insert_window_s": 0.541,
+        "insert_window_rows_per_s": 9242.144177449167,
+        "latency_mode": "drain",
+        "latency_ms": null,
+        "schema": [
+          [
+            "event_id",
+            "String"
+          ],
+          [
+            "device_id",
+            "String"
+          ],
+          [
+            "event_time",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "emitted_at",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "source_system",
+            "LowCardinality(String)"
+          ],
+          [
+            "schema_version",
+            "UInt8"
+          ],
+          [
+            "temperature_c",
+            "Nullable(Float64)"
+          ],
+          [
+            "battery_pct",
+            "Nullable(UInt8)"
+          ],
+          [
+            "signal_dbm",
+            "Nullable(Int16)"
+          ],
+          [
+            "firmware_version",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "site_id",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "ingested_at",
+            "DateTime64(3, 'UTC')"
+          ]
+        ],
+        "lane_runtime": {
+          "container": "cfbench-arrow-770e13d6",
+          "group": "cfbench-E4-5000-6686aa",
+          "exit_code": 0,
+          "complete": true,
+          "log_tail": "{\"consumed\": 5001, \"inserted_rows\": 5000, \"rejected\": 1, \"tombstones\": 0, \"flushes\": 11, \"retries\": 0, \"committed\": {\"cfbench.lab03-confirm-20261010T192702Z-a499a19-e4.telemetry[0]\": 5001}}\n"
+        },
+        "wall_s": 0.9626182499996503,
+        "wall_rows_per_s": 5194.16705428327,
+        "resources": {
+          "scope": "worker process (getrusage) + container (docker stats)",
+          "cpu_s": 0.17024799999999998,
+          "max_rss_bytes": 77172736,
+          "cpu_s_integrated": 0.0,
+          "peak_mem_bytes": 0.0
+        },
+        "phases_ns": {
+          "decode": 7780082,
+          "validate": 5540543,
+          "build": 6494750,
+          "transform": 1498,
+          "serialize": 2753125,
+          "insert": 21432542
+        },
+        "flushes": 11,
+        "payload_bytes": 570880,
+        "lag": {
+          "samples": 1,
+          "max_lag": null,
+          "mean_lag": null
+        },
+        "dlq_delta": 1,
+        "poison_in_table": 0
+      }
+    },
+    {
+      "case_id": "E4-0008",
+      "experiment": "E4",
+      "lane": "arrow",
+      "variant": {},
+      "mode": "scenario",
+      "warmup": false,
+      "repetition": 0,
+      "workload_key": "E4-5000",
+      "config": {
+        "batch_size": 500,
+        "flush_timeout_ms": 500,
+        "scenario": "replay_new_group"
+      },
+      "status": "COMPLETED",
+      "error": null,
+      "measurements": {
+        "counts": {
+          "physical": 10000,
+          "logical": 5000
+        },
+        "content_hash": "10152887901659634349/5000",
+        "nulls": {
+          "temperature_c": 182,
+          "battery_pct": 214,
+          "signal_dbm": 187
+        },
+        "parts_active": 3,
+        "insert_batches": 22,
+        "effective_batch_rows": 227.27272727272728,
+        "insert_window_s": 2.58,
+        "insert_window_rows_per_s": 1937.984496124031,
+        "latency_mode": "drain",
+        "latency_ms": null,
+        "schema": [
+          [
+            "event_id",
+            "String"
+          ],
+          [
+            "device_id",
+            "String"
+          ],
+          [
+            "event_time",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "emitted_at",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "source_system",
+            "LowCardinality(String)"
+          ],
+          [
+            "schema_version",
+            "UInt8"
+          ],
+          [
+            "temperature_c",
+            "Nullable(Float64)"
+          ],
+          [
+            "battery_pct",
+            "Nullable(UInt8)"
+          ],
+          [
+            "signal_dbm",
+            "Nullable(Int16)"
+          ],
+          [
+            "firmware_version",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "site_id",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "ingested_at",
+            "DateTime64(3, 'UTC')"
+          ]
+        ],
+        "lane_runtime": {
+          "container": "cfbench-arrow-2a181adf",
+          "group": "cfbench-E4-5000-41cd6b",
+          "exit_code": 0,
+          "complete": true,
+          "log_tail": "{\"consumed\": 5001, \"inserted_rows\": 5000, \"rejected\": 1, \"tombstones\": 0, \"flushes\": 11, \"retries\": 0, \"committed\": {\"cfbench.lab03-confirm-20261010T192702Z-a499a19-e4.telemetry[0]\": 5001}}\n"
+        },
+        "wall_s": 0.9427135000005364,
+        "wall_rows_per_s": 5303.838334761467,
+        "resources": {
+          "scope": "worker process (getrusage) + container (docker stats)",
+          "cpu_s": 0.22108099999999997,
+          "max_rss_bytes": 77234176,
+          "cpu_s_integrated": 0.0,
+          "peak_mem_bytes": 0.0
+        },
+        "phases_ns": {
+          "decode": 8243541,
+          "validate": 6058251,
+          "build": 3582832,
+          "transform": 1459,
+          "serialize": 548166,
+          "insert": 23765709
+        },
+        "flushes": 11,
+        "payload_bytes": 570880,
+        "lag": {
+          "samples": 1,
+          "max_lag": null,
+          "mean_lag": null
+        },
+        "first_pass_counts": {
+          "physical": 5000,
+          "logical": 5000
+        }
+      }
+    },
+    {
+      "case_id": "E4-0009",
+      "experiment": "E4",
+      "lane": "row",
+      "variant": {},
+      "mode": "scenario",
+      "warmup": false,
+      "repetition": 0,
+      "workload_key": "E4-5000",
+      "config": {
+        "batch_size": 500,
+        "flush_timeout_ms": 500,
+        "scenario": "crash_after_insert_before_commit"
+      },
+      "status": "COMPLETED",
+      "error": null,
+      "measurements": {
+        "counts": {
+          "physical": 5500,
+          "logical": 5000
+        },
+        "content_hash": "10152887901659634349/5000",
+        "nulls": {
+          "temperature_c": 182,
+          "battery_pct": 214,
+          "signal_dbm": 187
+        },
+        "parts_active": 2,
+        "insert_batches": 12,
+        "effective_batch_rows": 416.6666666666667,
+        "insert_window_s": 45.611,
+        "insert_window_rows_per_s": 109.6226787397777,
+        "latency_mode": "drain",
+        "latency_ms": null,
+        "schema": [
+          [
+            "event_id",
+            "String"
+          ],
+          [
+            "device_id",
+            "String"
+          ],
+          [
+            "event_time",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "emitted_at",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "source_system",
+            "LowCardinality(String)"
+          ],
+          [
+            "schema_version",
+            "UInt8"
+          ],
+          [
+            "temperature_c",
+            "Nullable(Float64)"
+          ],
+          [
+            "battery_pct",
+            "Nullable(UInt8)"
+          ],
+          [
+            "signal_dbm",
+            "Nullable(Int16)"
+          ],
+          [
+            "firmware_version",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "site_id",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "ingested_at",
+            "DateTime64(3, 'UTC')"
+          ]
+        ],
+        "lane_runtime": {
+          "container": "cfbench-row-c772ff40",
+          "group": "cfbench-e4crash-row-a98cc1",
+          "exit_code": 0,
+          "complete": true,
+          "log_tail": "{\"consumed\": 5001, \"inserted_rows\": 5000, \"rejected\": 1, \"tombstones\": 0, \"flushes\": 11, \"retries\": 0, \"committed\": {\"cfbench.lab03-confirm-20261010T192702Z-a499a19-e4.telemetry[0]\": 5001}}\n"
+        },
+        "wall_s": 44.16672854200442,
+        "wall_rows_per_s": 113.20738857180217,
+        "resources": {
+          "scope": "worker process (getrusage) + container (docker stats)",
+          "cpu_s": 0.328105,
+          "max_rss_bytes": 81408000,
+          "cpu_s_integrated": 0.32862495954036713,
+          "peak_mem_bytes": 36364615.68
+        },
+        "phases_ns": {
+          "decode": 14958125,
+          "validate": 11385751,
+          "build": 6977669,
+          "transform": 1833,
+          "serialize": 0,
+          "insert": 51546542
+        },
+        "flushes": 11,
+        "payload_bytes": null,
+        "lag": {
+          "samples": 43,
+          "max_lag": 1,
+          "mean_lag": 0.5
+        },
+        "crash_run": {
+          "exit_code": 86,
+          "counts": {
+            "physical": 500,
+            "logical": 500
+          }
+        }
+      }
+    },
+    {
+      "case_id": "E4-0010",
+      "experiment": "E4",
+      "lane": "arrow",
+      "variant": {},
+      "mode": "scenario",
+      "warmup": false,
+      "repetition": 0,
+      "workload_key": "E4-5000",
+      "config": {
+        "batch_size": 500,
+        "flush_timeout_ms": 500,
+        "scenario": "crash_after_insert_before_commit"
+      },
+      "status": "COMPLETED",
+      "error": null,
+      "measurements": {
+        "counts": {
+          "physical": 5500,
+          "logical": 5000
+        },
+        "content_hash": "10152887901659634349/5000",
+        "nulls": {
+          "temperature_c": 182,
+          "battery_pct": 214,
+          "signal_dbm": 187
+        },
+        "parts_active": 2,
+        "insert_batches": 12,
+        "effective_batch_rows": 416.6666666666667,
+        "insert_window_s": 45.512,
+        "insert_window_rows_per_s": 109.86113552469678,
+        "latency_mode": "drain",
+        "latency_ms": null,
+        "schema": [
+          [
+            "event_id",
+            "String"
+          ],
+          [
+            "device_id",
+            "String"
+          ],
+          [
+            "event_time",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "emitted_at",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "source_system",
+            "LowCardinality(String)"
+          ],
+          [
+            "schema_version",
+            "UInt8"
+          ],
+          [
+            "temperature_c",
+            "Nullable(Float64)"
+          ],
+          [
+            "battery_pct",
+            "Nullable(UInt8)"
+          ],
+          [
+            "signal_dbm",
+            "Nullable(Int16)"
+          ],
+          [
+            "firmware_version",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "site_id",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "ingested_at",
+            "DateTime64(3, 'UTC')"
+          ]
+        ],
+        "lane_runtime": {
+          "container": "cfbench-arrow-fa336853",
+          "group": "cfbench-e4crash-arrow-3ac6fa",
+          "exit_code": 0,
+          "complete": true,
+          "log_tail": "{\"consumed\": 5001, \"inserted_rows\": 5000, \"rejected\": 1, \"tombstones\": 0, \"flushes\": 11, \"retries\": 0, \"committed\": {\"cfbench.lab03-confirm-20261010T192702Z-a499a19-e4.telemetry[0]\": 5001}}\n"
+        },
+        "wall_s": 43.195834417005244,
+        "wall_rows_per_s": 115.75190217952152,
+        "resources": {
+          "scope": "worker process (getrusage) + container (docker stats)",
+          "cpu_s": 0.38709699999999997,
+          "max_rss_bytes": 79122432,
+          "cpu_s_integrated": 0.29414989511966716,
+          "peak_mem_bytes": 30555504.64
+        },
+        "phases_ns": {
+          "decode": 8423251,
+          "validate": 5827832,
+          "build": 5297124,
+          "transform": 1542,
+          "serialize": 1182709,
+          "insert": 28984208
+        },
+        "flushes": 11,
+        "payload_bytes": 570880,
+        "lag": {
+          "samples": 41,
+          "max_lag": 1,
+          "mean_lag": 1.0
+        },
+        "crash_run": {
+          "exit_code": 86,
+          "counts": {
+            "physical": 500,
+            "logical": 500
+          }
+        }
+      }
+    },
+    {
+      "case_id": "E4-0011",
+      "experiment": "E4",
+      "lane": "sink",
+      "variant": {},
+      "mode": "scenario",
+      "warmup": false,
+      "repetition": 0,
+      "workload_key": "E4-null-edge",
+      "config": {
+        "batch_size": 500,
+        "scenario": "schema_null_edge"
+      },
+      "status": "COMPLETED",
+      "error": null,
+      "measurements": {
+        "counts": {
+          "physical": 2000,
+          "logical": 2000
+        },
+        "content_hash": "7934901781757851511/2000",
+        "nulls": {
+          "temperature_c": 1828,
+          "battery_pct": 1818,
+          "signal_dbm": 1808
+        },
+        "parts_active": 4,
+        "insert_batches": 4,
+        "effective_batch_rows": 500.0,
+        "insert_window_s": 0.015,
+        "insert_window_rows_per_s": 133333.33333333334,
+        "latency_mode": "drain",
+        "latency_ms": null,
+        "schema": [
+          [
+            "event_id",
+            "String"
+          ],
+          [
+            "device_id",
+            "String"
+          ],
+          [
+            "event_time",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "emitted_at",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "source_system",
+            "LowCardinality(String)"
+          ],
+          [
+            "schema_version",
+            "UInt8"
+          ],
+          [
+            "temperature_c",
+            "Nullable(Float64)"
+          ],
+          [
+            "battery_pct",
+            "Nullable(UInt8)"
+          ],
+          [
+            "signal_dbm",
+            "Nullable(Int16)"
+          ],
+          [
+            "firmware_version",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "site_id",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "ingested_at",
+            "DateTime64(3, 'UTC')"
+          ]
+        ],
+        "lane_runtime": {
+          "connector": "cfbench-a-10a090b7",
+          "variant": "sink",
+          "complete": true,
+          "error": null
+        },
+        "wall_s": 2.034069291999913,
+        "wall_rows_per_s": 983.2506728586342,
+        "connector_overrides": {
+          "database": "bench_sink",
+          "consumer.override.max.poll.records": "500",
+          "consumer.override.max.partition.fetch.bytes": "67108864",
+          "consumer.override.fetch.max.bytes": "134217728",
+          "ignorePartitionsWhenBatching": "true",
+          "bufferCount": "500",
+          "bufferFlushTime": "500"
+        },
+        "resources": {
+          "scope": "container (Kafka Connect JVM)",
+          "cpu_s": 0.10855300000002899,
+          "cpu_s_integrated": 0.15682457814216613,
+          "peak_mem_bytes": 1512902230.016
+        },
+        "phases_ns": null,
+        "phases_note": "not observable inside the connector",
+        "payload_bytes": null,
+        "lag": {
+          "samples": 3,
+          "max_lag": null,
+          "mean_lag": null
+        }
+      }
+    },
+    {
+      "case_id": "E4-0012",
+      "experiment": "E4",
+      "lane": "row",
+      "variant": {},
+      "mode": "scenario",
+      "warmup": false,
+      "repetition": 0,
+      "workload_key": "E4-null-edge",
+      "config": {
+        "batch_size": 500,
+        "scenario": "schema_null_edge"
+      },
+      "status": "COMPLETED",
+      "error": null,
+      "measurements": {
+        "counts": {
+          "physical": 2000,
+          "logical": 2000
+        },
+        "content_hash": "7934901781757851511/2000",
+        "nulls": {
+          "temperature_c": 1828,
+          "battery_pct": 1818,
+          "signal_dbm": 1808
+        },
+        "parts_active": 4,
+        "insert_batches": 4,
+        "effective_batch_rows": 500.0,
+        "insert_window_s": 0.019,
+        "insert_window_rows_per_s": 105263.15789473684,
+        "latency_mode": "drain",
+        "latency_ms": null,
+        "schema": [
+          [
+            "event_id",
+            "String"
+          ],
+          [
+            "device_id",
+            "String"
+          ],
+          [
+            "event_time",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "emitted_at",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "source_system",
+            "LowCardinality(String)"
+          ],
+          [
+            "schema_version",
+            "UInt8"
+          ],
+          [
+            "temperature_c",
+            "Nullable(Float64)"
+          ],
+          [
+            "battery_pct",
+            "Nullable(UInt8)"
+          ],
+          [
+            "signal_dbm",
+            "Nullable(Int16)"
+          ],
+          [
+            "firmware_version",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "site_id",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "ingested_at",
+            "DateTime64(3, 'UTC')"
+          ]
+        ],
+        "lane_runtime": {
+          "container": "cfbench-row-04f3bffc",
+          "group": "cfbench-E4-null-edge-15b4c1",
+          "exit_code": 0,
+          "complete": true,
+          "log_tail": "{\"consumed\": 2000, \"inserted_rows\": 2000, \"rejected\": 0, \"tombstones\": 0, \"flushes\": 4, \"retries\": 0, \"committed\": {\"cfbench.lab03-confirm-20261010T192702Z-a499a19-e4-null.telemetry[0]\": 2000}}\n"
+        },
+        "wall_s": 0.49388320900470717,
+        "wall_rows_per_s": 4049.540384315714,
+        "resources": {
+          "scope": "worker process (getrusage) + container (docker stats)",
+          "cpu_s": 0.236752,
+          "max_rss_bytes": 79831040,
+          "cpu_s_integrated": 0.0,
+          "peak_mem_bytes": 0.0
+        },
+        "phases_ns": {
+          "decode": 3800459,
+          "validate": 2948416,
+          "build": 1648124,
+          "transform": 625,
+          "serialize": 0,
+          "insert": 11285792
+        },
+        "flushes": 4,
+        "payload_bytes": null,
+        "lag": {
+          "samples": 2,
+          "max_lag": 0,
+          "mean_lag": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "E4-0013",
+      "experiment": "E4",
+      "lane": "arrow",
+      "variant": {},
+      "mode": "scenario",
+      "warmup": false,
+      "repetition": 0,
+      "workload_key": "E4-null-edge",
+      "config": {
+        "batch_size": 500,
+        "scenario": "schema_null_edge"
+      },
+      "status": "COMPLETED",
+      "error": null,
+      "measurements": {
+        "counts": {
+          "physical": 2000,
+          "logical": 2000
+        },
+        "content_hash": "7934901781757851511/2000",
+        "nulls": {
+          "temperature_c": 1828,
+          "battery_pct": 1818,
+          "signal_dbm": 1808
+        },
+        "parts_active": 4,
+        "insert_batches": 4,
+        "effective_batch_rows": 500.0,
+        "insert_window_s": 0.013,
+        "insert_window_rows_per_s": 153846.15384615384,
+        "latency_mode": "drain",
+        "latency_ms": null,
+        "schema": [
+          [
+            "event_id",
+            "String"
+          ],
+          [
+            "device_id",
+            "String"
+          ],
+          [
+            "event_time",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "emitted_at",
+            "DateTime64(3, 'UTC')"
+          ],
+          [
+            "source_system",
+            "LowCardinality(String)"
+          ],
+          [
+            "schema_version",
+            "UInt8"
+          ],
+          [
+            "temperature_c",
+            "Nullable(Float64)"
+          ],
+          [
+            "battery_pct",
+            "Nullable(UInt8)"
+          ],
+          [
+            "signal_dbm",
+            "Nullable(Int16)"
+          ],
+          [
+            "firmware_version",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "site_id",
+            "LowCardinality(Nullable(String))"
+          ],
+          [
+            "ingested_at",
+            "DateTime64(3, 'UTC')"
+          ]
+        ],
+        "lane_runtime": {
+          "container": "cfbench-arrow-091d8141",
+          "group": "cfbench-E4-null-edge-08350a",
+          "exit_code": 0,
+          "complete": true,
+          "log_tail": "{\"consumed\": 2000, \"inserted_rows\": 2000, \"rejected\": 0, \"tombstones\": 0, \"flushes\": 4, \"retries\": 0, \"committed\": {\"cfbench.lab03-confirm-20261010T192702Z-a499a19-e4-null.telemetry[0]\": 2000}}\n"
+        },
+        "wall_s": 0.49213650000456255,
+        "wall_rows_per_s": 4063.913162265872,
+        "resources": {
+          "scope": "worker process (getrusage) + container (docker stats)",
+          "cpu_s": 0.20732099999999998,
+          "max_rss_bytes": 79208448,
+          "cpu_s_integrated": 0.0,
+          "peak_mem_bytes": 0.0
+        },
+        "phases_ns": {
+          "decode": 3048376,
+          "validate": 2374582,
+          "build": 3342208,
+          "transform": 374,
+          "serialize": 200085,
+          "insert": 9661916
+        },
+        "flushes": 4,
+        "payload_bytes": 235488,
+        "lag": {
+          "samples": 2,
+          "max_lag": 0,
+          "mean_lag": 0.0
+        }
+      }
+    }
+  ],
+  "not_run": [
+    {
+      "experiment": "E1",
+      "reason": "disabled in workload or excluded by --only"
+    },
+    {
+      "experiment": "E2",
+      "reason": "disabled in workload or excluded by --only"
+    },
+    {
+      "experiment": "E3",
+      "reason": "disabled in workload or excluded by --only"
+    },
+    {
+      "experiment": "E4",
+      "lane": "sink",
+      "scenario": "crash_after_insert_before_commit",
+      "reason": "NOT_APPLICABLE: offsets are managed by the Kafka Connect framework; no injection point in this POC"
+    },
+    {
+      "experiment": "E5",
+      "reason": "disabled in workload or excluded by --only"
+    }
+  ],
+  "known_interference": "single Docker VM shared by all services; source connectors paused; one lane at a time",
+  "limitations": [
+    "one local machine (Docker Desktop VM); not production scaling",
+    "lane A is a different runtime (JVM connector) and insert format (JSONEachRow): A vs C is a system comparison",
+    "B vs C share decode/validate code; differences come from representation, compute and insert format"
+  ]
+}

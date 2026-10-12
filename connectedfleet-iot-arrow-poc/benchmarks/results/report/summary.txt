@@ -1,0 +1,270 @@
+ConnectedFleet Lab 03 — validated benchmark summary
+
+Runs:
+  lab03-confirm-20261010T192702Z-a499a19  profile=confirm  sha=a499a19278ba  valid=True  cases 14/14
+  lab03-confirm-20261010T205001Z-9c6ac78  profile=confirm  sha=9c6ac78af1ea  valid=False  cases 0/80
+  lab03-confirm-20261011T031053Z-434b2a4  profile=confirm  sha=434b2a464e1b  valid=True  cases 238/238
+  lab03-smoke-20261010T165506Z-32b2836  profile=smoke  sha=32b2836e2189  valid=True  cases 119/119
+  lab03-smoke-20261010T174059Z-c39b87f  profile=smoke  sha=c39b87fc39df  valid=True  cases 119/119
+  lab03-smoke-20261010T183128Z-c67d181  profile=smoke  sha=c67d181d26ea  valid=True  cases 119/119
+
+Cases used in aggregates: 407 (valid, non-warm-up); excluded invalid: 80
+  excluded E1-0000 (E1/sink): 
+  excluded E1-0001 (E1/sink_tuned): 
+  excluded E1-0002 (E1/row): 
+  excluded E1-0003 (E1/arrow): 
+  excluded E1-0004 (E1/sink_tuned): 
+  excluded E1-0005 (E1/row): 
+  excluded E1-0006 (E1/arrow): 
+  excluded E1-0007 (E1/sink): 
+  excluded E1-0008 (E1/row): 
+  excluded E1-0009 (E1/arrow): 
+  excluded E1-0010 (E1/sink): 
+  excluded E1-0011 (E1/sink_tuned): 
+  excluded E1-0012 (E1/arrow): 
+  excluded E1-0013 (E1/sink): 
+  excluded E1-0014 (E1/sink_tuned): 
+  excluded E1-0015 (E1/row): 
+  excluded E1-0016 (E1/sink): 
+  excluded E1-0017 (E1/sink_tuned): 
+  excluded E1-0018 (E1/row): 
+  excluded E1-0019 (E1/arrow): 
+
+E1/E2 drain throughput (validated rows/s, median of repetitions; wall includes lane start-up; steady = rows of batches 2..k / (last - first insert)):
+  E1 n=10000 dense batch=100 arrow                      wall=9,288  steady=25,984  effective batch=100  (reps=3)
+  E1 n=10000 dense batch=100 row                        wall=8,843  steady=19,149  effective batch=100  (reps=3)
+  E1 n=10000 dense batch=100 sink                       wall=4,911  steady=26,190  effective batch=100  (reps=3)
+  E1 n=10000 dense batch=1000 arrow                      wall=9,512  steady=145,161  effective batch=1,000  (reps=3)
+  E1 n=10000 dense batch=1000 row                        wall=9,306  steady=120,000  effective batch=1,000  (reps=3)
+  E1 n=10000 dense batch=1000 sink                       wall=4,906  steady=134,328  effective batch=1,000  (reps=3)
+  E1 n=10000 dense batch=10000 arrow                      wall=9,328  steady=n/a  effective batch=10,000  (reps=3)
+  E1 n=10000 dense batch=10000 row                        wall=9,392  steady=n/a  effective batch=10,000  (reps=3)
+  E1 n=10000 dense batch=10000 sink                       wall=4,910  steady=n/a  effective batch=10,000  (reps=3)
+  E1 n=100000 dense batch=100 arrow                      wall=8,547  steady=9,824  effective batch=100  (reps=3)
+  E1 n=100000 dense batch=100 row                        wall=15,340  steady=18,307  effective batch=100  (reps=3)
+  E1 n=100000 dense batch=100 sink                       wall=9,694  steady=11,099  effective batch=100  (reps=3)
+  E1 n=100000 dense batch=1000 arrow                      wall=15,559  steady=18,412  effective batch=1,000  (reps=3)
+  E1 n=100000 dense batch=1000 row                        wall=23,471  steady=40,707  effective batch=1,000  (reps=3)
+  E1 n=100000 dense batch=1000 sink                       wall=32,664  steady=37,975  effective batch=1,000  (reps=3)
+  E1 n=100000 dense batch=10000 arrow                      wall=47,144  steady=85,551  effective batch=10,000  (reps=3)
+  E1 n=100000 dense batch=10000 row                        wall=47,381  steady=72,639  effective batch=10,000  (reps=3)
+  E1 n=100000 dense batch=10000 sink                       wall=48,981  steady=102,041  effective batch=10,000  (reps=3)
+  E1 n=1000000 dense batch=1000 arrow                      wall=146,190  steady=157,571  effective batch=1,000  (reps=5)
+  E1 n=1000000 dense batch=1000 row                        wall=114,217  steady=123,823  effective batch=1,000  (reps=5)
+  E1 n=1000000 dense batch=1000 sink                       wall=16,636  steady=16,660  effective batch=1,001  (reps=5)
+  E1 n=1000000 dense batch=1000 sink_tuned                 wall=197,273  steady=202,023  effective batch=996  (reps=5)
+  E1 n=1000000 dense batch=10000 arrow                      wall=168,801  steady=183,946  effective batch=10,000  (reps=5)
+  E1 n=1000000 dense batch=10000 row                        wall=133,851  steady=146,471  effective batch=10,000  (reps=5)
+  E1 n=1000000 dense batch=10000 sink                       wall=16,633  steady=16,517  effective batch=10,101  (reps=5)
+  E1 n=1000000 dense batch=10000 sink_tuned                 wall=256,786  steady=267,238  effective batch=9,615  (reps=5)
+  E2 n=100000 dense batch=1000 arrow:arrow-arrowstream    wall=31,278  steady=48,720  effective batch=1,000  (reps=3)
+  E2 n=100000 dense batch=1000 arrow:arrow-native         wall=23,696  steady=35,382  effective batch=1,000  (reps=3)
+  E2 n=100000 dense batch=1000 row:row-arrowstream        wall=31,479  steady=49,550  effective batch=1,000  (reps=3)
+  E2 n=100000 dense batch=1000 row:row-native             wall=31,557  steady=49,278  effective batch=1,000  (reps=3)
+  E2 n=100000 dense batch=10000 arrow:arrow-arrowstream    wall=46,977  steady=96,567  effective batch=10,000  (reps=3)
+  E2 n=100000 dense batch=10000 arrow:arrow-native         wall=31,488  steady=59,328  effective batch=10,000  (reps=3)
+  E2 n=100000 dense batch=10000 row:row-arrowstream        wall=46,835  steady=73,770  effective batch=10,000  (reps=3)
+  E2 n=100000 dense batch=10000 row:row-native             wall=45,432  steady=75,758  effective batch=10,000  (reps=3)
+  E2 n=100000 null_heavy batch=1000 arrow:arrow-arrowstream    wall=31,394  steady=51,724  effective batch=1,000  (reps=3)
+  E2 n=100000 null_heavy batch=1000 arrow:arrow-native         wall=23,725  steady=38,298  effective batch=1,000  (reps=3)
+  E2 n=100000 null_heavy batch=1000 row:row-arrowstream        wall=31,261  steady=43,864  effective batch=1,000  (reps=3)
+  E2 n=100000 null_heavy batch=1000 row:row-native             wall=30,510  steady=44,177  effective batch=1,000  (reps=3)
+  E2 n=100000 null_heavy batch=10000 arrow:arrow-arrowstream    wall=47,557  steady=94,737  effective batch=10,000  (reps=3)
+  E2 n=100000 null_heavy batch=10000 arrow:arrow-native         wall=47,997  steady=66,667  effective batch=10,000  (reps=3)
+  E2 n=100000 null_heavy batch=10000 row:row-arrowstream        wall=48,150  steady=81,448  effective batch=10,000  (reps=3)
+  E2 n=100000 null_heavy batch=10000 row:row-native             wall=47,372  steady=81,154  effective batch=10,000  (reps=3)
+  E2 n=100000 string_heavy batch=1000 arrow:arrow-arrowstream    wall=46,903  steady=82,022  effective batch=1,000  (reps=3)
+  E2 n=100000 string_heavy batch=1000 arrow:arrow-native         wall=25,219  steady=60,736  effective batch=1,000  (reps=3)
+  E2 n=100000 string_heavy batch=1000 row:row-arrowstream        wall=31,916  steady=70,163  effective batch=1,000  (reps=3)
+  E2 n=100000 string_heavy batch=1000 row:row-native             wall=39,479  steady=81,015  effective batch=1,000  (reps=3)
+  E2 n=100000 string_heavy batch=10000 arrow:arrow-arrowstream    wall=47,148  steady=84,666  effective batch=10,000  (reps=3)
+  E2 n=100000 string_heavy batch=10000 arrow:arrow-native         wall=31,652  steady=47,071  effective batch=10,000  (reps=3)
+  E2 n=100000 string_heavy batch=10000 row:row-arrowstream        wall=47,325  steady=68,337  effective batch=10,000  (reps=3)
+  E2 n=100000 string_heavy batch=10000 row:row-native             wall=31,483  steady=52,326  effective batch=10,000  (reps=3)
+  E2 n=1000000 dense batch=10000 arrow:arrow-arrowstream    wall=168,951  steady=184,255  effective batch=10,000  (reps=5)
+  E2 n=1000000 dense batch=10000 arrow:arrow-native         wall=98,997  steady=105,454  effective batch=10,000  (reps=5)
+  E2 n=1000000 dense batch=10000 row:row-arrowstream        wall=142,829  steady=153,393  effective batch=10,000  (reps=5)
+  E2 n=1000000 dense batch=10000 row:row-native             wall=130,958  steady=143,126  effective batch=10,000  (reps=5)
+  E2 n=1000000 null_heavy batch=10000 arrow:arrow-arrowstream    wall=169,185  steady=186,406  effective batch=10,000  (reps=5)
+  E2 n=1000000 null_heavy batch=10000 arrow:arrow-native         wall=99,489  steady=105,984  effective batch=10,000  (reps=5)
+  E2 n=1000000 null_heavy batch=10000 row:row-arrowstream        wall=141,924  steady=152,589  effective batch=10,000  (reps=5)
+  E2 n=1000000 null_heavy batch=10000 row:row-native             wall=131,167  steady=142,940  effective batch=10,000  (reps=5)
+  E2 n=1000000 string_heavy batch=10000 arrow:arrow-arrowstream    wall=155,806  steady=172,144  effective batch=10,000  (reps=5)
+  E2 n=1000000 string_heavy batch=10000 arrow:arrow-native         wall=94,125  steady=100,406  effective batch=10,000  (reps=5)
+  E2 n=1000000 string_heavy batch=10000 row:row-arrowstream        wall=132,819  steady=144,504  effective batch=10,000  (reps=5)
+  E2 n=1000000 string_heavy batch=10000 row:row-native             wall=122,065  steady=133,226  effective batch=10,000  (reps=5)
+
+E1 live latency (ms, ingested_at - emitted_at, same Docker VM clock):
+  sink_tuned batch=1000 flush=250ms p50=145 p95=261 p99=397 max=596 >5s=0 max lag=n/m
+  row    batch=1000 flush=250ms p50=146 p95=265 p99=491 max=690 >5s=0 max lag=256
+  arrow  batch=1000 flush=250ms p50=147 p95=266 p99=401 max=600 >5s=0 max lag=272
+  sink   batch=1000 flush=250ms p50=148 p95=274 p99=475 max=18,636 >5s=84 max lag=n/m
+  row    batch=1000 flush=250ms p50=150 p95=269 p99=499 max=698 >5s=0 max lag=254
+  arrow  batch=1000 flush=250ms p50=148 p95=267 p99=406 max=605 >5s=0 max lag=257
+  sink   batch=1000 flush=250ms p50=143 p95=268 p99=321 max=24,296 >5s=5 max lag=n/m
+  sink_tuned batch=1000 flush=250ms p50=147 p95=263 p99=546 max=745 >5s=0 max lag=n/m
+  arrow  batch=1000 flush=250ms p50=146 p95=264 p99=384 max=583 >5s=0 max lag=252
+  sink   batch=1000 flush=250ms p50=141 p95=266 p99=340 max=24,409 >5s=31 max lag=n/m
+  sink_tuned batch=1000 flush=250ms p50=145 p95=261 p99=496 max=695 >5s=0 max lag=n/m
+  row    batch=1000 flush=250ms p50=149 p95=268 p99=453 max=652 >5s=0 max lag=251
+  sink_tuned batch=1000 flush=1000ms p50=488 p95=897 p99=934 max=1,007 >5s=0 max lag=n/m
+  row    batch=1000 flush=1000ms p50=524 p95=975 p99=1,015 max=1,035 >5s=0 max lag=1014
+  arrow  batch=1000 flush=1000ms p50=524 p95=974 p99=1,013 max=1,038 >5s=0 max lag=967
+  sink   batch=1000 flush=1000ms p50=511 p95=984 p99=1,033 max=24,469 >5s=199 max lag=n/m
+  row    batch=1000 flush=1000ms p50=522 p95=972 p99=1,012 max=1,034 >5s=0 max lag=1005
+  arrow  batch=1000 flush=1000ms p50=520 p95=970 p99=1,010 max=1,032 >5s=0 max lag=990
+  sink   batch=1000 flush=1000ms p50=510 p95=984 p99=24,314 max=24,513 >5s=264 max lag=n/m
+  sink_tuned batch=1000 flush=1000ms p50=489 p95=898 p99=935 max=1,006 >5s=0 max lag=n/m
+  arrow  batch=1000 flush=1000ms p50=523 p95=973 p99=1,013 max=1,037 >5s=0 max lag=1010
+  sink   batch=1000 flush=1000ms p50=511 p95=985 p99=24,360 max=24,559 >5s=285 max lag=n/m
+  sink_tuned batch=1000 flush=1000ms p50=489 p95=898 p99=935 max=1,004 >5s=0 max lag=n/m
+  row    batch=1000 flush=1000ms p50=524 p95=974 p99=1,014 max=1,035 >5s=0 max lag=1013
+  row    batch=1000 flush=250ms p50=420 p95=766 p99=929 max=n/a >5s=None max lag=698
+  arrow  batch=1000 flush=250ms p50=420 p95=766 p99=920 max=n/a >5s=None max lag=755
+  sink   batch=1000 flush=250ms p50=153 p95=373 p99=544 max=n/a >5s=None max lag=0
+  row    batch=1000 flush=1000ms p50=522 p95=972 p99=1,012 max=n/a >5s=None max lag=780
+  arrow  batch=1000 flush=1000ms p50=521 p95=971 p99=1,011 max=n/a >5s=None max lag=474
+  sink   batch=1000 flush=1000ms p50=512 p95=1,011 p99=34,889 max=n/a >5s=None max lag=0
+  row    batch=1000 flush=250ms p50=443 p95=789 p99=941 max=1,040 >5s=0 max lag=804
+  arrow  batch=1000 flush=250ms p50=430 p95=776 p99=952 max=1,051 >5s=0 max lag=742
+  sink   batch=1000 flush=250ms p50=148 p95=277 p99=480 max=33,920 >5s=49 max lag=n/m
+  row    batch=1000 flush=1000ms p50=529 p95=979 p99=1,020 max=1,043 >5s=0 max lag=958
+  arrow  batch=1000 flush=1000ms p50=525 p95=975 p99=1,017 max=1,074 >5s=0 max lag=1009
+  sink   batch=1000 flush=1000ms p50=513 p95=1,011 p99=34,309 max=34,408 >5s=418 max lag=n/m
+  row    batch=1000 flush=250ms p50=406 p95=752 p99=783 max=814 >5s=0 max lag=674
+  arrow  batch=1000 flush=250ms p50=401 p95=747 p99=782 max=860 >5s=0 max lag=726
+  sink   batch=1000 flush=250ms p50=144 p95=271 p99=447 max=34,305 >5s=33 max lag=n/m
+  row    batch=1000 flush=1000ms p50=521 p95=971 p99=1,011 max=1,030 >5s=0 max lag=465
+  arrow  batch=1000 flush=1000ms p50=518 p95=968 p99=1,008 max=1,030 >5s=0 max lag=490
+  sink   batch=1000 flush=1000ms p50=506 p95=1,005 p99=34,544 max=34,643 >5s=367 max lag=n/m
+
+E4 correctness / failure matrix:
+  happy_path_with_poison             sink   fail            logical 4501/5000; DLQ +500 (poison sent 1); 499 good records dead-lettered with the poison (batch-level failu
+  replay_new_group                   sink   pass            logical 4501, physical 9002 (first pass logical 4501, physical 4501): at-least-once duplicates
+  dlq_recovery                       sink   pass            replayed 998 of 1000 DLQ records, quarantined 2 (poison-20261015-0); logical 5000/5000
+  happy_path_with_poison             sink_tuned fail            logical 4501/5000; DLQ +500 (poison sent 1); 499 good records dead-lettered with the poison (batch-level failu
+  happy_path_with_poison             sink_skip fail            logical 4502/5000; DLQ +0 (poison sent 1); 498 good rows missing with no DLQ record (silently dropped)
+  happy_path_with_poison             row    pass            logical 5000/5000; DLQ +1 (poison sent 1)
+  replay_new_group                   row    pass            logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates
+  happy_path_with_poison             arrow  pass            logical 5000/5000; DLQ +1 (poison sent 1)
+  replay_new_group                   arrow  pass            logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates
+  crash_after_insert_before_commit   row    pass            after restart logical 5000, physical 5500: duplicate rows from the crash window
+  crash_after_insert_before_commit   arrow  pass            after restart logical 5000, physical 5500: duplicate rows from the crash window
+  schema_null_edge                   sink   pass            null counts preserved exactly
+  schema_null_edge                   row    pass            null counts preserved exactly
+  schema_null_edge                   arrow  pass            null counts preserved exactly
+  crash_after_insert_before_commit   sink   not_applicable  NOT_APPLICABLE: offsets are managed by the Kafka Connect framework; no injection point in this POC
+  csv_reimport                       sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  csv_reimport                       row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  csv_reimport                       arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  pg_delete_update                   sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  pg_delete_update                   row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  pg_delete_update                   arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  outbox_rollback                    sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  outbox_rollback                    row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  outbox_rollback                    arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  mongo_update_delete                sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  mongo_update_delete                row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  mongo_update_delete                arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  happy_path_with_poison             sink   fail            logical 4501/5000; DLQ +500 (poison sent 1); 499 good records dead-lettered with the poison (batch-level failu
+  replay_new_group                   sink   pass            logical 4501, physical 9002 (first pass logical 4501, physical 4501): at-least-once duplicates
+  dlq_recovery                       sink   pass            replayed 998 of 1000 DLQ records, quarantined 2 (poison-20261015-0); logical 5000/5000
+  happy_path_with_poison             sink_tuned fail            logical 4501/5000; DLQ +500 (poison sent 1); 499 good records dead-lettered with the poison (batch-level failu
+  happy_path_with_poison             sink_skip fail            logical 4502/5000; DLQ +0 (poison sent 1); 498 good rows missing with no DLQ record (silently dropped)
+  happy_path_with_poison             row    pass            logical 5000/5000; DLQ +1 (poison sent 1)
+  replay_new_group                   row    pass            logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates
+  happy_path_with_poison             arrow  pass            logical 5000/5000; DLQ +1 (poison sent 1)
+  replay_new_group                   arrow  pass            logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates
+  crash_after_insert_before_commit   row    pass            after restart logical 5000, physical 5500: duplicate rows from the crash window
+  crash_after_insert_before_commit   arrow  pass            after restart logical 5000, physical 5500: duplicate rows from the crash window
+  schema_null_edge                   sink   pass            null counts preserved exactly
+  schema_null_edge                   row    pass            null counts preserved exactly
+  schema_null_edge                   arrow  pass            null counts preserved exactly
+  crash_after_insert_before_commit   sink   not_applicable  NOT_APPLICABLE: offsets are managed by the Kafka Connect framework; no injection point in this POC
+  csv_reimport                       sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  csv_reimport                       row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  csv_reimport                       arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  pg_delete_update                   sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  pg_delete_update                   row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  pg_delete_update                   arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  outbox_rollback                    sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  outbox_rollback                    row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  outbox_rollback                    arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  mongo_update_delete                sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  mongo_update_delete                row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  mongo_update_delete                arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  happy_path_with_poison             sink   partial         logical 5000/5000; DLQ +0 (poison sent 1); bad record skipped by ClickHouse without a DLQ record (silently dro
+  replay_new_group                   sink   pass            logical 5000, physical 10000 (expected logical 5000, physical 10000): at-least-once duplicates
+  happy_path_with_poison             row    pass            logical 5000/5000; DLQ +1 (poison sent 1)
+  replay_new_group                   row    pass            logical 5000, physical 10000 (expected logical 5000, physical 10000): at-least-once duplicates
+  happy_path_with_poison             arrow  pass            logical 5000/5000; DLQ +1 (poison sent 1)
+  replay_new_group                   arrow  pass            logical 5000, physical 10000 (expected logical 5000, physical 10000): at-least-once duplicates
+  crash_after_insert_before_commit   row    pass            after restart logical 5000, physical 5500: duplicate rows from the crash window
+  crash_after_insert_before_commit   arrow  pass            after restart logical 5000, physical 5500: duplicate rows from the crash window
+  schema_null_edge                   sink   pass            null counts preserved exactly
+  schema_null_edge                   row    pass            null counts preserved exactly
+  schema_null_edge                   arrow  pass            null counts preserved exactly
+  crash_after_insert_before_commit   sink   not_applicable  NOT_APPLICABLE: offsets are managed by the Kafka Connect framework; no injection point in this POC
+  csv_reimport                       sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  csv_reimport                       row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  csv_reimport                       arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  pg_delete_update                   sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  pg_delete_update                   row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  pg_delete_update                   arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  outbox_rollback                    sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  outbox_rollback                    row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  outbox_rollback                    arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  mongo_update_delete                sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  mongo_update_delete                row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  mongo_update_delete                arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  happy_path_with_poison             sink   fail            logical 4501/5000; DLQ +500 (poison sent 1); 499 good records dead-lettered with the poison (batch-level failu
+  replay_new_group                   sink   pass            logical 4501, physical 9002 (first pass logical 4501, physical 4501): at-least-once duplicates
+  happy_path_with_poison             row    pass            logical 5000/5000; DLQ +1 (poison sent 1)
+  replay_new_group                   row    pass            logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates
+  happy_path_with_poison             arrow  pass            logical 5000/5000; DLQ +1 (poison sent 1)
+  replay_new_group                   arrow  pass            logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates
+  crash_after_insert_before_commit   row    pass            after restart logical 5000, physical 5500: duplicate rows from the crash window
+  crash_after_insert_before_commit   arrow  pass            after restart logical 5000, physical 5500: duplicate rows from the crash window
+  schema_null_edge                   sink   pass            null counts preserved exactly
+  schema_null_edge                   row    pass            null counts preserved exactly
+  schema_null_edge                   arrow  pass            null counts preserved exactly
+  crash_after_insert_before_commit   sink   not_applicable  NOT_APPLICABLE: offsets are managed by the Kafka Connect framework; no injection point in this POC
+  csv_reimport                       sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  csv_reimport                       row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  csv_reimport                       arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  pg_delete_update                   sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  pg_delete_update                   row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  pg_delete_update                   arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  outbox_rollback                    sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  outbox_rollback                    row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  outbox_rollback                    arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  mongo_update_delete                sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  mongo_update_delete                row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  mongo_update_delete                arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  happy_path_with_poison             sink   fail            logical 4501/5000; DLQ +500 (poison sent 1); 499 good records dead-lettered with the poison (batch-level failu
+  replay_new_group                   sink   pass            logical 4501, physical 9002 (first pass logical 4501, physical 4501): at-least-once duplicates
+  happy_path_with_poison             row    pass            logical 5000/5000; DLQ +1 (poison sent 1)
+  replay_new_group                   row    pass            logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates
+  happy_path_with_poison             arrow  pass            logical 5000/5000; DLQ +1 (poison sent 1)
+  replay_new_group                   arrow  pass            logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates
+  crash_after_insert_before_commit   row    pass            after restart logical 5000, physical 5500: duplicate rows from the crash window
+  crash_after_insert_before_commit   arrow  pass            after restart logical 5000, physical 5500: duplicate rows from the crash window
+  schema_null_edge                   sink   pass            null counts preserved exactly
+  schema_null_edge                   row    pass            null counts preserved exactly
+  schema_null_edge                   arrow  pass            null counts preserved exactly
+  crash_after_insert_before_commit   sink   not_applicable  NOT_APPLICABLE: offsets are managed by the Kafka Connect framework; no injection point in this POC
+  csv_reimport                       sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  csv_reimport                       row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  csv_reimport                       arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  pg_delete_update                   sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  pg_delete_update                   row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  pg_delete_update                   arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  outbox_rollback                    sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  outbox_rollback                    row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  outbox_rollback                    arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  mongo_update_delete                sink   pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  mongo_update_delete                row    pass            from Lab 02 run lab02-20261010T164622Z-nogit
+  mongo_update_delete                arrow  pass            from Lab 02 run lab02-20261010T164622Z-nogit
+
+Reading guide: A (official sink) vs C compares two systems (JVM connector + JSONEachRow vs CPython + ArrowStream);
+B vs C isolates representation/compute/insert format on shared decode code. One local machine; not production scaling.

@@ -1,0 +1,59 @@
+[
+  {
+    "run_id": "lab03-confirm-20261010T192702Z-a499a19",
+    "valid": true,
+    "reasons": [],
+    "warnings": [],
+    "cases_total": 14,
+    "cases_valid": 14
+  },
+  {
+    "run_id": "lab03-confirm-20261010T205001Z-9c6ac78",
+    "valid": false,
+    "reasons": [
+      "STATUS: run did not finish (manifest is a checkpoint of an interrupted run)"
+    ],
+    "warnings": [],
+    "cases_total": 80,
+    "cases_valid": 0
+  },
+  {
+    "run_id": "lab03-confirm-20261011T031053Z-434b2a4",
+    "valid": true,
+    "reasons": [],
+    "warnings": [],
+    "cases_total": 238,
+    "cases_valid": 238
+  },
+  {
+    "run_id": "lab03-smoke-20261010T165506Z-32b2836",
+    "valid": true,
+    "reasons": [],
+    "warnings": [
+      "single measured repetition: no spread available (smoke evidence only)"
+    ],
+    "cases_total": 119,
+    "cases_valid": 119
+  },
+  {
+    "run_id": "lab03-smoke-20261010T174059Z-c39b87f",
+    "valid": true,
+    "reasons": [],
+    "warnings": [
+      "dirty working tree: results describe uncommitted code (label as historical)",
+      "single measured repetition: no spread available (smoke evidence only)"
+    ],
+    "cases_total": 119,
+    "cases_valid": 119
+  },
+  {
+    "run_id": "lab03-smoke-20261010T183128Z-c67d181",
+    "valid": true,
+    "reasons": [],
+    "warnings": [
+      "single measured repetition: no spread available (smoke evidence only)"
+    ],
+    "cases_total": 119,
+    "cases_valid": 119
+  }
+]

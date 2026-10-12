@@ -1,0 +1,344 @@
+[
+  {
+    "event_count": 10000,
+    "batch_size": 100,
+    "run_order": [
+      "row",
+      "arrow"
+    ],
+    "errors": [],
+    "checks": [
+      {
+        "check": "fixture_sha256",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "valid_rows",
+        "ok": true,
+        "detail": "9954 vs 9954"
+      },
+      {
+        "check": "rejects_equal",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "rejects_match_injected",
+        "ok": true,
+        "detail": "observed {'BAD_TIMESTAMP': 8, 'BAD_TYPE': 13, 'MALFORMED_JSON': 4, 'MISSING_REQUIRED': 4, 'OUT_OF_RANGE': 13, 'UNSUPPORTED_SCHEMA_VERSION': 4} expected {'BAD_TYPE': 13, 'OUT_OF_RANGE': 13, 'BAD_TIMESTAMP': 8, 'MISSING_REQUIRED': 4, 'MALFORMED_JSON': 4, 'UNSUPPORTED_SCHEMA_VERSION': 4}"
+      },
+      {
+        "check": "field_stats",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "risk_counts",
+        "ok": true,
+        "detail": "{'true': 393, 'false': 9419, 'unknown': 142}"
+      },
+      {
+        "check": "risk_vector_digest",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "alerts",
+        "ok": true,
+        "detail": "393 vs 393"
+      },
+      {
+        "check": "site_summary",
+        "ok": true,
+        "detail": "float means compared with rel_tol=1e-9 (summation order differs)"
+      }
+    ],
+    "ok": true
+  },
+  {
+    "event_count": 10000,
+    "batch_size": 1000,
+    "run_order": [
+      "arrow",
+      "row"
+    ],
+    "errors": [],
+    "checks": [
+      {
+        "check": "fixture_sha256",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "valid_rows",
+        "ok": true,
+        "detail": "9954 vs 9954"
+      },
+      {
+        "check": "rejects_equal",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "rejects_match_injected",
+        "ok": true,
+        "detail": "observed {'BAD_TIMESTAMP': 8, 'BAD_TYPE': 13, 'MALFORMED_JSON': 4, 'MISSING_REQUIRED': 4, 'OUT_OF_RANGE': 13, 'UNSUPPORTED_SCHEMA_VERSION': 4} expected {'BAD_TYPE': 13, 'OUT_OF_RANGE': 13, 'BAD_TIMESTAMP': 8, 'MISSING_REQUIRED': 4, 'MALFORMED_JSON': 4, 'UNSUPPORTED_SCHEMA_VERSION': 4}"
+      },
+      {
+        "check": "field_stats",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "risk_counts",
+        "ok": true,
+        "detail": "{'true': 393, 'false': 9419, 'unknown': 142}"
+      },
+      {
+        "check": "risk_vector_digest",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "alerts",
+        "ok": true,
+        "detail": "393 vs 393"
+      },
+      {
+        "check": "site_summary",
+        "ok": true,
+        "detail": "float means compared with rel_tol=1e-9 (summation order differs)"
+      }
+    ],
+    "ok": true
+  },
+  {
+    "event_count": 10000,
+    "batch_size": 10000,
+    "run_order": [
+      "row",
+      "arrow"
+    ],
+    "errors": [],
+    "checks": [
+      {
+        "check": "fixture_sha256",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "valid_rows",
+        "ok": true,
+        "detail": "9954 vs 9954"
+      },
+      {
+        "check": "rejects_equal",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "rejects_match_injected",
+        "ok": true,
+        "detail": "observed {'BAD_TIMESTAMP': 8, 'BAD_TYPE': 13, 'MALFORMED_JSON': 4, 'MISSING_REQUIRED': 4, 'OUT_OF_RANGE': 13, 'UNSUPPORTED_SCHEMA_VERSION': 4} expected {'BAD_TYPE': 13, 'OUT_OF_RANGE': 13, 'BAD_TIMESTAMP': 8, 'MISSING_REQUIRED': 4, 'MALFORMED_JSON': 4, 'UNSUPPORTED_SCHEMA_VERSION': 4}"
+      },
+      {
+        "check": "field_stats",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "risk_counts",
+        "ok": true,
+        "detail": "{'true': 393, 'false': 9419, 'unknown': 142}"
+      },
+      {
+        "check": "risk_vector_digest",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "alerts",
+        "ok": true,
+        "detail": "393 vs 393"
+      },
+      {
+        "check": "site_summary",
+        "ok": true,
+        "detail": "float means compared with rel_tol=1e-9 (summation order differs)"
+      }
+    ],
+    "ok": true
+  },
+  {
+    "event_count": 100000,
+    "batch_size": 100,
+    "run_order": [
+      "arrow",
+      "row"
+    ],
+    "errors": [],
+    "checks": [
+      {
+        "check": "fixture_sha256",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "valid_rows",
+        "ok": true,
+        "detail": "99541 vs 99541"
+      },
+      {
+        "check": "rejects_equal",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "rejects_match_injected",
+        "ok": true,
+        "detail": "observed {'BAD_TIMESTAMP': 83, 'BAD_TYPE': 126, 'MALFORMED_JSON': 42, 'MISSING_REQUIRED': 42, 'OUT_OF_RANGE': 125, 'UNSUPPORTED_SCHEMA_VERSION': 41} expected {'BAD_TYPE': 126, 'OUT_OF_RANGE': 125, 'BAD_TIMESTAMP': 83, 'MISSING_REQUIRED': 42, 'MALFORMED_JSON': 42, 'UNSUPPORTED_SCHEMA_VERSION': 41}"
+      },
+      {
+        "check": "field_stats",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "risk_counts",
+        "ok": true,
+        "detail": "{'true': 3898, 'false': 94228, 'unknown': 1415}"
+      },
+      {
+        "check": "risk_vector_digest",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "alerts",
+        "ok": true,
+        "detail": "3898 vs 3898"
+      },
+      {
+        "check": "site_summary",
+        "ok": true,
+        "detail": "float means compared with rel_tol=1e-9 (summation order differs)"
+      }
+    ],
+    "ok": true
+  },
+  {
+    "event_count": 100000,
+    "batch_size": 1000,
+    "run_order": [
+      "row",
+      "arrow"
+    ],
+    "errors": [],
+    "checks": [
+      {
+        "check": "fixture_sha256",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "valid_rows",
+        "ok": true,
+        "detail": "99541 vs 99541"
+      },
+      {
+        "check": "rejects_equal",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "rejects_match_injected",
+        "ok": true,
+        "detail": "observed {'BAD_TIMESTAMP': 83, 'BAD_TYPE': 126, 'MALFORMED_JSON': 42, 'MISSING_REQUIRED': 42, 'OUT_OF_RANGE': 125, 'UNSUPPORTED_SCHEMA_VERSION': 41} expected {'BAD_TYPE': 126, 'OUT_OF_RANGE': 125, 'BAD_TIMESTAMP': 83, 'MISSING_REQUIRED': 42, 'MALFORMED_JSON': 42, 'UNSUPPORTED_SCHEMA_VERSION': 41}"
+      },
+      {
+        "check": "field_stats",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "risk_counts",
+        "ok": true,
+        "detail": "{'true': 3898, 'false': 94228, 'unknown': 1415}"
+      },
+      {
+        "check": "risk_vector_digest",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "alerts",
+        "ok": true,
+        "detail": "3898 vs 3898"
+      },
+      {
+        "check": "site_summary",
+        "ok": true,
+        "detail": "float means compared with rel_tol=1e-9 (summation order differs)"
+      }
+    ],
+    "ok": true
+  },
+  {
+    "event_count": 100000,
+    "batch_size": 10000,
+    "run_order": [
+      "arrow",
+      "row"
+    ],
+    "errors": [],
+    "checks": [
+      {
+        "check": "fixture_sha256",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "valid_rows",
+        "ok": true,
+        "detail": "99541 vs 99541"
+      },
+      {
+        "check": "rejects_equal",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "rejects_match_injected",
+        "ok": true,
+        "detail": "observed {'BAD_TIMESTAMP': 83, 'BAD_TYPE': 126, 'MALFORMED_JSON': 42, 'MISSING_REQUIRED': 42, 'OUT_OF_RANGE': 125, 'UNSUPPORTED_SCHEMA_VERSION': 41} expected {'BAD_TYPE': 126, 'OUT_OF_RANGE': 125, 'BAD_TIMESTAMP': 83, 'MISSING_REQUIRED': 42, 'MALFORMED_JSON': 42, 'UNSUPPORTED_SCHEMA_VERSION': 41}"
+      },
+      {
+        "check": "field_stats",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "risk_counts",
+        "ok": true,
+        "detail": "{'true': 3898, 'false': 94228, 'unknown': 1415}"
+      },
+      {
+        "check": "risk_vector_digest",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "check": "alerts",
+        "ok": true,
+        "detail": "3898 vs 3898"
+      },
+      {
+        "check": "site_summary",
+        "ok": true,
+        "detail": "float means compared with rel_tol=1e-9 (summation order differs)"
+      }
+    ],
+    "ok": true
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "event_id": "mgstate-1791534672-1-sensor-01042",
+  "device_id": "sensor-01042",
+  "event_time": "2026-10-09T08:31:12.000Z",
+  "emitted_at": "2026-10-09T08:31:12.210Z",
+  "source_system": "mongodb.connectedfleet.device_state",
+  "schema_version": 1,
+  "operation": "update",
+  "is_deleted": false,
+  "version": 7692547598262468609,
+  "config_profile": "cold-chain",
+  "sampling_interval_s": 30,
+  "reporting_mode": "normal",
+  "desired_firmware": "3.2.1",
+  "full_document": true
+}

@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "run_id": "lab01-20261010T164835Z-faf26dd",
+  "lab": "lab-01",
+  "status": "PASS",
+  "started_at_utc": "2026-10-10T16:48:35Z",
+  "ended_at_utc": "2026-10-10T16:49:23Z",
+  "code": {
+    "git_sha": "faf26dd465ea1c11a405d08513599ad2991541a4",
+    "git_dirty": false
+  },
+  "host": {
+    "os": "macOS-26.5-arm64-arm-64bit",
+    "architecture": "arm64",
+    "processor": "arm",
+    "cpu_count": 15,
+    "ram_bytes": 25769803776,
+    "in_container": false
+  },
+  "versions": {
+    "python": "3.12.13",
+    "python_implementation": "CPython",
+    "pyarrow": "25.0.1",
+    "arrow_cpp": "25.0.1",
+    "arrow_memory_pool": "mimalloc"
+  },
+  "config": {
+    "sizes": [
+      10000,
+      100000
+    ],
+    "batches": [
+      100,
+      1000,
+      10000
+    ],
+    "warmups": 1,
+    "repetitions": 5,
+    "seed": 20261009,
+    "profile": "default",
+    "in_process": false
+  },
+  "workload": {
+    "10000": {
+      "sha256": "395579a29528df75555a4430628b8f6b27a616be467cd779f8cbcd2fc7f3bba1",
+      "bytes": 2912780,
+      "injected": {
+        "battery_at_20": 200,
+        "battery_null": 283,
+        "temperature_at_40": 200,
+        "late_event": 198,
+        "just_risky": 200,
+        "both_at_boundary": 200,
+        "temperature_null": 330,
+        "temperature_absent": 95,
+        "battery_absent": 126,
+        "temperature_string": 5,
+        "battery_negative": 5,
+        "battery_over_100": 4,
+        "battery_float": 4,
+        "signal_string": 4,
+        "event_time_garbage": 4,
+        "missing_device_id": 4,
+        "truncated_json": 4,
+        "schema_version_2": 4,
+        "temperature_nan": 4,
+        "naive_timestamp": 4,
+        "unknown_extra_field": 4
+      },
+      "expected_rejects": {
+        "BAD_TYPE": 13,
+        "OUT_OF_RANGE": 13,
+        "BAD_TIMESTAMP": 8,
+        "MISSING_REQUIRED": 4,
+        "MALFORMED_JSON": 4,
+        "UNSUPPORTED_SCHEMA_VERSION": 4
+      }
+    },
+    "100000": {
+      "sha256": "85980821d0cecb3ee33d20eca28b94734da524ff1fa7f095039aae9c1ec1b4f6",
+      "bytes": 29127426,
+      "injected": {
+        "battery_at_20": 2000,
+        "battery_null": 2988,
+        "temperature_at_40": 2000,
+        "late_event": 2032,
+        "just_risky": 2000,
+        "both_at_boundary": 2000,
+        "temperature_null": 3048,
+        "temperature_absent": 980,
+        "battery_absent": 973,
+        "temperature_string": 42,
+        "battery_negative": 42,
+        "battery_over_100": 42,
+        "battery_float": 42,
+        "signal_string": 42,
+        "event_time_garbage": 42,
+        "missing_device_id": 42,
+        "truncated_json": 42,
+        "schema_version_2": 41,
+        "temperature_nan": 41,
+        "naive_timestamp": 41,
+        "unknown_extra_field": 41
+      },
+      "expected_rejects": {
+        "BAD_TYPE": 126,
+        "OUT_OF_RANGE": 125,
+        "BAD_TIMESTAMP": 83,
+        "MISSING_REQUIRED": 42,
+        "MALFORMED_JSON": 42,
+        "UNSUPPORTED_SCHEMA_VERSION": 41
+      }
+    }
+  },
+  "phases": [
+    "decode",
+    "validate",
+    "build",
+    "transform",
+    "serialize"
+  ],
+  "measurement_definitions": {
+    "phase_timer": "time.perf_counter_ns around each phase, summed over all batches of one pass",
+    "total": "sum of decode + validate + build + transform + serialize; parity bookkeeping excluded",
+    "statistic": "median over measured repetitions (min and max also recorded)",
+    "memory": "fresh subprocess per (size, batch, path); rss_baseline = ru_maxrss after fixture load + gc; rss_peak = ru_maxrss after warmups and repetitions; arrow_pool_peak = default_memory_pool().max_memory()",
+    "gc": "Python garbage collector left enabled (realistic); gc.collect() before each repetition"
+  },
+  "sections": {
+    "measured": [
+      "phases.csv",
+      "summary.csv",
+      "memory.csv",
+      "parity.json"
+    ],
+    "illustrative": [
+      "buffers.json#illustrative"
+    ],
+    "observed_structure": [
+      "buffers.json#observed"
+    ]
+  },
+  "limitations": [
+    "Same-process microbenchmark on one machine: it shows where time goes inside one worker, not pipeline, Kafka or ClickHouse throughput.",
+    "decode and validate run identical shared code in both paths.",
+    "build is the Arrow path's extra conversion step (rows -> typed arrays); the row path has no build phase.",
+    "serialize emits different formats: JSONEachRow for the row path, an in-memory Arrow IPC stream for the Arrow path. No network, Kafka or ClickHouse is involved in Lab 01.",
+    "Memory is the process high-water RSS (ru_maxrss) of a fresh process per combination, minus the RSS after the fixture was loaded; the Arrow pool peak covers Arrow-allocated buffers only."
+  ]
+}

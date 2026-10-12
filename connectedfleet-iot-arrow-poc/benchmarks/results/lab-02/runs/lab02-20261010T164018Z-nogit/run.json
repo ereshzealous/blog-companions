@@ -1,0 +1,913 @@
+{
+  "schema_version": 1,
+  "run_id": "lab02-20261010T164018Z-nogit",
+  "lab": "lab-02",
+  "mode": "smoke",
+  "status": "FAIL",
+  "started_at_utc": "2026-10-10T16:40:18+00:00",
+  "ended_at_utc": "2026-10-10T16:42:26+00:00",
+  "code": {
+    "git_sha": null,
+    "git_dirty": true
+  },
+  "host": {
+    "os": "macOS-26.5-arm64-arm-64bit",
+    "architecture": "arm64",
+    "processor": "arm",
+    "cpu_count": 15,
+    "ram_bytes": 25769803776,
+    "in_container": false
+  },
+  "versions": {
+    "python": "3.12.13",
+    "python_implementation": "CPython",
+    "pyarrow": "25.0.1",
+    "arrow_cpp": "25.0.1",
+    "arrow_memory_pool": "mimalloc",
+    "stack": {
+      "captured_at_utc": "2026-10-10T16:39:05+00:00",
+      "compose_images": [
+        {
+          "ID": "sha256:6c242ab3989ef60acb1859d05142bc84b0d20df70ece29ebcc50cb52c295034b",
+          "ContainerName": "connectedfleet-connect-1",
+          "Repository": "",
+          "Tag": "",
+          "Platform": "unknown",
+          "Size": 0
+        },
+        {
+          "ID": "sha256:1f995ad6fdb93244a1addab1b58f934a0bc2f5643c38e02f5e9d7f0c7d227a7b",
+          "ContainerName": "connectedfleet-mongodb-1",
+          "Repository": "mongo",
+          "Tag": "7.0.43",
+          "Platform": "linux/arm64/v8",
+          "Size": 1126083428,
+          "Created": "2026-10-02T01:32:03.312463295Z",
+          "LastTagTime": "2026-10-10T16:37:01.756286344Z"
+        },
+        {
+          "ID": "sha256:55a55347b1b959ae51d40373901e81aa671d7fc9e6d05d0603d1e0ad3ac22c6d",
+          "ContainerName": "connectedfleet-clickhouse-1",
+          "Repository": "clickhouse/clickhouse-server",
+          "Tag": "26.3.47.6",
+          "Platform": "linux/arm64",
+          "Size": 1102139409,
+          "Created": "2026-10-10T13:09:08.994204102Z",
+          "LastTagTime": "2026-10-10T16:31:21.114582548Z"
+        },
+        {
+          "ID": "sha256:1213eb3943d551e5ed1fca7a4e109001cee35770b66a02a0c37a8964efe09b69",
+          "ContainerName": "connectedfleet-kafka-1",
+          "Repository": "apache/kafka",
+          "Tag": "4.2.2",
+          "Platform": "linux/arm64",
+          "Size": 678380045,
+          "Created": "2026-09-21T18:14:22.881170158Z",
+          "LastTagTime": "2026-10-10T16:31:05.803865013Z"
+        },
+        {
+          "ID": "sha256:2d2b8998d31037bf721cfdf764d76ba74171b4fab3431b7f72c27c56ddbdf9e3",
+          "ContainerName": "connectedfleet-postgres-1",
+          "Repository": "postgres",
+          "Tag": "17.11",
+          "Platform": "linux/arm64/v8",
+          "Size": 661340390,
+          "Created": "2026-10-06T01:36:10.65337644Z",
+          "LastTagTime": "2026-10-10T16:31:01.550677761Z"
+        }
+      ],
+      "clickhouse": "26.3.47.6",
+      "kafka_connect": {
+        "version": "4.3.0",
+        "commit": "a9ce3221537b8653",
+        "kafka_cluster_id": "5L6g3nShT-eMCtK--X86sw"
+      },
+      "connector_plugins": [
+        {
+          "class": "com.clickhouse.kafka.connect.ClickHouseSinkConnector",
+          "type": "sink",
+          "version": "v1.6.0"
+        },
+        {
+          "class": "io.debezium.connector.jdbc.JdbcSinkConnector",
+          "type": "sink",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.mongodb.MongoDbSinkConnector",
+          "type": "sink",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.cockroachdb.CockroachDBConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.db2.Db2Connector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.db2as400.As400RpcConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.informix.InformixConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.mariadb.MariaDbConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.mongodb.MongoDbConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.mysql.MySqlConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.oracle.OracleConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.postgresql.PostgresConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.spanner.SpannerConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.sqlserver.SqlServerConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "io.debezium.connector.vitess.VitessConnector",
+          "type": "source",
+          "version": "3.6.3.Final"
+        },
+        {
+          "class": "org.apache.kafka.connect.mirror.MirrorCheckpointConnector",
+          "type": "source",
+          "version": "4.3.0"
+        },
+        {
+          "class": "org.apache.kafka.connect.mirror.MirrorHeartbeatConnector",
+          "type": "source",
+          "version": "4.3.0"
+        },
+        {
+          "class": "org.apache.kafka.connect.mirror.MirrorSourceConnector",
+          "type": "source",
+          "version": "4.3.0"
+        }
+      ],
+      "postgres": "17.11 (Debian 17.11-1.pgdg13+2)",
+      "mongodb": "7.0.43",
+      "python": "3.12.13",
+      "pyarrow": "25.0.1",
+      "confluent_kafka": "2",
+      "librdkafka": "2.15.1",
+      "clickhouse_connect": "1.8.0"
+    }
+  },
+  "plan": {
+    "tag": "5734c0",
+    "telemetry_count": 100,
+    "poison_every": 50,
+    "fault_count": 60,
+    "steps": {
+      "outbox_ids": {
+        "activate1": "4f37cb9e-fcd9-56dc-b443-40e7d7515dbf",
+        "activate2": "fb6f41b0-a6e1-5be9-8e11-b6076bf54287",
+        "firmware1": "9c0ea9f6-dd7d-5946-a63a-66f0a974631f",
+        "retire2": "f80ec4ec-6235-50fa-8677-2e134225bdd9",
+        "rollback1": "d26e970a-6d85-5362-b7e1-0c6cf0f5eb3f"
+      },
+      "dlq_before": 0,
+      "telemetry": {
+        "topic": "cfraw.telemetry.gateway",
+        "sent": 100,
+        "seed": 7,
+        "run_tag": "5734c0",
+        "poison": 2,
+        "started_at": 1791650440.1006641,
+        "ended_at": 1791650440.6365492
+      },
+      "csv_first": {
+        "file": "<POC>/fixtures/diagnostics/batch-001.csv",
+        "sha256": "8126c59e1ff161e08b9dbd5b3726edfca8c5397de64887148c17ad92b24c35fb",
+        "rows": 20,
+        "imported_at": "2026-10-10T16:40:40.636Z"
+      },
+      "csv_second": {
+        "file": "<POC>/fixtures/diagnostics/batch-001.csv",
+        "sha256": "8126c59e1ff161e08b9dbd5b3726edfca8c5397de64887148c17ad92b24c35fb",
+        "rows": 20,
+        "imported_at": "2026-10-10T16:40:40.640Z"
+      }
+    }
+  },
+  "checks": [
+    {
+      "name": "clickhouse reachable",
+      "ok": true,
+      "expected": true,
+      "observed": true,
+      "lane": null,
+      "note": ""
+    },
+    {
+      "name": "connect plugins loaded",
+      "ok": true,
+      "expected": [],
+      "observed": [],
+      "lane": null,
+      "note": ""
+    },
+    {
+      "name": "connector cf-pg-registry RUNNING",
+      "ok": true,
+      "expected": "RUNNING",
+      "observed": true,
+      "lane": null,
+      "note": ""
+    },
+    {
+      "name": "connector cf-pg-outbox RUNNING",
+      "ok": true,
+      "expected": "RUNNING",
+      "observed": true,
+      "lane": null,
+      "note": ""
+    },
+    {
+      "name": "connector cf-mongo-state RUNNING",
+      "ok": true,
+      "expected": "RUNNING",
+      "observed": true,
+      "lane": null,
+      "note": ""
+    },
+    {
+      "name": "connector cf-clickhouse-sink RUNNING",
+      "ok": true,
+      "expected": "RUNNING",
+      "observed": true,
+      "lane": null,
+      "note": ""
+    },
+    {
+      "name": "rollback left no outbox row",
+      "ok": true,
+      "expected": false,
+      "observed": false,
+      "lane": null,
+      "note": ""
+    },
+    {
+      "name": "rollback left business row unchanged",
+      "ok": true,
+      "expected": "3.2.1",
+      "observed": "3.2.1",
+      "lane": null,
+      "note": ""
+    },
+    {
+      "name": "lane caught up (telemetry, registry versions, state versions)",
+      "ok": true,
+      "expected": [
+        98,
+        5,
+        4
+      ],
+      "observed": [
+        98,
+        5,
+        4
+      ],
+      "lane": "sink",
+      "note": ""
+    },
+    {
+      "name": "lane caught up (telemetry, registry versions, state versions)",
+      "ok": true,
+      "expected": [
+        98,
+        5,
+        4
+      ],
+      "observed": [
+        98,
+        5,
+        4
+      ],
+      "lane": "row",
+      "note": ""
+    },
+    {
+      "name": "lane caught up (telemetry, registry versions, state versions)",
+      "ok": true,
+      "expected": [
+        98,
+        5,
+        4
+      ],
+      "observed": [
+        98,
+        5,
+        4
+      ],
+      "lane": "arrow",
+      "note": ""
+    },
+    {
+      "name": "telemetry logical rows",
+      "ok": true,
+      "expected": 98,
+      "observed": {
+        "physical": 98,
+        "logical": 98
+      },
+      "lane": "sink",
+      "note": ""
+    },
+    {
+      "name": "committed outbox events present (exact ids/types)",
+      "ok": true,
+      "expected": {
+        "4f37cb9e-fcd9-56dc-b443-40e7d7515dbf": "DeviceActivated",
+        "fb6f41b0-a6e1-5be9-8e11-b6076bf54287": "DeviceActivated",
+        "9c0ea9f6-dd7d-5946-a63a-66f0a974631f": "FirmwareUpdated",
+        "f80ec4ec-6235-50fa-8677-2e134225bdd9": "DeviceDeactivated"
+      },
+      "observed": {
+        "4f37cb9e-fcd9-56dc-b443-40e7d7515dbf": "DeviceActivated",
+        "9c0ea9f6-dd7d-5946-a63a-66f0a974631f": "FirmwareUpdated",
+        "fb6f41b0-a6e1-5be9-8e11-b6076bf54287": "DeviceActivated",
+        "f80ec4ec-6235-50fa-8677-2e134225bdd9": "DeviceDeactivated"
+      },
+      "lane": "sink",
+      "note": ""
+    },
+    {
+      "name": "rolled-back outbox event absent",
+      "ok": true,
+      "expected": "absent",
+      "observed": "absent",
+      "lane": "sink",
+      "note": ""
+    },
+    {
+      "name": "registry CDC versions (insert/update/delete)",
+      "ok": true,
+      "expected": [
+        "delete",
+        "insert",
+        "insert",
+        "update",
+        "update"
+      ],
+      "observed": [
+        "delete",
+        "insert",
+        "insert",
+        "update",
+        "update"
+      ],
+      "lane": "sink",
+      "note": ""
+    },
+    {
+      "name": "registry current state after FINAL (dev1 3.2.1 present, dev2 deleted)",
+      "ok": true,
+      "expected": [
+        [
+          "dev-5734c0-01",
+          "3.2.1"
+        ]
+      ],
+      "observed": [
+        [
+          "dev-5734c0-01",
+          "3.2.1"
+        ]
+      ],
+      "lane": "sink",
+      "note": ""
+    },
+    {
+      "name": "mongo change versions (insert/update/insert/delete)",
+      "ok": true,
+      "expected": 4,
+      "observed": [
+        "insert",
+        "update",
+        "insert",
+        "delete"
+      ],
+      "lane": "sink",
+      "note": ""
+    },
+    {
+      "name": "mongo current state after FINAL (dev1 interval 60, dev2 deleted)",
+      "ok": true,
+      "expected": [
+        [
+          "dev-5734c0-01",
+          60
+        ]
+      ],
+      "observed": [
+        [
+          "dev-5734c0-01",
+          60
+        ]
+      ],
+      "lane": "sink",
+      "note": "full-document lookup can reflect a later update; checked on final state only"
+    },
+    {
+      "name": "CSV re-import: 20 logical rows, physical >= 2x",
+      "ok": true,
+      "expected": {
+        "logical": 20,
+        "physical": ">=40"
+      },
+      "observed": {
+        "physical": 40,
+        "logical": 20
+      },
+      "lane": "sink",
+      "note": ""
+    },
+    {
+      "name": "initial PostgreSQL snapshot rows captured (op r)",
+      "ok": true,
+      "expected": ">=3",
+      "observed": 3,
+      "lane": "sink",
+      "note": "present once the lane consumed the topic from the beginning"
+    },
+    {
+      "name": "telemetry logical rows",
+      "ok": true,
+      "expected": 98,
+      "observed": {
+        "physical": 98,
+        "logical": 98
+      },
+      "lane": "row",
+      "note": ""
+    },
+    {
+      "name": "committed outbox events present (exact ids/types)",
+      "ok": true,
+      "expected": {
+        "4f37cb9e-fcd9-56dc-b443-40e7d7515dbf": "DeviceActivated",
+        "fb6f41b0-a6e1-5be9-8e11-b6076bf54287": "DeviceActivated",
+        "9c0ea9f6-dd7d-5946-a63a-66f0a974631f": "FirmwareUpdated",
+        "f80ec4ec-6235-50fa-8677-2e134225bdd9": "DeviceDeactivated"
+      },
+      "observed": {
+        "4f37cb9e-fcd9-56dc-b443-40e7d7515dbf": "DeviceActivated",
+        "9c0ea9f6-dd7d-5946-a63a-66f0a974631f": "FirmwareUpdated",
+        "fb6f41b0-a6e1-5be9-8e11-b6076bf54287": "DeviceActivated",
+        "f80ec4ec-6235-50fa-8677-2e134225bdd9": "DeviceDeactivated"
+      },
+      "lane": "row",
+      "note": ""
+    },
+    {
+      "name": "rolled-back outbox event absent",
+      "ok": true,
+      "expected": "absent",
+      "observed": "absent",
+      "lane": "row",
+      "note": ""
+    },
+    {
+      "name": "registry CDC versions (insert/update/delete)",
+      "ok": true,
+      "expected": [
+        "delete",
+        "insert",
+        "insert",
+        "update",
+        "update"
+      ],
+      "observed": [
+        "delete",
+        "insert",
+        "insert",
+        "update",
+        "update"
+      ],
+      "lane": "row",
+      "note": ""
+    },
+    {
+      "name": "registry current state after FINAL (dev1 3.2.1 present, dev2 deleted)",
+      "ok": true,
+      "expected": [
+        [
+          "dev-5734c0-01",
+          "3.2.1"
+        ]
+      ],
+      "observed": [
+        [
+          "dev-5734c0-01",
+          "3.2.1"
+        ]
+      ],
+      "lane": "row",
+      "note": ""
+    },
+    {
+      "name": "mongo change versions (insert/update/insert/delete)",
+      "ok": true,
+      "expected": 4,
+      "observed": [
+        "insert",
+        "update",
+        "insert",
+        "delete"
+      ],
+      "lane": "row",
+      "note": ""
+    },
+    {
+      "name": "mongo current state after FINAL (dev1 interval 60, dev2 deleted)",
+      "ok": true,
+      "expected": [
+        [
+          "dev-5734c0-01",
+          60
+        ]
+      ],
+      "observed": [
+        [
+          "dev-5734c0-01",
+          60
+        ]
+      ],
+      "lane": "row",
+      "note": "full-document lookup can reflect a later update; checked on final state only"
+    },
+    {
+      "name": "CSV re-import: 20 logical rows, physical >= 2x",
+      "ok": true,
+      "expected": {
+        "logical": 20,
+        "physical": ">=40"
+      },
+      "observed": {
+        "physical": 40,
+        "logical": 20
+      },
+      "lane": "row",
+      "note": ""
+    },
+    {
+      "name": "initial PostgreSQL snapshot rows captured (op r)",
+      "ok": true,
+      "expected": ">=3",
+      "observed": 3,
+      "lane": "row",
+      "note": "present once the lane consumed the topic from the beginning"
+    },
+    {
+      "name": "telemetry logical rows",
+      "ok": true,
+      "expected": 98,
+      "observed": {
+        "physical": 98,
+        "logical": 98
+      },
+      "lane": "arrow",
+      "note": ""
+    },
+    {
+      "name": "committed outbox events present (exact ids/types)",
+      "ok": true,
+      "expected": {
+        "4f37cb9e-fcd9-56dc-b443-40e7d7515dbf": "DeviceActivated",
+        "fb6f41b0-a6e1-5be9-8e11-b6076bf54287": "DeviceActivated",
+        "9c0ea9f6-dd7d-5946-a63a-66f0a974631f": "FirmwareUpdated",
+        "f80ec4ec-6235-50fa-8677-2e134225bdd9": "DeviceDeactivated"
+      },
+      "observed": {
+        "4f37cb9e-fcd9-56dc-b443-40e7d7515dbf": "DeviceActivated",
+        "9c0ea9f6-dd7d-5946-a63a-66f0a974631f": "FirmwareUpdated",
+        "fb6f41b0-a6e1-5be9-8e11-b6076bf54287": "DeviceActivated",
+        "f80ec4ec-6235-50fa-8677-2e134225bdd9": "DeviceDeactivated"
+      },
+      "lane": "arrow",
+      "note": ""
+    },
+    {
+      "name": "rolled-back outbox event absent",
+      "ok": true,
+      "expected": "absent",
+      "observed": "absent",
+      "lane": "arrow",
+      "note": ""
+    },
+    {
+      "name": "registry CDC versions (insert/update/delete)",
+      "ok": true,
+      "expected": [
+        "delete",
+        "insert",
+        "insert",
+        "update",
+        "update"
+      ],
+      "observed": [
+        "delete",
+        "insert",
+        "insert",
+        "update",
+        "update"
+      ],
+      "lane": "arrow",
+      "note": ""
+    },
+    {
+      "name": "registry current state after FINAL (dev1 3.2.1 present, dev2 deleted)",
+      "ok": true,
+      "expected": [
+        [
+          "dev-5734c0-01",
+          "3.2.1"
+        ]
+      ],
+      "observed": [
+        [
+          "dev-5734c0-01",
+          "3.2.1"
+        ]
+      ],
+      "lane": "arrow",
+      "note": ""
+    },
+    {
+      "name": "mongo change versions (insert/update/insert/delete)",
+      "ok": true,
+      "expected": 4,
+      "observed": [
+        "insert",
+        "update",
+        "insert",
+        "delete"
+      ],
+      "lane": "arrow",
+      "note": ""
+    },
+    {
+      "name": "mongo current state after FINAL (dev1 interval 60, dev2 deleted)",
+      "ok": true,
+      "expected": [
+        [
+          "dev-5734c0-01",
+          60
+        ]
+      ],
+      "observed": [
+        [
+          "dev-5734c0-01",
+          60
+        ]
+      ],
+      "lane": "arrow",
+      "note": "full-document lookup can reflect a later update; checked on final state only"
+    },
+    {
+      "name": "CSV re-import: 20 logical rows, physical >= 2x",
+      "ok": true,
+      "expected": {
+        "logical": 20,
+        "physical": ">=40"
+      },
+      "observed": {
+        "physical": 40,
+        "logical": 20
+      },
+      "lane": "arrow",
+      "note": ""
+    },
+    {
+      "name": "initial PostgreSQL snapshot rows captured (op r)",
+      "ok": true,
+      "expected": ">=3",
+      "observed": 3,
+      "lane": "arrow",
+      "note": "present once the lane consumed the topic from the beginning"
+    },
+    {
+      "name": "poison telemetry routed to normalizer DLQ (once each)",
+      "ok": false,
+      "expected": 2,
+      "observed": 7,
+      "lane": null,
+      "note": ""
+    },
+    {
+      "name": "telemetry_fact: identical logical content in all three databases",
+      "ok": true,
+      "expected": "equal",
+      "observed": {
+        "sink": "2595896057024798556/98",
+        "row": "2595896057024798556/98",
+        "arrow": "2595896057024798556/98"
+      },
+      "lane": null,
+      "note": ""
+    },
+    {
+      "name": "lifecycle_events: identical logical content in all three databases",
+      "ok": true,
+      "expected": "equal",
+      "observed": {
+        "sink": "7698648873711183565/4",
+        "row": "7698648873711183565/4",
+        "arrow": "7698648873711183565/4"
+      },
+      "lane": null,
+      "note": ""
+    },
+    {
+      "name": "device_registry_versions: identical logical content in all three databases",
+      "ok": true,
+      "expected": "equal",
+      "observed": {
+        "sink": "11582353976155251965/8",
+        "row": "11582353976155251965/8",
+        "arrow": "11582353976155251965/8"
+      },
+      "lane": null,
+      "note": ""
+    },
+    {
+      "name": "device_state_versions: identical logical content in all three databases",
+      "ok": true,
+      "expected": "equal",
+      "observed": {
+        "sink": "3985398984852144992/4",
+        "row": "3985398984852144992/4",
+        "arrow": "3985398984852144992/4"
+      },
+      "lane": null,
+      "note": ""
+    },
+    {
+      "name": "diagnostic_events: identical logical content in all three databases",
+      "ok": true,
+      "expected": "equal",
+      "observed": {
+        "sink": "1881617073922337547/20",
+        "row": "1881617073922337547/20",
+        "arrow": "1881617073922337547/20"
+      },
+      "lane": null,
+      "note": ""
+    },
+    {
+      "name": "fault worker exited inside the crash window",
+      "ok": true,
+      "expected": 86,
+      "observed": 86,
+      "lane": "row",
+      "note": ""
+    },
+    {
+      "name": "after restart: logical rows complete",
+      "ok": true,
+      "expected": 60,
+      "observed": {
+        "physical": 110,
+        "logical": 60
+      },
+      "lane": "row",
+      "note": ""
+    },
+    {
+      "name": "after restart: physical duplicates exist (at-least-once, not exactly-once)",
+      "ok": true,
+      "expected": "physical > logical",
+      "observed": {
+        "physical": 110,
+        "logical": 60
+      },
+      "lane": "row",
+      "note": "rows inserted before the crash: {'physical': 50, 'logical': 50}"
+    },
+    {
+      "name": "change after connector restart reaches all lanes exactly once (logically)",
+      "ok": true,
+      "expected": 1,
+      "observed": {
+        "sink": {
+          "physical": 1,
+          "logical": 1
+        },
+        "row": {
+          "physical": 1,
+          "logical": 1
+        },
+        "arrow": {
+          "physical": 1,
+          "logical": 1
+        }
+      },
+      "lane": null,
+      "note": ""
+    }
+  ],
+  "table_counts": {
+    "sink": {
+      "telemetry_fact": {
+        "physical": 158,
+        "logical": 158
+      },
+      "lifecycle_events": {
+        "physical": 4,
+        "logical": 4
+      },
+      "device_registry_versions": {
+        "physical": 9,
+        "logical": 9
+      },
+      "device_state_versions": {
+        "physical": 4,
+        "logical": 4
+      },
+      "diagnostic_events": {
+        "physical": 40,
+        "logical": 20
+      }
+    },
+    "row": {
+      "telemetry_fact": {
+        "physical": 208,
+        "logical": 158
+      },
+      "lifecycle_events": {
+        "physical": 4,
+        "logical": 4
+      },
+      "device_registry_versions": {
+        "physical": 9,
+        "logical": 9
+      },
+      "device_state_versions": {
+        "physical": 4,
+        "logical": 4
+      },
+      "diagnostic_events": {
+        "physical": 40,
+        "logical": 20
+      }
+    },
+    "arrow": {
+      "telemetry_fact": {
+        "physical": 158,
+        "logical": 158
+      },
+      "lifecycle_events": {
+        "physical": 4,
+        "logical": 4
+      },
+      "device_registry_versions": {
+        "physical": 9,
+        "logical": 9
+      },
+      "device_state_versions": {
+        "physical": 4,
+        "logical": 4
+      },
+      "diagnostic_events": {
+        "physical": 40,
+        "logical": 20
+      }
+    }
+  },
+  "limitations": [
+    "single-node local stack; no HA, no production sizing",
+    "lanes are at-least-once; physical duplicates are expected after the injected crash",
+    "MongoDB update events use a post-change full-document lookup (may include later updates)"
+  ]
+}

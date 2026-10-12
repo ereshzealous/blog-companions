@@ -1,0 +1,43 @@
+2026-10-10T17:40:48Z
+nostalgic_sutherland	rust:1.94-bookworm	Up 2 minutes
+nostalgic_sutherland	562.19%	1.225GiB / 2GiB
+17:40:58Z	nice_elgamal	1658.40%	1.261GiB / 2GiB
+17:42:03Z	distracted_mccarthy	68.19%	109.9MiB / 7.748GiB
+17:42:34Z	distracted_mccarthy	216.96%	1.023GiB / 7.748GiB
+17:43:07Z	suspicious_wiles	1250.77%	1.981GiB / 2GiB
+17:43:38Z	suspicious_wiles	1172.01%	1.978GiB / 2GiB
+17:44:10Z	suspicious_wiles	1263.66%	1.987GiB / 2GiB
+17:44:42Z	suspicious_wiles	1341.72%	1.995GiB / 2GiB
+17:45:13Z	suspicious_wiles	1425.57%	1.975GiB / 2GiB
+17:45:44Z	suspicious_wiles	1222.98%	1.98GiB / 2GiB
+17:46:17Z	suspicious_wiles	1459.38%	1.98GiB / 2GiB
+17:46:49Z	suspicious_wiles	1180.08%	1.982GiB / 2GiB
+17:47:21Z	suspicious_wiles	1356.90%	1.981GiB / 2GiB
+17:47:52Z	suspicious_wiles	1399.27%	1.978GiB / 2GiB
+17:48:23Z	suspicious_wiles	1285.40%	1.977GiB / 2GiB
+17:48:55Z	suspicious_wiles	1384.85%	1.983GiB / 2GiB
+17:49:26Z	suspicious_wiles	1400.86%	1.985GiB / 2GiB
+17:49:57Z	suspicious_wiles	1307.01%	1.984GiB / 2GiB
+17:50:30Z	suspicious_wiles	1275.69%	1.978GiB / 2GiB
+17:51:02Z	suspicious_wiles	1352.78%	1.987GiB / 2GiB
+17:51:33Z	suspicious_wiles	1388.67%	1.995GiB / 2GiB
+17:52:05Z	suspicious_wiles	1274.51%	1.978GiB / 2GiB
+17:52:36Z	suspicious_wiles	1313.97%	1.983GiB / 2GiB
+17:53:08Z	suspicious_wiles	1280.39%	1.995GiB / 2GiB
+17:53:39Z	suspicious_wiles	1299.99%	1.98GiB / 2GiB
+17:54:10Z	suspicious_wiles	1215.94%	1.977GiB / 2GiB
+17:54:42Z	suspicious_wiles	1281.67%	1.981GiB / 2GiB
+17:55:13Z	suspicious_wiles	1309.09%	1.979GiB / 2GiB
+17:55:45Z	thendb-t14-clickhouse	348.55%	663MiB / 2GiB
+17:56:16Z	thendb-t14-server	148.64%	409.1MiB / 6GiB
+17:56:49Z	thendb-t14-server	302.54%	533.9MiB / 6GiB
+17:57:22Z	thendb-t14-server	416.47%	562.7MiB / 6GiB
+17:57:54Z	thendb-t14-server	590.12%	571.1MiB / 6GiB
+17:58:25Z	jolly_dewdney	0.17%	278.7MiB / 6GiB
+17:58:56Z	jolly_dewdney	0.23%	278.7MiB / 6GiB
+17:59:27Z	jolly_dewdney	0.17%	201.2MiB / 6GiB
+17:59:58Z	jolly_dewdney	0.20%	201.5MiB / 6GiB
+18:00:30Z	thendb-t14-clickhouse	64.14%	487.3MiB / 6GiB
+18:01:02Z	boring_wescoff	0.23%	402.3MiB / 6GiB
+18:01:33Z	boring_wescoff	0.23%	352.3MiB / 6GiB
+18:02:04Z	boring_wescoff	0.19%	353.5MiB / 6GiB

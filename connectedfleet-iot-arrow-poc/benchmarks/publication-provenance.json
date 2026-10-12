@@ -1,0 +1,111 @@
+{
+  "source_poc_commit": "60c93d87d6b0bfe69aef39bc596b2360dd7ed21c",
+  "benchmarked_commit": "434b2a464e1b6cf1f5304f34902c67de8857859c",
+  "cited_run": "lab03-confirm-20261011T031053Z-434b2a4",
+  "originals_preserved_in_authoring_workspace": true,
+  "no_new_measurements": true,
+  "changed_publication_copies": [
+    {
+      "path": ".gitignore",
+      "source_sha256": "85e9ae46ee0cced85a83e9b08ab89007c102da9411974af0649b7d601d13f5bd",
+      "publication_sha256": "84ce556dd98e10ce85e039e7125953caec529fdb69ead68ff5570e89bc276357",
+      "change": "publication instructions or packaging metadata"
+    },
+    {
+      "path": "Makefile",
+      "source_sha256": "30d52c22b3671751256bf9b61c9d80b017d0a1f304b907cf539851d9fa5007a4",
+      "publication_sha256": "f9f441cab3fdb7bdaedf3236b250cf4f40b65f8d8cca1f490c309238bc407a48",
+      "change": "publication instructions or packaging metadata"
+    },
+    {
+      "path": "README.md",
+      "source_sha256": "1c45b780b767c9125a900f638543c4b1a51d1da16f54056847361f83dd4405ec",
+      "publication_sha256": "241bbf324f0702a0c360c8ae8b4d72865fda916f0f04798f72e6c99e1427ca3e",
+      "change": "publication instructions or packaging metadata"
+    },
+    {
+      "path": "benchmarks/results/lab-02/runs/lab02-20261010T164018Z-nogit/run.json",
+      "source_sha256": "a7d13e3baa86a294f5550a503e121a27d056d89775cba3213a40f097fd8e473c",
+      "publication_sha256": "df2f7be5c22607fa7a6812950a482d7afd73937334aec5ad056fe8cd51125015",
+      "change": "workstation path prefixes replaced; measured values unchanged"
+    },
+    {
+      "path": "benchmarks/results/lab-02/runs/lab02-20261010T164346Z-nogit/run.json",
+      "source_sha256": "bfa7192f4484e654446214c1d9eec9363de3cf9282f7cbecbec3c8a7c5686ece",
+      "publication_sha256": "983c6ff32c7e1f9754fde08d55a37e9cf108a68cce2c154775c6256f792642e1",
+      "change": "workstation path prefixes replaced; measured values unchanged"
+    },
+    {
+      "path": "benchmarks/results/lab-02/runs/lab02-20261010T164622Z-nogit/run.json",
+      "source_sha256": "5c1972d288491768cf1441137361ade3255d92eb85467c8b8c6dfb7b067590b6",
+      "publication_sha256": "f5d48b1730e743c561f1308872b1a55ef0bfc6a3a93a615f1492664ce1b79499",
+      "change": "workstation path prefixes replaced; measured values unchanged"
+    },
+    {
+      "path": "benchmarks/results/runs/lab03-confirm-20261010T192702Z-a499a19/report.html",
+      "source_sha256": "aa2a0a6559e6a6637897a46ef9725c182798c1da1e2785de6434b10b00384fd7",
+      "publication_sha256": "3a66b368df959a30235c88115512955891fd7f4472d31fd6f83731082a096535",
+      "change": "historical report navigation repaired"
+    },
+    {
+      "path": "benchmarks/results/runs/lab03-confirm-20261010T205001Z-9c6ac78/report.html",
+      "source_sha256": "735993ca88d39fa9ed4970f67f91ac0c4826a702706c2216327b08a860ccc1ec",
+      "publication_sha256": "c11e9f0b76a3bb4c6b4ba0a14449102e3c10987adff88c657616177c707a5cd0",
+      "change": "historical report navigation repaired"
+    },
+    {
+      "path": "benchmarks/results/runs/lab03-confirm-20261010T220213Z-1f53350/host-load.txt",
+      "source_sha256": "591ea4bd3fbcc1da69dca67b19b2479abdc26c60bbfb972216f698fbb6604746",
+      "publication_sha256": "4a3ea21083858983cf9399b7ccc1232d24bfd1ee864a2011871f138c71091fa8",
+      "change": "workstation path prefixes replaced; measured values unchanged"
+    },
+    {
+      "path": "benchmarks/results/runs/lab03-confirm-20261010T230335Z-59bc304/host-load.txt",
+      "source_sha256": "25cbf72526524f6cc902d103ffec4916b3a39aa6e98dafc0d2ad6990d3cdca77",
+      "publication_sha256": "b947878d7bfbc81a080b699f175089a69d243bf134389e991f38e52128c9b438",
+      "change": "workstation path prefixes replaced; measured values unchanged"
+    },
+    {
+      "path": "benchmarks/results/runs/lab03-confirm-20261010T234600Z-7e220a0/host-load.txt",
+      "source_sha256": "72290e02a7eff71f8356d8bb145a87c7906acc93cb183140f2bc09382b240083",
+      "publication_sha256": "b7bd87f22a18bd87bca22c593b308f1206b579e2d115985570cec686aaf9b7fe",
+      "change": "workstation path prefixes replaced; measured values unchanged"
+    },
+    {
+      "path": "benchmarks/results/runs/lab03-confirm-20261011T001919Z-d1904b5/host-load.txt",
+      "source_sha256": "ff921a850d07f5afe584cfb98a187f9953ebf47c5777604995fa9e745ee779c3",
+      "publication_sha256": "2ebdd21eae7b23cdfdfa9f41401cf14614d8cf3b387b45de8c7a59e6f22253ef",
+      "change": "workstation path prefixes replaced; measured values unchanged"
+    },
+    {
+      "path": "benchmarks/results/runs/lab03-confirm-20261011T005033Z-8a28e84/host-load.txt",
+      "source_sha256": "493713082884d61aaecc0edc95739964952014cb71f6e6b7a0a42909d1ae5285",
+      "publication_sha256": "00ae443ece101cbb0991023dac95fc2b4b2fe05b924c9f939738213d6d69a1df",
+      "change": "workstation path prefixes replaced; measured values unchanged"
+    },
+    {
+      "path": "benchmarks/results/runs/lab03-confirm-20261011T031053Z-434b2a4/report.html",
+      "source_sha256": "cefe8520c5f892ded4a250aca4da7bc448a0140b780e44efa09710d03cf75857",
+      "publication_sha256": "b6f0c7829a5484a1dc6bb45575e97f6342f4fbc866281ea13337726b2c9a9b19",
+      "change": "historical report navigation repaired"
+    },
+    {
+      "path": "benchmarks/results/runs/lab03-smoke-20261010T165506Z-32b2836/report.html",
+      "source_sha256": "db0f1058c3340a6e03e770bd3ec42e71a7570390730d79441fa2c492c1976813",
+      "publication_sha256": "db5dd7b291be049f9251f041bd17c7d2eae0921e89dd7b6b862cf06ad3292c3c",
+      "change": "historical report navigation repaired"
+    },
+    {
+      "path": "benchmarks/results/runs/lab03-smoke-20261010T174059Z-c39b87f/report.html",
+      "source_sha256": "a3ab95af054e8e32b49498b24ec87e60996d6a5590526e6ac721f481494aa279",
+      "publication_sha256": "de74562b7b0432766cf018f3f3c9181f6f30ebb055435c3f0773e65bfc70a508",
+      "change": "historical report navigation repaired"
+    },
+    {
+      "path": "benchmarks/results/runs/lab03-smoke-20261010T183128Z-c67d181/report.html",
+      "source_sha256": "07ac66ad07a5cc32e5b70f5d4c36cf5d5322a63610058d707a14ac2e06e1a1c2",
+      "publication_sha256": "0c29571745dded9d6d9fc453f7211a5a278d74639f5f5c4faf53ca0a77406c23",
+      "change": "historical report navigation repaired"
+    }
+  ]
+}

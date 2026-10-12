@@ -1,0 +1,63 @@
+# Lab 03 smoke profile: proves the harness end to end (measure -> validate -> report).
+# One warm-up + one measured repetition. Results are smoke evidence from one machine,
+# never a production performance claim.
+profile: smoke
+seed: 20261010
+warmups: 1
+repetitions: 1
+kafka_partitions: 1          # one partition per benchmark topic: every lane has one consumer and one ordered stream
+consumer_parallelism: 1      # lane A tasks.max=1, lanes B/C one worker process each
+lane_order: rotate           # rotate lane order per repetition to spread order/thermal effects
+timeouts:
+  lane_drain_s: 900
+  live_s: 900
+
+experiments:
+  E1:                        # direct ingestion, no transformation, A/B/C into telemetry_fact
+    enabled: true
+    lanes: [sink, row, arrow]
+    event_counts: [10000, 100000]
+    batch_sizes: [100, 1000, 10000]
+    flush_timeout_ms: 1000
+    shape: {name: dense, null_fraction: 0.04, string_heavy: false}
+    exclusions: []
+    live:                    # latency mode: producer at a fixed rate while the lane is running
+      enabled: true
+      event_count: 10000
+      rate_eps: 1000
+      batch_sizes: [1000]
+      flush_timeouts_ms: [250, 1000]
+
+  E2:                        # transformation isolation: B vs C (+ 2x2), identical risk rule, telemetry_enriched
+    enabled: true
+    event_count: 100000
+    batch_sizes: [1000, 10000]
+    flush_timeout_ms: 1000
+    variants:                # [compute, insert]
+      - [row, native]
+      - [arrow, arrowstream]
+      - [row, arrowstream]
+      - [arrow, native]
+    shapes:
+      - {name: dense, null_fraction: 0.04, string_heavy: false}
+      - {name: null_heavy, null_fraction: 0.40, string_heavy: false}
+      - {name: string_heavy, null_fraction: 0.04, string_heavy: true}
+
+  E3:                        # CSV backfill: direct ClickHouse vs row parse + Native vs Arrow CSV + ArrowStream
+    enabled: true
+    rows: [100000]
+    batch_size: 10000
+    compression: [none, gzip]
+    methods: [direct, row, arrow]
+
+  E4:                        # correctness and failure behaviour
+    enabled: true
+    event_count: 5000
+    batch_size: 500
+    flush_timeout_ms: 500
+    poison_records: 1
+    null_edge_fraction: 0.9
+
+  E5:                        # optional interoperability (host process; needs `uv sync --group interop`)
+    enabled: true
+    event_count: 100000

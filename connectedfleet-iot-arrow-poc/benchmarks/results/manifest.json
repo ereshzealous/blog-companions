@@ -1,0 +1,64 @@
+{
+  "lab03_runs": [
+    {
+      "run_id": "lab03-confirm-20261010T192702Z-a499a19",
+      "profile": "confirm",
+      "git_sha": "a499a19278ba46bd2dcf91adfc38e0e01eba05ab",
+      "status": "COMPLETED",
+      "valid": true,
+      "cases": 14,
+      "cases_valid": 14,
+      "ended_at_utc": "2026-10-10T19:35:45Z"
+    },
+    {
+      "run_id": "lab03-confirm-20261010T205001Z-9c6ac78",
+      "profile": "confirm",
+      "git_sha": "9c6ac78af1eaa218b90c8939fc7924ee66b56161",
+      "status": "RUNNING",
+      "valid": false,
+      "cases": 80,
+      "cases_valid": 0,
+      "ended_at_utc": "2026-10-10T21:33:18Z"
+    },
+    {
+      "run_id": "lab03-confirm-20261011T031053Z-434b2a4",
+      "profile": "confirm",
+      "git_sha": "434b2a464e1b6cf1f5304f34902c67de8857859c",
+      "status": "COMPLETED",
+      "valid": true,
+      "cases": 238,
+      "cases_valid": 238,
+      "ended_at_utc": "2026-10-11T05:05:47Z"
+    },
+    {
+      "run_id": "lab03-smoke-20261010T165506Z-32b2836",
+      "profile": "smoke",
+      "git_sha": "32b2836e2189a35c3593c36cefd15b6506390fc4",
+      "status": "COMPLETED",
+      "valid": true,
+      "cases": 119,
+      "cases_valid": 119,
+      "ended_at_utc": "2026-10-10T17:20:05Z"
+    },
+    {
+      "run_id": "lab03-smoke-20261010T174059Z-c39b87f",
+      "profile": "smoke",
+      "git_sha": "c39b87fc39df2444ee289d492888e96a63b7e9a8",
+      "status": "COMPLETED",
+      "valid": true,
+      "cases": 119,
+      "cases_valid": 119,
+      "ended_at_utc": "2026-10-10T18:02:25Z"
+    },
+    {
+      "run_id": "lab03-smoke-20261010T183128Z-c67d181",
+      "profile": "smoke",
+      "git_sha": "c67d181d26ea98fc13be11ab16b6514ed19938a2",
+      "status": "COMPLETED",
+      "valid": true,
+      "cases": 119,
+      "cases_valid": 119,
+      "ended_at_utc": "2026-10-10T18:49:59Z"
+    }
+  ]
+}

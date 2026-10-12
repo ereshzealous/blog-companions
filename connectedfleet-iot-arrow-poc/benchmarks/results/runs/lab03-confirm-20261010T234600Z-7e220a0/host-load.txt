@@ -1,0 +1,223 @@
+2026-10-10T23:45:57Z host quiet for 60 s (no foreign containers, native busy CPU <= 150%); starting confirm E1-E4
+23:45:57Z\tloadavg\t{ 3.41 7.73 11.98 }
+23:46:29Z	native	 95.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t10_merge_join-035c30ccd4f06782
+23:46:29Z	native	 94.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+23:46:29Z	native	 95.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+23:46:29Z	native	 96.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+23:46:29Z	native	332.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:46:29Z	native	123.0 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:46:29Z	native	353.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:46:29Z\tloadavg\t{ 13.59 9.91 12.61 }
+23:47:02Z	native	 98.1 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+23:47:02Z	native	 97.5 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:47:02Z	native	 73.7 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t14_findings-e1d002893eeac63b
+23:47:02Z\tloadavg\t{ 14.81 10.52 12.73 }
+23:47:33Z\tloadavg\t{ 11.42 10.11 12.51 }
+23:48:05Z\tloadavg\t{ 8.21 9.49 12.19 }
+23:48:37Z	native	 51.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/n1_shard_readers-3759345d5dbb3907
+23:48:37Z\tloadavg\t{ 5.82 8.79 11.84 }
+23:49:08Z	native	 70.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t10_merge_join-035c30ccd4f06782
+23:49:08Z	native	 74.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/review_regressions-04ec39151051822d
+23:49:08Z	native	 71.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t11_compaction-3f870844ad028aa3
+23:49:08Z	native	 69.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+23:49:08Z	native	 69.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t5_hardening-055ac445daf33ea9
+23:49:08Z	native	 68.1 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+23:49:08Z	native	 73.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+23:49:08Z	native	 74.0 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+23:49:08Z	native	 68.7 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+23:49:08Z	native	 71.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+23:49:08Z	native	 70.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+23:49:08Z	native	 71.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+23:49:08Z	native	232.3 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+23:49:08Z	native	 65.7 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+23:49:08Z\tloadavg\t{ 6.23 8.54 11.64 }
+23:49:40Z	native	 81.3 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t10_merge_join-035c30ccd4f06782
+23:49:40Z	native	 73.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+23:49:40Z	native	 73.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+23:49:40Z	native	 76.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:49:40Z	native	569.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:49:40Z	native	 79.0 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:49:40Z	native	120.1 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/n1_shard_readers-3759345d5dbb3907
+23:49:40Z	native	 51.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t12_oracle-e296b1fe1cdd0254
+23:49:40Z	native	 58.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governance-05125d2c5f44f0cc
+23:49:40Z\tloadavg\t{ 10.55 9.51 11.87 }
+23:50:12Z	native	101.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:50:12Z	native	100.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t14_findings-e1d002893eeac63b
+23:50:12Z\tloadavg\t{ 12.53 10.18 12.04 }
+23:50:44Z\tloadavg\t{ 8.19 9.37 11.67 }
+23:51:16Z\tloadavg\t{ 6.60 8.86 11.40 }
+23:51:47Z\tloadavg\t{ 5.24 8.32 11.12 }
+23:52:19Z	native	 98.3 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t10_merge_join-035c30ccd4f06782
+23:52:19Z	native	 98.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t11_compaction-3f870844ad028aa3
+23:52:19Z	native	 98.7 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+23:52:19Z	native	 98.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+23:52:19Z	native	 98.5 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+23:52:19Z	native	 80.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/n1_shard_readers-3759345d5dbb3907
+23:52:19Z\tloadavg\t{ 9.34 9.00 11.25 }
+23:52:51Z	native	463.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:52:51Z	native	 85.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:52:51Z	native	136.0 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+23:52:51Z	native	103.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governance-05125d2c5f44f0cc
+23:52:51Z	native	 51.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t14_findings-e1d002893eeac63b
+23:52:51Z	native	159.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t15_search-19584970238bfe62
+23:52:51Z\tloadavg\t{ 21.26 11.71 12.14 }
+23:53:23Z	native	 98.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+23:53:23Z	native	211.0 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:53:23Z	native	 98.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t14_findings-e1d002893eeac63b
+23:53:23Z\tloadavg\t{ 28.39 14.46 13.13 }
+23:53:54Z	native	1353.3 target/release/examples/soak
+23:53:54Z\tloadavg\t{ 57.34 22.69 16.15 }
+23:54:26Z	native	1045.9 target/release/examples/soak
+23:54:26Z\tloadavg\t{ 70.08 29.05 18.68 }
+23:54:58Z	native	719.4 target/release/examples/soak
+23:54:58Z\tloadavg\t{ 76.92 34.84 21.15 }
+23:55:29Z\tloadavg\t{ 54.90 34.55 21.63 }
+23:56:02Z	native	 57.7 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+23:56:02Z	native	 52.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+23:56:02Z	native	 50.3 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t8_lookup-377bfdc9283ce004
+23:56:02Z	native	 56.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t8_lookup-377bfdc9283ce004
+23:56:02Z\tloadavg\t{ 38.33 32.36 21.27 }
+23:56:34Z	native	 98.1 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t10_merge_join-035c30ccd4f06782
+23:56:34Z	native	 96.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+23:56:34Z	native	 97.0 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+23:56:34Z	native	 97.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+23:56:34Z	native	 99.5 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:56:34Z	native	138.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:56:34Z	native	 99.1 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/n1_shard_readers-3759345d5dbb3907
+23:56:34Z\tloadavg\t{ 29.86 31.12 21.28 }
+23:57:06Z	native	375.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:57:06Z	native	144.1 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t14_findings-e1d002893eeac63b
+23:57:06Z	native	127.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t15_search-19584970238bfe62
+23:57:06Z\tloadavg\t{ 30.75 31.10 21.61 }
+23:57:38Z	native	 99.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:57:38Z	native	100.0 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t14_findings-e1d002893eeac63b
+23:57:38Z\tloadavg\t{ 23.96 29.53 21.37 }
+23:58:10Z\tloadavg\t{ 14.68 26.58 20.62 }
+23:58:41Z\tloadavg\t{ 9.53 24.20 19.97 }
+23:59:13Z	native	 82.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t10_merge_join-035c30ccd4f06782
+23:59:13Z	native	 81.7 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t11_compaction-3f870844ad028aa3
+23:59:13Z	native	 81.3 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+23:59:13Z	native	 82.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t5_hardening-055ac445daf33ea9
+23:59:13Z	native	 85.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+23:59:13Z	native	 80.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+23:59:13Z	native	 82.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+23:59:13Z	native	 85.0 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+23:59:13Z	native	 80.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t8_lookup-377bfdc9283ce004
+23:59:13Z	native	 82.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t8_lookup-377bfdc9283ce004
+23:59:13Z\tloadavg\t{ 13.28 23.62 19.89 }
+23:59:46Z	native	 90.7 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t10_merge_join-035c30ccd4f06782
+23:59:46Z	native	 93.3 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+23:59:46Z	native	 87.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+23:59:46Z	native	 89.5 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:59:46Z	native	658.5 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:59:46Z	native	 90.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+23:59:46Z	native	 62.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/pre_t14_hardening-5527c4f2432839cf
+23:59:46Z\tloadavg\t{ 17.18 23.41 19.97 }
+00:00:17Z	native	 99.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+00:00:17Z	native	312.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:00:17Z	native	 97.7 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t14_findings-e1d002893eeac63b
+00:00:17Z\tloadavg\t{ 17.99 23.16 20.00 }
+00:00:49Z\tloadavg\t{ 11.97 21.11 19.38 }
+00:01:21Z\tloadavg\t{ 10.44 19.84 18.98 }
+00:01:52Z\tloadavg\t{ 7.36 18.17 18.40 }
+00:02:24Z	native	 90.0 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t10_merge_join-035c30ccd4f06782
+00:02:24Z	native	 91.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+00:02:24Z	native	 90.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+00:02:24Z	native	 91.0 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+00:02:24Z	native	 66.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:02:24Z	native	 73.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:02:24Z	native	 95.7 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/n1_shard_readers-3759345d5dbb3907
+00:02:24Z	native	 61.5 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/pre_t14_hardening-5527c4f2432839cf
+00:02:24Z\tloadavg\t{ 11.69 18.20 18.41 }
+00:02:56Z	native	 92.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t10_merge_join-035c30ccd4f06782
+00:02:56Z	native	 93.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+00:02:56Z	native	 94.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:02:56Z	native	 99.1 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:02:56Z	native	100.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:02:56Z	native	 91.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t12_oracle-e296b1fe1cdd0254
+00:02:56Z	native	200.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t14_findings-e1d002893eeac63b
+00:02:56Z	native	291.0 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t15_search-19584970238bfe62
+00:02:56Z\tloadavg\t{ 21.25 19.83 18.99 }
+00:03:27Z	native	 66.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/n1_shard_readers-3759345d5dbb3907
+00:03:27Z\tloadavg\t{ 15.29 18.54 18.55 }
+00:03:59Z\tloadavg\t{ 11.37 17.26 18.08 }
+00:04:31Z\tloadavg\t{ 7.81 15.73 17.49 }
+00:05:03Z	native	 70.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t10_merge_join-035c30ccd4f06782
+00:05:03Z	native	 69.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t11_compaction-3f870844ad028aa3
+00:05:03Z	native	 71.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+00:05:03Z	native	 71.5 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+00:05:03Z	native	 67.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+00:05:03Z	native	 70.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+00:05:03Z	native	 68.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+00:05:03Z	native	 71.1 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+00:05:03Z	native	 69.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+00:05:03Z	native	 72.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+00:05:03Z	native	 70.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+00:05:03Z	native	 72.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+00:05:03Z	native	 55.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+00:05:03Z	native	 96.0 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t8_lookup-377bfdc9283ce004
+00:05:03Z\tloadavg\t{ 9.17 15.27 17.26 }
+00:05:35Z	native	 56.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+00:05:35Z	native	635.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:05:35Z	native	112.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/n1_shard_readers-3759345d5dbb3907
+00:05:35Z	native	125.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/pre_t14_hardening-5527c4f2432839cf
+00:05:35Z\tloadavg\t{ 10.76 15.08 17.12 }
+00:06:06Z	native	243.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:06:06Z	native	100.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t14_findings-e1d002893eeac63b
+00:06:06Z\tloadavg\t{ 13.11 15.32 17.13 }
+00:06:38Z\tloadavg\t{ 9.18 14.17 16.65 }
+00:07:10Z\tloadavg\t{ 6.74 13.10 16.18 }
+00:07:41Z	native	 52.5 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/n1_shard_readers-3759345d5dbb3907
+00:07:41Z\tloadavg\t{ 4.57 11.87 15.61 }
+00:08:12Z	native	 95.7 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t10_merge_join-035c30ccd4f06782
+00:08:12Z	native	 95.5 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+00:08:12Z	native	 96.0 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+00:08:12Z	native	 95.4 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+00:08:12Z	native	115.7 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:08:12Z	native	351.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:08:12Z	native	 51.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/n1_shard_readers-3759345d5dbb3907
+00:08:12Z\tloadavg\t{ 12.00 12.99 15.88 }
+00:08:45Z	native	 98.7 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+00:08:45Z	native	 97.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:08:45Z	native	365.1 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t14_findings-e1d002893eeac63b
+00:08:45Z\tloadavg\t{ 15.60 13.72 16.04 }
+00:09:16Z\tloadavg\t{ 10.40 12.65 15.56 }
+00:09:48Z	native	 54.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/n1_shard_readers-3759345d5dbb3907
+00:09:48Z\tloadavg\t{ 7.85 11.83 15.17 }
+00:10:20Z\tloadavg\t{ 6.97 11.17 14.79 }
+00:10:52Z	native	 96.0 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t10_merge_join-035c30ccd4f06782
+00:10:52Z	native	 93.3 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t11_compaction-3f870844ad028aa3
+00:10:52Z	native	 96.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+00:10:52Z	native	 94.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+00:10:52Z	native	 96.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+00:10:52Z	native	 93.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+00:10:52Z	native	 96.7 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t8_lookup-377bfdc9283ce004
+00:10:52Z	native	 94.3 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t8_lookup-377bfdc9283ce004
+00:10:52Z	native	 95.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t12_server-f9a272469b28ebf5
+00:10:52Z	native	 87.1 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:10:52Z	native	107.3 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:10:52Z\tloadavg\t{ 12.51 12.01 14.96 }
+00:11:24Z	native	 70.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t10_merge_join-035c30ccd4f06782
+00:11:24Z	native	 70.5 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+00:11:24Z	native	 67.5 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+00:11:24Z	native	 68.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:11:24Z	native	678.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:11:24Z	native	255.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:11:24Z	native	 71.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:11:24Z\tloadavg\t{ 12.83 12.11 14.89 }
+00:11:56Z	native	 99.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:11:56Z	native	 98.7 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t14_findings-e1d002893eeac63b
+00:11:56Z\tloadavg\t{ 13.47 12.52 14.94 }
+00:12:28Z\tloadavg\t{ 9.01 11.53 14.50 }
+00:13:00Z\tloadavg\t{ 6.82 10.69 14.07 }
+00:13:32Z	native	 51.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t11_compaction-3f870844ad028aa3
+00:13:32Z	native	156.0 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t11_compaction-3f870844ad028aa3
+00:13:32Z\tloadavg\t{ 6.14 10.12 13.74 }
+00:14:03Z	native	 93.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t10_merge_join-035c30ccd4f06782
+00:14:03Z	native	 93.7 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t13_governor-3f2844e4e5e94faa
+00:14:03Z	native	 96.6 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t6_index-ac06f5443a69926e
+00:14:03Z	native	 94.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t7_temporal-e6877483a734a0d8
+00:14:03Z	native	111.8 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:14:03Z	native	345.9 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/f10_join_memory-359f1379b22e3991
+00:14:03Z	native	 59.5 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/pre_t14_hardening-5527c4f2432839cf
+00:14:03Z\tloadavg\t{ 18.03 12.80 14.60 }

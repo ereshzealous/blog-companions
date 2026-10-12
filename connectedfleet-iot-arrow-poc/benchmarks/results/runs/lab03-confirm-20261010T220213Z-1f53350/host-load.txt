@@ -1,0 +1,94 @@
+2026-10-10T22:02:12Z host idle for 180 s (no foreign containers, no native process > 50% CPU, 1-min load < 6); starting confirm E1-E4
+22:02:12Z	native	 84.7 /opt/homebrew/Cellar/python@3.12/3.12.13_4/Frameworks/Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python
+22:02:12Z\tloadavg\t{ 2.82 7.66 8.91 }
+22:02:43Z\tloadavg\t{ 2.73 7.12 8.66 }
+22:03:15Z\tloadavg\t{ 2.68 6.72 8.46 }
+22:03:47Z\tloadavg\t{ 2.91 6.39 8.28 }
+22:04:19Z\tloadavg\t{ 4.55 6.40 8.21 }
+22:04:51Z\tloadavg\t{ 3.70 6.03 8.01 }
+22:05:22Z\tloadavg\t{ 3.02 5.67 7.81 }
+22:05:54Z\tloadavg\t{ 3.48 5.50 7.66 }
+22:06:25Z\tloadavg\t{ 4.20 5.42 7.55 }
+22:06:56Z	native	 85.3 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:06:56Z	native	334.2 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:06:56Z	native	200.8 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:06:56Z	native	166.9 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:06:56Z	native	138.1 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:06:56Z\tloadavg\t{ 14.51 7.65 8.28 }
+22:07:29Z	native	148.6 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:07:29Z	native	 68.8 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:07:29Z	native	 66.9 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:07:29Z	native	 67.0 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:07:29Z	native	337.3 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:07:29Z	native	139.4 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:07:29Z	native	 69.4 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:07:29Z\tloadavg\t{ 26.77 11.45 9.63 }
+22:08:01Z	native	 54.6 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:08:01Z	native	111.8 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:08:01Z	native	404.1 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:08:01Z	native	 57.3 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:08:01Z	native	 58.4 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:08:01Z	native	 57.7 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:08:01Z	native	 55.8 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:08:01Z\tloadavg\t{ 31.99 14.13 10.66 }
+22:08:33Z	native	809.1 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:08:33Z	native	 58.6 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:08:33Z	native	 91.1 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:08:33Z\tloadavg\t{ 29.71 15.30 11.21 }
+22:09:04Z	native	 98.2 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:09:04Z	native	 98.3 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:09:04Z\tloadavg\t{ 25.88 16.04 11.65 }
+22:09:36Z	native	 99.0 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:09:36Z\tloadavg\t{ 17.52 14.97 11.41 }
+22:10:07Z	native	633.0 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:10:07Z	native	120.7 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:10:07Z	native	 57.9 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:10:07Z\tloadavg\t{ 17.08 14.95 11.54 }
+22:10:40Z	native	 99.1 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:10:40Z	native	195.8 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:10:40Z\tloadavg\t{ 31.76 18.62 12.98 }
+22:11:12Z	native	 51.7 /usr/libexec/syspolicyd
+22:11:12Z	native	 80.5 /System/Library/PrivateFrameworks/XprotectFramework.framework/Versions/A/XPCServices/XprotectService.xpc/Contents/MacOS/XprotectService
+22:11:12Z	native	 71.2 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/gate_findings-43a92e588548af50
+22:11:12Z\tloadavg\t{ 37.60 21.55 14.26 }
+22:11:43Z\tloadavg\t{ 22.30 19.49 13.79 }
+22:12:15Z	native	 88.3 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:12:15Z\tloadavg\t{ 25.70 20.54 14.37 }
+22:12:46Z\tloadavg\t{ 22.60 20.43 14.55 }
+22:13:18Z\tloadavg\t{ 15.27 18.88 14.19 }
+22:13:49Z\tloadavg\t{ 14.29 18.09 14.08 }
+22:14:20Z\tloadavg\t{ 16.44 18.42 14.35 }
+22:14:51Z\tloadavg\t{ 11.25 16.98 13.97 }
+22:15:23Z	native	243.1 target/release/t14
+22:15:23Z\tloadavg\t{ 12.30 16.46 13.89 }
+22:15:55Z\tloadavg\t{ 13.73 16.55 14.02 }
+22:16:27Z\tloadavg\t{ 9.50 15.27 13.65 }
+22:16:58Z\tloadavg\t{ 12.38 15.29 13.70 }
+22:17:29Z\tloadavg\t{ 11.08 14.77 13.58 }
+22:18:01Z\tloadavg\t{ 7.65 13.58 13.19 }
+22:18:32Z	native	1209.4 target/release/t14
+22:18:32Z\tloadavg\t{ 15.08 14.63 13.57 }
+22:19:04Z\tloadavg\t{ 14.21 14.60 13.60 }
+22:19:35Z\tloadavg\t{ 9.05 13.24 13.15 }
+22:20:06Z\tloadavg\t{ 17.94 14.85 13.72 }
+22:20:37Z\tloadavg\t{ 14.03 14.27 13.56 }
+22:21:09Z\tloadavg\t{ 8.98 12.98 13.11 }
+22:21:41Z\tloadavg\t{ 10.71 13.01 13.12 }
+22:22:12Z	native	 85.6 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+22:22:12Z\tloadavg\t{ 6.89 11.86 12.70 }
+22:22:43Z\tloadavg\t{ 5.76 11.14 12.40 }
+22:23:14Z\tloadavg\t{ 4.30 10.27 12.05 }
+22:23:45Z	native	481.2 target/release/t14
+22:23:45Z\tloadavg\t{ 2.91 9.28 11.61 }
+22:24:17Z	native	406.0 target/release/t14
+22:24:17Z\tloadavg\t{ 4.43 9.04 11.45 }
+22:24:49Z	native	510.3 target/release/t14
+22:24:49Z\tloadavg\t{ 4.75 8.70 11.24 }
+22:25:20Z	native	532.4 target/release/t14
+22:25:20Z\tloadavg\t{ 5.58 8.46 11.05 }
+22:25:51Z\tloadavg\t{ 4.60 7.95 10.77 }
+22:26:22Z\tloadavg\t{ 3.33 7.33 10.45 }
+22:26:53Z\tloadavg\t{ 2.73 6.80 10.15 }
+22:27:24Z\tloadavg\t{ 2.55 6.36 9.87 }
+22:27:56Z\tloadavg\t{ 2.45 5.90 9.56 }
+22:28:27Z\tloadavg\t{ 4.80 6.14 9.52 }

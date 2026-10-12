@@ -1,0 +1,22 @@
+{
+  "name": "cf-mongo-state",
+  "config": {
+    "_doc": "Debezium MongoDB change streams. https://debezium.io/documentation/reference/3.6/connectors/mongodb.html",
+    "connector.class": "io.debezium.connector.mongodb.MongoDbConnector",
+    "tasks.max": "1",
+    "_doc_password": "credentials are embedded in the URI: use URL-safe passwords in .env",
+    "mongodb.connection.string": "mongodb://{{ENV:MONGO_DEBEZIUM_USER}}:{{ENV:MONGO_DEBEZIUM_PASSWORD}}@mongodb:27017/?replicaSet=rs0&authSource=admin",
+    "topic.prefix": "cfraw.mongo",
+    "collection.include.list": "connectedfleet.device_state",
+    "_doc_capture": "change_streams_update_full: updates carry the document as looked up AFTER the change (may include later updates).",
+    "capture.mode": "change_streams_update_full",
+    "snapshot.mode": "initial",
+    "tombstones.on.delete": "true",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+    "topic.creation.default.replication.factor": "1",
+    "topic.creation.default.partitions": "3"
+  }
+}

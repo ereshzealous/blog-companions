@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://connectedfleet.example/contracts/cf.device-registry.v1.schema.json",
+  "title": "Versioned device registry row from PostgreSQL logical replication (Debezium)",
+  "description": "Canonical Kafka topic cf.device-registry.v1 -> ClickHouse table device_registry_versions. Frozen 2026-10-10 (schema_version 1). Key: device_id.",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "pgreg-<commit LSN>-<device_id>: stable for one committed change"
+    },
+    "device_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Kafka partition key for every canonical topic"
+    },
+    "event_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the fact happened at the source (event-time analytics)"
+    },
+    "emitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the source system emitted/committed it (not the ingestion time)"
+    },
+    "source_system": {
+      "type": "string",
+      "description": "postgres.public.device_registry"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "operation": {
+      "enum": [
+        "snapshot",
+        "insert",
+        "update",
+        "delete"
+      ]
+    },
+    "is_deleted": {
+      "type": "boolean"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "PostgreSQL commit LSN of the change (source.lsn)"
+    },
+    "customer_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 64
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "site_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 64
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "firmware_version": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 64
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "state": {
+      "anyOf": [
+        {
+          "enum": [
+            "registered",
+            "active",
+            "maintenance",
+            "retired"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "updated_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time",
+          "description": "RFC 3339 with an explicit offset; stored as UTC milliseconds"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "event_id",
+    "device_id",
+    "event_time",
+    "emitted_at",
+    "source_system",
+    "schema_version",
+    "operation",
+    "is_deleted",
+    "version"
+  ],
+  "additionalProperties": true,
+  "x-clickhouse-table": "device_registry_versions",
+  "x-null-policy": "Absent optional field == explicit null in typed storage; the normalizer counts them separately.",
+  "x-notes": "On delete only the primary key is known (REPLICA IDENTITY DEFAULT): descriptive fields are null and is_deleted=true. Debezium tombstones are dropped by the normalizer after the delete event is mapped."
+}

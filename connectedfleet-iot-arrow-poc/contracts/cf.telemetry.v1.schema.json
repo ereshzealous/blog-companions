@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://connectedfleet.example/contracts/cf.telemetry.v1.schema.json",
+  "title": "IoT gateway telemetry measurement",
+  "description": "Canonical Kafka topic cf.telemetry.v1 -> ClickHouse table telemetry_fact. Frozen 2026-10-10 (schema_version 1). Key: device_id.",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Gateway-assigned id, stable across producer retries"
+    },
+    "device_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Kafka partition key for every canonical topic"
+    },
+    "event_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the fact happened at the source (event-time analytics)"
+    },
+    "emitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the source system emitted/committed it (not the ingestion time)"
+    },
+    "source_system": {
+      "type": "string",
+      "description": "iot-gateway"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "temperature_c": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": -60,
+          "maximum": 150
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "battery_pct": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "signal_dbm": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": -150,
+          "maximum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "firmware_version": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 64
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "site_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 64
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "event_id",
+    "device_id",
+    "event_time",
+    "emitted_at",
+    "source_system",
+    "schema_version"
+  ],
+  "additionalProperties": true,
+  "x-clickhouse-table": "telemetry_fact",
+  "x-null-policy": "Absent optional field == explicit null in typed storage; the normalizer counts them separately."
+}

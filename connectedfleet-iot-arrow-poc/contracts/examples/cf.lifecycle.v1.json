@@ -1,0 +1,14 @@
+{
+  "event_id": "5b0f6f0e-7d0a-4c55-9a39-2f1f0c0b8d11",
+  "device_id": "sensor-01042",
+  "event_time": "2026-10-09T08:31:12.000Z",
+  "emitted_at": "2026-10-09T08:31:12.004Z",
+  "source_system": "registry-app.outbox",
+  "schema_version": 1,
+  "event_type": "FirmwareUpdated",
+  "aggregate_type": "device",
+  "firmware_version": "3.2.1",
+  "site_id": "factory-12",
+  "customer_id": "acme-logistics",
+  "reason": null
+}

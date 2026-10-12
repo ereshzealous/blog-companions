@@ -1,0 +1,31 @@
+{
+  "name": "cf-clickhouse-sink",
+  "config": {
+    "_doc": "Lane A: official ClickHouse Kafka Connect Sink v1.6.0. https://clickhouse.com/docs/integrations/kafka/clickhouse-kafka-connect-sink",
+    "connector.class": "com.clickhouse.kafka.connect.ClickHouseSinkConnector",
+    "tasks.max": "1",
+    "topics": "cf.telemetry.v1,cf.lifecycle.v1,cf.device-registry.v1,cf.device-state.v1,cf.diagnostics.v1",
+    "topic2TableMap": "cf.telemetry.v1=telemetry_fact,cf.lifecycle.v1=lifecycle_events,cf.device-registry.v1=device_registry_versions,cf.device-state.v1=device_state_versions,cf.diagnostics.v1=diagnostic_events",
+    "hostname": "clickhouse",
+    "port": "8123",
+    "ssl": "false",
+    "database": "bench_sink",
+    "username": "{{ENV:CLICKHOUSE_USER}}",
+    "password": "{{ENV:CLICKHOUSE_PASSWORD}}",
+    "_doc_exactly_once": "at-least-once (default). exactlyOnce=true needs KeeperMap state; not used in this POC.",
+    "exactlyOnce": "false",
+    "_doc_format": "schemaless JSON is inserted as JSONEachRow; ISO-8601 'Z' timestamps need best_effort parsing into DateTime64; precise_float_parsing=1 so text->Float64 matches the binary floats lanes B/C send (cross-lane hash). VERIFY: setting names exist in ClickHouse 26.3.",
+    "clickhouseSettings": "date_time_input_format=best_effort,input_format_skip_unknown_fields=1,input_format_json_read_bools_as_numbers=1,precise_float_parsing=1",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+    "errors.tolerance": "all",
+    "errors.retry.timeout": "60000",
+    "errors.deadletterqueue.topic.name": "cf.dlq.sink.v1",
+    "errors.deadletterqueue.topic.replication.factor": "1",
+    "errors.deadletterqueue.context.headers.enable": "true",
+    "_doc_batching": "batch size follows the consumer poll (max.poll.records); requires worker connector.client.config.override.policy=All",
+    "consumer.override.max.poll.records": "1000",
+    "consumer.override.auto.offset.reset": "earliest"
+  }
+}

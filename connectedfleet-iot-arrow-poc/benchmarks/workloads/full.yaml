@@ -1,0 +1,72 @@
+# Lab 03 full profile: larger controlled runs, >= 3 measured repetitions after one warm-up.
+# Run only when Docker has >= 16 GiB and >= 6 CPUs (see README). Every exclusion below is
+# recorded in the run manifest as NOT_RUN with its reason; nothing is silently capped.
+profile: full
+seed: 20261010
+warmups: 1
+repetitions: 3
+kafka_partitions: 1
+consumer_parallelism: 1
+lane_order: rotate
+host_guard:                   # shared laptop (B-007, B-008): time cases only on a quiet host, re-run any that overlapped other work
+  threshold_pct: 50           # a native process above this %CPU (ps decaying average) counts as busy
+  quiet_s: 60                 # other work must stay within case_limit_pct this long before a case starts
+  poll_s: 5
+  case_limit_pct: 150         # other host work (whole-host CPU minus Docker's VM, Docker Desktop and the harness incl. its finished children); above this a case waits, or runs again
+  max_attempts: 6             # the last attempt is kept and labelled; the validator excludes it if still busy
+  max_wait_s: 43200           # a case waits up to 12 h for a quiet host; then it is recorded as an error
+timeouts:
+  lane_drain_s: 7200
+  live_s: 3600
+
+experiments:
+  E1:
+    enabled: true
+    lanes: [sink, row, arrow]
+    event_counts: [100000, 1000000, 10000000]
+    batch_sizes: [100, 1000, 10000, 50000]
+    flush_timeout_ms: 1000
+    shape: {name: dense, null_fraction: 0.04, string_heavy: false}
+    exclusions:
+      - {event_count: 10000000, batch_size: 100, reason: "100k inserts per lane run; ClickHouse part pressure dominates and runtime is impractical locally"}
+      - {event_count: 10000000, batch_size: 1000, reason: "10k inserts per lane run; impractical locally"}
+    live:
+      enabled: true
+      event_count: 60000
+      rate_eps: 2000
+      batch_sizes: [1000, 10000]
+      flush_timeouts_ms: [250, 1000, 5000]
+
+  E2:
+    enabled: true
+    event_count: 1000000
+    batch_sizes: [1000, 10000, 50000]
+    flush_timeout_ms: 1000
+    variants:
+      - [row, native]
+      - [arrow, arrowstream]
+      - [row, arrowstream]
+      - [arrow, native]
+    shapes:
+      - {name: dense, null_fraction: 0.04, string_heavy: false}
+      - {name: null_heavy, null_fraction: 0.40, string_heavy: false}
+      - {name: string_heavy, null_fraction: 0.04, string_heavy: true}
+
+  E3:
+    enabled: true
+    rows: [1000000]
+    batch_size: 50000
+    compression: [none, gzip]
+    methods: [direct, row, arrow]
+
+  E4:
+    enabled: true
+    event_count: 50000
+    batch_size: 1000
+    flush_timeout_ms: 1000
+    poison_records: 3
+    null_edge_fraction: 0.9
+
+  E5:
+    enabled: true
+    event_count: 1000000

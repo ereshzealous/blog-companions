@@ -1,0 +1,37 @@
+2026-10-10T23:03:25Z host quiet for 60 s (no foreign containers, native busy CPU <= 150%); starting confirm E1-E4
+23:03:25Z\tloadavg\t{ 3.40 7.55 8.40 }
+23:03:57Z	native	170.5 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/pre_t14_hardening-5527c4f2432839cf
+23:03:57Z\tloadavg\t{ 2.79 6.93 8.14 }
+23:04:29Z	native	 98.3 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/t14_findings-e1d002893eeac63b
+23:04:29Z\tloadavg\t{ 2.36 6.43 7.91 }
+23:05:01Z	native	 99.5 <HOME>/Documents/Dev/oss/thendb/target/debug/deps/crash_schedules-366185dbce071c54
+23:05:01Z\tloadavg\t{ 2.61 6.10 7.74 }
+23:05:32Z	native	 99.0 <HOME>/Documents/Dev/oss/thendb/target/release/deps/chaos-65409a2c724e94a7
+23:05:32Z\tloadavg\t{ 6.43 6.56 7.84 }
+23:06:04Z	native	147.6 /System/Library/PrivateFrameworks/MediaAnalysis.framework/Versions/A/mediaanalysisd
+23:06:04Z	native	100.0 <HOME>/Documents/Dev/oss/thendb/target/release/deps/chaos-65409a2c724e94a7
+23:06:04Z\tloadavg\t{ 5.10 6.22 7.67 }
+23:06:36Z	native	100.0 <HOME>/Documents/Dev/oss/thendb/target/release/deps/chaos-65409a2c724e94a7
+23:06:36Z\tloadavg\t{ 5.06 6.11 7.58 }
+23:07:07Z	native	100.0 <HOME>/Documents/Dev/oss/thendb/target/release/deps/t7_chaos-036ab05461a718c4
+23:07:07Z\tloadavg\t{ 3.71 5.66 7.35 }
+23:07:39Z	native	 99.7 <HOME>/Documents/Dev/oss/thendb/target/release/deps/t7_chaos-036ab05461a718c4
+23:07:39Z\tloadavg\t{ 3.66 5.45 7.22 }
+23:08:11Z	native	100.0 <HOME>/Documents/Dev/oss/thendb/target/release/deps/t7_chaos-036ab05461a718c4
+23:08:11Z\tloadavg\t{ 3.36 5.20 7.06 }
+23:08:42Z	native	 98.0 <HOME>/Documents/Dev/oss/thendb/target/release/deps/t7_chaos-036ab05461a718c4
+23:08:42Z\tloadavg\t{ 4.04 5.15 6.97 }
+23:09:14Z	native	100.0 <HOME>/Documents/Dev/oss/thendb/target/release/deps/t7_temporal-2be40e92a41f9320
+23:09:14Z\tloadavg\t{ 3.51 4.90 6.81 }
+23:09:45Z	container	elated_cartwright	99.66%	610.6MiB / 7.748GiB
+23:09:45Z\tloadavg\t{ 6.08 5.37 6.92 }
+23:10:17Z	container	elated_cartwright	344.91%	2.533GiB / 7.748GiB
+23:10:17Z	native	527.7 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+23:10:17Z	native	131.5 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+23:10:17Z\tloadavg\t{ 10.06 6.33 7.20 }
+23:10:49Z\tloadavg\t{ 8.20 6.25 7.14 }
+23:11:21Z	native	 56.0 <HOME>/.rustup/toolchains/1.94.0-aarch64-apple-darwin/bin/rustc
+23:11:21Z\tloadavg\t{ 19.37 9.00 8.09 }
+23:11:53Z	container	vigilant_dhawan	551.72%	480.5MiB / 7.748GiB
+23:11:53Z	native	100.0 /System/Library/PrivateFrameworks/XprotectFramework.framework/Versions/A/XPCServices/XprotectService.xpc/Contents/MacOS/XprotectService
+23:11:53Z\tloadavg\t{ 14.95 8.97 8.11 }

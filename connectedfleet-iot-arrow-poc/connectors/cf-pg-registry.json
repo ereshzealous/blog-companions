@@ -1,0 +1,27 @@
+{
+  "name": "cf-pg-registry",
+  "config": {
+    "_doc": "Debezium PostgreSQL CDC for device_registry. https://debezium.io/documentation/reference/3.6/connectors/postgresql.html",
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "tasks.max": "1",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "{{ENV:DEBEZIUM_PG_USER}}",
+    "database.password": "{{ENV:DEBEZIUM_PG_PASSWORD}}",
+    "database.dbname": "{{ENV:POSTGRES_DB}}",
+    "plugin.name": "pgoutput",
+    "publication.autocreate.mode": "disabled",
+    "topic.prefix": "cfraw.pg",
+    "slot.name": "cf_registry_slot",
+    "publication.name": "cf_registry_pub",
+    "table.include.list": "public.device_registry",
+    "snapshot.mode": "initial",
+    "tombstones.on.delete": "true",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+    "topic.creation.default.replication.factor": "1",
+    "topic.creation.default.partitions": "3"
+  }
+}

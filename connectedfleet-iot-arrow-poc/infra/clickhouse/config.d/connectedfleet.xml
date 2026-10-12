@@ -1,0 +1,14 @@
+<!-- ConnectedFleet: ClickHouse in a 3 GiB container (D-033).
+     The default limit (90% of RAM) left too little headroom for memory the tracker does not see; the server was
+     OOM-killed by the cgroup during background merges. Caches default to several GiB each, sized for servers.
+     Trace-level logging wrote ~220 MB of text log in a day; information level keeps errors and warnings. -->
+<clickhouse>
+    <max_server_memory_usage_to_ram_ratio>0.75</max_server_memory_usage_to_ram_ratio>
+    <mark_cache_size>268435456</mark_cache_size>
+    <index_mark_cache_size>67108864</index_mark_cache_size>
+    <primary_index_cache_size>134217728</primary_index_cache_size>
+    <uncompressed_cache_size>134217728</uncompressed_cache_size>
+    <logger>
+        <level>information</level>
+    </logger>
+</clickhouse>

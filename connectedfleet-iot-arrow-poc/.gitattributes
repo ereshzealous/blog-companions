@@ -1,0 +1,5 @@
+* text=auto eol=lf
+benchmarks/results/** -text
+benchmarks/report_assets/** -text
+*.png binary
+*.woff2 binary

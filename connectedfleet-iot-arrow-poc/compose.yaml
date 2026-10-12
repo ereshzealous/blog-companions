@@ -1,0 +1,215 @@
+# ConnectedFleet local stack (single node, development only: no HA, no TLS, no production sizing).
+#   make up      -> infrastructure only (kafka, connect, postgres, mongodb, clickhouse), waits for health
+#   profiles     -> pipeline (normalizer), lanes (worker-row, worker-arrow), tools (one-off app commands)
+# Values come from .env (copy of .env.example). Pinned versions: docs/ARCHITECTURE.md §2.1.
+name: connectedfleet
+
+x-app-env: &app-env
+  KAFKA_BOOTSTRAP: kafka:19092
+  CONNECT_URL: http://connect:8083
+  CLICKHOUSE_HTTP_URL: http://clickhouse:8123
+  CLICKHOUSE_USER: ${CLICKHOUSE_USER:?set CLICKHOUSE_USER in .env}
+  CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:?set CLICKHOUSE_PASSWORD in .env}
+  POSTGRES_HOST: postgres
+  POSTGRES_PORT: "5432"
+  POSTGRES_USER: ${POSTGRES_USER:?set POSTGRES_USER in .env}
+  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+  POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB in .env}
+  MONGO_HOST: mongodb:27017
+  MONGO_URI_OPTIONS: replicaSet=rs0&authSource=admin
+  MONGO_APP_USER: ${MONGO_APP_USER:?set MONGO_APP_USER in .env}
+  MONGO_APP_PASSWORD: ${MONGO_APP_PASSWORD:?set MONGO_APP_PASSWORD in .env}
+
+x-app: &app
+  build:
+    context: .
+    dockerfile: infra/app/Dockerfile
+  image: connectedfleet/app:0.1.0
+  environment: *app-env
+  volumes:
+    - ./.data/metrics:/metrics
+    - ./.data/work:/work
+  depends_on:
+    kafka:
+      condition: service_healthy
+    clickhouse:
+      condition: service_healthy
+
+services:
+  kafka:
+    image: apache/kafka:4.2.2
+    hostname: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      # KRaft single node (combined broker + controller). Env vars map to server.properties
+      # (https://hub.docker.com/r/apache/kafka). Logs live in the container filesystem:
+      # `make down` stops (data kept), `make clean` removes containers and volumes.
+      CLUSTER_ID: "5L6g3nShT-eMCtK--X86sw"  # apache/kafka image default example id (base64url UUID)
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: INTERNAL://:19092,EXTERNAL://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:19092,EXTERNAL://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+      KAFKA_NUM_PARTITIONS: 3
+      KAFKA_LOG_RETENTION_HOURS: 168
+      KAFKA_HEAP_OPTS: -Xms1g -Xmx1g
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:19092 > /dev/null 2>&1"]
+      interval: 10s
+      timeout: 15s
+      retries: 15
+      start_period: 20s
+    mem_limit: 1536m
+
+  connect:
+    build:
+      context: infra/connect
+    image: connectedfleet/connect:3.6.3-ch1.6.0
+    ports:
+      - "8083:8083"
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      # Debezium connect image variables (+ CONNECT_* passthrough to the worker config):
+      # https://github.com/debezium/container-images/blob/main/connect-base/
+      BOOTSTRAP_SERVERS: kafka:19092
+      GROUP_ID: cf-connect
+      CONFIG_STORAGE_TOPIC: _cf_connect_configs
+      OFFSET_STORAGE_TOPIC: _cf_connect_offsets
+      STATUS_STORAGE_TOPIC: _cf_connect_status
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: "1"
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: "1"
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: "1"
+      KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE: "false"
+      CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
+      # Lets each sink connector set its own consumer.override.max.poll.records (Lab 03 batch sizes).
+      CONNECT_CONNECTOR_CLIENT_CONFIG_OVERRIDE_POLICY: All
+      HEAP_OPTS: -Xms1g -Xmx1g
+    healthcheck:
+      # Ready = REST answers AND the ClickHouse sink plugin is loaded (not just "port open").
+      # VERIFY: curl is present in quay.io/debezium/connect:3.6.3.Final.
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8083/connector-plugins | grep -q ClickHouseSinkConnector"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 30s
+    cpus: 2.0
+    mem_limit: 2g
+
+  postgres:
+    image: postgres:17.11
+    command: ["postgres", "-c", "wal_level=logical", "-c", "max_replication_slots=10", "-c", "max_wal_senders=10"]
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?set POSTGRES_USER in .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB in .env}
+      DEBEZIUM_PG_USER: ${DEBEZIUM_PG_USER:?set DEBEZIUM_PG_USER in .env}
+      DEBEZIUM_PG_PASSWORD: ${DEBEZIUM_PG_PASSWORD:?set DEBEZIUM_PG_PASSWORD in .env}
+    volumes:
+      - ./infra/postgres:/docker-entrypoint-initdb.d:ro
+      - pg-data:/var/lib/postgresql/data
+    healthcheck:
+      # Ready = accepting connections AND logical decoding enabled.
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\" && psql -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\" -tAc 'SHOW wal_level' | grep -q logical"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    mem_limit: 1g
+
+  mongodb:
+    image: mongo:7.0.43  # 8.x (incl. 8.3, 9.0) refuses kernels >= 6.19 (SERVER-121912); Docker Desktop runs 7.0.x linuxkit
+    entrypoint: ["bash", "/cf/entrypoint.sh"]
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER:?set MONGO_ROOT_USER in .env}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:?set MONGO_ROOT_PASSWORD in .env}
+    volumes:
+      - ./infra/mongodb/entrypoint.sh:/cf/entrypoint.sh:ro
+      - mongo-data:/data/db
+      - mongo-config:/data/configdb
+    healthcheck:
+      # Initiates the single-member replica set on first run; healthy only once this member is PRIMARY.
+      test:
+        - CMD-SHELL
+        - >-
+          mongosh --quiet -u "$$MONGO_INITDB_ROOT_USERNAME" -p "$$MONGO_INITDB_ROOT_PASSWORD" --authenticationDatabase admin
+          --eval "try { rs.status() } catch (e) { rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'mongodb:27017'}]}) }; if (!db.hello().isWritablePrimary) { quit(1) }"
+      interval: 10s
+      timeout: 15s
+      retries: 20
+      start_period: 20s
+    mem_limit: 1g
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:26.3.47.6
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    environment:
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER:?set CLICKHOUSE_USER in .env}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:?set CLICKHOUSE_PASSWORD in .env}
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    volumes:
+      - ch-data:/var/lib/clickhouse
+      - ./infra/clickhouse/config.d/connectedfleet.xml:/etc/clickhouse-server/config.d/connectedfleet.xml:ro
+    healthcheck:
+      test: ["CMD-SHELL", "clickhouse-client --user \"$$CLICKHOUSE_USER\" --password \"$$CLICKHOUSE_PASSWORD\" --query 'SELECT 1'"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    mem_limit: 3g
+
+  normalizer:
+    <<: *app
+    profiles: ["pipeline"]
+    command: ["-m", "connectedfleet.normalize.service"]
+    mem_limit: 768m
+
+  # Lane B and lane C get identical CPU limits (equal to `connect`, which hosts lane A).
+  worker-row:
+    <<: *app
+    profiles: ["lanes"]
+    command: ["-m", "connectedfleet.lanes.worker", "--lane", "row", "--database", "bench_row",
+              "--group", "cf-lane-b", "--metrics-out", "/metrics/lane-b.jsonl"]
+    cpus: 2.0
+    mem_limit: 1g
+
+  worker-arrow:
+    <<: *app
+    profiles: ["lanes"]
+    command: ["-m", "connectedfleet.lanes.worker", "--lane", "arrow", "--database", "bench_arrow",
+              "--group", "cf-lane-c", "--metrics-out", "/metrics/lane-c.jsonl"]
+    cpus: 2.0
+    mem_limit: 1g
+
+  # One-off commands, e.g. `docker compose run --rm app -m connectedfleet.bench.producer --help`
+  app:
+    <<: *app
+    profiles: ["tools"]
+    cpus: 2.0
+    mem_limit: 1g
+
+volumes:
+  pg-data:
+  mongo-data:
+  mongo-config:
+  ch-data:

@@ -1,0 +1,25 @@
+2026-10-11T02:57:50Z host quiet for 60 s (no foreign containers, native busy CPU <= 150%); starting confirm E1-E4
+02:57:50Z\tloadavg\t{ 1.34 2.05 3.77 }
+02:58:22Z\tloadavg\t{ 1.99 2.14 3.74 }
+02:58:54Z\tloadavg\t{ 1.77 2.06 3.65 }
+02:59:26Z\tloadavg\t{ 2.86 2.31 3.69 }
+02:59:57Z\tloadavg\t{ 3.12 2.44 3.68 }
+03:00:29Z\tloadavg\t{ 3.50 2.62 3.70 }
+03:01:02Z\tloadavg\t{ 4.00 2.83 3.73 }
+03:01:34Z\tloadavg\t{ 2.80 2.65 3.64 }
+03:02:06Z\tloadavg\t{ 2.93 2.69 3.61 }
+03:02:37Z\tloadavg\t{ 3.73 2.88 3.64 }
+03:03:08Z	native	 58.1 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/153.0.8010.55/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
+03:03:08Z\tloadavg\t{ 3.58 2.91 3.63 }
+03:03:39Z\tloadavg\t{ 3.66 3.02 3.64 }
+03:04:11Z	native	 83.1 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/153.0.8010.55/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
+03:04:11Z\tloadavg\t{ 5.59 3.58 3.82 }
+03:04:44Z\tloadavg\t{ 6.78 4.06 3.98 }
+03:05:16Z\tloadavg\t{ 5.52 4.02 3.97 }
+03:05:47Z\tloadavg\t{ 4.75 3.97 3.95 }
+03:06:19Z\tloadavg\t{ 3.46 3.73 3.87 }
+03:06:50Z\tloadavg\t{ 3.79 3.80 3.89 }
+03:07:22Z\tloadavg\t{ 3.14 3.63 3.82 }
+03:07:54Z\tloadavg\t{ 4.70 3.94 3.92 }
+03:08:26Z\tloadavg\t{ 5.57 4.21 4.02 }
+03:08:57Z\tloadavg\t{ 4.01 3.95 3.93 }

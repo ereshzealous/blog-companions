@@ -1,0 +1,84 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# Local configuration and secrets
+.env
+*.local
+
+# Raw / bulky benchmark output. Curated summaries are committed explicitly.
+benchmarks/results/**/raw/
+benchmarks/results/**/*.log
+*.arrow
+*.arrows
+*.parquet
+
+# Container volumes and generated data
+.data/
+volumes/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Never commit editorial/publishing assets into this repository
+*.pdf
+*.html
+!docs/**/*.html
+# generated results pages (make results-html) are curated evidence
+!benchmarks/results/**/*.html
+
+# Keep authoring, agent settings and machine-local captures out of this companion.
+.env.*
+!.env.example
+.agents/
+.codex/
+.claude/
+AGENTS.md
+CLAUDE.md
+editorial/
+medium-export/
+html-export/
+local-artifacts/
+work-state/
+*.zip
+*.jfr
+*.hprof
+benchmarks/captures/
+
+# Only the reviewed historical run directories are included.
+benchmarks/results/runs/*
+!benchmarks/results/runs/lab03-confirm-20261010T192702Z-a499a19/
+!benchmarks/results/runs/lab03-confirm-20261010T194353Z-aa2da9c/
+!benchmarks/results/runs/lab03-confirm-20261010T205001Z-9c6ac78/
+!benchmarks/results/runs/lab03-confirm-20261010T214922Z-2d8587e/
+!benchmarks/results/runs/lab03-confirm-20261010T220213Z-1f53350/
+!benchmarks/results/runs/lab03-confirm-20261010T230335Z-59bc304/
+!benchmarks/results/runs/lab03-confirm-20261010T234600Z-7e220a0/
+!benchmarks/results/runs/lab03-confirm-20261011T001919Z-d1904b5/
+!benchmarks/results/runs/lab03-confirm-20261011T005033Z-8a28e84/
+!benchmarks/results/runs/lab03-confirm-20261011T020918Z-c5e6ab5/
+!benchmarks/results/runs/lab03-confirm-20261011T022202Z-ae7a455/
+!benchmarks/results/runs/lab03-confirm-20261011T025237Z-1855aee/
+!benchmarks/results/runs/lab03-confirm-20261011T025753Z-e0e29b1/
+!benchmarks/results/runs/lab03-confirm-20261011T031053Z-434b2a4/
+!benchmarks/results/runs/lab03-smoke-20261010T165506Z-32b2836/
+!benchmarks/results/runs/lab03-smoke-20261010T174059Z-c39b87f/
+!benchmarks/results/runs/lab03-smoke-20261010T183128Z-c67d181/
+
+# Only the reviewed historical run directories are included.
+benchmarks/results/lab-01/runs/*
+!benchmarks/results/lab-01/runs/lab01-20261010T162903Z-nogit/
+!benchmarks/results/lab-01/runs/lab01-20261010T164835Z-faf26dd/
+
+# Only the reviewed historical run directories are included.
+benchmarks/results/lab-02/runs/*
+!benchmarks/results/lab-02/runs/lab02-20261010T164018Z-nogit/
+!benchmarks/results/lab-02/runs/lab02-20261010T164346Z-nogit/
+!benchmarks/results/lab-02/runs/lab02-20261010T164622Z-nogit/

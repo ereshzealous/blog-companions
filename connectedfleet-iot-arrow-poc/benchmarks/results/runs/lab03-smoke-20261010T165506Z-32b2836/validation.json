@@ -1,0 +1,847 @@
+{
+  "run": {
+    "run_id": "lab03-smoke-20261010T165506Z-32b2836",
+    "valid": true,
+    "reasons": [],
+    "warnings": [
+      "single measured repetition: no spread available (smoke evidence only)"
+    ],
+    "cases_total": 119,
+    "cases_valid": 119
+  },
+  "cases": [
+    {
+      "case_id": "E1-0000",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0001",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0002",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0003",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0004",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0005",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0006",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0007",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0008",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0009",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0010",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0011",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0012",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0013",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0014",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0015",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0016",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0017",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0018",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0019",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0020",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0021",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0022",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0023",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0024",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0025",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0026",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0027",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0028",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0029",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0030",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0031",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0032",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0033",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0034",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0035",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0036",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0037",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0038",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0039",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0040",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0041",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0042",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0043",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0044",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E1-0045",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0046",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E1-0047",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0048",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0049",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0050",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0051",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0052",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0053",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0054",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0055",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0056",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0057",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0058",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0059",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0060",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0061",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0062",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0063",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0064",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0065",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0066",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0067",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0068",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0069",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0070",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0071",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0072",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0073",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0074",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0075",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0076",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0077",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0078",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0079",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0080",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0081",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0082",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0083",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0084",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0085",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0086",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0087",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0088",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0089",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0090",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0091",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E2-0092",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0093",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0094",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E2-0095",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E3-0096",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E3-0097",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E3-0098",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E3-0099",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E3-0100",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E3-0101",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E3-0102",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E3-0103",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E3-0104",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": true
+    },
+    {
+      "case_id": "E3-0105",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E3-0106",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E3-0107",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0108",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0109",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0110",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0111",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0112",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0113",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0114",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0115",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0116",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0117",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    },
+    {
+      "case_id": "E4-0118",
+      "reasons": [],
+      "warnings": [],
+      "valid": true,
+      "warmup": false
+    }
+  ]
+}

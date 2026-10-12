@@ -1,0 +1,53 @@
+ConnectedFleet Lab 01 — row vs Arrow at the JSON-to-column boundary
+run_id      lab01-20261010T162903Z-nogit
+status      PASS
+git         uncommitted (dirty tree)
+host        arm64 · 15 CPUs · macOS-26.5-arm64-arm-64bit
+versions    Python 3.12.13 · pyarrow 25.0.1
+protocol    1 warm-up + 5 measured repetitions; medians reported
+
+MEASURED — median milliseconds per phase (n/a = phase does not exist on that path)
+  events  batch path       decode   validate      build  transform  serialize      total  µs/event
+--------------------------------------------------------------------------------------------------
+   10000    100 row         14.20      10.24        n/a       2.03      15.63      42.09     4.209
+   10000    100 arrow       15.13      10.84       3.48      16.92       0.75      47.17     4.717
+   10000   1000 row         14.95      10.08        n/a       2.02      15.52      42.56     4.256
+   10000   1000 arrow       14.50      10.58       2.18       2.14       0.14      29.45     2.945
+   10000  10000 row         14.28      10.62        n/a       1.88      15.75      42.65     4.265
+   10000  10000 arrow       14.57      10.61       2.21       0.57       0.06      28.04     2.804
+  100000    100 row        143.77     101.49        n/a      20.75     157.03     422.68     4.227
+  100000    100 arrow      149.00     109.06      33.95     165.74       7.11     463.75     4.637
+  100000   1000 row        154.20     101.37        n/a      20.71     158.57     434.49     4.345
+  100000   1000 arrow      146.39     104.54      25.09      20.29       1.22     297.59     2.976
+  100000  10000 row        167.46     114.80        n/a      34.09     160.49     477.62     4.776
+  100000  10000 arrow      158.79     118.92      24.39       5.19       0.65     308.46     3.085
+
+MEASURED — memory (MiB)
+  events  batch path    rss_delta  arrow_pool   payload
+   10000    100 row           0.6         0.0       1.5
+   10000    100 arrow         9.6         0.1       0.7
+   10000   1000 row           4.4         0.0       1.5
+   10000   1000 arrow        13.9         0.4       0.6
+   10000  10000 row          24.3         0.0       1.5
+   10000  10000 arrow        35.0         2.0       0.6
+  100000    100 row           1.3         0.0      15.4
+  100000    100 arrow        11.0         0.1       7.1
+  100000   1000 row           5.6         0.0      15.4
+  100000   1000 arrow        14.3         0.4       6.3
+  100000  10000 row          44.2         0.0      15.4
+  100000  10000 arrow        54.4         3.0       6.2
+
+PARITY (row vs Arrow, same fixture and batch size)
+   10000    100  PASS
+   10000   1000  PASS
+   10000  10000  PASS
+  100000    100  PASS
+  100000   1000  PASS
+  100000  10000  PASS
+
+HOW TO READ THIS
+- Same-process microbenchmark on one machine: it shows where time goes inside one worker, not pipeline, Kafka or ClickHouse throughput.
+- decode and validate run identical shared code in both paths.
+- build is the Arrow path's extra conversion step (rows -> typed arrays); the row path has no build phase.
+- serialize emits different formats: JSONEachRow for the row path, an in-memory Arrow IPC stream for the Arrow path. No network, Kafka or ClickHouse is involved in Lab 01.
+- Memory is the process high-water RSS (ru_maxrss) of a fresh process per combination, minus the RSS after the fixture was loaded; the Arrow pool peak covers Arrow-allocated buffers only.

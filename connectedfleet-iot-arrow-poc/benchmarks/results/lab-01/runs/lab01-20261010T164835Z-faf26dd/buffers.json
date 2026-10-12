@@ -1,0 +1,341 @@
+{
+  "illustrative": {
+    "label": "illustrative (4 toy rows; real pyarrow buffers, not a benchmark)",
+    "rows": [
+      {
+        "device_id": "sensor-01",
+        "temperature_c": 21.5,
+        "battery_pct": 88
+      },
+      {
+        "device_id": "sensor-02",
+        "temperature_c": 43.6,
+        "battery_pct": 17
+      },
+      {
+        "device_id": "sensor-03",
+        "temperature_c": null,
+        "battery_pct": 64
+      },
+      {
+        "device_id": "sensor-04",
+        "temperature_c": 41.2,
+        "battery_pct": 12
+      }
+    ],
+    "device_id": {
+      "type": "string",
+      "length": 4,
+      "null_count": 0,
+      "buffers": [
+        {
+          "role": "validity",
+          "present": false,
+          "size_bytes": null
+        },
+        {
+          "role": "offsets",
+          "present": true,
+          "size_bytes": 20
+        },
+        {
+          "role": "data",
+          "present": true,
+          "size_bytes": 36
+        }
+      ],
+      "nbytes": 52,
+      "validity_bits_lsb_first": null,
+      "offsets_int32": [
+        0,
+        9,
+        18,
+        27,
+        36
+      ],
+      "data_utf8": "sensor-01sensor-02sensor-03sensor-04"
+    },
+    "temperature_c": {
+      "type": "double",
+      "length": 4,
+      "null_count": 1,
+      "buffers": [
+        {
+          "role": "validity",
+          "present": true,
+          "size_bytes": 1
+        },
+        {
+          "role": "data",
+          "present": true,
+          "size_bytes": 32
+        }
+      ],
+      "nbytes": 33,
+      "validity_bits_lsb_first": "1101",
+      "values_float64": [
+        21.5,
+        43.6,
+        null,
+        41.2
+      ],
+      "note": "the null slot still occupies 8 bytes in the data buffer; its value is undefined"
+    },
+    "battery_pct": {
+      "type": "uint8",
+      "length": 4,
+      "null_count": 0,
+      "buffers": [
+        {
+          "role": "validity",
+          "present": false,
+          "size_bytes": null
+        },
+        {
+          "role": "data",
+          "present": true,
+          "size_bytes": 4
+        }
+      ],
+      "nbytes": 4,
+      "validity_bits_lsb_first": null,
+      "values_uint8": [
+        88,
+        17,
+        64,
+        12
+      ],
+      "note": "no nulls, so pyarrow allocates no validity bitmap"
+    }
+  },
+  "observed": {
+    "label": "observed (real validated telemetry batch from the lab fixture)",
+    "num_rows": 995,
+    "batch_nbytes": 100507,
+    "columns": {
+      "event_id": {
+        "type": "string",
+        "length": 995,
+        "null_count": 0,
+        "buffers": [
+          {
+            "role": "validity",
+            "present": false,
+            "size_bytes": null
+          },
+          {
+            "role": "offsets",
+            "present": true,
+            "size_bytes": 3984
+          },
+          {
+            "role": "data",
+            "present": true,
+            "size_bytes": 11940
+          }
+        ],
+        "nbytes": 15920
+      },
+      "device_id": {
+        "type": "string",
+        "length": 995,
+        "null_count": 0,
+        "buffers": [
+          {
+            "role": "validity",
+            "present": false,
+            "size_bytes": null
+          },
+          {
+            "role": "offsets",
+            "present": true,
+            "size_bytes": 3984
+          },
+          {
+            "role": "data",
+            "present": true,
+            "size_bytes": 12036
+          }
+        ],
+        "nbytes": 16016
+      },
+      "event_time": {
+        "type": "timestamp[ms, tz=UTC]",
+        "length": 995,
+        "null_count": 0,
+        "buffers": [
+          {
+            "role": "validity",
+            "present": false,
+            "size_bytes": null
+          },
+          {
+            "role": "data",
+            "present": true,
+            "size_bytes": 7960
+          }
+        ],
+        "nbytes": 7960
+      },
+      "emitted_at": {
+        "type": "timestamp[ms, tz=UTC]",
+        "length": 995,
+        "null_count": 0,
+        "buffers": [
+          {
+            "role": "validity",
+            "present": false,
+            "size_bytes": null
+          },
+          {
+            "role": "data",
+            "present": true,
+            "size_bytes": 7960
+          }
+        ],
+        "nbytes": 7960
+      },
+      "source_system": {
+        "type": "string",
+        "length": 995,
+        "null_count": 0,
+        "buffers": [
+          {
+            "role": "validity",
+            "present": false,
+            "size_bytes": null
+          },
+          {
+            "role": "offsets",
+            "present": true,
+            "size_bytes": 3984
+          },
+          {
+            "role": "data",
+            "present": true,
+            "size_bytes": 10945
+          }
+        ],
+        "nbytes": 14925
+      },
+      "schema_version": {
+        "type": "uint8",
+        "length": 995,
+        "null_count": 0,
+        "buffers": [
+          {
+            "role": "validity",
+            "present": false,
+            "size_bytes": null
+          },
+          {
+            "role": "data",
+            "present": true,
+            "size_bytes": 995
+          }
+        ],
+        "nbytes": 995
+      },
+      "temperature_c": {
+        "type": "double",
+        "length": 995,
+        "null_count": 38,
+        "buffers": [
+          {
+            "role": "validity",
+            "present": true,
+            "size_bytes": 125
+          },
+          {
+            "role": "data",
+            "present": true,
+            "size_bytes": 7960
+          }
+        ],
+        "nbytes": 8085
+      },
+      "battery_pct": {
+        "type": "uint8",
+        "length": 995,
+        "null_count": 31,
+        "buffers": [
+          {
+            "role": "validity",
+            "present": true,
+            "size_bytes": 125
+          },
+          {
+            "role": "data",
+            "present": true,
+            "size_bytes": 995
+          }
+        ],
+        "nbytes": 1120
+      },
+      "signal_dbm": {
+        "type": "int16",
+        "length": 995,
+        "null_count": 31,
+        "buffers": [
+          {
+            "role": "validity",
+            "present": true,
+            "size_bytes": 125
+          },
+          {
+            "role": "data",
+            "present": true,
+            "size_bytes": 1990
+          }
+        ],
+        "nbytes": 2115
+      },
+      "firmware_version": {
+        "type": "string",
+        "length": 995,
+        "null_count": 22,
+        "buffers": [
+          {
+            "role": "validity",
+            "present": true,
+            "size_bytes": 125
+          },
+          {
+            "role": "offsets",
+            "present": true,
+            "size_bytes": 3984
+          },
+          {
+            "role": "data",
+            "present": true,
+            "size_bytes": 5877
+          }
+        ],
+        "nbytes": 9982
+      },
+      "site_id": {
+        "type": "string",
+        "length": 995,
+        "null_count": 5,
+        "buffers": [
+          {
+            "role": "validity",
+            "present": true,
+            "size_bytes": 125
+          },
+          {
+            "role": "offsets",
+            "present": true,
+            "size_bytes": 3984
+          },
+          {
+            "role": "data",
+            "present": true,
+            "size_bytes": 11324
+          }
+        ],
+        "nbytes": 15429
+      }
+    }
+  }
+}

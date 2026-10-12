@@ -1,0 +1,13 @@
+{
+  "event_id": "evt-00001057",
+  "device_id": "sensor-01042",
+  "event_time": "2026-10-09T08:30:00.000Z",
+  "emitted_at": "2026-10-09T08:30:00.100Z",
+  "source_system": "iot-gateway",
+  "schema_version": 1,
+  "temperature_c": 43.6,
+  "battery_pct": 17,
+  "signal_dbm": -78,
+  "firmware_version": "3.2.1",
+  "site_id": "factory-12"
+}

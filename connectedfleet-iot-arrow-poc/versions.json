@@ -1,0 +1,158 @@
+{
+  "captured_at_utc": "2026-10-10T16:39:05+00:00",
+  "compose_images": [
+    {
+      "ID": "sha256:6c242ab3989ef60acb1859d05142bc84b0d20df70ece29ebcc50cb52c295034b",
+      "ContainerName": "connectedfleet-connect-1",
+      "Repository": "",
+      "Tag": "",
+      "Platform": "unknown",
+      "Size": 0
+    },
+    {
+      "ID": "sha256:1f995ad6fdb93244a1addab1b58f934a0bc2f5643c38e02f5e9d7f0c7d227a7b",
+      "ContainerName": "connectedfleet-mongodb-1",
+      "Repository": "mongo",
+      "Tag": "7.0.43",
+      "Platform": "linux/arm64/v8",
+      "Size": 1126083428,
+      "Created": "2026-10-02T01:32:03.312463295Z",
+      "LastTagTime": "2026-10-10T16:37:01.756286344Z"
+    },
+    {
+      "ID": "sha256:55a55347b1b959ae51d40373901e81aa671d7fc9e6d05d0603d1e0ad3ac22c6d",
+      "ContainerName": "connectedfleet-clickhouse-1",
+      "Repository": "clickhouse/clickhouse-server",
+      "Tag": "26.3.47.6",
+      "Platform": "linux/arm64",
+      "Size": 1102139409,
+      "Created": "2026-10-10T13:09:08.994204102Z",
+      "LastTagTime": "2026-10-10T16:31:21.114582548Z"
+    },
+    {
+      "ID": "sha256:1213eb3943d551e5ed1fca7a4e109001cee35770b66a02a0c37a8964efe09b69",
+      "ContainerName": "connectedfleet-kafka-1",
+      "Repository": "apache/kafka",
+      "Tag": "4.2.2",
+      "Platform": "linux/arm64",
+      "Size": 678380045,
+      "Created": "2026-09-21T18:14:22.881170158Z",
+      "LastTagTime": "2026-10-10T16:31:05.803865013Z"
+    },
+    {
+      "ID": "sha256:2d2b8998d31037bf721cfdf764d76ba74171b4fab3431b7f72c27c56ddbdf9e3",
+      "ContainerName": "connectedfleet-postgres-1",
+      "Repository": "postgres",
+      "Tag": "17.11",
+      "Platform": "linux/arm64/v8",
+      "Size": 661340390,
+      "Created": "2026-10-06T01:36:10.65337644Z",
+      "LastTagTime": "2026-10-10T16:31:01.550677761Z"
+    }
+  ],
+  "clickhouse": "26.3.47.6",
+  "kafka_connect": {
+    "version": "4.3.0",
+    "commit": "a9ce3221537b8653",
+    "kafka_cluster_id": "5L6g3nShT-eMCtK--X86sw"
+  },
+  "connector_plugins": [
+    {
+      "class": "com.clickhouse.kafka.connect.ClickHouseSinkConnector",
+      "type": "sink",
+      "version": "v1.6.0"
+    },
+    {
+      "class": "io.debezium.connector.jdbc.JdbcSinkConnector",
+      "type": "sink",
+      "version": "3.6.3.Final"
+    },
+    {
+      "class": "io.debezium.connector.mongodb.MongoDbSinkConnector",
+      "type": "sink",
+      "version": "3.6.3.Final"
+    },
+    {
+      "class": "io.debezium.connector.cockroachdb.CockroachDBConnector",
+      "type": "source",
+      "version": "3.6.3.Final"
+    },
+    {
+      "class": "io.debezium.connector.db2.Db2Connector",
+      "type": "source",
+      "version": "3.6.3.Final"
+    },
+    {
+      "class": "io.debezium.connector.db2as400.As400RpcConnector",
+      "type": "source",
+      "version": "3.6.3.Final"
+    },
+    {
+      "class": "io.debezium.connector.informix.InformixConnector",
+      "type": "source",
+      "version": "3.6.3.Final"
+    },
+    {
+      "class": "io.debezium.connector.mariadb.MariaDbConnector",
+      "type": "source",
+      "version": "3.6.3.Final"
+    },
+    {
+      "class": "io.debezium.connector.mongodb.MongoDbConnector",
+      "type": "source",
+      "version": "3.6.3.Final"
+    },
+    {
+      "class": "io.debezium.connector.mysql.MySqlConnector",
+      "type": "source",
+      "version": "3.6.3.Final"
+    },
+    {
+      "class": "io.debezium.connector.oracle.OracleConnector",
+      "type": "source",
+      "version": "3.6.3.Final"
+    },
+    {
+      "class": "io.debezium.connector.postgresql.PostgresConnector",
+      "type": "source",
+      "version": "3.6.3.Final"
+    },
+    {
+      "class": "io.debezium.connector.spanner.SpannerConnector",
+      "type": "source",
+      "version": "3.6.3.Final"
+    },
+    {
+      "class": "io.debezium.connector.sqlserver.SqlServerConnector",
+      "type": "source",
+      "version": "3.6.3.Final"
+    },
+    {
+      "class": "io.debezium.connector.vitess.VitessConnector",
+      "type": "source",
+      "version": "3.6.3.Final"
+    },
+    {
+      "class": "org.apache.kafka.connect.mirror.MirrorCheckpointConnector",
+      "type": "source",
+      "version": "4.3.0"
+    },
+    {
+      "class": "org.apache.kafka.connect.mirror.MirrorHeartbeatConnector",
+      "type": "source",
+      "version": "4.3.0"
+    },
+    {
+      "class": "org.apache.kafka.connect.mirror.MirrorSourceConnector",
+      "type": "source",
+      "version": "4.3.0"
+    }
+  ],
+  "postgres": "17.11 (Debian 17.11-1.pgdg13+2)",
+  "mongodb": "7.0.43",
+  "python": "3.12.13",
+  "pyarrow": "25.0.1",
+  "confluent_kafka": "2",
+  "librdkafka": "2.15.1",
+  "clickhouse_connect": "1.8.0"
+}

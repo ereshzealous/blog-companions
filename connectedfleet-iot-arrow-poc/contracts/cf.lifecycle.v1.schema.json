@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://connectedfleet.example/contracts/cf.lifecycle.v1.schema.json",
+  "title": "Business lifecycle event from the transactional outbox",
+  "description": "Canonical Kafka topic cf.lifecycle.v1 -> ClickHouse table lifecycle_events. Frozen 2026-10-10 (schema_version 1). Key: device_id.",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Outbox row id (UUID), stable: re-delivery produces the same id"
+    },
+    "device_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "Kafka partition key for every canonical topic"
+    },
+    "event_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the fact happened at the source (event-time analytics)"
+    },
+    "emitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the source system emitted/committed it (not the ingestion time)"
+    },
+    "source_system": {
+      "type": "string",
+      "description": "registry-app.outbox"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "event_type": {
+      "enum": [
+        "DeviceActivated",
+        "FirmwareUpdated",
+        "DeviceAssigned",
+        "DeviceDeactivated"
+      ]
+    },
+    "aggregate_type": {
+      "const": "device"
+    },
+    "firmware_version": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 64
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "site_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 64
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "customer_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 64
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 256
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "event_id",
+    "device_id",
+    "event_time",
+    "emitted_at",
+    "source_system",
+    "schema_version",
+    "event_type",
+    "aggregate_type"
+  ],
+  "additionalProperties": true,
+  "x-clickhouse-table": "lifecycle_events",
+  "x-null-policy": "Absent optional field == explicit null in typed storage; the normalizer counts them separately."
+}

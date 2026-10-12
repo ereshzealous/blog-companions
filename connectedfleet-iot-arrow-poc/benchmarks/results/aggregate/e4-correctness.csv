@@ -1,0 +1,127 @@
+run_id,git_sha,scenario,lane,status,executed,note,source
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,happy_path_with_poison,sink,fail,True,logical 4501/5000; DLQ +500 (poison sent 1); 499 good records dead-lettered with the poison (batch-level failure),E4-0000
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,replay_new_group,sink,pass,True,"logical 4501, physical 9002 (first pass logical 4501, physical 4501): at-least-once duplicates",E4-0001
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,dlq_recovery,sink,pass,True,"replayed 998 of 1000 DLQ records, quarantined 2 (poison-20261015-0); logical 5000/5000",E4-0002
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,happy_path_with_poison,sink_tuned,fail,True,logical 4501/5000; DLQ +500 (poison sent 1); 499 good records dead-lettered with the poison (batch-level failure),E4-0003
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,happy_path_with_poison,sink_skip,fail,True,logical 4502/5000; DLQ +0 (poison sent 1); 498 good rows missing with no DLQ record (silently dropped),E4-0004
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,happy_path_with_poison,row,pass,True,logical 5000/5000; DLQ +1 (poison sent 1),E4-0005
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,replay_new_group,row,pass,True,"logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates",E4-0006
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,happy_path_with_poison,arrow,pass,True,logical 5000/5000; DLQ +1 (poison sent 1),E4-0007
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,replay_new_group,arrow,pass,True,"logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates",E4-0008
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,crash_after_insert_before_commit,row,pass,True,"after restart logical 5000, physical 5500: duplicate rows from the crash window",E4-0009
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,crash_after_insert_before_commit,arrow,pass,True,"after restart logical 5000, physical 5500: duplicate rows from the crash window",E4-0010
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,schema_null_edge,sink,pass,True,null counts preserved exactly,E4-0011
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,schema_null_edge,row,pass,True,null counts preserved exactly,E4-0012
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,schema_null_edge,arrow,pass,True,null counts preserved exactly,E4-0013
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,crash_after_insert_before_commit,sink,not_applicable,False,NOT_APPLICABLE: offsets are managed by the Kafka Connect framework; no injection point in this POC,
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,csv_reimport,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,csv_reimport,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,csv_reimport,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,pg_delete_update,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,pg_delete_update,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,pg_delete_update,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,outbox_rollback,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,outbox_rollback,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,outbox_rollback,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,mongo_update_delete,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,mongo_update_delete,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261010T192702Z-a499a19,a499a19278ba46bd2dcf91adfc38e0e01eba05ab,mongo_update_delete,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,happy_path_with_poison,sink,fail,True,logical 4501/5000; DLQ +500 (poison sent 1); 499 good records dead-lettered with the poison (batch-level failure),E4-0224
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,replay_new_group,sink,pass,True,"logical 4501, physical 9002 (first pass logical 4501, physical 4501): at-least-once duplicates",E4-0225
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,dlq_recovery,sink,pass,True,"replayed 998 of 1000 DLQ records, quarantined 2 (poison-20261015-0); logical 5000/5000",E4-0226
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,happy_path_with_poison,sink_tuned,fail,True,logical 4501/5000; DLQ +500 (poison sent 1); 499 good records dead-lettered with the poison (batch-level failure),E4-0227
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,happy_path_with_poison,sink_skip,fail,True,logical 4502/5000; DLQ +0 (poison sent 1); 498 good rows missing with no DLQ record (silently dropped),E4-0228
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,happy_path_with_poison,row,pass,True,logical 5000/5000; DLQ +1 (poison sent 1),E4-0229
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,replay_new_group,row,pass,True,"logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates",E4-0230
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,happy_path_with_poison,arrow,pass,True,logical 5000/5000; DLQ +1 (poison sent 1),E4-0231
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,replay_new_group,arrow,pass,True,"logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates",E4-0232
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,crash_after_insert_before_commit,row,pass,True,"after restart logical 5000, physical 5500: duplicate rows from the crash window",E4-0233
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,crash_after_insert_before_commit,arrow,pass,True,"after restart logical 5000, physical 5500: duplicate rows from the crash window",E4-0234
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,schema_null_edge,sink,pass,True,null counts preserved exactly,E4-0235
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,schema_null_edge,row,pass,True,null counts preserved exactly,E4-0236
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,schema_null_edge,arrow,pass,True,null counts preserved exactly,E4-0237
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,crash_after_insert_before_commit,sink,not_applicable,False,NOT_APPLICABLE: offsets are managed by the Kafka Connect framework; no injection point in this POC,
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,csv_reimport,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,csv_reimport,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,csv_reimport,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,pg_delete_update,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,pg_delete_update,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,pg_delete_update,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,outbox_rollback,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,outbox_rollback,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,outbox_rollback,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,mongo_update_delete,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,mongo_update_delete,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-confirm-20261011T031053Z-434b2a4,434b2a464e1b6cf1f5304f34902c67de8857859c,mongo_update_delete,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,happy_path_with_poison,sink,partial,True,logical 5000/5000; DLQ +0 (poison sent 1); bad record skipped by ClickHouse without a DLQ record (silently dropped),E4-0108
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,replay_new_group,sink,pass,True,"logical 5000, physical 10000 (expected logical 5000, physical 10000): at-least-once duplicates",E4-0109
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,happy_path_with_poison,row,pass,True,logical 5000/5000; DLQ +1 (poison sent 1),E4-0110
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,replay_new_group,row,pass,True,"logical 5000, physical 10000 (expected logical 5000, physical 10000): at-least-once duplicates",E4-0111
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,happy_path_with_poison,arrow,pass,True,logical 5000/5000; DLQ +1 (poison sent 1),E4-0112
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,replay_new_group,arrow,pass,True,"logical 5000, physical 10000 (expected logical 5000, physical 10000): at-least-once duplicates",E4-0113
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,crash_after_insert_before_commit,row,pass,True,"after restart logical 5000, physical 5500: duplicate rows from the crash window",E4-0114
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,crash_after_insert_before_commit,arrow,pass,True,"after restart logical 5000, physical 5500: duplicate rows from the crash window",E4-0115
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,schema_null_edge,sink,pass,True,null counts preserved exactly,E4-0116
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,schema_null_edge,row,pass,True,null counts preserved exactly,E4-0117
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,schema_null_edge,arrow,pass,True,null counts preserved exactly,E4-0118
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,crash_after_insert_before_commit,sink,not_applicable,False,NOT_APPLICABLE: offsets are managed by the Kafka Connect framework; no injection point in this POC,
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,csv_reimport,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,csv_reimport,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,csv_reimport,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,pg_delete_update,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,pg_delete_update,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,pg_delete_update,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,outbox_rollback,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,outbox_rollback,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,outbox_rollback,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,mongo_update_delete,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,mongo_update_delete,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T165506Z-32b2836,32b2836e2189a35c3593c36cefd15b6506390fc4,mongo_update_delete,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,happy_path_with_poison,sink,fail,True,logical 4501/5000; DLQ +500 (poison sent 1); 499 good records dead-lettered with the poison (batch-level failure),E4-0108
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,replay_new_group,sink,pass,True,"logical 4501, physical 9002 (first pass logical 4501, physical 4501): at-least-once duplicates",E4-0109
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,happy_path_with_poison,row,pass,True,logical 5000/5000; DLQ +1 (poison sent 1),E4-0110
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,replay_new_group,row,pass,True,"logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates",E4-0111
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,happy_path_with_poison,arrow,pass,True,logical 5000/5000; DLQ +1 (poison sent 1),E4-0112
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,replay_new_group,arrow,pass,True,"logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates",E4-0113
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,crash_after_insert_before_commit,row,pass,True,"after restart logical 5000, physical 5500: duplicate rows from the crash window",E4-0114
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,crash_after_insert_before_commit,arrow,pass,True,"after restart logical 5000, physical 5500: duplicate rows from the crash window",E4-0115
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,schema_null_edge,sink,pass,True,null counts preserved exactly,E4-0116
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,schema_null_edge,row,pass,True,null counts preserved exactly,E4-0117
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,schema_null_edge,arrow,pass,True,null counts preserved exactly,E4-0118
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,crash_after_insert_before_commit,sink,not_applicable,False,NOT_APPLICABLE: offsets are managed by the Kafka Connect framework; no injection point in this POC,
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,csv_reimport,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,csv_reimport,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,csv_reimport,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,pg_delete_update,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,pg_delete_update,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,pg_delete_update,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,outbox_rollback,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,outbox_rollback,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,outbox_rollback,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,mongo_update_delete,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,mongo_update_delete,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T174059Z-c39b87f,c39b87fc39df2444ee289d492888e96a63b7e9a8,mongo_update_delete,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,happy_path_with_poison,sink,fail,True,logical 4501/5000; DLQ +500 (poison sent 1); 499 good records dead-lettered with the poison (batch-level failure),E4-0108
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,replay_new_group,sink,pass,True,"logical 4501, physical 9002 (first pass logical 4501, physical 4501): at-least-once duplicates",E4-0109
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,happy_path_with_poison,row,pass,True,logical 5000/5000; DLQ +1 (poison sent 1),E4-0110
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,replay_new_group,row,pass,True,"logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates",E4-0111
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,happy_path_with_poison,arrow,pass,True,logical 5000/5000; DLQ +1 (poison sent 1),E4-0112
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,replay_new_group,arrow,pass,True,"logical 5000, physical 10000 (first pass logical 5000, physical 5000): at-least-once duplicates",E4-0113
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,crash_after_insert_before_commit,row,pass,True,"after restart logical 5000, physical 5500: duplicate rows from the crash window",E4-0114
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,crash_after_insert_before_commit,arrow,pass,True,"after restart logical 5000, physical 5500: duplicate rows from the crash window",E4-0115
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,schema_null_edge,sink,pass,True,null counts preserved exactly,E4-0116
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,schema_null_edge,row,pass,True,null counts preserved exactly,E4-0117
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,schema_null_edge,arrow,pass,True,null counts preserved exactly,E4-0118
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,crash_after_insert_before_commit,sink,not_applicable,False,NOT_APPLICABLE: offsets are managed by the Kafka Connect framework; no injection point in this POC,
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,csv_reimport,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,csv_reimport,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,csv_reimport,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,pg_delete_update,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,pg_delete_update,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,pg_delete_update,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,outbox_rollback,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,outbox_rollback,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,outbox_rollback,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,mongo_update_delete,sink,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,mongo_update_delete,row,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
+lab03-smoke-20261010T183128Z-c67d181,c67d181d26ea98fc13be11ab16b6514ed19938a2,mongo_update_delete,arrow,pass,True,from Lab 02 run lab02-20261010T164622Z-nogit,lab02-20261010T164622Z-nogit
