@@ -94,8 +94,8 @@ This short mode verifies capture and rendering; it is not a publishable performa
 
 ## Saved results
 
-Open the checked-in [benchmark results and run guide](benchmarks/results/benchmark-results.html)
-in your browser. On GitHub, download the raw HTML file first; the file viewer shows its source.
+Open the [benchmark results and run guide](https://ereshzealous.github.io/blog-companions/java_virtual_threads/benchmarks/results/benchmark-results.html)
+directly in your browser. For offline viewing, open `benchmarks/results/benchmark-results.html` from a local clone.
 It contains the three experiment panels and both HTTP smoke runs in the same report as the article series.
 
 To regenerate it from the saved measurements, run from `java_virtual_threads/`:

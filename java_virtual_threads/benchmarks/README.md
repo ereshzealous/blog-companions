@@ -1,7 +1,7 @@
 # Benchmark and test evidence
 
-`results/` contains the saved measurements and the [HTML results report](results/benchmark-results.html).
-Download the raw HTML from GitHub and open it in your browser, or open it from a local clone.
+`results/` contains the saved measurements and the [HTML results report](https://ereshzealous.github.io/blog-companions/java_virtual_threads/benchmarks/results/benchmark-results.html).
+The report opens directly in your browser. For offline viewing, open `benchmarks/results/benchmark-results.html` from a local clone.
 New runs go into ignored `runs/` directories;
 continuous local telemetry goes into ignored `captures/` directories. They survive `gradlew clean`.
 
@@ -46,7 +46,7 @@ while admitted-only p99 remains about 150 ms.
 
 | File | Contents |
 |---|---|
-| [benchmark-results.html](results/benchmark-results.html) | Offline report: three experiments, two HTTP smoke runs, commands and raw output |
+| [benchmark-results.html](https://ereshzealous.github.io/blog-companions/java_virtual_threads/benchmarks/results/benchmark-results.html) | Browser and offline report: three experiments, two HTTP smoke runs, commands and raw output |
 | [jmh-results.json](results/jmh-results.json) | All 13 JMH configurations, raw samples, error estimates and GC allocation metrics |
 | [jmh-human.txt](results/jmh-human.txt) | Human-readable JMH output (workstation path normalized) |
 | [jmh-run.log](results/jmh-run.log) | Historical Gradle/JMH execution log |

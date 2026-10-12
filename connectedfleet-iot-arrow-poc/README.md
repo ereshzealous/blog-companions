@@ -16,7 +16,7 @@ ConnectedFleet is fictional. Event volumes in this repository are synthetic expe
 
 ## Status and evidence
 
-Every claim maps to a saved, validated run under `benchmarks/results/`. The [complete saved-results page](benchmarks/results/index.html) embeds charts, tables, all 48 correctness checks and full original output. Open it locally, or use the [GitHub Pages report](https://ereshzealous.github.io/blog-companions/connectedfleet-iot-arrow-poc/benchmarks/results/index.html) after publication. It rebuilds from saved files with `make public-report`; no services or new measurements are started. The original technical report remains at `benchmarks/results/benchmark-results.html` (`make results-html`), with a `report.html` for each run that left a manifest. A curated summary of what the runs show is
+Every claim maps to a saved, validated run under `benchmarks/results/`. The [complete saved-results page](https://ereshzealous.github.io/blog-companions/connectedfleet-iot-arrow-poc/benchmarks/results/index.html) opens directly in your browser and embeds charts, tables, all 48 correctness checks and full original output. For offline viewing, open `benchmarks/results/index.html` from a local clone. It rebuilds from saved files with `make public-report`; no services or new measurements are started. The [original technical report](https://ereshzealous.github.io/blog-companions/connectedfleet-iot-arrow-poc/benchmarks/results/benchmark-results.html) is also available locally at `benchmarks/results/benchmark-results.html` (`make results-html`), with a `report.html` for each run that left a manifest. A curated summary of what the runs show is
 in [`benchmarks/results/REPORT.md`](benchmarks/results/REPORT.md).
 
 | Part | Evidence | Result |
